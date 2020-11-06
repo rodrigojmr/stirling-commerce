@@ -1,18 +1,18 @@
 import React from 'react';
-import styled from 'styled-components';
+import { ThemeProvider } from 'styled-components';
+import { BrowserRouter } from 'react-router-dom';
 import GlobalStyle from './theme/globalStyles';
-
-const Main = styled.div`
-  background-color: red;
-  padding: 20px;
-`;
+import Navbar from './components/Navbar';
+import { theme } from './theme/theme';
 
 const App: React.FC = () => {
   return (
-    <>
-      <GlobalStyle />
-      <Main></Main>
-    </>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <GlobalStyle />
+        <Navbar />
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };
 
