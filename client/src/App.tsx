@@ -1,9 +1,12 @@
-import React from 'react';
+import * as React from 'react';
+
 import { ThemeProvider } from 'styled-components';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import GlobalStyle from './theme/globalStyles';
 import Navbar from './components/Navbar';
-import { theme } from './theme/theme';
+import theme from './theme/theme';
+
+import Home from './views/Home';
 
 const App: React.FC = () => {
   return (
@@ -11,6 +14,21 @@ const App: React.FC = () => {
       <BrowserRouter>
         <GlobalStyle />
         <Navbar />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/men">
+            Men's
+          </Route>
+          <Route exact path="/women">
+            Women's
+          </Route>
+          <Route exact path="/kids">
+            Kids
+          </Route>
+          <Route render={() => <Redirect to="/" />} />
+        </Switch>
       </BrowserRouter>
     </ThemeProvider>
   );

@@ -1,29 +1,10 @@
-import { DefaultTheme } from 'styled-components';
-
-declare module 'styled-components' {
-  export interface DefaultTheme {
-    colors: {
-      primary: string;
-      darkGrey: string;
-      lightGrey: string;
-      grey: string;
-    };
-    breakpoints: {
-      xsPhone: string;
-      phone: string;
-      landscape: string;
-      desktop: string;
-      xlDesktop: string;
-    };
-  }
-}
-
-export const theme: DefaultTheme = {
+const theme = {
   colors: {
     primary: '#19CE96',
     darkGrey: '#171717',
     lightGrey: '#F2F2F2',
-    grey: '#474747'
+    grey: '#444444',
+    lighterGrey: '#aaaaaa'
   },
   breakpoints: {
     xsPhone: '576px',
@@ -33,3 +14,5 @@ export const theme: DefaultTheme = {
     xlDesktop: '1400px'
   }
 };
+
+export default theme;

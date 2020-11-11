@@ -21,14 +21,13 @@ const GlobalStyle = createGlobalStyle`
     padding:0;
     cursor:pointer;
   }
-  ul, ol, dd{margin:0; padding:0; list-style:none;}
+  ul, ol, dd, li{margin:0; padding:0; list-style:none;}
   h1, h2, h3, h4, h5, h6{margin:0; font-size:inherit; font-weight:inherit;}
   p{margin:0;}
   body{
    font-family: 'Source Sans Pro', sans-serif;
-   font-size: 16rem;
+   font-size: 16px;
    font-weight: 400;
-   line-height: 1.3;
    color: #222;
   } 
 
