@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 interface LinkProps {
@@ -13,6 +13,10 @@ export const StyledLink = styled(NavLink)<LinkProps>`
   font-weight: 400;
   font-size: ${props => props.fontSize};
   color: ${props => props.color};
+  transition: all 0.2s;
+  &:hover {
+    color: ${props => props.theme.colors.primary};
+  }
 `;
 
 interface InputStyleProps {
@@ -30,4 +34,9 @@ export const StyledInput = styled.input<InputStyleProps>`
   background-color: ${props => props.backgroundColor};
   border-bottom: 1px solid white;
   color: ${props => props.color};
+`;
+
+export const heroSliderStyle = css`
+  position: relative;
+  padding: 3rem;
 `;

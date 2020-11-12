@@ -1,15 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
 import EmblaCarousel from '../components/Carousel/EmblaCarousel';
+
+import SlideOne from '../components/Slides/SlideOne';
+
+const carouselOptions = { draggable: false, loop: true, arrows: true };
 
 const Home = () => {
   return (
-    <div>
-      <EmblaCarousel options={{ draggable: false, loop: true }}>
-        <div>One</div>
-        <div>two</div>
-        <div>three</div>
-      </EmblaCarousel>
-    </div>
+    <EmblaCarousel options={carouselOptions}>
+      <SlideOne background="/images/carousel-bicycle.webp" />
+    </EmblaCarousel>
   );
 };
 

@@ -22,7 +22,12 @@ const GlobalStyle = createGlobalStyle`
     cursor:pointer;
   }
   ul, ol, dd, li{margin:0; padding:0; list-style:none;}
-  h1, h2, h3, h4, h5, h6{margin:0; font-size:inherit; font-weight:inherit;}
+  h1, h2, h3, h4, h5, h6 {
+  font-family: 'Bebas Neue';
+   margin:0;
+   font-size:inherit;
+   font-weight:inherit;
+  }
   p{margin:0;}
   body{
    font-family: 'Source Sans Pro', sans-serif;
