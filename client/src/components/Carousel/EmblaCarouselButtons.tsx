@@ -75,7 +75,7 @@ const sharedButtonStyles = css`
 
 const ButtonPrev = styled.button`
   ${sharedButtonStyles}
-  left: 0.7rem;
+  left: 3rem;
 `;
 
 const ButtonSvg = styled.svg`
@@ -98,7 +98,7 @@ export const PrevButton = ({ enabled, onClick }: ButtonProps): JSX.Element => (
 
 const ButtonNext = styled.button`
   ${sharedButtonStyles}
-  right: 0.7rem;
+  right: 3rem;
 `;
 
 export const NextButton = ({ enabled, onClick }: ButtonProps): JSX.Element => (

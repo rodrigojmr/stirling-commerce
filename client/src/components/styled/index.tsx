@@ -38,5 +38,46 @@ export const StyledInput = styled.input<InputStyleProps>`
 
 export const heroSliderStyle = css`
   position: relative;
-  padding: 3rem;
+  padding: 8rem;
+  height: 90vh;
+`;
+
+interface HeaderProps {
+  fontSize: string;
+  as: string;
+  children?: string;
+}
+
+export const Heading = styled.h1<HeaderProps>`
+  color: white;
+  font-weight: 400;
+  font-size: ${({ fontSize }) => fontSize};
+  line-height: 1;
+`;
+
+export const Text = styled.p<{ color: string }>`
+  color: ${({ color }) => color};
+`;
+
+export interface ButtonThemed {
+  themed: string;
+  primary?: never;
+  secondary?: never;
+}
+export interface ButtonColor {
+  themed?: never;
+  primary: string;
+  secondary: string;
+}
+
+export type ButtonProps = ButtonThemed | ButtonColor;
+
+export const Button = styled.a<ButtonProps>`
+  display: inline-block;
+  color: ${({ themed, secondary }) => themed || secondary};
+  font-family: 'Bebas Neue';
+  font-weight: 400;
+  border: 3px solid ${({ themed, primary }) => themed || primary};
+  border-radius: 3rem;
+  padding: 1.5rem 3rem;
 `;

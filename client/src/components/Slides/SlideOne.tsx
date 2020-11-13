@@ -1,10 +1,7 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
-import { heroSliderStyle } from '../styled';
-
-interface ImageProps {
-  src: string;
-}
+import { heroSliderStyle, Heading, Text, Button } from '../styled';
+import theme from '../../theme/theme';
 
 type SlideTypes = {
   background: string;
@@ -12,27 +9,18 @@ type SlideTypes = {
 
 const StyledContainer = styled.article<SlideTypes>`
   ${heroSliderStyle}
-  background-image: ${({ background }) => background};
-`;
-
-const StyledImage = styled.img<ImageProps>`
-  position: absolute;
-  top: -50%;
-  left: 0;
-  transform: translateY(-50%);
-  width: 100%;
+  background-image: url(${({ background }) =>
+    background}), linear-gradient(to right, #000, #000);
+  background-size: auto 100%, cover;
+  background-position: left center;
+  display: flex;
+  align-items: center;
+  background-repeat: no-repeat;
 `;
 
 const TextContainer = styled.div`
   z-index: 1;
   margin-left: 60%;
-`;
-
-const StyledHeader = styled.h2`
-  color: white;
-  font-weight: 600;
-  font-size: 10rem;
-  line-height: 1;
 `;
 
 // TODO  ({ background }: SlideProps): JSX.Element => {
@@ -42,9 +30,17 @@ const SlideOne = ({ background }: SlideTypes): ReactElement => {
   return (
     <StyledContainer background={background}>
       <TextContainer>
-        <StyledHeader>Bicycle Acessories</StyledHeader>
+        <Heading fontSize="14rem" as="h1">
+          Bicycle Acessories
+        </Heading>
+        <Text color={theme.colors.lighterGrey}>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil natus
+          porro sint minima quo error enim ratione impedit qui alias.
+        </Text>
+        <Button primary="white" secondary={theme.colors.primary}>
+          Shop Now
+        </Button>
       </TextContainer>
-      <StyledImage src="/images/carousel-bicycle.webp"></StyledImage>
     </StyledContainer>
   );
 };

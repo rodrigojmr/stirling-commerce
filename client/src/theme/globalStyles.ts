@@ -28,8 +28,11 @@ const GlobalStyle = createGlobalStyle`
    font-size:inherit;
    font-weight:inherit;
   }
-  p{margin:0;}
-  body{
+  p {
+    margin: 0;
+    font-size: 2rem;
+  }
+  body {
    font-family: 'Source Sans Pro', sans-serif;
    font-size: 16px;
    font-weight: 400;
