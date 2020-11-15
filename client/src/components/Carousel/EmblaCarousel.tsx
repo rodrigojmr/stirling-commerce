@@ -2,41 +2,13 @@ import React, { useState, useEffect, useCallback, ReactElement } from 'react';
 import { useEmblaCarousel } from 'embla-carousel/react';
 import styled from 'styled-components';
 import { DotButton, PrevButton, NextButton } from './EmblaCarouselButtons';
-
-const Embla = styled.section`
-  position: relative;
-`;
-
-const Viewport = styled.div<{
-  ref: <ViewportElement extends HTMLElement>(
-    instance: ViewportElement | null
-  ) => void;
-}>`
-  overflow: hidden;
-  &.is-draggable {
-    cursor: move;
-    cursor: grab;
-  }
-
-  &.is-dragging {
-    cursor: grabbing;
-  }
-`;
+import { Embla, Viewport, Container } from './styles';
 
 // TODO Split style from the component itself, pass through props
-
-const Container = styled.ul`
-  display: flex;
-  will-change: transform;
-  margin-left: -1rem;
-  list-style-type: none;
-`;
-
 const Slide = styled.li`
   flex: 0 0 auto;
   width: 100%;
   position: relative;
-  counter-increment: embla;
 `;
 
 const Dots = styled.ol`
@@ -50,18 +22,20 @@ const Dots = styled.ol`
   bottom: 0;
 `;
 
-interface CarouselProps {
+interface HeroSliderProps {
   options: {
     loop: boolean;
     draggable: boolean;
     arrows: boolean;
+    containScroll: '' | 'trimSnaps' | 'keepSnaps';
+    dragFree: boolean;
   };
   children:
     | ReactElement<{ background: string }>
     | ReactElement<{ background: string }>[];
 }
 
-const EmblaCarouselComponent: React.FC<CarouselProps> = ({
+const EmblaCarouselComponent: React.FC<HeroSliderProps> = ({
   options,
   children
 }) => {
@@ -76,16 +50,15 @@ const EmblaCarouselComponent: React.FC<CarouselProps> = ({
   const scrollNext = useCallback(() => embla?.scrollNext(), [embla]);
 
   useEffect(() => {
-    if (embla) {
-      const onSelect = () => {
-        setSelectedIndex(embla.selectedScrollSnap());
-        setPrevBtnEnabled(embla.canScrollPrev());
-        setNextBtnEnabled(embla.canScrollNext());
-      };
-      setScrollSnaps(embla.scrollSnapList());
-      embla.on('select', onSelect);
-      onSelect();
-    }
+    if (!embla) return;
+    const onSelect = () => {
+      setSelectedIndex(embla.selectedScrollSnap());
+      setPrevBtnEnabled(embla.canScrollPrev());
+      setNextBtnEnabled(embla.canScrollNext());
+    };
+    setScrollSnaps(embla.scrollSnapList());
+    embla.on('select', onSelect);
+    onSelect();
   }, [embla]);
 
   console.log(children);

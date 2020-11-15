@@ -12,7 +12,8 @@ const theme = {
     landscape: '992x',
     desktop: '1200px',
     xlDesktop: '1400px'
-  }
+  },
+  maxWidth: '150rem'
 };
 
 export default theme;
