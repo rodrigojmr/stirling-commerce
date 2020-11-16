@@ -31,7 +31,7 @@ const SecondSection = styled(Section)`
   background-color: ${({ theme }) => theme.colorslightGrey};
 `;
 
-const slides = [
+const products = [
   {
     image:
       'https://contents.mediadecathlon.com/p1813000/k8a7fafef197648f95e7e8e220b3c240b/1813000_default.jpg?format=auto&quality=60&f=800x0',
@@ -79,7 +79,7 @@ const Home = () => {
           dragFree: true,
           containScroll: 'keepSnaps' as const
         }}
-        slides={slides}
+        products={products}
       ></ProductsCarousel>
     </>
   );

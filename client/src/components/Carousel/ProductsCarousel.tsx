@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { PrevButton, NextButton } from './EmblaCarouselButtons';
 import { useEmblaCarousel } from 'embla-carousel/react';
 import { Embla, Viewport, Container } from './styles';
+import { SlideProduct } from '../../types';
+import ProductSlide from './ProductSlide';
 
 // import { mediaByIndex } from "../media";
 
@@ -10,6 +12,9 @@ import { Embla, Viewport, Container } from './styles';
 const Slide = styled.li<{ slides: number }>`
   position: relative;
   min-width: ${props => `${100 / props.slides}%`};
+  &:not(:last-child) {
+    margin-right: 3rem;
+  }
 `;
 // Progress bar width = width of component / something
 // Move progress bar by a certain amount
@@ -17,34 +22,18 @@ const ProgressBar = styled.div``;
 
 const Star = styled.span<{ filled: boolean }>``;
 
-const ProductSlide = ({ product }) => (
-  <div>
-    <div>
-      <img src={product.image} alt={product.name} />
-    </div>
-  </div>
-);
-
-interface ProductCarouselProps {
-  options: {
-    loop: boolean;
-    draggable: boolean;
-    arrows: boolean;
-    containScroll: '' | 'trimSnaps' | 'keepSnaps';
-    dragFree: boolean;
-  };
-  slides: {
-    image: string;
-    rating: number;
-    title: string;
-    price: number;
-  }[];
+interface Options {
+  loop: boolean;
+  draggable: boolean;
+  arrows: boolean;
+  containScroll: '' | 'trimSnaps' | 'keepSnaps';
+  dragFree: boolean;
 }
 
-const ProductsCarousel: React.FC<ProductCarouselProps> = ({
-  options,
-  slides
-}) => {
+const ProductsCarousel: React.FC<{
+  options: Options;
+  products: SlideProduct[];
+}> = ({ options, products }) => {
   const [emblaRef, embla] = useEmblaCarousel(options);
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
@@ -78,11 +67,9 @@ const ProductsCarousel: React.FC<ProductCarouselProps> = ({
       <Embla>
         <Viewport ref={emblaRef}>
           <Container>
-            {slides.map((slide, i) => (
+            {products.map((product, i) => (
               <Slide key={i} slides={4}>
-                {slide.price}
-                {slide.rating}
-                {slide.title}
+                <ProductSlide product={product} />
               </Slide>
             ))}
           </Container>
