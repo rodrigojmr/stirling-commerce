@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Embla = styled.section`
+export const Embla = styled.div`
   position: relative;
 `;
 
@@ -20,7 +20,8 @@ export const Viewport = styled.div<{
   }
 `;
 
-export const Container = styled.ul`
+export const CarouselContainer = styled.ul`
+  width: 100%;
   display: flex;
   will-change: transform;
   user-select: none;
@@ -28,4 +29,14 @@ export const Container = styled.ul`
   -khtml-user-select: none;
   -webkit-tap-highlight-color: transparent;
   list-style-type: none;
+`;
+
+export const Slide = styled.li<{ slides: number }>`
+  position: relative;
+  flex: 0 0 25%;
+  &:not(:last-child) {
+    padding-right: 2rem;
+  }
+  /* min-width: 25%;
+  max-width: 33rem; */
 `;

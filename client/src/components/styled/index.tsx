@@ -2,6 +2,17 @@ import * as React from 'react';
 import styled, { css } from 'styled-components';
 import { NavLink, Link } from 'react-router-dom';
 
+export const Section = styled.section<{ backgroundColor?: string }>`
+  padding: 10rem 0;
+  background-color: ${({ backgroundColor }) =>
+    backgroundColor || 'transparent'};
+`;
+
+export const Wrapper = styled.div`
+  max-width: ${({ theme }) => theme.maxWidth};
+  margin: 0 auto;
+`;
+
 interface LinkProps {
   fontSize: string;
   color: string;
@@ -57,8 +68,16 @@ export const Heading = styled.h1<HeaderProps>`
   line-height: 1;
 `;
 
-export const Text = styled.p<{ color: string }>`
-  color: ${({ color }) => color};
+export const Text = styled.p<{
+  color?: string;
+  fontSize?: string;
+  fontWeight?: number;
+  fontFamily?: string;
+}>`
+  color: ${({ color }) => color || 'inherit'};
+  font-size: ${({ fontSize }) => fontSize || '2rem'};
+  font-weight: ${({ fontWeight }) => fontWeight || '400'};
+  font-family: ${({ fontFamily }) => fontFamily || 'inherit'};
 `;
 
 interface ButtonThemed {

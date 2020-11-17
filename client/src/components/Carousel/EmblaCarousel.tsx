@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, ReactElement } from 'react';
 import { useEmblaCarousel } from 'embla-carousel/react';
 import styled from 'styled-components';
 import { DotButton, PrevButton, NextButton } from './EmblaCarouselButtons';
-import { Embla, Viewport, Container } from './styles';
+import { Embla, Viewport, CarouselContainer } from './styles';
 
 // TODO Split style from the component itself, pass through props
 const Slide = styled.li`
@@ -66,11 +66,11 @@ const EmblaCarouselComponent: React.FC<HeroSliderProps> = ({
   return (
     <Embla>
       <Viewport ref={emblaRef}>
-        <Container>
+        <CarouselContainer>
           {React.Children.map(children, (child, i) => (
             <Slide key={i}>{child}</Slide>
           ))}
-        </Container>
+        </CarouselContainer>
       </Viewport>
       <Dots>
         {scrollSnaps.map((snap, index) => (

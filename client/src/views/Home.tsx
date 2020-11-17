@@ -2,7 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import EmblaCarousel from '../components/Carousel/EmblaCarousel';
 import ProductsCarousel from '../components/Carousel/ProductsCarousel';
-import { Heading, Text, ButtonLink } from '../components/styled';
+import {
+  Heading,
+  Text,
+  ButtonLink,
+  Section,
+  Wrapper
+} from '../components/styled';
+import theme from '../theme/theme';
 
 import SlideOne from '../components/Slides/SlideOne';
 
@@ -14,24 +21,29 @@ const carouselOptions = {
   dragFree: false
 };
 
-const Section = styled.section`
-  max-width: ${({ theme }) => theme.maxWidth};
-  padding: 10rem;
-`;
-
 // TODO Add graphics around this section
 const SecondSection = styled(Section)`
   display: flex;
-  margin: 0 auto;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 10rem 0;
-  max-width: ${({ theme }) => theme.maxWidth};
-  background-color: ${({ theme }) => theme.colorslightGrey};
 `;
 
 const products = [
+  {
+    image:
+      'https://contents.mediadecathlon.com/p1813000/k8a7fafef197648f95e7e8e220b3c240b/1813000_default.jpg?format=auto&quality=60&f=800x0',
+    rating: 4,
+    title: 'Pume - Essential Big Cat Tee - Grey Heather - Mens',
+    price: 30.99
+  },
+  {
+    image:
+      'https://contents.mediadecathlon.com/p1813000/k8a7fafef197648f95e7e8e220b3c240b/1813000_default.jpg?format=auto&quality=60&f=800x0',
+    rating: 4,
+    title: 'Pume - Essential Big Cat Tee - Grey Heather - Mens',
+    price: 30.99
+  },
   {
     image:
       'https://contents.mediadecathlon.com/p1813000/k8a7fafef197648f95e7e8e220b3c240b/1813000_default.jpg?format=auto&quality=60&f=800x0',
@@ -55,7 +67,7 @@ const products = [
   }
 ];
 
-const FeaturedSectionStyle = styled(Section)``;
+const FeaturedSectionStyle = styled(Wrapper)``;
 
 const Home = () => {
   return (
@@ -63,7 +75,7 @@ const Home = () => {
       <EmblaCarousel options={carouselOptions}>
         <SlideOne background="/images/carousel-bicycle.webp" />
       </EmblaCarousel>
-      <SecondSection>
+      <SecondSection backgroundColor={theme.colors.lightGrey}>
         <Heading color="black" fontSize="4rem" as="h1">
           <>
             Where all the leading sports brands come to play, <br /> we bring
@@ -71,16 +83,20 @@ const Home = () => {
           </>
         </Heading>
       </SecondSection>
-      <ProductsCarousel
-        options={{
-          loop: false,
-          draggable: true,
-          arrows: false,
-          dragFree: true,
-          containScroll: 'keepSnaps' as const
-        }}
-        products={products}
-      ></ProductsCarousel>
+      <Section>
+        <Wrapper>
+          <ProductsCarousel
+            options={{
+              loop: false,
+              draggable: true,
+              arrows: false,
+              dragFree: true,
+              containScroll: 'keepSnaps' as const
+            }}
+            products={products}
+          />
+        </Wrapper>
+      </Section>
     </>
   );
 };

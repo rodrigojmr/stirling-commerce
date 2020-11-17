@@ -2,25 +2,39 @@ import React, { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 import { PrevButton, NextButton } from './EmblaCarouselButtons';
 import { useEmblaCarousel } from 'embla-carousel/react';
-import { Embla, Viewport, Container } from './styles';
+import { Embla, Viewport, CarouselContainer, Slide } from './styles';
 import { SlideProduct } from '../../types';
 import ProductSlide from './ProductSlide';
 
-// import { mediaByIndex } from "../media";
-
-// Set styled components style same as native css
-const Slide = styled.li<{ slides: number }>`
-  position: relative;
-  min-width: ${props => `${100 / props.slides}%`};
-  &:not(:last-child) {
-    margin-right: 3rem;
-  }
-`;
 // Progress bar width = width of component / something
 // Move progress bar by a certain amount
-const ProgressBar = styled.div``;
 
-const Star = styled.span<{ filled: boolean }>``;
+const Progress = styled.div`
+  position: relative;
+  background-color: #f4f4f4;
+  margin-top: 20px;
+  max-width: 45rem;
+  width: calc(100% - 4rem);
+  height: 4px;
+  overflow: hidden;
+  border-radius: 2px;
+  margin-left: auto;
+  margin-right: auto;
+`;
+const ProgressBar = styled.div<{ progress: number; slides: number }>`
+  position: absolute;
+  background-color: #1bcacd;
+  top: 0;
+  bottom: 0;
+  ${({ progress, slides }) => {
+    const width = (4 / slides) * 100;
+    const left = (100 - width) * (progress / 100);
+    return `
+      width: ${width}%;
+      transform: translateX(${left}%)
+    `;
+  }}
+`;
 
 interface Options {
   loop: boolean;
@@ -54,6 +68,8 @@ const ProductsCarousel: React.FC<{
     setScrollProgress(progress * 100);
   }, [embla, setScrollProgress]);
 
+  console.log('scrollProgress: ', scrollProgress);
+
   useEffect(() => {
     if (!embla) return;
     onSelect();
@@ -62,17 +78,20 @@ const ProductsCarousel: React.FC<{
     embla.on('scroll', onScroll);
   }, [embla, onSelect, onScroll]);
 
+  // TODO Replace with number slides to show
+  const progressBarWidth = (4 / products.length) * 100;
+
   return (
     <>
       <Embla>
         <Viewport ref={emblaRef}>
-          <Container>
+          <CarouselContainer>
             {products.map((product, i) => (
               <Slide key={i} slides={4}>
                 <ProductSlide product={product} />
               </Slide>
             ))}
-          </Container>
+          </CarouselContainer>
         </Viewport>
         {options.arrows && (
           <>
@@ -81,12 +100,9 @@ const ProductsCarousel: React.FC<{
           </>
         )}
       </Embla>
-      <div className="embla__progress">
-        <div
-          className="embla__progress__bar"
-          style={{ transform: `translateX(${scrollProgress}%)` }}
-        />
-      </div>
+      <Progress>
+        <ProgressBar progress={scrollProgress} slides={products.length} />
+      </Progress>
     </>
   );
 };

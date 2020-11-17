@@ -1,13 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Text } from '../styled';
 import { SlideProduct } from '../../types';
 import { ReactComponent as Star } from '../../assets/star.svg';
 
-const Container = styled.article``;
+const Container = styled.article`
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
 
 const ImageContainer = styled.div`
   position: relative;
   height: 25rem;
+  margin: 0 2rem 4rem 2rem;
 `;
 
 const Image = styled.img<{ src: string; alt: string }>`
@@ -43,6 +50,14 @@ const ProductSlide: React.FC<{ product: SlideProduct }> = ({ product }) => {
         <Image src={product.image} alt={product.title} />
       </ImageContainer>
       <div>{Stars(product.rating)}</div>
+      <Text fontWeight={700} color="black">
+        {product.title}
+      </Text>
+      <Text
+        fontWeight={500}
+        fontSize="2.3rem"
+        fontFamily="Bebas Neue"
+      >{`$${product.price}`}</Text>
     </Container>
   );
 };
