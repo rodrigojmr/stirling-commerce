@@ -64,6 +64,13 @@ const products = [
     rating: 5,
     title: 'Nike - Pro Hypercool Capri - Black - Womens',
     price: 49.99
+  },
+  {
+    image:
+      'https://www.decathlon.ie/media/catalog/product/cache/2/image/600x450/9df78eab33525d08d6e5fb8d27136e95/3/8/38_p1536138_8516951.jpg',
+    rating: 5,
+    title: 'Nike - Pro Hypercool Capri - Black - Womens',
+    price: 49.99
   }
 ];
 

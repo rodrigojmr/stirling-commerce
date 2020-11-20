@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  useLayoutEffect
+} from 'react';
 import styled from 'styled-components';
 import { PrevButton, NextButton } from './EmblaCarouselButtons';
 import { useEmblaCarousel } from 'embla-carousel/react';
@@ -21,17 +27,21 @@ const Progress = styled.div`
   margin-left: auto;
   margin-right: auto;
 `;
-const ProgressBar = styled.div<{ progress: number; slides: number }>`
+const ProgressBar = styled.div<{
+  progress: number;
+  slides: number;
+  parentWidth: number;
+}>`
   position: absolute;
   background-color: #1bcacd;
   top: 0;
   bottom: 0;
-  ${({ progress, slides }) => {
-    const width = (4 / slides) * 100;
-    const left = (100 - width) * (progress / 100);
+  ${({ progress, slides, parentWidth }) => {
+    const width = parentWidth * (4 / slides);
+    const left = (parentWidth - width) * (progress / 100);
     return `
-      width: ${width}%;
-      transform: translateX(${left}%)
+      width: ${width}px;
+      transform: translateX(${left}px)
     `;
   }}
 `;
@@ -52,6 +62,7 @@ const ProductsCarousel: React.FC<{
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [progressBarWidth, setProgressBarWidth] = useState<number>(0);
 
   const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
   const scrollNext = useCallback(() => embla && embla.scrollNext(), [embla]);
@@ -62,13 +73,18 @@ const ProductsCarousel: React.FC<{
     setNextBtnEnabled(embla.canScrollNext());
   }, [embla]);
 
+  const progressBar = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    if (progressBar.current !== null) {
+      setProgressBarWidth(progressBar.current.clientWidth);
+    }
+  }, [progressBar]);
+
   const onScroll = useCallback(() => {
     if (!embla) return;
     const progress = Math.max(0, Math.min(1, embla.scrollProgress()));
     setScrollProgress(progress * 100);
   }, [embla, setScrollProgress]);
-
-  console.log('scrollProgress: ', scrollProgress);
 
   useEffect(() => {
     if (!embla) return;
@@ -77,9 +93,6 @@ const ProductsCarousel: React.FC<{
     embla.on('select', onSelect);
     embla.on('scroll', onScroll);
   }, [embla, onSelect, onScroll]);
-
-  // TODO Replace with number slides to show
-  const progressBarWidth = (4 / products.length) * 100;
 
   return (
     <>
@@ -100,8 +113,12 @@ const ProductsCarousel: React.FC<{
           </>
         )}
       </Embla>
-      <Progress>
-        <ProgressBar progress={scrollProgress} slides={products.length} />
+      <Progress ref={progressBar}>
+        <ProgressBar
+          parentWidth={progressBarWidth}
+          progress={scrollProgress}
+          slides={products.length}
+        />
       </Progress>
     </>
   );

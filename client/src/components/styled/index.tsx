@@ -2,8 +2,11 @@ import * as React from 'react';
 import styled, { css } from 'styled-components';
 import { NavLink, Link } from 'react-router-dom';
 
-export const Section = styled.section<{ backgroundColor?: string }>`
-  padding: 10rem 0;
+export const Section = styled.section<{
+  backgroundColor?: string;
+  padding?: string;
+}>`
+  padding: ${({ padding }) => padding || '10rem 0'};
   background-color: ${({ backgroundColor }) =>
     backgroundColor || 'transparent'};
 `;
