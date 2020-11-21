@@ -9,8 +9,8 @@ type SlideTypes = {
 
 const StyledContainer = styled.article<SlideTypes>`
   ${heroSliderStyle}
-  background-image: url(${({ background }) =>
-    background}), linear-gradient(to right, #000, #000);
+  background-image: url(${({ background }) => background}),
+        linear-gradient(to right, #000, #000);
   background-size: auto 100%, cover;
   background-position: left center;
   display: flex;

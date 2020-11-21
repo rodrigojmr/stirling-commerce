@@ -1,18 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-  Heading,
-  Text,
-  ButtonLink,
-  Section,
-  Wrapper
-} from '../components/styled';
+import { Heading, Section, Wrapper } from '../components/styled';
 import theme from '../theme/theme';
 
 import EmblaCarousel from '../components/Carousel/EmblaCarousel';
 import ProductsCarousel from '../components/Carousel/ProductsCarousel';
 import SlideOne from '../components/Slides/SlideOne';
 import CategoryLink from '../components/CategoryLink';
+import ToggleSlide from '../components/ToggleSlide';
+import { flex } from 'styled-system';
+import Toggle from '../components/Toggle';
 
 const carouselOptions = {
   draggable: false,
@@ -130,6 +127,11 @@ const Home = () => {
           molestiae.
         </CategoryLink>
       </AcessoriesSection>
+      <Section>
+        <Wrapper>
+          <ToggleSlide title="This week we recommend" />
+        </Wrapper>
+      </Section>
     </>
   );
 };
