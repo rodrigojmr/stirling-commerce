@@ -31,6 +31,8 @@ const GlobalStyle = createGlobalStyle`
   p {
     margin: 0;
     font-size: 2rem;
+    font-weight: 400;
+    font-family: inherit;
   }
   body {
    font-family: 'Source Sans Pro', sans-serif;

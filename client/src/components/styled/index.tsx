@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled, { css } from 'styled-components';
 import { NavLink, Link } from 'react-router-dom';
+import { space, color, layout, SpaceProps, ColorProps } from 'styled-system';
 
 export const Section = styled.section<{
   backgroundColor?: string;
@@ -64,23 +65,27 @@ interface HeaderProps {
   children?: string | JSX.Element[] | JSX.Element;
 }
 
-export const Heading = styled.h1<HeaderProps>`
+export const Heading = styled.h1<HeaderProps & SpaceProps>`
   color: ${({ color }) => color || 'white'};
   font-weight: 400;
   font-size: ${({ fontSize }) => fontSize};
   line-height: 1;
+  ${space}
 `;
 
-export const Text = styled.p<{
+interface TextProps {
   color?: string;
   fontSize?: string;
   fontWeight?: number;
   fontFamily?: string;
-}>`
-  color: ${({ color }) => color || 'inherit'};
-  font-size: ${({ fontSize }) => fontSize || '2rem'};
-  font-weight: ${({ fontWeight }) => fontWeight || '400'};
-  font-family: ${({ fontFamily }) => fontFamily || 'inherit'};
+}
+
+export const Text = styled.p<TextProps & SpaceProps>`
+  color: ${({ color }) => color};
+  font-size: ${({ fontSize }) => fontSize};
+  font-weight: ${({ fontWeight }) => fontWeight};
+  font-family: ${({ fontFamily }) => fontFamily};
+  ${space}
 `;
 
 interface ButtonThemed {
@@ -106,7 +111,7 @@ type ButtonProps = (ButtonThemed | ButtonColor) & LinkProp;
 
 export const Button = styled(Link)<ButtonProps>`
   display: inline-flex;
-  padding: 1.4rem;
+  padding: 1rem 1.5rem;
   padding-left: 3rem;
   align-items: center;
   color: ${({ themed, secondary }) => themed || secondary};
