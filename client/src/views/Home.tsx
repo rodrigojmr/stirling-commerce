@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import EmblaCarousel from '../components/Carousel/EmblaCarousel';
-import ProductsCarousel from '../components/Carousel/ProductsCarousel';
 import {
   Heading,
   Text,
@@ -11,7 +9,10 @@ import {
 } from '../components/styled';
 import theme from '../theme/theme';
 
+import EmblaCarousel from '../components/Carousel/EmblaCarousel';
+import ProductsCarousel from '../components/Carousel/ProductsCarousel';
 import SlideOne from '../components/Slides/SlideOne';
+import CategoryLink from '../components/CategoryLink';
 
 const carouselOptions = {
   draggable: false,
@@ -27,6 +28,11 @@ const SecondSection = styled(Section)`
   justify-content: center;
   align-items: center;
   text-align: center;
+`;
+
+const AcessoriesSection = styled(Section)`
+  padding: 0;
+  display: flex;
 `;
 
 const products = [
@@ -74,8 +80,6 @@ const products = [
   }
 ];
 
-const FeaturedSectionStyle = styled(Wrapper)``;
-
 const Home = () => {
   return (
     <>
@@ -104,6 +108,28 @@ const Home = () => {
           />
         </Wrapper>
       </Section>
+      <AcessoriesSection>
+        <CategoryLink
+          category="Acessories"
+          colorScheme="primary"
+          image="./images/football.webp"
+          link="/football/accessories"
+          title="Football"
+        >
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt,
+          molestiae.
+        </CategoryLink>
+        <CategoryLink
+          category="Acessories"
+          colorScheme="dark"
+          image="./images/basketball-jersey.webp"
+          link="/basketball/acessories"
+          title="Basketball"
+        >
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt,
+          molestiae.
+        </CategoryLink>
+      </AcessoriesSection>
     </>
   );
 };
