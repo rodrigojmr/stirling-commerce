@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import { up, down, between, only } from 'styled-breakpoints';
+import { createGlobalStyle } from "styled-components";
+import { up, down, between, only } from "styled-breakpoints";
 
 const GlobalStyle = createGlobalStyle`
   @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&display=swap");
@@ -43,22 +43,7 @@ const GlobalStyle = createGlobalStyle`
 
   html {
   box-sizing: border-box;
-  font-size: 62.5%; /* 1rem = 10px; 10px/16px = 62.5%*/
-  /* $(down ('phone'))
-
-  @include respond(big-desktop) { // width < 1800?
-    font-size: 75%; 1rem = 12, 12/16 = 75%
-  }
-
-  @include respond(tab-land) {  // width < 900?
-    font-size: 56.25%; 1rem = 9px; 9px/16px = 56.25%
-  }
-  
-  @include respond(tab-port) {  // width < 600?
-    font-size: 50%; 1rem = 8px; 8px/16px = 50%
-  }
-} */
-
-  `;
+  font-size: 62.5%; /* 1rem = 10px; 10px/16px = 62.5% */
+  }`;
 
 export default GlobalStyle;

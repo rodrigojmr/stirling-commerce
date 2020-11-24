@@ -1,12 +1,12 @@
-import * as React from 'react';
+import * as React from "react";
 
-import { ThemeProvider } from 'styled-components';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import GlobalStyle from './theme/globalStyles';
-import Navbar from './components/Navbar';
-import theme from './theme/theme';
+import { ThemeProvider } from "styled-components";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import GlobalStyle from "./theme/globalStyles";
+import Navbar from "./components/Navbar";
+import theme from "./theme/theme";
 
-import Home from './views/Home';
+import Home from "./views/Home";
 
 const App: React.FC = () => {
   return (

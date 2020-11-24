@@ -1,8 +1,8 @@
-import * as React from 'react';
-import styled from 'styled-components';
-import theme from '../theme/theme';
-import { StyledInput } from './styled';
-import { ReactComponent as SearchIcon } from '../assets/search.svg';
+import * as React from "react";
+import styled from "styled-components";
+import theme from "../theme/theme";
+import { StyledInput } from "./styled";
+import { ReactComponent as SearchIcon } from "../assets/search.svg";
 
 const StyledForm = styled.form`
   position: relative;

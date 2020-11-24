@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   position: relative;
@@ -26,7 +26,7 @@ const StyledSwitch = styled.span<{ checked: boolean }>`
   border-radius: 2rem;
   background-color: ${({ theme }) => theme.colors.primary};
   transition: 0.2s all;
-  transform: ${({ checked }) => `translateX(${checked ? '100%' : '0%'})`};
+  transform: ${({ checked }) => `translateX(${checked ? "100%" : "0%"})`};
 `;
 
 interface Props {
@@ -38,7 +38,7 @@ interface Props {
 
 const Toggle: React.FC<Props> = ({ id, checked, onChange, optionLabels }) => {
   const handleKeyPress = (e: React.KeyboardEvent<HTMLLabelElement>) => {
-    if (e.key !== 'Space') return;
+    if (e.key !== "Space") return;
 
     e.preventDefault();
     onChange(!checked);
@@ -50,16 +50,16 @@ const Toggle: React.FC<Props> = ({ id, checked, onChange, optionLabels }) => {
       <Wrapper>
         <input
           type="checkbox"
-          style={{ display: 'none' }}
+          style={{ display: "none" }}
           id={id}
           checked={checked}
-          onChange={e => onChange(e.target.checked)}
+          onChange={(e) => onChange(e.target.checked)}
         />
         {id ? (
           <StyledLabel
             className="toggle-switch-label"
             tabIndex={1}
-            onKeyDown={e => handleKeyPress(e)}
+            onKeyDown={(e) => handleKeyPress(e)}
             htmlFor={id}
           >
             <StyledSwitch checked={checked} />

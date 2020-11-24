@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import { ReactComponent as CartLogo } from '../assets/shopping-cart.svg';
+import React from "react";
+import styled from "styled-components";
+import { ReactComponent as CartLogo } from "../assets/shopping-cart.svg";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ const StyledContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 2rem;
   color: white;
-  font-family: 'Bebas Neue';
+  font-family: "Bebas Neue";
 
   & > *:not(:last-child) {
     margin-right: 0.75rem;

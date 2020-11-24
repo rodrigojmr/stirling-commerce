@@ -1,11 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
-import { StyledLink } from './styled';
-import { ReactComponent as Logo } from '../assets/logo.svg';
+import React from "react";
+import styled from "styled-components";
+import { StyledLink } from "./styled";
+import { ReactComponent as Logo } from "../assets/logo.svg";
 
-import Search from './Search';
-import User from './User';
-import Cart from './Cart';
+import Search from "./Search";
+import User from "./User";
+import Cart from "./Cart";
 
 const Nav = styled.nav`
   padding: 2rem 3rem;
@@ -36,29 +36,29 @@ const StyledLogo = styled(Logo)`
 
 const navLinks: { to: string; text: string }[] = [
   {
-    to: '/men',
-    text: "Men's"
+    to: "/men",
+    text: "Men's",
   },
   {
-    to: '/women',
-    text: "Women's"
+    to: "/women",
+    text: "Women's",
   },
   {
-    to: '/kids',
-    text: "Kid's"
+    to: "/kids",
+    text: "Kid's",
   },
   {
-    to: '/sport',
-    text: 'Sport'
+    to: "/sport",
+    text: "Sport",
   },
   {
-    to: '/gear',
-    text: 'Gear'
+    to: "/gear",
+    text: "Gear",
   },
   {
-    to: '/new',
-    text: 'New'
-  }
+    to: "/new",
+    text: "New",
+  },
 ];
 
 const StyledList = styled.ul`
@@ -79,9 +79,9 @@ const Navbar = () => {
         <StyledLogo />
       </StyledLink>
       <StyledList>
-        {navLinks.map(link => {
+        {navLinks.map((link) => {
           return (
-            <li style={{ fontSize: '2.4rem' }}>
+            <li style={{ fontSize: "2.4rem" }}>
               <StyledLink to={link.to} color="white" fontSize="inherit">
                 {link.text}
               </StyledLink>

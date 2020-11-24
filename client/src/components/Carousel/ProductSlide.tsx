@@ -1,8 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Text } from '../styled';
-import { SlideProduct } from '../../types';
-import { ReactComponent as Star } from '../../assets/star.svg';
+import React from "react";
+import styled from "styled-components";
+import { Text } from "../styled";
+import { SlideProduct } from "../../types";
+import { ReactComponent as Star } from "../../assets/star.svg";
 
 const Container = styled.article`
   padding: 2rem;
@@ -30,7 +30,7 @@ const StyledStar = styled(Star)<{ filled: boolean }>`
   stroke: none;
   width: 20px;
   height: 20px;
-  fill: ${({ filled }) => (filled ? '#e69006' : '#a7a7a7')};
+  fill: ${({ filled }) => (filled ? "#e69006" : "#a7a7a7")};
   margin-right: 5px;
 `;
 

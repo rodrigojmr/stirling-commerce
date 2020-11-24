@@ -1,7 +1,7 @@
-import React, { ReactElement } from 'react';
-import styled from 'styled-components';
-import { heroSliderStyle, Heading, Text, ButtonLink } from '../styled';
-import theme from '../../theme/theme';
+import React, { ReactElement } from "react";
+import styled from "styled-components";
+import { heroSliderStyle, Heading, Text, ButtonLink } from "../styled";
+import theme from "../../theme/theme";
 
 type SlideTypes = {
   background: string;
@@ -30,9 +30,6 @@ const TextContainer = styled.div`
     line-height: 1.7;
   }
 `;
-
-// TODO  ({ background }: SlideProps): JSX.Element => {
-// type SlideProps = { background: string };
 
 const SlideOne = ({ background }: SlideTypes): ReactElement => {
   return (

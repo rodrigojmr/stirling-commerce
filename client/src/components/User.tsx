@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import { ReactComponent as UserIcon } from '../assets/user.svg';
+import React from "react";
+import styled from "styled-components";
+import { ReactComponent as UserIcon } from "../assets/user.svg";
 
 const StyledContainer = styled.div`
   padding: 1rem;

@@ -3,14 +3,14 @@ import React, {
   useEffect,
   useCallback,
   useRef,
-  useLayoutEffect
-} from 'react';
-import styled from 'styled-components';
-import { PrevButton, NextButton } from './EmblaCarouselButtons';
-import { useEmblaCarousel } from 'embla-carousel/react';
-import { Embla, Viewport, CarouselContainer, Slide } from './styles';
-import { SlideProduct } from '../../types';
-import ProductSlide from './ProductSlide';
+  useLayoutEffect,
+} from "react";
+import styled from "styled-components";
+import { PrevButton, NextButton } from "./EmblaCarouselButtons";
+import { useEmblaCarousel } from "embla-carousel/react";
+import { Embla, Viewport, CarouselContainer, Slide } from "./styles";
+import { SlideProduct } from "../../types";
+import ProductSlide from "./ProductSlide";
 
 // Progress bar width = width of component / something
 // Move progress bar by a certain amount
@@ -50,7 +50,7 @@ interface Options {
   loop: boolean;
   draggable: boolean;
   arrows: boolean;
-  containScroll: '' | 'trimSnaps' | 'keepSnaps';
+  containScroll: "" | "trimSnaps" | "keepSnaps";
   dragFree: boolean;
 }
 
@@ -90,8 +90,8 @@ const ProductsCarousel: React.FC<{
     if (!embla) return;
     onSelect();
     onScroll();
-    embla.on('select', onSelect);
-    embla.on('scroll', onScroll);
+    embla.on("select", onSelect);
+    embla.on("scroll", onScroll);
   }, [embla, onSelect, onScroll]);
 
   return (

@@ -21,7 +21,6 @@ const Dots = styled.ol`
   left: 0;
   bottom: 0;
 `;
-
 interface HeroSliderProps {
   options: {
     loop: boolean;
