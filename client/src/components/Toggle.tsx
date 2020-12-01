@@ -1,8 +1,20 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   position: relative;
+`;
+
+const ToggleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+
+  > *:first-child {
+    margin-right: 1.8rem;
+  }
+  > *:last-child {
+    margin-left: 1.8rem;
+  }
 `;
 
 const StyledLabel = styled.label`
@@ -19,6 +31,14 @@ const StyledLabel = styled.label`
   }
 `;
 
+const SwitchWrapper = styled.div<{ checked: boolean }>`
+  width: 100%;
+  height: 2.5rem;
+  transition: 0.2s all;
+
+  transform: ${({ checked }) => `translateX(${checked ? '100%' : '0%'})`};
+`;
+
 const StyledSwitch = styled.span<{ checked: boolean }>`
   display: inline-block;
   width: 3.5rem;
@@ -26,7 +46,14 @@ const StyledSwitch = styled.span<{ checked: boolean }>`
   border-radius: 2rem;
   background-color: ${({ theme }) => theme.colors.primary};
   transition: 0.2s all;
-  transform: ${({ checked }) => `translateX(${checked ? "100%" : "0%"})`};
+
+  transform: ${({ checked }) => `translateX(${checked ? '-100%' : '0%'})`};
+`;
+
+const OptionLabel = styled.p`
+  font-family: 'Bebas Neue';
+  font-size: 2rem;
+  color: black;
 `;
 
 interface Props {
@@ -37,37 +64,40 @@ interface Props {
 }
 
 const Toggle: React.FC<Props> = ({ id, checked, onChange, optionLabels }) => {
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLLabelElement>) => {
-    if (e.key !== "Space") return;
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    console.log(e);
+    if (e.keyCode !== 32) return;
 
     e.preventDefault();
     onChange(!checked);
   };
 
   return (
-    <>
-      {optionLabels[0]}
+    <ToggleWrapper>
+      <OptionLabel>{optionLabels[0]}</OptionLabel>
       <Wrapper>
         <input
           type="checkbox"
-          style={{ display: "none" }}
+          style={{ display: 'none' }}
           id={id}
           checked={checked}
-          onChange={(e) => onChange(e.target.checked)}
+          onChange={e => onChange(e.target.checked)}
         />
         {id ? (
           <StyledLabel
             className="toggle-switch-label"
-            tabIndex={1}
-            onKeyDown={(e) => handleKeyPress(e)}
+            tabIndex={0}
+            onKeyDown={e => handleKeyPress(e)}
             htmlFor={id}
           >
-            <StyledSwitch checked={checked} />
+            <SwitchWrapper checked={checked}>
+              <StyledSwitch checked={checked} />
+            </SwitchWrapper>
           </StyledLabel>
         ) : null}
       </Wrapper>
-      {optionLabels[1]}
-    </>
+      <OptionLabel>{optionLabels[1]}</OptionLabel>
+    </ToggleWrapper>
   );
 };
 
