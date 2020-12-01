@@ -27,6 +27,7 @@ const ToggleSlide: React.FC<Props> = ({ title }) => {
           optionLabels={['Men', 'Women']}
         />
       </div>
+      <div></div>
     </div>
   );
 };
