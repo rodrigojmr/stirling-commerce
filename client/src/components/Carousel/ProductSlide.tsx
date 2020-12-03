@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { Text } from "../styled";
-import { SlideProduct } from "../../types";
-import { ReactComponent as Star } from "../../assets/star.svg";
+import React from 'react';
+import styled from 'styled-components';
+import { Text } from '../styled';
+import { Stars } from '../styled/Stars';
+import { SlideProduct } from '../../types';
 
 const Container = styled.article`
   padding: 2rem;
@@ -25,23 +25,6 @@ const Image = styled.img<{ src: string; alt: string }>`
   max-width: 100%;
   max-height: 100%;
 `;
-
-const StyledStar = styled(Star)<{ filled: boolean }>`
-  stroke: none;
-  width: 20px;
-  height: 20px;
-  fill: ${({ filled }) => (filled ? "#e69006" : "#a7a7a7")};
-  margin-right: 5px;
-`;
-
-const Stars = (num: number) => {
-  const starArray = [];
-  for (let i = 1; i <= 5; i++) {
-    starArray.push(<StyledStar filled={i < num} />);
-  }
-
-  return starArray;
-};
 
 const ProductSlide: React.FC<{ product: SlideProduct }> = ({ product }) => {
   return (
