@@ -1,19 +1,20 @@
-import * as React from "react";
-import styled, { css } from "styled-components";
-import { NavLink, Link } from "react-router-dom";
-import { space, color, layout, SpaceProps, ColorProps } from "styled-system";
+import * as React from 'react';
+import styled, { css } from 'styled-components';
+import { NavLink, Link } from 'react-router-dom';
+import { space, color, layout, SpaceProps, ColorProps } from 'styled-system';
 
 export const Section = styled.section<{
   backgroundColor?: string;
   padding?: string;
 }>`
-  padding: ${({ padding }) => padding || "10rem 0"};
+  padding: ${({ padding }) => padding || '10rem 0'};
   background-color: ${({ backgroundColor }) =>
-    backgroundColor || "transparent"};
+    backgroundColor || 'transparent'};
 `;
 
 export const Wrapper = styled.div`
   max-width: ${({ theme }) => theme.maxWidth};
+  padding: 0 5vw;
   margin: 0 auto;
 `;
 
@@ -25,13 +26,13 @@ interface LinkProps {
 
 export const StyledLink = styled(NavLink)<LinkProps>`
   display: inline-block;
-  font-family: "Bebas Neue";
+  font-family: 'Bebas Neue';
   font-weight: 400;
-  font-size: ${(props) => props.fontSize};
-  color: ${(props) => props.color};
+  font-size: ${props => props.fontSize};
+  color: ${props => props.color};
   transition: all 0.2s;
   &:hover {
-    color: ${(props) => props.theme.colors.primary};
+    color: ${props => props.theme.colors.primary};
   }
 `;
 
@@ -42,14 +43,14 @@ interface InputStyleProps {
 }
 
 export const StyledInput = styled.input<InputStyleProps>`
-  font-family: "Bebas Neue";
+  font-family: 'Bebas Neue';
   width: 100%;
   outline: none;
   border: none;
   padding: 0.5em 1em;
-  background-color: ${(props) => props.backgroundColor};
+  background-color: ${props => props.backgroundColor};
   border-bottom: 1px solid white;
-  color: ${(props) => props.color};
+  color: ${props => props.color};
 `;
 
 export const heroSliderStyle = css`
@@ -60,17 +61,19 @@ export const heroSliderStyle = css`
 
 interface HeaderProps {
   color?: string;
+  fontFamily?: string;
   fontSize: string;
   as: string;
   children?: string | JSX.Element[] | JSX.Element;
 }
 
 export const Heading = styled.h1<HeaderProps & SpaceProps>`
-  color: ${({ color }) => color || "white"};
+  color: ${({ color }) => color || 'white'};
   font-weight: 400;
   font-size: ${({ fontSize }) => fontSize};
+  font-family: ${({ fontFamily }) => fontFamily};
   line-height: 1;
-  ${space}
+  ${space};
 `;
 
 interface TextProps {
@@ -114,8 +117,9 @@ export const Button = styled(Link)<ButtonProps>`
   padding: 1rem 1.5rem;
   padding-left: 3rem;
   align-items: center;
+  align-self: flex-start;
   color: ${({ themed, secondary }) => themed || secondary};
-  font-family: "Bebas Neue";
+  font-family: 'Bebas Neue';
   font-weight: 400;
   font-size: 2.5rem;
   border: 3px solid ${({ themed, primary }) => themed || primary};
@@ -125,6 +129,9 @@ export const Button = styled(Link)<ButtonProps>`
 type ArrowProps = ButtonThemed | ButtonColor;
 
 export const ButtonArrow = styled.div<ArrowProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex: 0;
   padding: 0.5rem 1.3rem;
   margin-left: 6rem;

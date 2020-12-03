@@ -1,16 +1,10 @@
-import React from "react";
-import styled from "styled-components";
-import theme from "../theme/theme";
-import {
-  Heading,
-  Text,
-  ButtonLink,
-  Section,
-  Button,
-} from "../components/styled";
+import React from 'react';
+import styled from 'styled-components';
+import theme from '../theme/theme';
+import { Heading, Text, ButtonLink } from '../components/styled';
 
 interface CategoryProps {
-  colorScheme: "primary" | "dark";
+  colorScheme: 'primary' | 'dark';
   image: string;
   title: string;
   link: string;
@@ -20,8 +14,8 @@ interface CategoryProps {
 
 const Wrapper = styled.div<{ colorScheme: string }>`
   display: flex;
-  background-color: ${(props) =>
-    props.colorScheme === "primary" ? props.theme.colors.primary : "black"};
+  background-color: ${props =>
+    props.colorScheme === 'primary' ? props.theme.colors.primary : 'black'};
   padding: 6rem;
   color: white;
   flex: 0 0 50%;
@@ -43,10 +37,11 @@ const CategoryLink = ({
   image,
   category,
   title,
-  link,
+  link
 }: CategoryProps) => {
   const ButtonColor =
-    colorScheme === "primary" ? "black" : theme.colors.primary;
+    colorScheme === 'primary' ? 'black' : theme.colors.primary;
+
   return (
     <Wrapper colorScheme={colorScheme}>
       <div>
