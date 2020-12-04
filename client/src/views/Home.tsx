@@ -10,6 +10,7 @@ import CategoryLink from '../components/CategoryLink';
 import ToggleSlider from '../components/ToggleSlider';
 
 import ProductHighlight from '../components/Products/ProductHighlight';
+import { products, highlightedProducts } from '../data/products';
 
 const carouselOptions = {
   draggable: false,
@@ -47,50 +48,9 @@ const RecommendedSection = styled(Section)<{ text: string }>`
     width: 100%;
     font-size: 20vw;
     letter-spacing: 7.5vw;
+    overflow: hidden;
   }
 `;
-
-const products = [
-  {
-    image: './images/products/shirts/puma shirt.webp',
-    rating: 4,
-    title: 'Pume - Essential Big Cat Tee - Grey Heather - Mens',
-    price: 30.99
-  },
-  {
-    image: './images/products/shirts/puma shirt.webp',
-    rating: 4,
-    title: 'Pume - Essential Big Cat Tee - Grey Heather - Mens',
-    price: 30.99
-  },
-  {
-    image: './images/products/shirts/puma shirt.webp',
-    rating: 4,
-    title: 'Pume - Essential Big Cat Tee - Grey Heather - Mens',
-    price: 30.99
-  },
-  {
-    image:
-      'https://images-na.ssl-images-amazon.com/images/I/71N2PFtrYcL._UL1500_.jpg',
-    rating: 3,
-    title: 'Puma - Ignite Flash EvoKNIT - Black - Mens',
-    price: 99.99
-  },
-  {
-    image:
-      'https://www.decathlon.ie/media/catalog/product/cache/2/image/600x450/9df78eab33525d08d6e5fb8d27136e95/3/8/38_p1536138_8516951.jpg',
-    rating: 5,
-    title: 'Nike - Pro Hypercool Capri - Black - Womens',
-    price: 49.99
-  },
-  {
-    image:
-      'https://www.decathlon.ie/media/catalog/product/cache/2/image/600x450/9df78eab33525d08d6e5fb8d27136e95/3/8/38_p1536138_8516951.jpg',
-    rating: 5,
-    title: 'Nike - Pro Hypercool Capri - Black - Womens',
-    price: 49.99
-  }
-];
 
 const Home = () => {
   return (
@@ -146,22 +106,8 @@ const Home = () => {
       <RecommendedSection text="running">
         <Wrapper>
           <ToggleSlider title="This week we recommend">
-            <ProductHighlight
-              product={{
-                image: './images/products/shoes/Puma Sneaker.webp',
-                title: 'Puma - Ignite Flash EvoKNIT - Black - Mens',
-                rating: 4,
-                price: 30.99
-              }}
-            />
-            <ProductHighlight
-              product={{
-                image: './images/products/shoes/running-shoes-2.webp',
-                rating: 5,
-                title: "Pume - Essential Big Cat Tee - Grey Heather - Women's",
-                price: 99.99
-              }}
-            />
+            <ProductHighlight product={highlightedProducts[0]} />
+            <ProductHighlight product={highlightedProducts[1]} />
           </ToggleSlider>
         </Wrapper>
       </RecommendedSection>

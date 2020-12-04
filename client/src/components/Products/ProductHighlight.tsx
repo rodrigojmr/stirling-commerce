@@ -1,8 +1,10 @@
+import React, { useRef, useLayoutEffect } from 'react';
 import styled from 'styled-components';
-import { SlideProduct } from '../../types';
+import { ProductsWithHighlightPoints } from '../../types';
 import { Heading, Text, ButtonLink } from '../styled';
 import { Stars } from '../styled/Stars';
 import theme from '../../theme/theme';
+import HighlightDot from '../HighlightDot';
 
 const ProductContainer = styled.article`
   display: flex;
@@ -10,17 +12,17 @@ const ProductContainer = styled.article`
 `;
 
 const ImageContainer = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  flex: 0 0 70%;
-  padding-right: 10rem;
+  flex: 0 0 65%;
   text-align: center;
 `;
 
 const StyledImage = styled.img`
   display: block;
+  position: relative;
   margin: 0 auto;
   object-fit: cover;
   max-height: 100%;
@@ -28,7 +30,8 @@ const StyledImage = styled.img`
 `;
 
 const ProductDetails = styled.div`
-  flex: 0 0 30%;
+  padding-left: 5vw;
+  flex: 0 0 35%;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -42,11 +45,28 @@ const ProdutTitle = styled(Heading)`
 
 // TODO Set product prop as a product with product:  image, title, price, rating, link to product, and highlights for points
 
-const ProductHighlight: React.FC<{ product: SlideProduct }> = ({ product }) => {
+const ProductHighlight: React.FC<{ product: ProductsWithHighlightPoints }> = ({
+  product
+}) => {
+  const imgContainerRef = useRef<HTMLDivElement>(null!);
+  const imgRef = useRef<HTMLImageElement>(null!);
+
+  let heightOffset = 0;
+
+  useLayoutEffect(() => {
+    const containerHeight = imgContainerRef?.current.clientHeight;
+    const imgHeight = imgRef?.current.clientHeight;
+
+    heightOffset = containerHeight - imgHeight;
+  }, []);
+
   return (
     <ProductContainer>
-      <ImageContainer>
-        <StyledImage src={product.image} alt={product.title} />
+      <ImageContainer ref={imgContainerRef}>
+        <StyledImage ref={imgRef} src={product.image} alt={product.title} />
+        {product.highlightPoints.map(point => (
+          <HighlightDot {...point} />
+        ))}
       </ImageContainer>
       <ProductDetails>
         <div>{Stars(product.rating)}</div>
