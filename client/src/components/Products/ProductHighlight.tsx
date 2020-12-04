@@ -6,16 +6,25 @@ import theme from '../../theme/theme';
 
 const ProductContainer = styled.article`
   display: flex;
+  height: 600px;
 `;
 
 const ImageContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   flex: 0 0 70%;
-  padding-right: 4rem;
+  padding-right: 10rem;
+  text-align: center;
 `;
 
 const StyledImage = styled.img`
-  width: 100%;
+  display: block;
+  margin: 0 auto;
+  object-fit: cover;
+  max-height: 100%;
+  max-width: 100%;
 `;
 
 const ProductDetails = styled.div`
@@ -37,10 +46,7 @@ const ProductHighlight: React.FC<{ product: SlideProduct }> = ({ product }) => {
   return (
     <ProductContainer>
       <ImageContainer>
-        <StyledImage
-          src="./images/products/shoes/running-shoes-2.webp"
-          alt=""
-        />
+        <StyledImage src={product.image} alt={product.title} />
       </ImageContainer>
       <ProductDetails>
         <div>{Stars(product.rating)}</div>

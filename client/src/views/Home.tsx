@@ -32,24 +32,39 @@ const AcessoriesSection = styled(Section)`
   display: flex;
 `;
 
+const RecommendedSection = styled(Section)<{ text: string }>`
+  position: relative;
+
+  &::before {
+    content: ${({ text }) => `"${text}"`};
+    position: absolute;
+    z-index: -1;
+    color: ${({ theme }) => theme.colors.lightGrey};
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bebas Neue';
+    width: 100%;
+    font-size: 20vw;
+    letter-spacing: 7.5vw;
+  }
+`;
+
 const products = [
   {
-    image:
-      'https://contents.mediadecathlon.com/p1813000/k8a7fafef197648f95e7e8e220b3c240b/1813000_default.jpg?format=auto&quality=60&f=800x0',
+    image: './images/products/shirts/puma shirt.webp',
     rating: 4,
     title: 'Pume - Essential Big Cat Tee - Grey Heather - Mens',
     price: 30.99
   },
   {
-    image:
-      'https://contents.mediadecathlon.com/p1813000/k8a7fafef197648f95e7e8e220b3c240b/1813000_default.jpg?format=auto&quality=60&f=800x0',
+    image: './images/products/shirts/puma shirt.webp',
     rating: 4,
     title: 'Pume - Essential Big Cat Tee - Grey Heather - Mens',
     price: 30.99
   },
   {
-    image:
-      'https://contents.mediadecathlon.com/p1813000/k8a7fafef197648f95e7e8e220b3c240b/1813000_default.jpg?format=auto&quality=60&f=800x0',
+    image: './images/products/shirts/puma shirt.webp',
     rating: 4,
     title: 'Pume - Essential Big Cat Tee - Grey Heather - Mens',
     price: 30.99
@@ -128,30 +143,28 @@ const Home = () => {
           molestiae.
         </CategoryLink>
       </AcessoriesSection>
-      <Section>
+      <RecommendedSection text="running">
         <Wrapper>
           <ToggleSlider title="This week we recommend">
             <ProductHighlight
               product={{
-                image:
-                  'https://contents.mediadecathlon.com/p1813000/k8a7fafef197648f95e7e8e220b3c240b/1813000_default.jpg?format=auto&quality=60&f=800x0',
+                image: './images/products/shoes/Puma Sneaker.webp',
+                title: 'Puma - Ignite Flash EvoKNIT - Black - Mens',
                 rating: 4,
-                title: 'Pume - Essential Big Cat Tee - Grey Heather - Mens',
                 price: 30.99
               }}
             />
             <ProductHighlight
               product={{
-                image:
-                  'https://contents.mediadecathlon.com/p1813000/k8a7fafef197648f95e7e8e220b3c240b/1813000_default.jpg?format=auto&quality=60&f=800x0',
-                rating: 4,
-                title: 'Pume - Essential Big Cat Tee - Grey Heather - Mens',
-                price: 30.99
+                image: './images/products/shoes/running-shoes-2.webp',
+                rating: 5,
+                title: "Pume - Essential Big Cat Tee - Grey Heather - Women's",
+                price: 99.99
               }}
             />
           </ToggleSlider>
         </Wrapper>
-      </Section>
+      </RecommendedSection>
     </>
   );
 };

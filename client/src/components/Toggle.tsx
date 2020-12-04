@@ -34,8 +34,7 @@ const StyledLabel = styled.label`
 const SwitchWrapper = styled.div<{ checked: boolean }>`
   width: 100%;
   height: 2.5rem;
-  transition: 0.2s all;
-
+  transition: 0.25s all ease-in-out;
   transform: ${({ checked }) => `translateX(${checked ? '100%' : '0%'})`};
 `;
 
@@ -45,7 +44,7 @@ const StyledSwitch = styled.span<{ checked: boolean }>`
   height: 2.5rem;
   border-radius: 2rem;
   background-color: ${({ theme }) => theme.colors.primary};
-  transition: 0.2s all;
+  transition: 0.25s all ease-in-out;
 
   transform: ${({ checked }) => `translateX(${checked ? '-100%' : '0%'})`};
 `;
