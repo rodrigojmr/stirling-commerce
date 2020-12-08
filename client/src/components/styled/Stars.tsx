@@ -12,7 +12,7 @@ export const StyledStar = styled(Star)<{ filled: boolean }>`
 export const Stars = (num: number) => {
   const starArray = [];
   for (let i = 1; i <= 5; i++) {
-    starArray.push(<StyledStar filled={i < num} />);
+    starArray.push(<StyledStar filled={i <= num} />);
   }
 
   return starArray;
