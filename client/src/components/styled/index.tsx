@@ -18,6 +18,14 @@ export const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
+export const FlexApartWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  & > *:nth-child(2) {
+    margin-left: auto;
+  }
+`;
+
 interface LinkProps {
   fontSize: string;
   color: string;
