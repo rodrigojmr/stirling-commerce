@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Toggle from './Toggle';
-import { Heading } from './styled';
+import { FlexApartWrapper, Heading } from './styled';
 import { SwitchTransition } from 'react-transition-group';
 import FadeTransition from './Animations/FadeTransition';
 interface Props {
@@ -14,7 +14,7 @@ const ToggleSlider: React.FC<Props> = ({ title, children }) => {
 
   return (
     <>
-      <div style={{ display: 'flex', marginBottom: '30px' }}>
+      <FlexApartWrapper>
         {title && (
           <Heading color="black" as="h1" fontSize="3rem">
             {title}
@@ -28,7 +28,7 @@ const ToggleSlider: React.FC<Props> = ({ title, children }) => {
             optionLabels={['Men', 'Women']}
           />
         </div>
-      </div>
+      </FlexApartWrapper>
       <SwitchTransition mode="out-in">
         <FadeTransition
           key={isChecked ? 'firstComponent' : 'secondComponent'}
