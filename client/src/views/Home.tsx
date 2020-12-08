@@ -10,7 +10,12 @@ import CategoryLink from '../components/CategoryLink';
 import ToggleSlider from '../components/ToggleSlider';
 
 import ProductHighlight from '../components/Products/ProductHighlight';
-import { products, highlightedProducts } from '../data/products';
+
+import {
+  featuredProducts,
+  highlightedProducts,
+  newProducts
+} from '../data/products';
 
 const carouselOptions = {
   draggable: false,
