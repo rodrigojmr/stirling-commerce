@@ -26,11 +26,15 @@ const carouselOptions = {
 };
 
 // TODO Add graphics around this section
-const SecondSection = styled(Section)`
+const CenteringSection = styled(Section)`
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+`;
+
+const CarouselHeader = styled(FlexApartWrapper)`
+  margin-bottom: 5rem;
 `;
 
 const AcessoriesSection = styled(Section)`
