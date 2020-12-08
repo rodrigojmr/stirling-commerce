@@ -120,6 +120,29 @@ const Home = () => {
           </ToggleSlider>
         </Wrapper>
       </RecommendedSection>
+      <NewProductsSection>
+        <Wrapper>
+          <CarouselHeader>
+            <Heading color="black" as="h2" fontSize="3rem">
+              New Footwear
+            </Heading>
+            <StyledLink color={theme.colors.primary} fontSize="2.5rem" to="#">
+              View All &gt;
+            </StyledLink>
+          </CarouselHeader>
+          <ProductsCarousel
+            options={{
+              loop: false,
+              draggable: true,
+              arrows: false,
+              dragFree: true,
+              containScroll: 'keepSnaps' as const
+            }}
+            products={newProducts}
+          />
+        </Wrapper>
+      </NewProductsSection>
+      <Section></Section>
     </>
   );
 };
