@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Text } from '../styled';
 import { Stars } from '../styled/Stars';
-import { SlideProduct } from '../../types';
 
 const Container = styled.article`
   padding: 1rem;

@@ -1,12 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import {
   FlexApartWrapper,
   Heading,
   Section,
   Wrapper,
-  StyledLink
+  StyledLink,
+  CenteringFlex
 } from '../components/styled';
 import theme from '../theme/theme';
 
@@ -33,10 +34,7 @@ const carouselOptions = {
 
 // TODO Add graphics around this section
 const CenteringSection = styled(Section)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  ${CenteringFlex}
 `;
 
 const CarouselHeader = styled(FlexApartWrapper)`
@@ -161,7 +159,13 @@ const Home = () => {
           />
         </Wrapper>
       </NewProductsSection>
-      <Section></Section>
+      <CenteringSection css="background-color: red">
+        <Heading color="black" fontSize="4rem" as="h1">
+          <>
+            Be first to get new information <br /> About new products
+          </>
+        </Heading>
+      </CenteringSection>
     </>
   );
 };

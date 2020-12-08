@@ -1,6 +1,5 @@
 import React, { useRef, useLayoutEffect } from 'react';
 import styled from 'styled-components';
-import { ProductsWithHighlightPoints } from '../../types';
 import { Heading, Text, ButtonLink } from '../styled';
 import { Stars } from '../styled/Stars';
 import theme from '../../theme/theme';

@@ -9,7 +9,6 @@ import styled from 'styled-components';
 import { PrevButton, NextButton } from './EmblaCarouselButtons';
 import { useEmblaCarousel } from 'embla-carousel/react';
 import { Embla, Viewport, CarouselContainer, Slide } from './styles';
-import { SlideProduct } from '../../types';
 import ProductSlide from './ProductSlide';
 
 // Progress bar width = width of component / something

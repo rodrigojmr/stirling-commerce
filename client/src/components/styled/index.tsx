@@ -26,6 +26,13 @@ export const FlexApartWrapper = styled.div`
   }
 `;
 
+export const CenteringFlex = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`;
+
 interface LinkProps {
   fontSize: string;
   color: string;
