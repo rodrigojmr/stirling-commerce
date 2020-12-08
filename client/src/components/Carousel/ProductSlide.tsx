@@ -5,7 +5,7 @@ import { Stars } from '../styled/Stars';
 import { SlideProduct } from '../../types';
 
 const Container = styled.article`
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -14,7 +14,8 @@ const Container = styled.article`
 const ImageContainer = styled.div`
   position: relative;
   height: 25rem;
-  margin: 0 2rem 4rem 2rem;
+  margin-bottom: 4rem;
+  background-color: white;
 `;
 
 const Image = styled.img<{ src: string; alt: string }>`
