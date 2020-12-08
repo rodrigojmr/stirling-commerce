@@ -1,6 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Heading, Section, Wrapper } from '../components/styled';
+
+import {
+  FlexApartWrapper,
+  Heading,
+  Section,
+  Wrapper,
+  StyledLink
+} from '../components/styled';
 import theme from '../theme/theme';
 
 import EmblaCarousel from '../components/Carousel/EmblaCarousel';
@@ -8,7 +15,6 @@ import ProductsCarousel from '../components/Carousel/ProductsCarousel';
 import SlideOne from '../components/Slides/SlideOne';
 import CategoryLink from '../components/CategoryLink';
 import ToggleSlider from '../components/ToggleSlider';
-
 import ProductHighlight from '../components/Products/ProductHighlight';
 
 import {
@@ -61,6 +67,11 @@ const RecommendedSection = styled(Section)<{ text: string }>`
   }
 `;
 
+const NewProductsSection = styled(Section)`
+  background: ${({ theme }) =>
+    `linear-gradient(to bottom, ${theme.colors.lightGrey} 50%, white 0%)`};
+`;
+
 const Home = () => {
   return (
     <>
@@ -68,16 +79,24 @@ const Home = () => {
         <SlideOne background="/images/carousel-bicycle.webp" />
         <SlideOne background="/images/carousel-bicycle.webp" />
       </EmblaCarousel>
-      <SecondSection backgroundColor={theme.colors.lightGrey}>
+      <CenteringSection backgroundColor={theme.colors.lightGrey}>
         <Heading color="black" fontSize="4rem" as="h1">
           <>
             Where all the leading sports brands come to play, <br /> we bring
             you stirling sports
           </>
         </Heading>
-      </SecondSection>
+      </CenteringSection>
       <Section>
         <Wrapper>
+          <CarouselHeader>
+            <Heading color="black" as="h2" fontSize="3rem">
+              Featured Products
+            </Heading>
+            <StyledLink color={theme.colors.primary} fontSize="2.5rem" to="#">
+              View All &gt;
+            </StyledLink>
+          </CarouselHeader>
           <ProductsCarousel
             options={{
               loop: false,
@@ -86,7 +105,7 @@ const Home = () => {
               dragFree: true,
               containScroll: 'keepSnaps' as const
             }}
-            products={products}
+            products={featuredProducts}
           />
         </Wrapper>
       </Section>
