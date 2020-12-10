@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import { up, down, between, only } from "styled-breakpoints";
+import { createGlobalStyle } from 'styled-components';
+import { up, down, between, only } from 'styled-breakpoints';
 
 const GlobalStyle = createGlobalStyle`
   @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&display=swap");
@@ -20,13 +20,14 @@ const GlobalStyle = createGlobalStyle`
     border-width:0;
     padding:0;
     cursor:pointer;
+    font-family: 'Bebas Neue';
   }
   ul, ol, dd, li{margin:0; padding:0; list-style:none;}
   h1, h2, h3, h4, h5, h6 {
   font-family: 'Bebas Neue';
    margin:0;
    font-size:inherit;
-   font-weight:inherit;
+   font-weight:400;
   }
   p {
     margin: 0;
@@ -39,7 +40,7 @@ const GlobalStyle = createGlobalStyle`
    font-size: 16px;
    font-weight: 400;
    color: #222;
-  } 
+  }
 
   html {
   box-sizing: border-box;
