@@ -33,24 +33,42 @@ export const CenteringFlex = css`
   text-align: center;
 `;
 
-interface LinkProps {
-  fontSize: string;
-  color: string;
+interface ImportantTextProps {
+  fontSize?: string;
+  color?: string;
+}
+
+export const ImportantTextStyle = css<ImportantTextProps>`
+  font-weight: 400;
+  font-size: ${props => props.fontSize || '3rem'};
+  color: ${props => props.color || 'white'};
+`;
+
+interface LinkProps extends ImportantTextProps {
   to: string;
 }
 
 export const StyledLink = styled(NavLink)<LinkProps>`
   display: inline-block;
-  font-family: 'Bebas Neue';
-  font-weight: 400;
-  font-size: ${props => props.fontSize};
-  color: ${props => props.color};
+  ${ImportantTextStyle}
+
   transition: all 0.2s;
   &:hover {
     color: ${props => props.theme.colors.primary};
   }
 `;
+interface HeaderProps {
+  fontSize: string;
+  as: string;
+  children?: string | JSX.Element[] | JSX.Element;
+}
 
+export const Heading = styled.h1<HeaderProps & SpaceProps>`
+  ${ImportantTextStyle}
+  font-size: ${({ fontSize }) => fontSize};
+  line-height: 1;
+  ${space};
+`;
 interface InputStyleProps {
   backgroundColor: string;
   placeholder: string;
@@ -72,23 +90,6 @@ export const heroSliderStyle = css`
   position: relative;
   padding: 8rem;
   height: 90vh;
-`;
-
-interface HeaderProps {
-  color?: string;
-  fontFamily?: string;
-  fontSize: string;
-  as: string;
-  children?: string | JSX.Element[] | JSX.Element;
-}
-
-export const Heading = styled.h1<HeaderProps & SpaceProps>`
-  color: ${({ color }) => color || 'white'};
-  font-weight: 400;
-  font-size: ${({ fontSize }) => fontSize};
-  font-family: ${({ fontFamily }) => fontFamily};
-  line-height: 1;
-  ${space};
 `;
 
 interface TextProps {
