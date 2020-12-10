@@ -23,6 +23,8 @@ import {
   highlightedProducts,
   newProducts
 } from '../data/products';
+import NewsletterForm from '../components/Form/NewsletterForm';
+import { Link } from 'react-router-dom';
 
 const carouselOptions = {
   draggable: false,
@@ -35,6 +37,7 @@ const carouselOptions = {
 // TODO Add graphics around this section
 const CenteringSection = styled(Section)`
   ${CenteringFlex}
+  flex-direction: column;
 `;
 
 const CarouselHeader = styled(FlexApartWrapper)`
@@ -68,6 +71,14 @@ const RecommendedSection = styled(Section)<{ text: string }>`
 const NewProductsSection = styled(Section)`
   background: ${({ theme }) =>
     `linear-gradient(to bottom, ${theme.colors.lightGrey} 50%, white 0%)`};
+`;
+
+const FormContainer = styled.div`
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  display: flex;
+  width: 70vw;
+  max-width: 100rem;
 `;
 
 const Home = () => {
@@ -159,12 +170,17 @@ const Home = () => {
           />
         </Wrapper>
       </NewProductsSection>
+      {/* TODO Fix styled components not passing css prop */}
       <CenteringSection css="background-color: red">
         <Heading color="black" fontSize="4rem" as="h1">
           <>
             Be first to get new information <br /> About new products
           </>
         </Heading>
+        <FormContainer>
+          <NewsletterForm />
+        </FormContainer>
+        <img src="./images/stretching.webp" alt="Man stretching" />
       </CenteringSection>
     </>
   );
