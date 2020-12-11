@@ -1,6 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { ReactComponent as UserIcon } from "../assets/user.svg";
+import React from 'react';
+import styled from 'styled-components';
+import { ReactComponent as UserIcon } from '../assets/user.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, logout } from '../store/user';
 
 const StyledContainer = styled.div`
   padding: 1rem;
@@ -17,9 +19,17 @@ const StyledIcon = styled(UserIcon)`
   width: 3rem;
 `;
 
-const User = (user: { username?: string }) => {
+const User = () => {
+  const dispatch = useDispatch();
+  const { user } = useSelector((state: any) => state.user);
+  console.log('user: ', user);
+
   return (
-    <StyledContainer>
+    <StyledContainer
+      onClick={() =>
+        dispatch(login({ username: 'asddasdas', password: 'dashdkass' }))
+      }
+    >
       <StyledIcon />
     </StyledContainer>
   );
