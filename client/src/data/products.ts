@@ -188,3 +188,56 @@ export const newProducts = [
     price: 200.99
   }
 ];
+
+export const allProducts = [
+  {
+    image: './images/products/shoes/puma-ignite-flash-evoknit.webp',
+    rating: 4,
+    title: 'Puma - Ignite Flash EvoKNIT - Black - Mens',
+    price: 99.99
+  },
+  {
+    image:
+      './images/products/shirts/puma-essential-big-cat-tree-grey-heather.webp',
+    rating: 3,
+    title: 'Pume - Essential Big Cat Tee - Grey Heather - Mens',
+    price: 30.99
+  },
+  {
+    image: './images/products/nike-pro-hypercool-capri-black-womens.webp',
+    rating: 5,
+    title: 'Nike - Pro Hypercool Capri - Black - Womens',
+    price: 49.99
+  },
+  {
+    image:
+      './images/products/shoes/nike-free-rn-2017-running-shoe-black-mens.webp',
+    rating: 4,
+    title: 'Nike - Free RN 2017 Running Shoe - Black - Mens',
+    price: 99.99
+  },
+  {
+    image: './images/products/shoes/rebook-ex-o-fit_hi_black.webp',
+    rating: 4,
+    title: 'Reebook - Ex-O-Fit Hi - Black - Mens',
+    price: 179.99
+  },
+  {
+    image: './images/products/shoes/rebook-classic_nylon_white_standard.webp',
+    rating: 3,
+    title: 'Rebook - Classic Nylon - White/Pink - Womens',
+    price: 120.99
+  },
+  {
+    image: './images/products/shoes/nike-free-tr-v8.webp',
+    rating: 5,
+    title: 'Nike - Free TR V8 - Grey - Mens',
+    price: 109.99
+  },
+  {
+    image: './images/products/shoes/rebook-classic_nylon_shoes_black.webp',
+    rating: 4,
+    title: 'Rebook - Classic Slide - Black - Mens',
+    price: 200.99
+  }
+];
