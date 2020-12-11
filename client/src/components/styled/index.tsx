@@ -39,6 +39,7 @@ interface ImportantTextProps {
 }
 
 export const ImportantTextStyle = css<ImportantTextProps>`
+  font-family: 'Bebas Neue';
   font-weight: 400;
   font-size: ${props => props.fontSize || '3rem'};
   color: ${props => props.color || 'white'};
@@ -77,6 +78,7 @@ interface InputStyleProps {
 
 export const StyledInput = styled.input<InputStyleProps>`
   font-family: 'Bebas Neue';
+  font-size: inherit;
   width: 100%;
   outline: none;
   border: none;

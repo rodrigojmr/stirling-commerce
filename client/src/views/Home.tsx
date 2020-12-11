@@ -24,7 +24,6 @@ import {
   newProducts
 } from '../data/products';
 import NewsletterForm from '../components/Form/NewsletterForm';
-import { Link } from 'react-router-dom';
 
 const carouselOptions = {
   draggable: false,
@@ -79,6 +78,10 @@ const FormContainer = styled.div`
   display: flex;
   width: 70vw;
   max-width: 100rem;
+`;
+
+const Image = styled.img`
+  width: 100%;
 `;
 
 const Home = () => {
@@ -171,7 +174,7 @@ const Home = () => {
         </Wrapper>
       </NewProductsSection>
       {/* TODO Fix styled components not passing css prop */}
-      <CenteringSection css="background-color: red">
+      <CenteringSection style={{ paddingBottom: '0' }}>
         <Heading color="black" fontSize="4rem" as="h1">
           <>
             Be first to get new information <br /> About new products
@@ -180,7 +183,7 @@ const Home = () => {
         <FormContainer>
           <NewsletterForm />
         </FormContainer>
-        <img src="./images/stretching.webp" alt="Man stretching" />
+        <Image src="./images/stretching.webp" alt="Man stretching" />
       </CenteringSection>
     </>
   );
