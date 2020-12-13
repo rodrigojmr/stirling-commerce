@@ -48,15 +48,15 @@ const StyledResult = styled.li`
   }
 `;
 
-const Results = ({ products }: { products: SimpleProduct[] }) => (
+const Results = ({ products }: { products: Product[] }) => (
   <ResultsContainer>
-    {products.map((product: SimpleProduct) => (
+    {products.map((product: Product) => (
       <Result product={product} />
     ))}
   </ResultsContainer>
 );
 
-const Result = ({ product }: { product: SimpleProduct }) => (
+const Result = ({ product }: { product: Product }) => (
   <StyledResult>
     <div style={{ flex: '0 0 8rem', marginRight: '1rem' }}>
       <img

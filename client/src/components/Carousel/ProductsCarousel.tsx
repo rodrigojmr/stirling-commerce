@@ -55,7 +55,7 @@ interface Options {
 
 const ProductsCarousel: React.FC<{
   options: Options;
-  products: SlideProduct[];
+  products: Product[];
 }> = ({ options, products }) => {
   const [emblaRef, embla] = useEmblaCarousel(options);
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);

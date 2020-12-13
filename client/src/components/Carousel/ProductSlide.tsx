@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Text } from '../styled';
 import { Stars } from '../styled/Stars';
+import { Link } from 'react-router-dom';
 
 const Container = styled.article`
   padding: 1rem;
@@ -26,21 +27,23 @@ const Image = styled.img<{ src: string; alt: string }>`
   max-height: 100%;
 `;
 
-const ProductSlide: React.FC<{ product: SlideProduct }> = ({ product }) => {
+const ProductSlide: React.FC<{ product: Product }> = ({ product }) => {
   return (
     <Container>
-      <ImageContainer>
-        <Image src={product.image} alt={product.title} />
-      </ImageContainer>
-      <div>{Stars(product.rating)}</div>
-      <Text fontWeight={700} color="black">
-        {product.title}
-      </Text>
-      <Text
-        fontWeight={500}
-        fontSize="2.3rem"
-        fontFamily="Bebas Neue"
-      >{`$${product.price}`}</Text>
+      <Link to={`/product/${product._id}`}>
+        <ImageContainer>
+          <Image src={product.image} alt={product.title} />
+        </ImageContainer>
+        <div>{Stars(product.rating)}</div>
+        <Text fontWeight={700} color="black">
+          {product.title}
+        </Text>
+        <Text
+          fontWeight={500}
+          fontSize="2.3rem"
+          fontFamily="Bebas Neue"
+        >{`$${product.price}`}</Text>
+      </Link>
     </Container>
   );
 };
