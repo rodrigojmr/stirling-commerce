@@ -10,6 +10,16 @@ const StyledContainer = styled.div`
   font-size: 0;
   background-color: ${({ theme }) => theme.colors.grey};
   margin-right: 2rem;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.primary};
+
+    svg {
+      stroke: white;
+      fill: white;
+    }
+  }
 `;
 
 const StyledIcon = styled(UserIcon)`
@@ -17,6 +27,7 @@ const StyledIcon = styled(UserIcon)`
   stroke: ${({ theme }) => theme.colors.lighterGrey};
   height: 3rem;
   width: 3rem;
+  transition: all 0.2s;
 `;
 
 const User = () => {
