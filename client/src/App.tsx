@@ -8,6 +8,7 @@ import store from './store';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './views/Home';
+import SingleProduct from './views/SingleProduct';
 
 const App: React.FC = () => {
   return (
@@ -29,6 +30,7 @@ const App: React.FC = () => {
             <Route exact path="/kids">
               Kids
             </Route>
+            <Route path="/product/:id" component={SingleProduct} />
             <Route render={() => <Redirect to="/" />} />
           </Switch>
           <Footer />
