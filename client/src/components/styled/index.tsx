@@ -42,7 +42,7 @@ export const ImportantTextStyle = css<ImportantTextProps>`
   font-family: 'Bebas Neue';
   font-weight: 400;
   font-size: ${props => props.fontSize || '3rem'};
-  color: ${props => props.color || 'white'};
+  color: ${props => props.color || 'black'};
 `;
 
 interface LinkProps extends ImportantTextProps {

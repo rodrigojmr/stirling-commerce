@@ -48,10 +48,10 @@ const CategoryLink = ({
         <Image src={image} />
       </div>
       <div>
-        <Heading fontSize="3rem" as="h3">
+        <Heading color="white" fontSize="3rem" as="h3">
           {category}
         </Heading>
-        <Heading mb="1rem" as="h1" fontSize="7rem">
+        <Heading color="white" mb="1rem" as="h1" fontSize="7rem">
           {title}
         </Heading>
         <Text mb="3rem">{children}</Text>

@@ -16,7 +16,7 @@ const ToggleSlider: React.FC<Props> = ({ title, children }) => {
     <>
       <FlexApartWrapper>
         {title && (
-          <Heading color="black" as="h1" fontSize="3rem">
+          <Heading as="h1" fontSize="3rem">
             {title}
           </Heading>
         )}
