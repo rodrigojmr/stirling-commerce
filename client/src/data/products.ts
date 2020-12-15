@@ -1,52 +1,52 @@
 export const featuredProducts = [
   {
-    image: './images/products/shoes/puma-ignite-flash-evoknit.webp',
+    image: '/images/products/shoes/puma-ignite-flash-evoknit.webp',
     rating: 4,
     title: 'Puma - Ignite Flash EvoKNIT - Black - Mens',
     price: 99.99
   },
   {
     image:
-      './images/products/shirts/puma-essential-big-cat-tree-grey-heather.webp',
+      '/images/products/shirts/puma-essential-big-cat-tree-grey-heather.webp',
     rating: 3,
     title: 'Pume - Essential Big Cat Tee - Grey Heather - Mens',
     price: 30.99
   },
   {
-    image: './images/products/nike-pro-hypercool-capri-black-womens.webp',
+    image: '/images/products/nike-pro-hypercool-capri-black-womens.webp',
     rating: 5,
     title: 'Nike - Pro Hypercool Capri - Black - Womens',
     price: 49.99
   },
   {
     image:
-      './images/products/shoes/nike-free-rn-2017-running-shoe-black-mens.webp',
+      '/images/products/shoes/nike-free-rn-2017-running-shoe-black-mens.webp',
     rating: 4,
     title: 'Nike - Free RN 2017 Running Shoe - Black - Mens',
     price: 99.99
   },
   {
-    image: './images/products/shoes/puma-ignite-flash-evoknit.webp',
+    image: '/images/products/shoes/puma-ignite-flash-evoknit.webp',
     rating: 4,
     title: 'Puma - Ignite Flash EvoKNIT - Black - Mens',
     price: 99.99
   },
   {
     image:
-      './images/products/shirts/puma-essential-big-cat-tree-grey-heather.webp',
+      '/images/products/shirts/puma-essential-big-cat-tree-grey-heather.webp',
     rating: 3,
     title: 'Pume - Essential Big Cat Tee - Grey Heather - Mens',
     price: 30.99
   },
   {
-    image: './images/products/nike-pro-hypercool-capri-black-womens.webp',
+    image: '/images/products/nike-pro-hypercool-capri-black-womens.webp',
     rating: 5,
     title: 'Nike - Pro Hypercool Capri - Black - Womens',
     price: 49.99
   },
   {
     image:
-      './images/products/shoes/nike-free-rn-2017-running-shoe-black-mens.webp',
+      '/images/products/shoes/nike-free-rn-2017-running-shoe-black-mens.webp',
     rating: 4,
     title: 'Nike - Free RN 2017 Running Shoe - Black - Mens',
     price: 99.99
@@ -55,7 +55,7 @@ export const featuredProducts = [
 
 export const highlightedProducts = [
   {
-    image: './images/products/shoes/adidas-originals-swift-run-cargo-mens.webp',
+    image: '/images/products/shoes/adidas-originals-swift-run-cargo-mens.webp',
     title: 'Adidas Originals - Swift Run - Black - Mens',
     rating: 5,
     price: 140.99,
@@ -99,7 +99,7 @@ export const highlightedProducts = [
   },
   {
     image:
-      "./images/products/shoes/floatride-fuel-run-women's-running-shoes.webp",
+      "/images/products/shoes/floatride-fuel-run-women's-running-shoes.webp",
     rating: 5,
     title: "Reebok - Floatride Fuel Run - Blue - Women's",
     price: 99.99,
@@ -140,49 +140,49 @@ export const highlightedProducts = [
 
 export const newProducts = [
   {
-    image: './images/products/shoes/rebook-ex-o-fit_hi_black.webp',
+    image: '/images/products/shoes/rebook-ex-o-fit_hi_black.webp',
     rating: 4,
     title: 'reebok - Ex-O-Fit Hi - Black - Mens',
     price: 179.99
   },
   {
-    image: './images/products/shoes/rebook-classic_nylon_white_standard.webp',
+    image: '/images/products/shoes/rebook-classic_nylon_white_standard.webp',
     rating: 3,
     title: 'Rebook - Classic Nylon - White/Pink - Womens',
     price: 120.99
   },
   {
-    image: './images/products/shoes/nike-free-tr-v8.webp',
+    image: '/images/products/shoes/nike-free-tr-v8.webp',
     rating: 5,
     title: 'Nike - Free TR V8 - Grey - Mens',
     price: 109.99
   },
   {
-    image: './images/products/shoes/rebook-classic_nylon_shoes_black.webp',
+    image: '/images/products/shoes/rebook-classic_nylon_shoes_black.webp',
     rating: 4,
     title: 'Rebook - Classic Slide - Black - Mens',
     price: 200.99
   },
   {
-    image: './images/products/shoes/rebook-ex-o-fit_hi_black.webp',
+    image: '/images/products/shoes/rebook-ex-o-fit_hi_black.webp',
     rating: 4,
     title: 'reebok - Ex-O-Fit Hi - Black - Mens',
     price: 179.99
   },
   {
-    image: './images/products/shoes/rebook-classic_nylon_white_standard.webp',
+    image: '/images/products/shoes/rebook-classic_nylon_white_standard.webp',
     rating: 3,
     title: 'Rebook - Classic Nylon - White/Pink - Womens',
     price: 120.99
   },
   {
-    image: './images/products/shoes/nike-free-tr-v8.webp',
+    image: '/images/products/shoes/nike-free-tr-v8.webp',
     rating: 5,
     title: 'Nike - Free TR V8 - Grey - Mens',
     price: 109.99
   },
   {
-    image: './images/products/shoes/rebook-classic_nylon_shoes_black.webp',
+    image: '/images/products/shoes/rebook-classic_nylon_shoes_black.webp',
     rating: 4,
     title: 'Rebook - Classic Slide - Black - Mens',
     price: 200.99
@@ -194,7 +194,7 @@ type Products = Product | ProductsWithHighlightPoints;
 export const allProducts: Products[] = [
   {
     _id: '1',
-    image: './images/products/shoes/puma-ignite-flash-evoknit.webp',
+    image: '/images/products/shoes/puma-ignite-flash-evoknit.webp',
     rating: 4,
     title: 'Puma - Ignite Flash EvoKNIT - Black - Mens',
     brand: 'puma',
@@ -211,7 +211,7 @@ export const allProducts: Products[] = [
   {
     _id: '2',
     image:
-      './images/products/shirts/puma-essential-big-cat-tree-grey-heather.webp',
+      '/images/products/shirts/puma-essential-big-cat-tree-grey-heather.webp',
     rating: 3,
     title: 'Puma - Essential Big Cat Tee - Grey Heather - Mens',
     brand: 'puma',
@@ -227,7 +227,7 @@ export const allProducts: Products[] = [
   },
   {
     _id: '3',
-    image: './images/products/nike-pro-hypercool-capri-black-womens.webp',
+    image: '/images/products/nike-pro-hypercool-capri-black-womens.webp',
     rating: 5,
     title: 'Nike - Pro Hypercool Capri - Black - Womens',
     brand: 'nike',
@@ -244,7 +244,7 @@ export const allProducts: Products[] = [
   {
     _id: '4',
     image:
-      './images/products/shoes/nike-free-rn-2017-running-shoe-black-mens.webp',
+      '/images/products/shoes/nike-free-rn-2017-running-shoe-black-mens.webp',
     rating: 4,
     title: 'Nike - Free RN 2017 Running Shoe - Black - Mens',
     brand: 'nike',
@@ -260,7 +260,7 @@ export const allProducts: Products[] = [
   },
   {
     _id: '5',
-    image: './images/products/shoes/rebook-ex-o-fit_hi_black.webp',
+    image: '/images/products/shoes/rebook-ex-o-fit_hi_black.webp',
     rating: 4,
     title: 'Reebok - Ex-O-Fit Hi - Black - Mens',
     brand: 'reebok',
@@ -276,7 +276,7 @@ export const allProducts: Products[] = [
   },
   {
     _id: '6',
-    image: './images/products/shoes/rebook-classic_nylon_white_standard.webp',
+    image: '/images/products/shoes/rebook-classic_nylon_white_standard.webp',
     rating: 3,
     title: 'Rebook - Classic Nylon - White/Pink - Womens',
     brand: 'reebok',
@@ -292,7 +292,7 @@ export const allProducts: Products[] = [
   },
   {
     _id: '7',
-    image: './images/products/shoes/nike-free-tr-v8.webp',
+    image: '/images/products/shoes/nike-free-tr-v8.webp',
     rating: 5,
     title: 'Nike - Free TR V8 - Grey - Mens',
     brand: 'nike',
@@ -308,7 +308,7 @@ export const allProducts: Products[] = [
   },
   {
     _id: '8',
-    image: './images/products/shoes/rebook-classic_nylon_shoes_black.webp',
+    image: '/images/products/shoes/rebook-classic_nylon_shoes_black.webp',
     rating: 4,
     title: 'Rebook - Classic Slide - Black - Mens',
     brand: 'rebook',
@@ -324,7 +324,7 @@ export const allProducts: Products[] = [
   },
   {
     _id: '9',
-    image: './images/products/shoes/adidas-originals-swift-run-cargo-mens.webp',
+    image: '/images/products/shoes/adidas-originals-swift-run-cargo-mens.webp',
     title: 'Adidas Originals - Swift Run - Black - Mens',
     brand: 'adidas',
     color: 'black',
@@ -378,7 +378,7 @@ export const allProducts: Products[] = [
   {
     _id: '10',
     image:
-      "./images/products/shoes/floatride-fuel-run-women's-running-shoes.webp",
+      "/images/products/shoes/floatride-fuel-run-women's-running-shoes.webp",
     rating: 5,
     title: "Reebok - Floatride Fuel Run - Blue - Women's",
     brand: 'reebok',
