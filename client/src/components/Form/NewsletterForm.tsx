@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import FormInput from './FormInput';
-import { ImportantTextStyle } from '../styled';
+import { ImportantTextStyle, StyledInput } from '../styled';
 import theme from '../../theme/theme';
 
 const StyledForm = styled.form`
@@ -27,9 +27,12 @@ const NewsletterForm = () => {
 
   return (
     <StyledForm>
-      <FormInput
-        error={error}
-        label=""
+      <label htmlFor="email-input"></label>
+      <StyledInput
+        id="email-input"
+        backgroundColor="transparent"
+        borderColor="black"
+        color={theme.colors.grey}
         name="email"
         placeholder="Enter your email address"
         value={email}
@@ -41,6 +44,7 @@ const NewsletterForm = () => {
       <FormButton color={theme.colors.primary} type="submit">
         Subscribe &gt;
       </FormButton>
+      {error && <p>{error}</p>}
     </StyledForm>
   );
 };

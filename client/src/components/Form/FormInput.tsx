@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import { StyledInput } from '../styled';
 interface Props {
   name: string;
   label: string;
@@ -10,16 +10,6 @@ interface Props {
   value: any;
   error: string;
 }
-
-const StyledInput = styled.input<{ error: string }>`
-  outline: none;
-  border: none;
-  border-bottom: 1px solid black;
-  padding: 2rem 3rem;
-  border: ${({ error }) => (error ? ' solid 1px red' : '')};
-  font-family: 'Bebas Neue';
-  font-size: 2.5rem;
-`;
 
 const FormInput: React.FC<Props> = ({
   name,
@@ -37,6 +27,9 @@ const FormInput: React.FC<Props> = ({
     <>
       <label htmlFor={name}>{label}</label>
       <StyledInput
+        color="white"
+        backgroundColor="transparent"
+        borderColor="white"
         id={name}
         name={name}
         type={type}

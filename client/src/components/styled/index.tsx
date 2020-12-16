@@ -71,21 +71,23 @@ export const Heading = styled.h1<HeaderProps & SpaceProps>`
   ${space};
 `;
 interface InputStyleProps {
-  backgroundColor: string;
-  placeholder: string;
+  backgroundColor?: string;
   color: string;
+  fontSize?: string;
+  error?: string;
+  borderColor: string;
 }
 
 export const StyledInput = styled.input<InputStyleProps>`
   font-family: 'Bebas Neue';
-  font-size: inherit;
-  width: 100%;
+  font-size: ${({ fontSize }) => fontSize || 'inherit'};
   outline: none;
   border: none;
-  padding: 0.5em 1em;
+  padding: 1rem 1.5rem;
   background-color: ${props => props.backgroundColor};
-  border-bottom: 1px solid white;
   color: ${props => props.color};
+  border-bottom: ${({ borderColor }) => `1px solid ${borderColor}`};
+  border: ${({ error }) => (error ? ' solid 1px red' : '')};
 `;
 
 export const heroSliderStyle = css`
