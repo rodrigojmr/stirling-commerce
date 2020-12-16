@@ -80,6 +80,7 @@ const Search = () => {
   return (
     <StyledForm>
       <StyledInput
+        borderColor="white"
         value={query}
         onChange={e => setQuery(e.target.value)}
         placeholder="search"
