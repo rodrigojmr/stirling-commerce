@@ -18,7 +18,7 @@ interface Product {
   price: number;
   description: string;
   stock: string;
-  numReviews: string;
+  numReviews: number;
   featured: boolean;
   new: boolean;
 }
