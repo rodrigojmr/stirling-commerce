@@ -202,7 +202,8 @@ export const allProducts: Products[] = [
     type: ['footwear'],
     gender: 'men',
     price: 99.99,
-    description: '',
+    description:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. At praesentium, aut eaque quos repellendus error exercitationem corporis sequi consectetur impedit doloribus a quisquam cumque repudiandae, repellat, pariatur recusandae ipsa? Architecto.',
     stock: '',
     numReviews: 2,
     featured: true,
@@ -219,7 +220,8 @@ export const allProducts: Products[] = [
     type: ['tee'],
     gender: 'men',
     price: 30.99,
-    description: '',
+    description:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. At praesentium, aut eaque quos repellendus error exercitationem corporis sequi consectetur impedit doloribus a quisquam cumque repudiandae, repellat, pariatur recusandae ipsa? Architecto.',
     stock: '',
     numReviews: 2,
     featured: true,
@@ -235,7 +237,8 @@ export const allProducts: Products[] = [
     type: ['pants'],
     gender: 'women',
     price: 49.99,
-    description: '',
+    description:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. At praesentium, aut eaque quos repellendus error exercitationem corporis sequi consectetur impedit doloribus a quisquam cumque repudiandae, repellat, pariatur recusandae ipsa? Architecto.',
     stock: '',
     numReviews: 2,
     featured: true,
@@ -252,7 +255,8 @@ export const allProducts: Products[] = [
     type: ['shoes', 'running'],
     gender: 'women',
     price: 99.99,
-    description: '',
+    description:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. At praesentium, aut eaque quos repellendus error exercitationem corporis sequi consectetur impedit doloribus a quisquam cumque repudiandae, repellat, pariatur recusandae ipsa? Architecto.',
     stock: '',
     numReviews: 2,
     featured: true,
@@ -268,7 +272,8 @@ export const allProducts: Products[] = [
     type: ['shoes'],
     gender: 'women',
     price: 179.99,
-    description: '',
+    description:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. At praesentium, aut eaque quos repellendus error exercitationem corporis sequi consectetur impedit doloribus a quisquam cumque repudiandae, repellat, pariatur recusandae ipsa? Architecto.',
     stock: '',
     numReviews: 2,
     featured: false,
@@ -284,7 +289,8 @@ export const allProducts: Products[] = [
     type: ['shoes'],
     gender: 'women',
     price: 120.99,
-    description: '',
+    description:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. At praesentium, aut eaque quos repellendus error exercitationem corporis sequi consectetur impedit doloribus a quisquam cumque repudiandae, repellat, pariatur recusandae ipsa? Architecto.',
     stock: '',
     numReviews: 2,
     featured: false,
@@ -300,7 +306,8 @@ export const allProducts: Products[] = [
     type: ['shoes'],
     gender: 'men',
     price: 109.99,
-    description: '',
+    description:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. At praesentium, aut eaque quos repellendus error exercitationem corporis sequi consectetur impedit doloribus a quisquam cumque repudiandae, repellat, pariatur recusandae ipsa? Architecto.',
     stock: '',
     numReviews: 2,
     featured: false,
@@ -316,7 +323,8 @@ export const allProducts: Products[] = [
     type: ['shoes'],
     gender: 'men',
     price: 200.99,
-    description: '',
+    description:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. At praesentium, aut eaque quos repellendus error exercitationem corporis sequi consectetur impedit doloribus a quisquam cumque repudiandae, repellat, pariatur recusandae ipsa? Architecto.',
     stock: '',
     numReviews: 2,
     featured: false,
@@ -332,7 +340,8 @@ export const allProducts: Products[] = [
     gender: 'men',
     rating: 5,
     price: 140.99,
-    description: '',
+    description:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. At praesentium, aut eaque quos repellendus error exercitationem corporis sequi consectetur impedit doloribus a quisquam cumque repudiandae, repellat, pariatur recusandae ipsa? Architecto.',
     stock: '',
     numReviews: 2,
     featured: false,
@@ -386,7 +395,8 @@ export const allProducts: Products[] = [
     type: ['shoes'],
     gender: 'men',
     price: 99.99,
-    description: '',
+    description:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. At praesentium, aut eaque quos repellendus error exercitationem corporis sequi consectetur impedit doloribus a quisquam cumque repudiandae, repellat, pariatur recusandae ipsa? Architecto.',
     stock: '',
     numReviews: 2,
     featured: false,
