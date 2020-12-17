@@ -84,6 +84,8 @@ interface InputStyleProps {
 }
 
 export const StyledInput = styled.input<InputStyleProps>`
+  position: relative;
+  width: 100%;
   font-family: 'Bebas Neue';
   font-size: ${({ fontSize }) => fontSize || 'inherit'};
   outline: none;

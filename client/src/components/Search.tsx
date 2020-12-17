@@ -6,6 +6,7 @@ import { StyledInput } from './styled';
 import { ReactComponent as SearchIcon } from '../assets/search.svg';
 import { allProducts } from '../data/products';
 import FormInput from './Form/FormInput';
+import { Link } from 'react-router-dom';
 
 const StyledForm = styled.form`
   position: relative;
@@ -33,6 +34,8 @@ const ResultsContainer = styled.ul`
   width: 150%;
   z-index: 1;
   border: 3px solid ${({ theme }) => theme.colors.primary};
+  max-height: 50rem;
+  overflow-y: scroll;
 `;
 
 const StyledResult = styled.li`
@@ -42,7 +45,7 @@ const StyledResult = styled.li`
   align-items: center;
   font-family: 'Bebas Neue';
   transition: all 0.2s;
-
+  border-bottom: ${({ theme }) => `1px solid ${theme.colors.lightGrey}`};
   &:hover {
     background-color: ${({ theme }) => theme.colors.lightGrey};
   }
@@ -57,16 +60,18 @@ const Results = ({ products }: { products: Product[] }) => (
 );
 
 const Result = ({ product }: { product: Product }) => (
-  <StyledResult>
-    <div style={{ flex: '0 0 8rem', marginRight: '1rem' }}>
-      <img
-        style={{ width: '100%', objectFit: 'cover' }}
-        src={product.image}
-        alt={product.title}
-      />
-    </div>
-    <div>{product.title}</div>
-  </StyledResult>
+  <Link to={`/product/${product._id}`}>
+    <StyledResult>
+      <div style={{ flex: '0 0 8rem', marginRight: '1rem' }}>
+        <img
+          style={{ width: '100%', objectFit: 'cover' }}
+          src={product.image}
+          alt={product.title}
+        />
+      </div>
+      <div>{product.title}</div>
+    </StyledResult>
+  </Link>
 );
 
 const Search = () => {
@@ -88,7 +93,9 @@ const Search = () => {
         backgroundColor={theme.colors.darkGrey}
       />
       <StyledIcon />
-      {query && <Results products={filteredProducts} />}
+      {query && filteredProducts.length > 0 && (
+        <Results products={filteredProducts} />
+      )}
     </StyledForm>
   );
 };

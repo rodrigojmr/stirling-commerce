@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
-import styled, { css } from 'styled-components';
-import FormInput from './FormInput';
+import { useState } from 'react';
+import styled from 'styled-components';
 import { ImportantTextStyle, StyledInput } from '../styled';
 import theme from '../../theme/theme';
 
 const StyledForm = styled.form`
   width: 100%;
   display: flex;
+  position: relative;
 
   & > input {
     flex-grow: 1;
@@ -15,7 +15,10 @@ const StyledForm = styled.form`
 
 const FormButton = styled.button`
   ${ImportantTextStyle}
-  border-bottom: 1px solid black;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   font-size: 2.5rem;
 `;
 
@@ -29,6 +32,7 @@ const NewsletterForm = () => {
     <StyledForm>
       <label htmlFor="email-input"></label>
       <StyledInput
+        fontSize={'2rem'}
         id="email-input"
         backgroundColor="transparent"
         borderColor="black"
