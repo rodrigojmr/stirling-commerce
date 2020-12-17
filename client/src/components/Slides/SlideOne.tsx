@@ -35,7 +35,7 @@ const SlideOne = ({ background }: SlideTypes): ReactElement => {
   return (
     <StyledContainer background={background}>
       <TextContainer>
-        <Heading fontSize="14rem" as="h1">
+        <Heading fontSize="14rem" color="white" as="h1">
           Bicycle Accessories
         </Heading>
         <Text color="#888888">
