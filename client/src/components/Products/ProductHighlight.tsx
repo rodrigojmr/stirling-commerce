@@ -1,13 +1,14 @@
 import React, { useRef, useLayoutEffect } from 'react';
 import styled from 'styled-components';
 import { Heading, Text, ButtonLink } from '../styled';
-import { Stars } from '../styled/Stars';
+import { stars } from '../styled/Stars';
 import theme from '../../theme/theme';
 import HighlightDot from '../HighlightDot';
 
 const ProductContainer = styled.article`
   display: flex;
   height: 600px;
+  overflow: hidden;
 `;
 
 const ImageContainer = styled.div`
@@ -24,8 +25,7 @@ const StyledImage = styled.img`
   position: relative;
   margin: 0 auto;
   object-fit: cover;
-  max-height: 100%;
-  max-width: 100%;
+  width: 107%;
 `;
 
 const ProductDetails = styled.div`
@@ -68,7 +68,7 @@ const ProductHighlight: React.FC<{ product: ProductsWithHighlightPoints }> = ({
         ))}
       </ImageContainer>
       <ProductDetails>
-        <div>{Stars(product.rating)}</div>
+        <div>{stars(product.rating)}</div>
         <ProdutTitle as="h2" color="black" fontSize="3rem">
           {product.title}
         </ProdutTitle>
