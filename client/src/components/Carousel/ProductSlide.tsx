@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Text } from '../styled';
-import { Stars } from '../styled/Stars';
+import { stars } from '../styled/Stars';
 import { Link } from 'react-router-dom';
+import { capitalizeEveryWord } from '../../utils';
+import { title } from 'process';
 
 const Container = styled.article`
   padding: 1rem;
@@ -27,16 +29,22 @@ const Image = styled.img<{ src: string; alt: string }>`
   max-height: 100%;
 `;
 
-const ProductSlide: React.FC<{ product: Product }> = ({ product }) => {
+interface Props {
+  product: Product;
+}
+
+const ProductSlide = ({ product }: Props) => {
   return (
     <Container>
       <Link to={`/product/${product._id}`}>
         <ImageContainer>
           <Image src={product.image} alt={product.title} />
         </ImageContainer>
-        <div>{Stars(product.rating)}</div>
+        <div>{stars(product.rating)}</div>
         <Text fontWeight={700} color="black">
-          {product.title}
+          {capitalizeEveryWord(
+            `${product.brand} - ${product.title} - ${product.color} - ${product.gender}'s`
+          )}
         </Text>
         <Text
           fontWeight={500}

@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
-import { heroSliderStyle, Heading, Text, ButtonLink } from '../styled';
+import { heroSliderStyle, Heading, Text } from '../styled';
+import ButtonLink from '../Buttons/ButtonLink';
 import theme from '../../theme/theme';
 
 type SlideTypes = {

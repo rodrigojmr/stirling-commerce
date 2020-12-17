@@ -1,6 +1,7 @@
 import React, { useRef, useLayoutEffect } from 'react';
 import styled from 'styled-components';
-import { Heading, Text, ButtonLink } from '../styled';
+import { Heading, ProductTitle, Text } from '../styled';
+import ButtonLink from '../Buttons/ButtonLink';
 import { stars } from '../styled/Stars';
 import theme from '../../theme/theme';
 import HighlightDot from '../HighlightDot';
@@ -37,11 +38,6 @@ const ProductDetails = styled.div`
   justify-content: center;
 `;
 
-const ProdutTitle = styled(Heading)`
-  font-family: 'Source Sans Pro';
-  font-weight: 700;
-`;
-
 // TODO Set product prop as a product with product:  image, title, price, rating, link to product, and highlights for points
 
 const ProductHighlight: React.FC<{ product: ProductsWithHighlightPoints }> = ({
@@ -69,9 +65,9 @@ const ProductHighlight: React.FC<{ product: ProductsWithHighlightPoints }> = ({
       </ImageContainer>
       <ProductDetails>
         <div>{stars(product.rating)}</div>
-        <ProdutTitle as="h2" color="black" fontSize="3rem">
+        <ProductTitle as="h2" color="black" fontSize="3rem">
           {product.title}
-        </ProdutTitle>
+        </ProductTitle>
         <Text
           fontWeight={500}
           fontSize="3.5rem"
