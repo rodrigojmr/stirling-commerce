@@ -1,35 +1,112 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { allProducts } from '../data/products';
-import { RouteComponentProps, useParams, withRouter } from 'react-router-dom';
+import { RouteComponentProps, useParams } from 'react-router-dom';
+import { Heading, StyledInput } from '../components/styled';
+import { stars } from '../components/styled/Stars';
+import theme from '../theme/theme';
+import { Box, Flex, Text, Button } from 'rebass/styled-components';
+import { RoundButton } from '../components/Buttons';
+import ButtonLink from '../components/Buttons/ButtonLink';
 
-const Grid = styled.main`
-  display: grid;
-  grid-template-columns:
-    [full-start] minmax(6rem, 1fr) [center-start] repeat(
-      8,
-      [col-start] minmax(min-content, 14rem) [col-end]
-    )
-    [center-end] minmax(6rem, 1fr) [full-end];
+const ImgWrapper = styled.div`
+  grid-column: center-start / col-end 3;
+  img {
+    object-fit: cover;
+    max-width: 100%;
+    max-height: auto;
+  }
 `;
 
-const ImageContainer = styled.div`
-  grid-column: center-start / span 3;
+const Details = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  grid-column: col-start 5 / col-end 7;
 `;
 
-const SingleProduct: React.FC = ({ match }: RouteComponentProps) => {
-  const { id } = useParams();
+const NumInput = styled(StyledInput)`
+  width: 6rem;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0.75rem 1rem;
+  margin-right: 1.5rem;
+`;
 
-  setProduct(
-    allProducts.find((product): product is Product => product._id === id)
-  );
+const SingleProduct = ({ match }: RouteComponentProps) => {
+  const [product, setProduct] = useState<Product | undefined>(undefined);
+
+  const { id } = useParams<{ id: string }>();
+
+  useEffect(() => {
+    setProduct(
+      allProducts.find((product): product is Product => product._id === id)
+    );
+  }, [id]);
+
+  const handleFormSubmission = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
+  const numReviews =
+    product && product.numReviews > 1
+      ? `${product?.numReviews} customer reviews`
+      : '1 customer review';
 
   return (
-    <Grid>
-      <ImageContainer>
-        <img src={product.image} alt={product.title} />
-      </ImageContainer>
-    </Grid>
+    <>
+      {product ? (
+        <Box
+          sx={{
+            display: 'grid',
+            padding: '6rem 0',
+            gridTemplateColumns:
+              '[full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content,16rem) [col-end])[center-end] minmax(6rem, 1fr) [full-end]',
+            alignItems: 'center'
+          }}
+        >
+          <ImgWrapper>
+            <img src={product?.image} alt={product?.title} />
+          </ImgWrapper>
+          <Details>
+            <Heading as="h1" fontSize="4rem">
+              {product.title}
+            </Heading>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              {stars(product.rating)}
+              <Text
+                ml="12px"
+                fontSize={3}
+                color="primary"
+                css={`
+                  margin-right: 10px;
+                `}
+              >
+                ({numReviews})
+              </Text>
+            </div>
+            <Text color="primary" fontWeight={600}>
+              €{product.price}
+            </Text>
+            <Text fontSize={3}>{product.description}</Text>
+            <form onSubmit={handleFormSubmission}>
+              <Flex>
+                <label htmlFor="stock-input"></label>
+                <NumInput
+                  defaultValue="1"
+                  min={1}
+                  color={theme.colors.grey}
+                  type="number"
+                  name="stock"
+                  id="stock-input"
+                />
+                <Button>Add to cart</Button>
+              </Flex>
+            </form>
+          </Details>
+        </Box>
+      ) : null}
+    </>
   );
 };
 
