@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import theme from '../theme/theme';
-import { Heading, Text, ButtonLink } from '../components/styled';
+import ButtonLink from './Buttons/ButtonLink';
+import { Heading, Text } from '../components/styled';
 
 interface CategoryProps {
   colorScheme: 'primary' | 'dark';

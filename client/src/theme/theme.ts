@@ -11,7 +11,7 @@ const theme = {
     heading: 'Bebas Neue',
     body: 'Source Sans Pro, sans-serif'
   },
-  fontSizes: ['.8rem', '1rem', '1.2rem', '1.5rem', '2rem', '2.5rem', '3rem'],
+  fontSizes: ['.8rem', '1rem', '1.3rem', '1.5rem', '2rem', '2.5rem', '3rem'],
   maxWidth: '150rem'
 };
 

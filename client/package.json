@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@rebass/forms": "^4.0.6",
     "@reduxjs/toolkit": "^1.5.0",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
@@ -22,6 +23,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",
     "react-transition-group": "^4.4.1",
+    "rebass": "^4.0.7",
     "redux": "^4.0.5",
     "styled-breakpoints": "^9.0.8",
     "styled-components": "^5.2.1",
@@ -57,6 +59,8 @@
   "devDependencies": {
     "@types/react-redux": "^7.1.11",
     "@types/react-transition-group": "^4.4.0",
+    "@types/rebass": "^4.0.7",
+    "@types/rebass__forms": "^4.0.4",
     "@typescript-eslint/eslint-plugin": "^4.9.1",
     "@typescript-eslint/parser": "^4.9.1",
     "babel-plugin-styled-components": "^1.12.0",

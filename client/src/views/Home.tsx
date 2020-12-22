@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import {
   FlexApartWrapper,
@@ -9,6 +9,9 @@ import {
   StyledLink,
   CenteringFlex
 } from '../components/styled';
+
+import { Box, Flex, Text, Button } from 'rebass/styled-components';
+
 import theme from '../theme/theme';
 
 import EmblaCarousel from '../components/Carousel/EmblaCarousel';
@@ -18,11 +21,7 @@ import CategoryLink from '../components/CategoryLink';
 import ToggleSlider from '../components/ToggleSlider';
 import ProductHighlight from '../components/Products/ProductHighlight';
 
-import {
-  featuredProducts,
-  highlightedProducts,
-  newProducts
-} from '../data/products';
+import { allProducts } from '../data/products';
 import NewsletterForm from '../components/Form/NewsletterForm';
 
 const carouselOptions = {
@@ -73,9 +72,8 @@ const NewProductsSection = styled(Section)`
 `;
 
 const FormContainer = styled.div`
-  margin-top: 3rem;
+  margin-top: 5rem;
   margin-bottom: 3rem;
-  display: flex;
   width: 70vw;
   max-width: 100rem;
 `;
@@ -85,6 +83,27 @@ const Image = styled.img`
 `;
 
 const Home = () => {
+  // TODO Replace duplicated values with new products
+
+  // TODO Add typing?
+  const featuredProducts = [
+    ...allProducts.filter(product => product.featured),
+    ...allProducts.filter(product => product.featured)
+  ];
+
+  const highlightedProducts: ProductsWithHighlightPoints[] = allProducts.filter(
+    (product): product is ProductsWithHighlightPoints =>
+      product.hasOwnProperty('highlightPoints')
+  );
+
+  type newProduct = Overwrite<Product, { new: true }>;
+
+  const newProducts: newProduct[] = allProducts.filter(
+    (product): product is newProduct => product.new === true
+  );
+
+  const allNewProducts = [...newProducts, ...newProducts];
+
   return (
     <>
       <EmblaCarousel options={carouselOptions}>
@@ -92,7 +111,7 @@ const Home = () => {
         <SlideOne background="/images/carousel-bicycle.webp" />
       </EmblaCarousel>
       <CenteringSection backgroundColor={theme.colors.lightGrey}>
-        <Heading color="black" fontSize="4rem" as="h1">
+        <Heading fontSize="4rem" as="h1">
           <>
             Where all the leading sports brands come to play, <br /> we bring
             you stirling sports
@@ -102,7 +121,7 @@ const Home = () => {
       <Section>
         <Wrapper>
           <CarouselHeader>
-            <Heading color="black" as="h2" fontSize="3rem">
+            <Heading as="h2" fontSize="3rem">
               Featured Products
             </Heading>
             <StyledLink color={theme.colors.primary} fontSize="2.5rem" to="#">
@@ -154,7 +173,7 @@ const Home = () => {
       <NewProductsSection>
         <Wrapper>
           <CarouselHeader>
-            <Heading color="black" as="h2" fontSize="3rem">
+            <Heading as="h2" fontSize="3rem">
               New Footwear
             </Heading>
             <StyledLink color={theme.colors.primary} fontSize="2.5rem" to="#">
@@ -169,13 +188,18 @@ const Home = () => {
               dragFree: true,
               containScroll: 'keepSnaps' as const
             }}
-            products={newProducts}
+            products={allNewProducts}
           />
         </Wrapper>
       </NewProductsSection>
       {/* TODO Fix styled components not passing css prop */}
-      <CenteringSection style={{ paddingBottom: '0' }}>
-        <Heading color="black" fontSize="4rem" as="h1">
+      <Flex
+        sx={{ textAlign: 'center' }}
+        alignItems="center"
+        justifyContent="center"
+        flexDirection="column"
+      >
+        <Heading fontSize="4rem" as="h1">
           <>
             Be first to get new information <br /> About new products
           </>
@@ -184,7 +208,7 @@ const Home = () => {
           <NewsletterForm />
         </FormContainer>
         <Image src="./images/stretching.webp" alt="Man stretching" />
-      </CenteringSection>
+      </Flex>
     </>
   );
 };
