@@ -93,8 +93,6 @@ const ProductsCarousel: React.FC<{
     embla.on('scroll', onScroll);
   }, [embla, onSelect, onScroll]);
 
-  console.log('render');
-
   return (
     <>
       <Embla>

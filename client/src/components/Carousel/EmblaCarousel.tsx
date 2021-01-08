@@ -60,8 +60,6 @@ const EmblaCarouselComponent: React.FC<HeroSliderProps> = ({
     onSelect();
   }, [embla]);
 
-  console.log(children);
-
   return (
     <Embla>
       <Viewport ref={emblaRef}>

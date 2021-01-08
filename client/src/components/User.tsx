@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { ReactComponent as UserIcon } from '../assets/user.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { login, logout } from '../store/user';
+import { login, logout } from '../features/user/userSlice';
+import { connect } from 'react-redux';
+import { RootState } from '../store/rootReducer';
 
 const StyledContainer = styled.div`
   padding: 1rem;
@@ -32,7 +34,7 @@ const StyledIcon = styled(UserIcon)`
 
 const User = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state: any) => state.user);
+  const user = useSelector((state: RootState) => state.user);
   console.log('user: ', user);
 
   return (
