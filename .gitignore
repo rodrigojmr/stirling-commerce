@@ -24,3 +24,7 @@ yarn-error.log*
 .eslintcache
 client/.env
 client/.eslintcache
+client/yarn.lock
+serverbak
+*\daos
+.env*
