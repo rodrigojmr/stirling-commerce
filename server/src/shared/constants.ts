@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import { IUser } from '@entities/User';
+import { IUser } from 'src/models/User';
 
 // Strings
 export const paramMissingError =
