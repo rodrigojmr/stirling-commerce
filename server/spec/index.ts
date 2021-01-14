@@ -1,5 +1,5 @@
 import find from 'find';
-import logger from '@shared/Logger';
+import logger from '@shared/logger';
 
 // Init Jasmine
 const jasmine = new Jasmine(null);

@@ -1,7 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-var-requires
-
-import app from '@server';
-import logger from '@shared/Logger';
+import app from './Server';
+import logger from '@shared/logger';
 
 // Start the server
 const port = Number(process.env.PORT || 3000);

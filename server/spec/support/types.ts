@@ -1,5 +1,5 @@
 import { Response } from 'supertest';
-import { IUser } from 'src/models/User';
+import { IUser } from '@models/User';
 
 export interface IResponse extends Response {
   body: {

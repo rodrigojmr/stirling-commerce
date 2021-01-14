@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import { SuperTest, Test } from 'supertest';
 
-import { User, UserRoles } from 'src/models/User';
+import { User, UserRoles } from '@models/User';
 import UserDao from '@daos/User/UserDao.mock';
 import { pwdSaltRounds } from '@shared/constants';
 

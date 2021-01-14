@@ -7,7 +7,7 @@ import express, { NextFunction, Request, Response } from 'express';
 import { Model, ForeignKeyViolationError, ValidationError } from 'objection';
 
 import BaseRouter from './routes';
-import logger from '@shared/Logger';
+import logger from '@shared/logger';
 import { cookieProps } from '@shared/constants';
 
 import 'express-async-errors';
