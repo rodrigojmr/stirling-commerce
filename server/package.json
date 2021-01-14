@@ -4,7 +4,7 @@
   "scripts": {
     "build": "ts-node build.ts && tsc --build tsconfig.prod.json",
     "lint": "eslint . --ext .ts",
-    "start": "node -r module-alias/register ./dist -r dotenv/config dotenv_config_path=./dist/.env.production",
+    "start": "npm install --only=prod && node -r module-alias/register ./dist -r dotenv/config dotenv_config_path=./dist/.env.production",
     "start:dev": "nodemon -r dotenv/config dotenv_config_path=.env.development",
     "test": "nodemon -r dotenv/config dotenv_config_path=.env.test"
   },
