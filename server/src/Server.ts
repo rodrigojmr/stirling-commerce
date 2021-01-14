@@ -15,6 +15,9 @@ import 'express-async-errors';
 import Knex from 'knex';
 import knexConfig from './knexfile';
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 /************************************************************************************
  *                              Set Database settings
  ***********************************************************************************/
@@ -39,6 +42,7 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan<Request, Response>('dev'));
 }
 
+console.log('PORT', process.env.PORT);
 // Security
 if (process.env.NODE_ENV === 'production') {
   app.use(helmet());
