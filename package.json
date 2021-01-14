@@ -5,6 +5,7 @@
     "client",
     "server"
   ],
+  "engines": {"yarn": "1.x", "node": "14.x"},
   "scripts": {
     "client-develop": "yarn workspace client start",
     "server-develop": "yarn workspace server start",
