@@ -29,3 +29,6 @@ client/yarn.lock
 serverbak
 *\daos
 .env*
+
+**\daos
+**\spec

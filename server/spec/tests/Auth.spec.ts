@@ -5,7 +5,7 @@ import { SuperTest, Test } from 'supertest';
 
 import app from '@server';
 import UserDao from '@daos/User/UserDao.mock';
-import { User, UserRoles } from '@models/User';
+import User, { UserRoles } from '@models/User';
 import { pwdSaltRounds, cookieProps, loginFailedErr } from '@shared/constants';
 import { pErr } from '@shared/functions';
 import { IReqBody, IResponse } from '../support/types';
