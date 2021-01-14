@@ -13,7 +13,7 @@ export const login = createAsyncThunk(
   async ({ username, password }: LoginProps) => {
     // const res = await api.post('/api/auth/login/', { username, password });
     // return (await response.json()) as LoginProps;
-    return Promise.resolve({ username: 'rodrigo' });
+    return { username: 'rodrigo' };
   }
 );
 
@@ -22,7 +22,7 @@ export const logout = createAsyncThunk('users/logout', async () => {
   // return (await response.json()) as LoginProps;
 });
 
-type SliceState = null | { username: string };
+type SliceState = { username: string };
 
 const slice = createSlice({
   name: 'user',
@@ -32,7 +32,7 @@ const slice = createSlice({
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(login.fulfilled, (state, action) => {
       // Add user to the state array
-      state = action.payload;
+      state.username = action.payload.username;
     });
   }
 });

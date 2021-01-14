@@ -34,7 +34,7 @@ const StyledIcon = styled(UserIcon)`
 
 const User = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state: RootState) => state.user);
+  const user = useSelector((state: RootState) => state);
   console.log('user: ', user);
 
   return (

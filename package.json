@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "name": "gym-ecommerce",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "client-develop": "yarn workspace client start",
+    "server-develop": "yarn workspace server start",
+    "develop": "concurrently --kill-others-on-fail \"yarn server-develop\"  \"yarn client-develop\"",
+    "build": "(rm -rf ./server/dist/client && yarn workspace server build && yarn workspace client build && cp -r ./client/build ./server/dist/client)",
+    "start": "yarn workspace server start"
+  },
+  "dependencies": {
+    "concurrently": "^5.3.0"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/rodrigojmr/gym-ecommerce.git",
+  "author": "Rodrigo Moura <rodrigojorgemoura@gmail.com>",
+  "license": "MIT"
+}

@@ -29,8 +29,9 @@ export const adminMW = async (
       throw Error('JWT not present in signed cookie.');
     }
   } catch (err) {
-    return res.status(UNAUTHORIZED).json({
-      error: err.message
-    });
+    next(err);
+    //   return res.status(UNAUTHORIZED).json({
+    //   error: err.message
+    // });
   }
 };
