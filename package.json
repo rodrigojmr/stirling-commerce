@@ -8,7 +8,7 @@
   "name": "gym-ecommerce",
   "workspaces": [
     "client"
-    ],
+  ],
   "engines": {
     "yarn": "1.x",
     "node": "15.x"
@@ -18,7 +18,7 @@
     "server-develop": "nodemon -r dotenv/config",
     "develop": "concurrently --kill-others-on-fail \"yarn server-develop\"  \"yarn client-develop\"",
     "build": "yarn run clean-dist && yarn run prod:serverbuild && yarn workspace client build",
-    "clean-dist":"rimraf -rf ./dist && mkdirp -p ./dist/public",
+    "clean-dist": "rimraf -rf ./dist && mkdirp -p ./dist/public",
     "prod:serverbuild": "tsc --build tsconfig.prod.json",
     "start": "node -r module-alias/register ./dist -r dotenv/config dotenv_config_path=./dist/.env.production"
   },
@@ -73,6 +73,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
+    "framer-motion": "^3.2.1",
     "helmet": "^4.3.1",
     "http-status-codes": "^2.1.4",
     "jet-logger": "^1.0.4",
