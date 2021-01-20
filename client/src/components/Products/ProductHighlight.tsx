@@ -1,10 +1,10 @@
-import React, { useRef, useLayoutEffect } from 'react';
-import styled from 'styled-components';
-import { Heading, ProductTitle, Text } from '../styled';
+import { Text } from '@chakra-ui/react';
+import styled from '@emotion/styled';
+import React, { useLayoutEffect, useRef } from 'react';
 import ButtonLink from '../Buttons/ButtonLink';
-import { stars } from '../styled/Stars';
-import theme from '../../theme/theme';
 import HighlightDot from '../HighlightDot';
+import { ProductTitle } from '../styled';
+import { stars } from '../styled/Stars';
 
 const ProductContainer = styled.article`
   display: flex;
@@ -73,7 +73,7 @@ const ProductHighlight: React.FC<{ product: ProductsWithHighlightPoints }> = ({
           fontSize="3.5rem"
           fontFamily="Bebas Neue"
         >{`$${product.price}`}</Text>
-        <ButtonLink to={'#'} themed={theme.colors.primary}>
+        <ButtonLink to={'#'} borderColor="primary.500" iconColor="primary.500">
           Shop Now
         </ButtonLink>
       </ProductDetails>

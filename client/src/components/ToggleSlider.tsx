@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Toggle from './Toggle';
-import { FlexApartWrapper, Heading } from './styled';
+import { Flex } from '@chakra-ui/react';
+import { css } from '@emotion/react';
+import { Heading } from '@chakra-ui/react';
 import { SwitchTransition } from 'react-transition-group';
 import FadeTransition from './Animations/FadeTransition';
 interface Props {
@@ -14,13 +16,13 @@ const ToggleSlider: React.FC<Props> = ({ title, children }) => {
 
   return (
     <>
-      <FlexApartWrapper>
+      <Flex alignItems="center">
         {title && (
           <Heading as="h1" fontSize="3rem">
             {title}
           </Heading>
         )}
-        <div style={{ marginLeft: 'auto' }}>
+        <div>
           <Toggle
             checked={isChecked}
             id="recommendedProduct"
@@ -28,7 +30,7 @@ const ToggleSlider: React.FC<Props> = ({ title, children }) => {
             optionLabels={['Men', 'Women']}
           />
         </div>
-      </FlexApartWrapper>
+      </Flex>
       <SwitchTransition mode="out-in">
         <FadeTransition
           key={isChecked ? 'firstComponent' : 'secondComponent'}

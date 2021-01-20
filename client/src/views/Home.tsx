@@ -1,28 +1,16 @@
+import { Box, Flex, theme, Link } from '@chakra-ui/react';
+import styled from '@emotion/styled';
 import React from 'react';
-import styled from 'styled-components';
-
-import {
-  FlexApartWrapper,
-  Heading,
-  Section,
-  Wrapper,
-  StyledLink,
-  CenteringFlex
-} from '../components/styled';
-
-import { Box, Flex, Text, Button } from 'rebass/styled-components';
-
-import theme from '../theme/theme';
-
 import EmblaCarousel from '../components/Carousel/EmblaCarousel';
 import ProductsCarousel from '../components/Carousel/ProductsCarousel';
-import SlideOne from '../components/Slides/SlideOne';
 import CategoryLink from '../components/CategoryLink';
-import ToggleSlider from '../components/ToggleSlider';
-import ProductHighlight from '../components/Products/ProductHighlight';
-
-import { allProducts } from '../data/products';
 import NewsletterForm from '../components/Form/NewsletterForm';
+import ProductHighlight from '../components/Products/ProductHighlight';
+import SlideOne from '../components/Slides/SlideOne';
+import { Heading } from '@chakra-ui/react';
+import ToggleSlider from '../components/ToggleSlider';
+import { allProducts } from '../data/products';
+import { Link as RouterLink } from 'react-router-dom';
 
 const carouselOptions = {
   draggable: false,
@@ -31,45 +19,6 @@ const carouselOptions = {
   containScroll: 'keepSnaps' as const,
   dragFree: false
 };
-
-// TODO Add graphics around this section
-const CenteringSection = styled(Section)`
-  ${CenteringFlex}
-  flex-direction: column;
-`;
-
-const CarouselHeader = styled(FlexApartWrapper)`
-  margin-bottom: 5rem;
-`;
-
-const AcessoriesSection = styled(Section)`
-  padding: 0;
-  display: flex;
-`;
-
-const RecommendedSection = styled(Section)<{ text: string }>`
-  position: relative;
-
-  &::before {
-    content: ${({ text }) => `"${text}"`};
-    position: absolute;
-    z-index: -1;
-    color: ${({ theme }) => theme.colors.lightGrey};
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Bebas Neue';
-    width: 100%;
-    font-size: 20vw;
-    letter-spacing: 7.5vw;
-    overflow: hidden;
-  }
-`;
-
-const NewProductsSection = styled(Section)`
-  background: ${({ theme }) =>
-    `linear-gradient(to bottom, ${theme.colors.lightGrey} 50%, white 0%)`};
-`;
 
 const FormContainer = styled.div`
   margin-top: 5rem;
@@ -110,24 +59,29 @@ const Home = () => {
         <SlideOne background="/images/carousel-bicycle.webp" />
         <SlideOne background="/images/carousel-bicycle.webp" />
       </EmblaCarousel>
-      <CenteringSection backgroundColor={theme.colors.lightGrey}>
+      <Flex justify="center" align="center" direction="column" bg="light-grey">
         <Heading fontSize="4rem" as="h1">
           <>
             Where all the leading sports brands come to play, <br /> we bring
             you stirling sports
           </>
         </Heading>
-      </CenteringSection>
-      <Section>
-        <Wrapper>
-          <CarouselHeader>
+      </Flex>
+      <Box as="section">
+        <Box size="max">
+          <Flex mb={2}>
             <Heading as="h2" fontSize="3rem">
               Featured Products
             </Heading>
-            <StyledLink color={theme.colors.primary} fontSize="2.5rem" to="#">
+            <Link
+              as={RouterLink}
+              color={theme.colors.primary}
+              fontSize="2.5rem"
+              to="#"
+            >
               View All &gt;
-            </StyledLink>
-          </CarouselHeader>
+            </Link>
+          </Flex>
           <ProductsCarousel
             options={{
               loop: false,
@@ -138,9 +92,9 @@ const Home = () => {
             }}
             products={featuredProducts}
           />
-        </Wrapper>
-      </Section>
-      <AcessoriesSection>
+        </Box>
+      </Box>
+      <Flex as="section">
         <CategoryLink
           category="Acessories"
           colorScheme="primary"
@@ -161,25 +115,45 @@ const Home = () => {
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt,
           molestiae.
         </CategoryLink>
-      </AcessoriesSection>
-      <RecommendedSection text="running">
-        <Wrapper>
+      </Flex>
+      <Box
+        as="section"
+        _before={{
+          content: 'running',
+          zIndex: -1,
+          color: 'light-grey',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          fontFamily: 'heading',
+          width: '100%',
+          fontSize: '20vw',
+          letterSpacing: '7.5vw',
+          overflow: 'hidden'
+        }}
+      >
+        <Box size="max">
           <ToggleSlider title="This week we recommend">
             <ProductHighlight product={highlightedProducts[0]} />
             <ProductHighlight product={highlightedProducts[1]} />
           </ToggleSlider>
-        </Wrapper>
-      </RecommendedSection>
-      <NewProductsSection>
-        <Wrapper>
-          <CarouselHeader>
+        </Box>
+      </Box>
+      <Box as="section" bgGradient="linear(to-r, light-grey 50%,white  0%)">
+        <Box size="max">
+          <Flex mb={2}>
             <Heading as="h2" fontSize="3rem">
               New Footwear
             </Heading>
-            <StyledLink color={theme.colors.primary} fontSize="2.5rem" to="#">
+            <Link
+              as={RouterLink}
+              color={theme.colors.primary}
+              fontSize="2.5rem"
+              to="#"
+            >
               View All &gt;
-            </StyledLink>
-          </CarouselHeader>
+            </Link>
+          </Flex>
           <ProductsCarousel
             options={{
               loop: false,
@@ -190,8 +164,8 @@ const Home = () => {
             }}
             products={allNewProducts}
           />
-        </Wrapper>
-      </NewProductsSection>
+        </Box>
+      </Box>
       {/* TODO Fix styled components not passing css prop */}
       <Flex
         sx={{ textAlign: 'center' }}

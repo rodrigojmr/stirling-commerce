@@ -1,11 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
-import theme from '../theme/theme';
+import styled from '@emotion/styled';
 import ButtonLink from './Buttons/ButtonLink';
-import { Heading, Text } from '../components/styled';
+import { Heading } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 
 interface CategoryProps {
-  colorScheme: 'primary' | 'dark';
+  bg: string;
+  buttonColor: string;
   image: string;
   title: string;
   link: string;
@@ -13,19 +14,19 @@ interface CategoryProps {
   children: string | JSX.Element[] | JSX.Element;
 }
 
-const Wrapper = styled.div<{ colorScheme: string }>`
-  display: flex;
-  background-color: ${props =>
-    props.colorScheme === 'primary' ? props.theme.colors.primary : 'black'};
-  padding: 6rem;
-  color: white;
-  flex: 0 0 50%;
-  align-items: center;
+// const Wrapper = styled.div<{ colorScheme: string }>`
+//   display: flex;
+//   background-color: ${props =>
+//     props.colorScheme === 'primary' ? props.theme.colors.primary : 'black'};
+//   padding: 6rem;
+//   color: white;
+//   flex: 0 0 50%;
+//   align-items: center;
 
-  & > * {
-    flex: 0 0 50%;
-  }
-`;
+//   & > * {
+//     flex: 0 0 50%;
+//   }
+// `;
 
 const Image = styled.img`
   max-width: 100%;
@@ -34,17 +35,21 @@ const Image = styled.img`
 
 const CategoryLink = ({
   children,
-  colorScheme,
+  bg,
+  buttonColor,
   image,
   category,
   title,
   link
 }: CategoryProps) => {
-  const ButtonColor =
-    colorScheme === 'primary' ? 'black' : theme.colors.primary;
-
   return (
-    <Wrapper colorScheme={colorScheme}>
+    <Flex
+      flexBasis="50%"
+      p={'6rem'}
+      color="white"
+      alignItems="center"
+      bgColor={bg}
+    >
       <div>
         <Image src={image} />
       </div>
@@ -56,11 +61,12 @@ const CategoryLink = ({
           {title}
         </Heading>
         <Text mb="3rem">{children}</Text>
-        <ButtonLink to={link} themed={ButtonColor}>
+        //TODO Change to new button
+        <ButtonLink iconColor={buttonColor} borderColor={buttonColor} to={link}>
           Shop Now
         </ButtonLink>
       </div>
-    </Wrapper>
+    </Flex>
   );
 };
 

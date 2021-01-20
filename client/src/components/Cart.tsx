@@ -1,19 +1,20 @@
-import React from "react";
-import styled from "styled-components";
-import { ReactComponent as CartLogo } from "../assets/shopping-cart.svg";
+import React from 'react';
+import styled from '@emotion/styled';
+import { ReactComponent as CartLogo } from '../assets/shopping-cart.svg';
+import { Flex, Icon, createIcon } from '@chakra-ui/react';
 
-const StyledContainer = styled.div`
-  display: flex;
-  padding: 1rem 1.5rem;
-  background-color: ${({ theme }) => theme.colors.primary};
-  border-radius: 2rem;
-  color: white;
-  font-family: "Bebas Neue";
+// const StyledContainer = styled.div`
+//   display: flex;
+//   padding: 1rem 1.5rem;
+//   background-color: ${({ theme }) => theme.colors.primary};
+//   border-radius: 2rem;
+//   color: white;
+//   font-family: 'Bebas Neue';
 
-  & > *:not(:last-child) {
-    margin-right: 0.75rem;
-  }
-`;
+//   & > *:not(:last-child) {
+//     margin-right: 0.75rem;
+//   }
+// `;
 
 const StyledCartLogo = styled(CartLogo)`
   fill: white;
@@ -24,10 +25,10 @@ const StyledCartLogo = styled(CartLogo)`
 
 const Cart = () => {
   return (
-    <StyledContainer>
+    <Flex px={[3]} py={5} bg="primary.500" borderRadius="2rem" color="white">
       <StyledCartLogo />
       <span>Cart</span>
-    </StyledContainer>
+    </Flex>
   );
 };
 

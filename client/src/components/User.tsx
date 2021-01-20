@@ -1,8 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { ReactComponent as UserIcon } from '../assets/user.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { login, logout } from '../features/user/userSlice';
+import { login, logout } from '../features/userAuth/userSlice';
 import { connect } from 'react-redux';
 import { RootState } from '../store/rootReducer';
 

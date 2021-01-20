@@ -1,7 +1,7 @@
-import {} from 'styled-components';
-import theme from './theme';
+import '@emotion/react';
+import { theme } from '@chakra-ui/react';
 
-declare module 'styled-components' {
-  type Theme = typeof theme;
-  export type DefaultTheme = Theme;
+declare module '@emotion/react' {
+  type ChakraTheme = typeof theme;
+  export interface Theme extends ChakraTheme {}
 }

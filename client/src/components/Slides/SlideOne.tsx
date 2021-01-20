@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
-import styled from 'styled-components';
-import { heroSliderStyle, Heading, Text } from '../styled';
+import styled from '@emotion/styled';
+import { heroSliderStyle } from '../styled';
 import ButtonLink from '../Buttons/ButtonLink';
 import theme from '../../theme/theme';
-
+import { Text, Heading } from '@chakra-ui/react';
 type SlideTypes = {
   background: string;
 };
@@ -42,7 +42,7 @@ const SlideOne = ({ background }: SlideTypes): ReactElement => {
         <Text color="#888888">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit.
         </Text>
-        <ButtonLink to="/" primary={theme.colors.primary} secondary="white">
+        <ButtonLink to="/" borderColor="primary.500" iconColor="primary.500">
           <span style={{ lineHeight: 1 }}>Shop Now</span>
         </ButtonLink>
       </TextContainer>

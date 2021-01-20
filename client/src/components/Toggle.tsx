@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
+import { Box } from '@chakra-ui/react';
 
 const Wrapper = styled.div`
   position: relative;
@@ -38,17 +39,18 @@ const SwitchWrapper = styled.div<{ checked: boolean }>`
   transform: ${({ checked }) => `translateX(${checked ? '100%' : '0%'})`};
 `;
 
-const StyledSwitch = styled.span<{ checked: boolean }>`
-  display: inline-block;
-  width: 3.5rem;
-  height: 2.5rem;
-  border-radius: 2rem;
-  background-color: ${({ theme }) => theme.colors.primary};
-  transition: 0.25s all ease-in-out;
-
-  transform: ${({ checked }) => `translateX(${checked ? '-100%' : '0%'})`};
-`;
-
+const StyledSwitch = ({ checked }: { checked: boolean }) => (
+  <Box
+    as="span"
+    display="inline-block"
+    width="3.5rem"
+    height="2.5rem"
+    border-radius="2rem"
+    background-color="primary.500"
+    transition="0.25s all ease-in-out"
+    transform={checked ? "translateX('-100%')" : 'translateX(0%)'}
+  ></Box>
+);
 const OptionLabel = styled.p`
   font-family: 'Bebas Neue';
   font-size: 2rem;

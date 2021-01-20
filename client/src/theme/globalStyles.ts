@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from '@emotion/styled';
 import { up, down, between, only } from 'styled-breakpoints';
 
 const GlobalStyle = createGlobalStyle`

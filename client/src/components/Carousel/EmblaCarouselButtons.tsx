@@ -1,10 +1,33 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from '@emotion/styled';
+import { Button } from '@chakra-ui/react';
+import { css } from '@emotion/react';
 
 interface DotProps {
   selected: boolean;
   onClick: () => void;
 }
+
+interface DotButtonProps {
+  selected: boolean;
+}
+
+const ChakraDotButton = ({ selected }: DotButtonProps) => (
+  <Button
+    bg="transparent"
+    position="relative"
+    p="0"
+    width={selected ? '6rem' : '1rem'}
+    mr="0.75rem"
+    ml="0.75rem"
+    height="2rem"
+    border={0}
+    _focus={{
+      boxShadow: '1 1 10px 10px black'
+    }}
+    _active={{ width: '6rem', _after: { bg: '#1bcacd' } }}
+  ></Button>
+);
 
 const Dot = styled.button<DotProps>`
   background-color: transparent;
@@ -32,8 +55,8 @@ const Dot = styled.button<DotProps>`
     content: '';
     transition: all 0.2s;
     border-radius: 1rem;
-    background-color: ${props =>
-      props.selected ? props.theme.colors.primary : `#fff`};
+    /* primary on selected */
+    background-color: ${props => (props.selected ? 'green' : `#fff`)};
     opacity: 1;
   }
 `;

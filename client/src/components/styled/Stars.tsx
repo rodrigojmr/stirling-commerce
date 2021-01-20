@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { ReactComponent as Star } from '../../assets/star.svg';
 
 // TODO Refactor as Functional Component?

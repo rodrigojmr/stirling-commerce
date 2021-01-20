@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-import { space } from 'styled-system';
+import styled from '@emotion/styled';
 
 export const RoundButton = styled.button<
   ThemeOrColorsProps & { fontSize?: string }
@@ -10,7 +9,6 @@ export const RoundButton = styled.button<
   font-size: ${({ fontSize }) => fontSize || '2.5rem'};
   border: 3px solid ${({ themed, primary }) => themed || primary};
   border-radius: 3rem;
-  ${space}
 `;
 
 // export { default as ButtonLink } from './ButtonLink';

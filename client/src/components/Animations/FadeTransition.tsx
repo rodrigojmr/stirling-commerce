@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Transition, SwitchTransition } from 'react-transition-group';
+import styled from '@emotion/styled';
+import { Transition } from 'react-transition-group';
 
 const FadeDiv = styled.div<{ state: string }>`
   transition: 0.3s ease-in-out;

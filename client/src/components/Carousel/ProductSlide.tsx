@@ -1,10 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Text } from '../styled';
+import styled from '@emotion/styled';
+import { Text } from '@chakra-ui/react';
 import { stars } from '../styled/Stars';
 import { Link } from 'react-router-dom';
 import { capitalizeEveryWord } from '../../utils';
-import { title } from 'process';
 
 const Container = styled.article`
   padding: 1rem;

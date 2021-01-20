@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { allProducts } from '../data/products';
 import { RouteComponentProps, useParams } from 'react-router-dom';
 import { Heading, StyledInput } from '../components/styled';
 import { stars } from '../components/styled/Stars';
 import theme from '../theme/theme';
-import { Box, Flex, Text, Button } from 'rebass/styled-components';
+import { Box, Text, Flex, Button } from '@chakra-ui/react';
 import { RoundButton } from '../components/Buttons';
 import ButtonLink from '../components/Buttons/ButtonLink';
 

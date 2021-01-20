@@ -5,7 +5,7 @@ import React, {
   useRef,
   useLayoutEffect
 } from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { PrevButton, NextButton } from './EmblaCarouselButtons';
 import { useEmblaCarousel } from 'embla-carousel/react';
 import { Embla, Viewport, CarouselContainer, Slide } from './styles';

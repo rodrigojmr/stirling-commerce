@@ -1,14 +1,13 @@
+import styled from '@emotion/styled';
 import React from 'react';
-import styled from 'styled-components';
-import { flex } from 'styled-system';
+import { Link } from '@chakra-ui/react';
+import { Link as RouterLink } from 'react-router-dom';
+import { ReactComponent as FacebookLogo } from '../assets/facebook.svg';
+import { ReactComponent as InstagramLogo } from '../assets/instagram.svg';
+import { ReactComponent as RSSLogo } from '../assets/rss.svg';
 import { footerLinks } from '../data/links';
 import theme from '../theme/theme';
-import { Heading, StyledLink } from './styled';
-
-import { ReactComponent as InstagramLogo } from '../assets/instagram.svg';
-import { ReactComponent as FacebookLogo } from '../assets/facebook.svg';
-import { ReactComponent as RSSLogo } from '../assets/rss.svg';
-import { Link } from 'react-router-dom';
+import { Heading } from '@chakra-ui/react';
 
 const Container = styled.footer`
   background-color: black;
@@ -44,13 +43,14 @@ const Footer = () => {
       <List>
         {navSection.links.map(link => (
           <ListItem>
-            <StyledLink
+            <Link
+              as={RouterLink}
               fontSize="2rem"
               color={theme.colors.lighterGrey}
               to={link.link}
             >
               {link.name}
-            </StyledLink>
+            </Link>
           </ListItem>
         ))}
       </List>

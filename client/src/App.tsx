@@ -1,21 +1,21 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
-import { ThemeProvider } from 'styled-components';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import GlobalStyle from './theme/globalStyles';
+import { ChakraProvider } from '@chakra-ui/react';
 import theme from './theme/theme';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+// import GlobalStyle from './theme/globalStyles';
 import store from './store';
-import Navbar from './components/Navbar';
+import Navbar from './components/Nav/Navbar';
 import Footer from './components/Footer';
 import Home from './views/Home';
 import SingleProduct from './views/SingleProduct';
 
 const App: React.FC = () => {
   return (
-    <ThemeProvider theme={theme}>
+    <ChakraProvider resetCSS={true} theme={theme}>
       <Provider store={store}>
         <BrowserRouter>
-          <GlobalStyle />
+          {/* <GlobalStyle /> */}
           <Navbar />
           <Switch>
             <Route exact path="/">
@@ -36,7 +36,7 @@ const App: React.FC = () => {
           <Footer />
         </BrowserRouter>
       </Provider>
-    </ThemeProvider>
+    </ChakraProvider>
   );
 };
 
