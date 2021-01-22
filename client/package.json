@@ -25,7 +25,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && mv build ../dist/src/public",
+    "build": "react-scripts build",
+    "prod:build": "npm i && react-scripts build && mv build ../dist/src/public",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier --write src/**/*.ts{,x}",
