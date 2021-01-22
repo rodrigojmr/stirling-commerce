@@ -1,9 +1,20 @@
 import { extendTheme } from '@chakra-ui/react';
-import { NONAME } from 'dns';
 
 const theme = extendTheme({
   styles: {
-    global: {}
+    global: {
+      body: {
+        fontFamily: "'Source Sans Pro', sans-serif",
+        fontWeight: 400,
+        color: '#222'
+      },
+      html: {
+        fontSize: '62.5%'
+      },
+      input: {
+        fontFamily: 'Bebas Neue'
+      }
+    }
   },
   colors: {
     primary: {
@@ -30,6 +41,7 @@ const theme = extendTheme({
     body: 'Source Sans Pro, sans-serif'
   },
   fontSizes: ['.8rem', '1rem', '1.3rem', '1.5rem', '2rem', '2.5rem', '3rem'],
+  // TODO replace components' spacing with default them evalues
   space: [
     '4px',
     '8px',
@@ -45,8 +57,11 @@ const theme = extendTheme({
     '4rem',
     '5rem'
   ],
-  size: {
-    max: '150rem'
+  sizes: {
+    s: '80ch',
+    m: '120ch',
+    l: '200ch',
+    xxl: '140rem'
   },
   components: {
     Input: {
@@ -57,24 +72,35 @@ const theme = extendTheme({
     Link: {
       baseStyle: {
         fontFamily: 'Bebas Neue',
+        fontWeight: '600',
         _hover: {
-          color: 'primary.500'
+          color: 'primary.500',
+          textDecoration: 'none'
         }
       }
     },
     Button: {
       variants: {
-        round: (props: RoundButtonProps) => ({
-          padding: '1rem 1.5rem',
+        'round-arrow': {
+          height: '2.5em',
+          paddingLeft: '1.5em',
+          paddingRight: '.7em',
+          borderWidth: '3px',
+          borderStyle: 'solid',
           borderRadius: '3rem',
-          border: '3px',
-          borderColor: props.borderColor
-        }),
+          fontFamile: 'Bebas Neue'
+        },
         link: {
           fontFamily: 'Bebas Neue',
           border: 'none',
           backgroundColor: 'transparent',
-          color: 'primary.500'
+          color: 'primary.500',
+          padding: 0,
+          lineHeight: 1,
+          minWidth: 'auto',
+          _hover: {
+            textDecoration: 'none'
+          }
         }
       }
     }

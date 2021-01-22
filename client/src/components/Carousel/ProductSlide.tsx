@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Text } from '@chakra-ui/react';
+import { Text, Flex, VStack } from '@chakra-ui/react';
 import { stars } from '../styled/Stars';
 import { Link } from 'react-router-dom';
 import { capitalizeEveryWord } from '../../utils';
@@ -34,24 +34,25 @@ interface Props {
 
 const ProductSlide = ({ product }: Props) => {
   return (
-    <Container>
+    <VStack p="1rem" spacing="1rem">
       <Link to={`/product/${product._id}`}>
         <ImageContainer>
           <Image src={product.image} alt={product.title} />
         </ImageContainer>
-        <div>{stars(product.rating)}</div>
-        <Text fontWeight={700} color="black">
+        <Flex mb="1rem">{stars(product.rating)}</Flex>
+        <Text fontWeight={700} fontSize="1.8rem" color="black">
           {capitalizeEveryWord(
             `${product.brand} - ${product.title} - ${product.color} - ${product.gender}'s`
           )}
         </Text>
         <Text
-          fontWeight={500}
+          mt=".5rem"
+          fontWeight={600}
           fontSize="2.3rem"
           fontFamily="Bebas Neue"
         >{`$${product.price}`}</Text>
       </Link>
-    </Container>
+    </VStack>
   );
 };
 

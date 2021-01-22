@@ -1,4 +1,4 @@
-import { Flex, Link } from '@chakra-ui/react';
+import { Flex, Link, UnorderedList } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -8,7 +8,7 @@ import { RootState } from '../../store/rootReducer';
 import Cart from '../Cart';
 import Search from '../Search/Search';
 import User from '../User';
-import MenuItem from './MenuItem';
+import Menu from './Menu';
 
 const StyledLogo = styled(Logo)`
   fill: white;
@@ -30,7 +30,7 @@ const StyledLogo = styled(Logo)`
   }
 `;
 
-const navLinks: { to: string; text: string }[] = [
+const navLinks: Link[] = [
   {
     to: '/men',
     text: "Men's"
@@ -57,35 +57,19 @@ const navLinks: { to: string; text: string }[] = [
   }
 ];
 
-const StyledList = styled.ul`
-  display: flex;
-  align-items: center;
-  list-style-type: none;
-
-  > li:not(:last-child) {
-    padding: 1rem;
-    margin-right: 1rem;
-  }
-`;
-
 const Navbar = () => {
   const user = useSelector((state: RootState) => state.user);
   return (
     <Flex
-      align-items="center;"
-      padding="2rem 3rem;"
+      bg="dark-grey"
+      align="center"
+      padding="2rem 3rem"
       background-color="dark-grey"
     >
       <Link as={RouterLink} to="/" color="white" fontSize="1.4rem">
         <StyledLogo />
       </Link>
-      <StyledList>
-        {navLinks.map(link => (
-          <MenuItem key={link.text.toLowerCase()} to={link.to}>
-            {link.text}
-          </MenuItem>
-        ))}
-      </StyledList>
+      <Menu links={navLinks} />
       <Search />
       <User />
       <Cart />

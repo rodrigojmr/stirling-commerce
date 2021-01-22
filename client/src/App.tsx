@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from './theme/theme';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-// import GlobalStyle from './theme/globalStyles';
 import store from './store';
 import Navbar from './components/Nav/Navbar';
 import Footer from './components/Footer';
@@ -12,7 +11,7 @@ import SingleProduct from './views/SingleProduct';
 
 const App: React.FC = () => {
   return (
-    <ChakraProvider resetCSS={true} theme={theme}>
+    <ChakraProvider resetCSS theme={theme}>
       <Provider store={store}>
         <BrowserRouter>
           {/* <GlobalStyle /> */}

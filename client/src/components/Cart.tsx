@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { ReactComponent as CartLogo } from '../assets/shopping-cart.svg';
-import { Flex, Icon, createIcon } from '@chakra-ui/react';
+import { Box, Flex, Icon, createIcon, Button } from '@chakra-ui/react';
 
 // const StyledContainer = styled.div`
 //   display: flex;
@@ -23,12 +23,43 @@ const StyledCartLogo = styled(CartLogo)`
   width: 2rem;
 `;
 
+const ItemCounter = ({ num }: { num: number }) => (
+  <Flex
+    align="center"
+    justify="center"
+    width="22px"
+    height="22px"
+    bg="black"
+    color="white"
+    fontSize="1.2rem"
+    borderRadius="50%"
+  >
+    {num}
+  </Flex>
+);
+
 const Cart = () => {
   return (
-    <Flex px={[3]} py={5} bg="primary.500" borderRadius="2rem" color="white">
-      <StyledCartLogo />
-      <span>Cart</span>
-    </Flex>
+    <Button
+      height="4rem"
+      borderRadius="3rem"
+      pr="1rem"
+      border="none"
+      px="1.6rem"
+      fontWeight="400"
+      fontFamily="Bebas Neue"
+      iconSpacing="1rem"
+      fontSize="1.7rem"
+      color="white"
+      bg="primary.500"
+      _hover={{ bg: 'primary.300' }}
+      leftIcon={
+        <Icon as={CartLogo} viewBox="1rem" fill="white" stroke="white" />
+      }
+      rightIcon={<ItemCounter num={2} />}
+    >
+      CART
+    </Button>
   );
 };
 

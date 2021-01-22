@@ -1,4 +1,4 @@
-import { Box, Flex, theme, Link } from '@chakra-ui/react';
+import { Box, Flex, Link, Heading, Container } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import React from 'react';
 import EmblaCarousel from '../components/Carousel/EmblaCarousel';
@@ -7,7 +7,6 @@ import CategoryLink from '../components/CategoryLink';
 import NewsletterForm from '../components/Form/NewsletterForm';
 import ProductHighlight from '../components/Products/ProductHighlight';
 import SlideOne from '../components/Slides/SlideOne';
-import { Heading } from '@chakra-ui/react';
 import ToggleSlider from '../components/ToggleSlider';
 import { allProducts } from '../data/products';
 import { Link as RouterLink } from 'react-router-dom';
@@ -55,49 +54,50 @@ const Home = () => {
 
   return (
     <>
+      {/* Sliders */}
       <EmblaCarousel options={carouselOptions}>
         <SlideOne background="/images/carousel-bicycle.webp" />
         <SlideOne background="/images/carousel-bicycle.webp" />
       </EmblaCarousel>
-      <Flex justify="center" align="center" direction="column" bg="light-grey">
-        <Heading fontSize="4rem" as="h1">
-          <>
-            Where all the leading sports brands come to play, <br /> we bring
-            you stirling sports
-          </>
-        </Heading>
-      </Flex>
-      <Box as="section">
-        <Box size="max">
-          <Flex mb={2}>
-            <Heading as="h2" fontSize="3rem">
-              Featured Products
-            </Heading>
-            <Link
-              as={RouterLink}
-              color={theme.colors.primary}
-              fontSize="2.5rem"
-              to="#"
-            >
-              View All &gt;
-            </Link>
-          </Flex>
-          <ProductsCarousel
-            options={{
-              loop: false,
-              draggable: true,
-              arrows: false,
-              dragFree: true,
-              containScroll: 'keepSnaps' as const
-            }}
-            products={featuredProducts}
-          />
-        </Box>
+      {/* Tagline Section */}
+      <Box py="10rem" as="section" bg="light-grey">
+        <Container maxW="xxl" centerContent>
+          <Heading fontSize="4rem" textAlign="center" as="h1">
+            <>
+              Where all the leading sports brands come to play, <br /> we bring
+              you stirling sports
+            </>
+          </Heading>
+        </Container>
       </Box>
+      {/* Featured Products */}
+      <Container py="10rem" maxW="xxl" as="section">
+        <Flex justifyContent="space-between" mb={2}>
+          <Heading as="h2" fontSize="3rem">
+            Featured Products
+          </Heading>
+          <Link as={RouterLink} color="primary.500" fontSize="2.5rem" to="#">
+            View All &gt;
+          </Link>
+        </Flex>
+        <ProductsCarousel
+          options={{
+            loop: false,
+            draggable: true,
+            arrows: false,
+            dragFree: true,
+            containScroll: 'keepSnaps' as const
+          }}
+          products={featuredProducts}
+        />
+      </Container>
+      {/* Accessories Section */}
       <Flex as="section">
         <CategoryLink
+          color="black"
           category="Acessories"
-          colorScheme="primary"
+          buttonColor="black"
+          bg="primary.500"
           image="./images/football.webp"
           link="/football/accessories"
           title="Football"
@@ -107,7 +107,9 @@ const Home = () => {
         </CategoryLink>
         <CategoryLink
           category="Acessories"
-          colorScheme="dark"
+          bg="black"
+          color="primary.500"
+          buttonColor="primary.500"
           image="./images/basketball-jersey.webp"
           link="/basketball/acessories"
           title="Basketball"
@@ -116,41 +118,47 @@ const Home = () => {
           molestiae.
         </CategoryLink>
       </Flex>
+      {/* Recommended Product */}
       <Box
         as="section"
+        position="relative"
+        py="10rem"
         _before={{
-          content: 'running',
+          content: `"running"`,
+          fontFamily: 'Bebas Neue',
+          fontWeight: '600',
+          fontSize: '22vw',
+          position: 'absolute',
           zIndex: -1,
           color: 'light-grey',
+          left: '52%',
           top: '50%',
-          left: '50%',
           transform: 'translate(-50%, -50%)',
-          fontFamily: 'heading',
-          width: '100%',
-          fontSize: '20vw',
-          letterSpacing: '7.5vw',
+          letterSpacing: '5vw',
+          marginRight: '-10vw',
+          maxWidth: '99%',
           overflow: 'hidden'
         }}
       >
-        <Box size="max">
+        <Box maxWidth="xxl" margin="0 auto">
           <ToggleSlider title="This week we recommend">
             <ProductHighlight product={highlightedProducts[0]} />
             <ProductHighlight product={highlightedProducts[1]} />
           </ToggleSlider>
         </Box>
       </Box>
-      <Box as="section" bgGradient="linear(to-r, light-grey 50%,white  0%)">
-        <Box size="max">
-          <Flex mb={2}>
+      {/* New Items */}
+      <Box
+        as="section"
+        py="10rem"
+        bgGradient="linear(to-b, light-grey 50%,white  0%)"
+      >
+        <Box margin="0 auto" maxWidth="xxl">
+          <Flex justify="space-between" mb={2}>
             <Heading as="h2" fontSize="3rem">
               New Footwear
             </Heading>
-            <Link
-              as={RouterLink}
-              color={theme.colors.primary}
-              fontSize="2.5rem"
-              to="#"
-            >
+            <Link as={RouterLink} color="primary.500" fontSize="2.5rem" to="#">
               View All &gt;
             </Link>
           </Flex>
@@ -166,7 +174,7 @@ const Home = () => {
           />
         </Box>
       </Box>
-      {/* TODO Fix styled components not passing css prop */}
+      {/* Newsletter */}
       <Flex
         sx={{ textAlign: 'center' }}
         alignItems="center"

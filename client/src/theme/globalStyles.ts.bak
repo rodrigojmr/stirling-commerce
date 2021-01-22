@@ -1,0 +1,30 @@
+// import { createGlobalStyle } from '@emotion/styled';
+// import { up, down, between, only } from 'styled-breakpoints';
+
+// const GlobalStyle = createGlobalStyle`
+//   @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&display=swap");
+
+//   *, *::after, *::before {
+//     box-sizing: border-box;
+//     margin: 0;
+//     padding: 0;
+//   }
+//   p {
+//     margin: 0;
+//     font-size: 2rem;
+//     font-weight: 400;
+//     font-family: inherit;
+//   }
+//   body {
+//    font-family: 'Source Sans Pro', sans-serif;
+//    font-size: 16px;
+//    font-weight: 400;
+//    color: #222;
+//   }
+
+//   html {
+//   box-sizing: border-box;
+//   font-size: 62.5%; /* 1rem = 10px; 10px/16px = 62.5% */
+//   }`;
+
+// export default {};

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { heroSliderStyle } from '../styled';
 import ButtonLink from '../Buttons/ButtonLink';
 import theme from '../../theme/theme';
-import { Text, Heading } from '@chakra-ui/react';
+import { Flex, Text, Heading, Box } from '@chakra-ui/react';
 type SlideTypes = {
   background: string;
 };
@@ -34,19 +34,34 @@ const TextContainer = styled.div`
 
 const SlideOne = ({ background }: SlideTypes): ReactElement => {
   return (
-    <StyledContainer background={background}>
-      <TextContainer>
-        <Heading fontSize="14rem" color="white" as="h1">
-          Bicycle Accessories
+    <Flex
+      align="center"
+      p="8rem 12rem"
+      height="90vh"
+      background={`url(${background}), linear-gradient(to right, black, black)`}
+      bgSize="auto 100%, cover"
+      backgroundPosition="left center"
+      backgroundRepeat="no-repeat"
+    >
+      <Box maxHeight="auto" zIndex={1} ml="auto">
+        <Heading fontSize="12rem" lineHeight="none" color="white" as="h1">
+          Bicycle
+          <br />
+          Accessories
         </Heading>
-        <Text color="#888888">
+        <Text mb="3rem" fontSize="2rem" color="lighter-grey">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit.
         </Text>
-        <ButtonLink to="/" borderColor="primary.500" iconColor="primary.500">
-          <span style={{ lineHeight: 1 }}>Shop Now</span>
+        <ButtonLink
+          to="/"
+          fontSize="2.4rem"
+          buttonColor="primary.500"
+          iconColor="white"
+        >
+          SHOP NOW
         </ButtonLink>
-      </TextContainer>
-    </StyledContainer>
+      </Box>
+    </Flex>
   );
 };
 

@@ -5,8 +5,10 @@ import {
   FormLabel,
   FormControl,
   Input,
-  Button
+  Button,
+  Flex
 } from '@chakra-ui/react';
+import styled from '@emotion/styled';
 
 // const StyledForm = styled.form`
 //   width: 100%;
@@ -39,13 +41,22 @@ const NewsletterForm = () => {
   const [error, setError] = useState('');
   const [email, setEmail] = useState('');
 
-  const onSubmit = (values: Values) => {};
+  const onSubmit = (values: Values) => {
+    console.log({ values });
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <FormControl isInvalid={errors.email}>
-        <FormLabel htmlFor="email"></FormLabel>
+      <FormControl display="flex" flexWrap="wrap" isInvalid={errors.email}>
+        <FormLabel position="absolute" htmlFor="email"></FormLabel>
         <Input
+          borderBottom="2px solid black"
+          borderBottomRadius="0"
+          paddingBottom="0.7rem"
+          paddingLeft="2rem"
+          variant="unstyled"
+          fontSize="3rem"
+          fontWeight="600"
           name="email"
           placeholder="Enter your email address"
           ref={register({
@@ -56,6 +67,16 @@ const NewsletterForm = () => {
             }
           })}
         />
+        <Button
+          position="absolute"
+          right="0"
+          fontSize="3rem"
+          variant="link"
+          isLoading={formState.isSubmitting}
+          type="submit"
+        >
+          Subscribe &gt;
+        </Button>
         <FormErrorMessage>
           {errors.email && errors.email.message}
         </FormErrorMessage>
@@ -74,9 +95,6 @@ const NewsletterForm = () => {
           setEmail(e.target.value)
         }
       /> */}
-      <Button variant="link" isLoading={formState.isSubmitting} type="submit">
-        Subscribe &gt;
-      </Button>
     </form>
   );
 };

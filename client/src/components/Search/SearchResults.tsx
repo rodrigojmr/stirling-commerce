@@ -23,7 +23,7 @@ const Results = ({ products }: { products: Product[] }) => (
   <Box
     pos="absolute"
     bg="white"
-    right="0"
+    right="0px"
     width="150%"
     zIndex="1"
     border="3px solid primary.500"

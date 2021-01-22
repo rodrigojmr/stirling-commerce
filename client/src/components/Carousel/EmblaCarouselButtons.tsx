@@ -45,7 +45,7 @@ const Dot = styled.button<DotProps>`
   transition: all 0.2s;
 
   &:focus::after {
-    background-color: #1bcacd;
+    background-color: #19cd95;
   }
 
   &::after {
@@ -56,7 +56,7 @@ const Dot = styled.button<DotProps>`
     transition: all 0.2s;
     border-radius: 1rem;
     /* primary on selected */
-    background-color: ${props => (props.selected ? 'green' : `#fff`)};
+    background-color: ${props => (props.selected ? '#19cd95' : `#fff`)};
     opacity: 1;
   }
 `;
@@ -74,6 +74,7 @@ const sharedButtonStyles = css`
   width: 5.5rem;
   height: 5.5rem;
   padding: 1rem;
+  display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.2);
@@ -88,7 +89,7 @@ const sharedButtonStyles = css`
   &:hover:not(:disabled),
   &:focus {
     background-color: rgba(209, 209, 209, 0.411);
-    fill: #28d3d6;
+    fill: #89f2d2;
   }
 
   &:disabled {

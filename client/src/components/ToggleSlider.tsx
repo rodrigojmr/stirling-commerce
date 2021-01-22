@@ -16,20 +16,18 @@ const ToggleSlider: React.FC<Props> = ({ title, children }) => {
 
   return (
     <>
-      <Flex alignItems="center">
+      <Flex alignItems="center" justify="space-between">
         {title && (
           <Heading as="h1" fontSize="3rem">
             {title}
           </Heading>
         )}
-        <div>
-          <Toggle
-            checked={isChecked}
-            id="recommendedProduct"
-            onChange={setIsChecked}
-            optionLabels={['Men', 'Women']}
-          />
-        </div>
+        <Toggle
+          checked={isChecked}
+          id="recommendedProduct"
+          onChange={setIsChecked}
+          optionLabels={['Men', 'Women']}
+        />
       </Flex>
       <SwitchTransition mode="out-in">
         <FadeTransition

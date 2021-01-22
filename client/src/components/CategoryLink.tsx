@@ -2,10 +2,11 @@ import React from 'react';
 import styled from '@emotion/styled';
 import ButtonLink from './Buttons/ButtonLink';
 import { Heading } from '@chakra-ui/react';
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex, Box, Text, VStack } from '@chakra-ui/react';
 
 interface CategoryProps {
   bg: string;
+  color: string;
   buttonColor: string;
   image: string;
   title: string;
@@ -13,20 +14,6 @@ interface CategoryProps {
   category: string;
   children: string | JSX.Element[] | JSX.Element;
 }
-
-// const Wrapper = styled.div<{ colorScheme: string }>`
-//   display: flex;
-//   background-color: ${props =>
-//     props.colorScheme === 'primary' ? props.theme.colors.primary : 'black'};
-//   padding: 6rem;
-//   color: white;
-//   flex: 0 0 50%;
-//   align-items: center;
-
-//   & > * {
-//     flex: 0 0 50%;
-//   }
-// `;
 
 const Image = styled.img`
   max-width: 100%;
@@ -40,32 +27,40 @@ const CategoryLink = ({
   image,
   category,
   title,
-  link
+  link,
+  color
 }: CategoryProps) => {
   return (
     <Flex
       flexBasis="50%"
-      p={'6rem'}
+      p="8rem"
       color="white"
       alignItems="center"
       bgColor={bg}
     >
-      <div>
+      <Box mr="2rem">
         <Image src={image} />
-      </div>
-      <div>
+      </Box>
+      <Flex direction="column" align="start">
         <Heading color="white" fontSize="3rem" as="h3">
           {category}
         </Heading>
         <Heading color="white" mb="1rem" as="h1" fontSize="7rem">
           {title}
         </Heading>
-        <Text mb="3rem">{children}</Text>
-        //TODO Change to new button
-        <ButtonLink iconColor={buttonColor} borderColor={buttonColor} to={link}>
+        <Text fontSize="1.8rem" mb="3rem">
+          {children}
+        </Text>
+        <ButtonLink
+          fontSize="2rem"
+          color={color}
+          iconColor="white"
+          buttonColor={buttonColor}
+          to={link}
+        >
           Shop Now
         </ButtonLink>
-      </div>
+      </Flex>
     </Flex>
   );
 };

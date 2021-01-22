@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Box } from '@chakra-ui/react';
+import { Box, Input } from '@chakra-ui/react';
 
 const Wrapper = styled.div`
   position: relative;
@@ -27,8 +27,10 @@ const StyledLabel = styled.label`
   border: 3px solid black;
   border-radius: 3rem;
   outline: none;
-  &:focus {
+  &:focus,
+  &:active {
     filter: brightness(1.3);
+    box-shadow: 0px 0px 15px 7px #78b2ff;
   }
 `;
 
@@ -45,10 +47,10 @@ const StyledSwitch = ({ checked }: { checked: boolean }) => (
     display="inline-block"
     width="3.5rem"
     height="2.5rem"
-    border-radius="2rem"
-    background-color="primary.500"
+    borderRadius="2rem"
+    bg="primary.500"
     transition="0.25s all ease-in-out"
-    transform={checked ? "translateX('-100%')" : 'translateX(0%)'}
+    transform={checked ? 'translateX(-100%)' : 'translateX(0%)'}
   ></Box>
 );
 const OptionLabel = styled.p`
@@ -77,7 +79,7 @@ const Toggle: React.FC<Props> = ({ id, checked, onChange, optionLabels }) => {
     <ToggleWrapper>
       <OptionLabel>{optionLabels[0]}</OptionLabel>
       <Wrapper>
-        <input
+        <Input
           type="checkbox"
           style={{ display: 'none' }}
           id={id}

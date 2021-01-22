@@ -1,35 +1,18 @@
-import React from 'react';
+import { Box, Icon } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import { ReactComponent as UserIcon } from '../assets/user.svg';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { login, logout } from '../features/userAuth/userSlice';
-import { connect } from 'react-redux';
+import { ReactComponent as UserIcon } from '../assets/user.svg';
+import { login } from '../features/userAuth/userSlice';
 import { RootState } from '../store/rootReducer';
 
-const StyledContainer = styled.div`
-  padding: 1rem;
-  border-radius: 50%;
-  font-size: 0;
-  background-color: ${({ theme }) => theme.colors.grey};
-  margin-right: 2rem;
-  transition: all 0.2s;
-
+const StyledBox = styled(Box)`
   &:hover {
-    background-color: ${({ theme }) => theme.colors.primary};
-
     svg {
       stroke: white;
       fill: white;
     }
   }
-`;
-
-const StyledIcon = styled(UserIcon)`
-  fill: ${({ theme }) => theme.colors.lighterGrey};
-  stroke: ${({ theme }) => theme.colors.lighterGrey};
-  height: 3rem;
-  width: 3rem;
-  transition: all 0.2s;
 `;
 
 const User = () => {
@@ -38,13 +21,25 @@ const User = () => {
   console.log('user: ', user);
 
   return (
-    <StyledContainer
+    <StyledBox
+      p={3}
+      borderRadius="50%"
+      bg="grey"
+      mr={8}
+      transition="all .2s"
+      _hover={{ bg: 'primary.500' }}
       onClick={() =>
         dispatch(login({ username: 'asddasdas', password: 'dashdkass' }))
       }
     >
-      <StyledIcon />
-    </StyledContainer>
+      <Icon
+        as={UserIcon}
+        fill="lighter-grey"
+        stroke="lighter-grey"
+        boxSize="2rem"
+        transition="all .2s"
+      />
+    </StyledBox>
   );
 };
 

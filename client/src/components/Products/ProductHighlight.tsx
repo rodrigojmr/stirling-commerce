@@ -1,4 +1,4 @@
-import { Text } from '@chakra-ui/react';
+import { Text, Box, Flex, VStack } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import React, { useLayoutEffect, useRef } from 'react';
 import ButtonLink from '../Buttons/ButtonLink';
@@ -63,20 +63,32 @@ const ProductHighlight: React.FC<{ product: ProductsWithHighlightPoints }> = ({
           <HighlightDot {...point} />
         ))}
       </ImageContainer>
-      <ProductDetails>
-        <div>{stars(product.rating)}</div>
+      <VStack
+        pl="5vw"
+        flexBasis="35%"
+        spacing="2rem"
+        justifyContent="center"
+        align="start"
+      >
+        <Flex>{stars(product.rating)}</Flex>
         <ProductTitle as="h2" color="black" fontSize="3rem">
           {product.title}
         </ProductTitle>
         <Text
-          fontWeight={500}
+          fontWeight={600}
           fontSize="3.5rem"
           fontFamily="Bebas Neue"
         >{`$${product.price}`}</Text>
-        <ButtonLink to={'#'} borderColor="primary.500" iconColor="primary.500">
+        <ButtonLink
+          fontSize="2.5rem"
+          to={'#'}
+          color="primary.500"
+          buttonColor="primary.500"
+          iconColor="white"
+        >
           Shop Now
         </ButtonLink>
-      </ProductDetails>
+      </VStack>
     </ProductContainer>
   );
 };

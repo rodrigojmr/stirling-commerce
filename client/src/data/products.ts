@@ -349,7 +349,7 @@ export const allProducts: Products[] = [
     highlightPoints: [
       {
         x: '30%',
-        y: '20%',
+        y: '10%',
         text:
           'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis assumenda accusamus voluptates?'
       },
@@ -360,25 +360,19 @@ export const allProducts: Products[] = [
       },
       {
         x: '14%',
-        y: '43%',
+        y: '35%',
         text:
           'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis assumenda accusamus voluptates?'
       },
       {
-        x: '80%',
-        y: '50%',
+        x: '77%',
+        y: '13%',
         text:
           'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis assumenda accusamus voluptates?'
       },
       {
-        x: '60%',
-        y: '68%',
-        text:
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis assumenda accusamus voluptates?'
-      },
-      {
-        x: '16%',
-        y: '74%',
+        x: '53%',
+        y: '73%',
         text:
           'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis assumenda accusamus voluptates?'
       }

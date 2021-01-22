@@ -2,8 +2,9 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { RoundButton } from './index';
-import { Button, IconButton } from '@chakra-ui/react';
+import { Button, ButtonProps, IconButton, Text } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
+import { ReactComponent as CartLogo } from '../../assets/shopping-cart.svg';
 
 const Container = styled(RoundButton)<ThemeOrColorsProps>`
   display: inline-flex;
@@ -26,46 +27,54 @@ const Arrow = styled.div<ThemeOrColorsProps>`
   font-size: 0;
 `;
 
-interface ButtonLinkProps {
+interface ButtonLinkProps extends ButtonProps {
   to: string;
+  color?: string;
   iconColor: string;
-  borderColor: string;
-  children: React.ReactNode;
+  buttonColor: string;
+  fontSize: string;
+  icongSpacing?: string;
+  children: string | React.ReactNode;
 }
 
+// TODO Change to EM
 const ButtonLink = ({
+  color,
   children,
   iconColor,
-  borderColor,
-  to
+  buttonColor,
+  fontSize,
+  icongSpacing = '4.5rem',
+  to,
+  ...props
 }: ButtonLinkProps) => (
-  // <Container as={Link} {...props}>
-  //   {children}p
-  //   <Arrow {...props}>
-  //     <svg
-  //       xmlns="http://www.w3.org/2000/svg"
-  //       width="1.6rem"
-  //       height="1.6rem"
-  //       viewBox="0 0 24 24"
-  //       stroke-width="3.5"
-  //       stroke="white"
-  //       fill="none"
-  //       stroke-linecap="round"
-  //       stroke-linejoin="round"
-  //     >
-  //       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-  //       <polyline points="9 6 15 12 9 18" />
-  //     </svg>
-  //   </Arrow>
-  // </Container>
-
   <Button
+    {...props}
+    fontSize={fontSize}
     as={Link}
     to={to}
-    rightIcon={<ChevronRightIcon color={iconColor} boxSize="1.6rem" />}
-    variant="round"
+    iconSpacing={icongSpacing}
+    borderColor={buttonColor}
+    variant="round-arrow"
+    rightIcon={
+      <ChevronRightIcon
+        display="block"
+        color={iconColor}
+        backgroundColor={buttonColor}
+        borderRadius="3em"
+        w="1.5em"
+        h="1.1em"
+      />
+    }
   >
-    {children}
+    <Text
+      marginBottom="-.07em"
+      fontFamily="Bebas Neue"
+      fontSize={fontSize}
+      color={color || iconColor}
+    >
+      {children}
+    </Text>
   </Button>
 );
 

@@ -102,13 +102,13 @@ const ToolTip = ({ children }: { children: React.ReactNode }) => (
     bottom="150%"
     left="-175%"
     padding="12px"
-    border-radius="5px"
+    borderRadius="5px"
     width="450%"
     height="60px"
-    background-color="rgba(23, 23, 23, 0.8)"
+    backgroundColor="rgba(23, 23, 23, 0.8)"
     color="white"
-    z-index="1"
-    text-overflow="clip"
+    zIndex="1"
+    textOverflow="clip"
     _before={{
       content: `""`,
       position: 'absolute',
