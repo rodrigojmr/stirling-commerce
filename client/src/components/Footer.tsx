@@ -23,7 +23,7 @@ const Container = styled.footer`
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 25rem 13rem;
+  grid-template-rows: 20rem 6rem;
 `;
 
 const Column = styled.div`
@@ -105,6 +105,17 @@ const Footer = () => {
           </Flex>
         </Column>
       </Wrapper>
+      <Link
+        color="white"
+        padding="1rem"
+        ml="-1rem"
+        target="_blank"
+        fontSize="2xl"
+        letterSpacing="1px"
+        to="https://dribbble.com/shots/4702361-Sports-Wear-Website-Redesign-Homepage"
+      >
+        Based on a design by Marius Naujokas - check it out on Dribble.
+      </Link>
     </Container>
   );
 };
