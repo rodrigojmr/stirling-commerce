@@ -1,9 +1,8 @@
-import React, { ReactElement } from 'react';
+import { Box, Flex, Heading, Text } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import { heroSliderStyle } from '../styled';
+import React, { ReactElement } from 'react';
 import ButtonLink from '../Buttons/ButtonLink';
-import theme from '../../theme/theme';
-import { Flex, Text, Heading, Box } from '@chakra-ui/react';
+import { heroSliderStyle } from '../styled';
 type SlideTypes = {
   background: string;
 };

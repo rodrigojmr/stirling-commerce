@@ -2,8 +2,8 @@ import { Icon, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import * as React from 'react';
 import { useState } from 'react';
-import { allProducts } from '../../data/products';
 import { ReactComponent as SearchIcon } from '../../assets/search.svg';
+import { allProducts } from '../../data/products';
 import Results from './SearchResults';
 
 const StyledForm = styled.form`
@@ -13,16 +13,6 @@ const StyledForm = styled.form`
   margin-left: auto;
   margin-right: 4rem;
   font-size: 2rem;
-`;
-
-const StyledIcon = styled(SearchIcon)`
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  stroke: white;
-  width: 1.75rem;
-  height: 1.75rem;
 `;
 
 const Search = () => {

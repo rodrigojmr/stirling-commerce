@@ -1,4 +1,4 @@
-import { Box, Image, Flex, styled, Link } from '@chakra-ui/react';
+import { Box, Flex, Image, Link } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 
 const Result = ({ product }: { product: Product }) => (

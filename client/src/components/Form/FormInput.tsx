@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import { StyledInput } from '../styled';
 interface Props {
   name: string;

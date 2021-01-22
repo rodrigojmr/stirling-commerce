@@ -1,4 +1,4 @@
-import { Text, Box, Flex, VStack } from '@chakra-ui/react';
+import { Flex, Text, VStack } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import React, { useLayoutEffect, useRef } from 'react';
 import ButtonLink from '../Buttons/ButtonLink';
@@ -27,15 +27,6 @@ const StyledImage = styled.img`
   margin: 0 auto;
   object-fit: cover;
   width: 107%;
-`;
-
-const ProductDetails = styled.div`
-  padding-left: 5vw;
-  flex: 0 0 35%;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  justify-content: center;
 `;
 
 // TODO Set product prop as a product with product:  image, title, price, rating, link to product, and highlights for points

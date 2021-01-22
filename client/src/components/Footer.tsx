@@ -1,14 +1,19 @@
+import {
+  Flex,
+  Heading,
+  Icon,
+  Link,
+  ListItem,
+  UnorderedList
+} from '@chakra-ui/react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import React from 'react';
-import { Flex, Link, HStack, Stack } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { ReactComponent as FacebookLogo } from '../assets/facebook.svg';
 import { ReactComponent as InstagramLogo } from '../assets/instagram.svg';
 import { ReactComponent as RSSLogo } from '../assets/rss.svg';
 import { footerLinks } from '../data/links';
-import theme from '../theme/theme';
-import { Heading, UnorderedList, ListItem, Icon } from '@chakra-ui/react';
-import { css } from '@emotion/react';
 
 const Container = styled.footer`
   background-color: black;

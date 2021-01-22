@@ -1,4 +1,4 @@
-import { Flex, Link, UnorderedList } from '@chakra-ui/react';
+import { Flex, Link } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import React from 'react';
 import { useSelector } from 'react-redux';

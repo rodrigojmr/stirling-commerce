@@ -1,14 +1,12 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import {
+  Button,
+  FormControl,
   FormErrorMessage,
   FormLabel,
-  FormControl,
-  Input,
-  Button,
-  Flex
+  Input
 } from '@chakra-ui/react';
-import styled from '@emotion/styled';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 // const StyledForm = styled.form`
 //   width: 100%;
