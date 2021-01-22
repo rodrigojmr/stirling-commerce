@@ -17,7 +17,7 @@
     "client-develop": "yarn workspace client start",
     "server-develop": "nodemon -r dotenv/config",
     "develop": "concurrently --kill-others-on-fail \"yarn server-develop\"  \"yarn client-develop\"",
-    "build": "yarn run clean-dist && yarn run prod:serverbuild && mkdirp dist/publi && yarn workspace client prod:build",
+    "build": "yarn run clean-dist && yarn run prod:serverbuild && mkdirp dist/public && yarn workspace client prod:build",
     "dev:serverbuild": "tsc --build",
     "prod:serverbuild": "tsc --build tsconfig.prod.json",
     "start": "node -r module-alias/register ./dist -r dotenv/config",

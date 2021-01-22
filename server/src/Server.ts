@@ -34,7 +34,7 @@ const { BAD_REQUEST } = StatusCodes;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, './public/index.html')));
+app.use(express.static(path.join(__dirname, './public/build')));
 app.use(cookieParser(cookieProps.secret));
 
 // Show routes called in console during development
@@ -51,7 +51,7 @@ if (process.env.NODE_ENV === 'production') {
 // Add APIs
 app.use('/api', BaseRouter);
 app.get('/*', (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, './public/index.html'));
+  res.sendFile(path.join(__dirname, './public/build/index.html'));
 });
 
 // Print API errors
