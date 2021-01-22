@@ -17,10 +17,11 @@
     "client-develop": "yarn workspace client start",
     "server-develop": "nodemon -r dotenv/config",
     "develop": "concurrently --kill-others-on-fail \"yarn server-develop\"  \"yarn client-develop\"",
-    "build": "yarn run clean-dist && yarn run prod:serverbuild && yarn workspace client prod:build",
-    "clean-dist": "rimraf -rf ./dist && mkdirp -p ./dist/src/public",
+    "build": "yarn run clean-dist && yarn run prod:serverbuild && mkdirp dist/publi && yarn workspace client prod:build",
+    "dev:serverbuild": "tsc --build",
     "prod:serverbuild": "tsc --build tsconfig.prod.json",
-    "start": "node -r module-alias/register ./dist/src -r dotenv/config"
+    "start": "node -r module-alias/register ./dist -r dotenv/config",
+    "clean-dist": "rimraf -rf ./dist"
   },
   "nodemonConfig": {
     "watch": [
@@ -31,6 +32,12 @@
       "./server/src/client"
     ],
     "exec": "ts-node -r tsconfig-paths/register ./server/src"
+  },
+  "_moduleAliases": {
+    "@daos": "dist/daos",
+    "@entities": "dist/entities",
+    "@shared": "dist/shared",
+    "@server": "dist/Server"
   },
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",
