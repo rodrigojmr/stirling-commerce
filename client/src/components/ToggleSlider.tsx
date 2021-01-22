@@ -18,7 +18,7 @@ const ToggleSlider: React.FC<Props> = ({ title, children }) => {
     <>
       <Flex alignItems="center" justify="space-between">
         {title && (
-          <Heading as="h1" fontSize="3rem">
+          <Heading as="h1" fontSize="3xl">
             {title}
           </Heading>
         )}

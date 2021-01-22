@@ -20,10 +20,10 @@ const carouselOptions = {
 };
 
 const FormContainer = styled.div`
-  margin-top: 5rem;
+  margin-top: 2rem;
   margin-bottom: 3rem;
   width: 70vw;
-  max-width: 100rem;
+  max-width: 50rem;
 `;
 
 const Image = styled.img`
@@ -60,9 +60,9 @@ const Home = () => {
         <SlideOne background="/images/carousel-bicycle.webp" />
       </EmblaCarousel>
       {/* Tagline Section */}
-      <Box py="10rem" as="section" bg="light-grey">
-        <Container maxW="xxl" centerContent>
-          <Heading fontSize="4rem" textAlign="center" as="h1">
+      <Box py={24} as="section" bg="light-grey">
+        <Container maxW="max" centerContent>
+          <Heading fontSize="4xl" textAlign="center" as="h1">
             <>
               Where all the leading sports brands come to play, <br /> we bring
               you stirling sports
@@ -71,12 +71,12 @@ const Home = () => {
         </Container>
       </Box>
       {/* Featured Products */}
-      <Container py="10rem" maxW="xxl" as="section">
+      <Container py={24} maxW="max" as="section">
         <Flex justifyContent="space-between" mb={2}>
-          <Heading as="h2" fontSize="3rem">
+          <Heading as="h2" fontSize="3xl">
             Featured Products
           </Heading>
-          <Link as={RouterLink} color="primary.500" fontSize="2.5rem" to="#">
+          <Link as={RouterLink} color="primary.500" fontSize="2xl" to="#">
             View All &gt;
           </Link>
         </Flex>
@@ -122,7 +122,7 @@ const Home = () => {
       <Box
         as="section"
         position="relative"
-        py="10rem"
+        py={24}
         _before={{
           content: `"running"`,
           fontFamily: 'Bebas Neue',
@@ -140,7 +140,7 @@ const Home = () => {
           overflow: 'hidden'
         }}
       >
-        <Box maxWidth="xxl" margin="0 auto">
+        <Box maxWidth="max" margin="0 auto">
           <ToggleSlider title="This week we recommend">
             <ProductHighlight product={highlightedProducts[0]} />
             <ProductHighlight product={highlightedProducts[1]} />
@@ -150,15 +150,15 @@ const Home = () => {
       {/* New Items */}
       <Box
         as="section"
-        py="10rem"
+        py={24}
         bgGradient="linear(to-b, light-grey 50%,white  0%)"
       >
-        <Box margin="0 auto" maxWidth="xxl">
+        <Box margin="0 auto" maxWidth="max">
           <Flex justify="space-between" mb={2}>
-            <Heading as="h2" fontSize="3rem">
+            <Heading as="h2" fontSize="3xl">
               New Footwear
             </Heading>
-            <Link as={RouterLink} color="primary.500" fontSize="2.5rem" to="#">
+            <Link as={RouterLink} color="primary.500" fontSize="2xl" to="#">
               View All &gt;
             </Link>
           </Flex>
@@ -181,7 +181,7 @@ const Home = () => {
         justifyContent="center"
         flexDirection="column"
       >
-        <Heading fontSize="4rem" as="h1">
+        <Heading fontSize="4xl" as="h1">
           <>
             Be first to get new information <br /> About new products
           </>

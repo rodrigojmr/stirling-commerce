@@ -35,7 +35,7 @@ const SlideOne = ({ background }: SlideTypes): ReactElement => {
   return (
     <Flex
       align="center"
-      p="8rem 13vw"
+      p="8rem 11vw"
       height="45vw"
       minH="60rem"
       background={`url(${background}), linear-gradient(to right, black, black)`}
@@ -54,12 +54,12 @@ const SlideOne = ({ background }: SlideTypes): ReactElement => {
           <br />
           Accessories
         </Heading>
-        <Text mb="3rem" fontSize="1vw" color="lighter-grey">
+        <Text maxW="80%" mb={12} fontSize="1.4vw" color="lighter-grey">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit.
         </Text>
         <ButtonLink
           to="/"
-          fontSize="1.5vw"
+          fontSize="1.3vw"
           buttonColor="primary.500"
           iconColor="white"
         >

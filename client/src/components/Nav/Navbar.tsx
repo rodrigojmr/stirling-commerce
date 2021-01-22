@@ -63,10 +63,11 @@ const Navbar = () => {
     <Flex
       bg="dark-grey"
       align="center"
-      padding="2rem 3rem"
+      px={12}
+      py={6}
       background-color="dark-grey"
     >
-      <Link as={RouterLink} to="/" color="white" fontSize="1.4rem">
+      <Link as={RouterLink} to="/" color="white">
         <StyledLogo />
       </Link>
       <Menu links={navLinks} />

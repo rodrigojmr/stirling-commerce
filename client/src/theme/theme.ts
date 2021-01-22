@@ -8,9 +8,6 @@ const theme = extendTheme({
         fontWeight: 400,
         color: '#222'
       },
-      html: {
-        fontSize: '62.5%'
-      },
       input: {
         fontFamily: 'Bebas Neue'
       }
@@ -38,30 +35,27 @@ const theme = extendTheme({
   breakpoints: ['36em', '42.5em', '62em', '80em', '87.5em'],
   fonts: {
     heading: 'Bebas Neue',
+    product: 'Source Sans Pro',
     body: 'Source Sans Pro, sans-serif'
   },
-  fontSizes: ['.8rem', '1rem', '1.3rem', '1.5rem', '2rem', '2.5rem', '3rem'],
   // TODO replace components' spacing with default them evalues
-  space: [
-    '4px',
-    '8px',
-    '10px',
-    '1rem',
-    '1.2rem',
-    '1.4rem',
-    '1.6rem',
-    '1.8rem',
-    '2rem',
-    '2.5rem',
-    '3rem',
-    '4rem',
-    '5rem'
-  ],
+  // space: [
+  //   '4px',
+  //   '8px',
+  //   '10px',
+  //   '1rem',
+  //   '1.2rem',
+  //   '1.4rem',
+  //   '1.6rem',
+  //   '1.8rem',
+  //   '2rem',
+  //   '2.5rem',
+  //   '3rem',
+  //   '4rem',
+  //   '5rem'
+  // ],
   sizes: {
-    s: '80ch',
-    m: '120ch',
-    l: '200ch',
-    xxl: '140rem'
+    max: '95rem'
   },
   components: {
     Input: {
@@ -101,6 +95,10 @@ const theme = extendTheme({
           _hover: {
             textDecoration: 'none'
           }
+        },
+        primary: {
+          bg: 'primary.500',
+          color: 'white'
         }
       }
     }

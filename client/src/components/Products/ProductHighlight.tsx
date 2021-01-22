@@ -1,9 +1,8 @@
-import { Flex, Text, VStack } from '@chakra-ui/react';
+import { Flex, Text, VStack, Heading } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import React, { useLayoutEffect, useRef } from 'react';
 import ButtonLink from '../Buttons/ButtonLink';
 import HighlightDot from '../HighlightDot';
-import { ProductTitle } from '../styled';
 import { stars } from '../styled/Stars';
 
 const ProductContainer = styled.article`
@@ -57,21 +56,21 @@ const ProductHighlight: React.FC<{ product: ProductsWithHighlightPoints }> = ({
       <VStack
         pl="5vw"
         flexBasis="35%"
-        spacing="2rem"
+        spacing="1.75rem"
         justifyContent="center"
         align="start"
       >
         <Flex>{stars(product.rating)}</Flex>
-        <ProductTitle as="h2" color="black" fontSize="3rem">
+        <Heading fontFamily="product" as="h2" color="black" fontSize="4xl">
           {product.title}
-        </ProductTitle>
+        </Heading>
         <Text
           fontWeight={600}
-          fontSize="3.5rem"
+          fontSize="4xl"
           fontFamily="Bebas Neue"
         >{`$${product.price}`}</Text>
         <ButtonLink
-          fontSize="2.5rem"
+          fontSize="2xl"
           to={'#'}
           color="primary.500"
           buttonColor="primary.500"

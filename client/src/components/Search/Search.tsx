@@ -8,7 +8,7 @@ import Results from './SearchResults';
 
 const StyledForm = styled.form`
   position: relative;
-  max-width: 30rem;
+  max-width: 25rem;
   width: 100%;
   margin-left: auto;
   margin-right: 4rem;
@@ -27,11 +27,11 @@ const Search = () => {
     <StyledForm>
       <InputGroup>
         <Input
-          paddingBottom=".3rem"
+          paddingBottom={2}
           variant="unstyled"
           lineHeight="3"
           borderBottomRadius="0"
-          fontSize={4}
+          fontSize="xl"
           borderBottom="1px solid grey"
           focusBorderColor="primary.500"
           errorBorderColor="red"
@@ -45,9 +45,9 @@ const Search = () => {
           }}
         />
         <InputRightElement
-          top="-2px"
+          top={-2}
           children={
-            <Icon as={SearchIcon} boxSize="1.75rem" stroke="white" />
+            <Icon as={SearchIcon} boxSize={6} stroke="white" />
             // <StyledIcon />
           }
         />

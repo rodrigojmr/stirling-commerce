@@ -34,7 +34,7 @@ const Column = styled.div`
 
 const columnContent = (navSection: footerNavSectionType) => (
   <>
-    <Heading as="h3" color="primary.500" fontSize="2.5rem">
+    <Heading as="h3" color="primary.500" fontSize="3xl">
       {navSection.title}
     </Heading>
     <UnorderedList ml="0" spacing=".8rem" listStyleType="none">
@@ -42,7 +42,7 @@ const columnContent = (navSection: footerNavSectionType) => (
         <ListItem>
           <Link
             as={RouterLink}
-            fontSize="2rem"
+            fontSize="2xl"
             color="lighter-grey"
             to={link.link}
           >
@@ -62,7 +62,7 @@ const Footer = () => {
           <Column>{columnContent(section)}</Column>
         ))}
         <Column>
-          <Heading as="h3" color="primary.500" fontSize="2.5rem">
+          <Heading as="h3" color="primary.500" fontSize="2xl">
             Follow Us
           </Heading>
           <Flex

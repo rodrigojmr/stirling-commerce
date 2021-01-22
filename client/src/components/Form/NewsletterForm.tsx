@@ -53,7 +53,7 @@ const NewsletterForm = () => {
           paddingBottom="0.7rem"
           paddingLeft="2rem"
           variant="unstyled"
-          fontSize="3rem"
+          fontSize="2xl"
           fontWeight="600"
           name="email"
           placeholder="Enter your email address"
@@ -68,7 +68,7 @@ const NewsletterForm = () => {
         <Button
           position="absolute"
           right="0"
-          fontSize="3rem"
+          fontSize="2xl"
           variant="link"
           isLoading={formState.isSubmitting}
           type="submit"

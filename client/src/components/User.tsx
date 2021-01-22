@@ -22,7 +22,7 @@ const User = () => {
 
   return (
     <StyledBox
-      p={3}
+      p={2}
       borderRadius="50%"
       bg="grey"
       mr={8}
@@ -36,7 +36,7 @@ const User = () => {
         as={UserIcon}
         fill="lighter-grey"
         stroke="lighter-grey"
-        boxSize="2rem"
+        boxSize={6}
         transition="all .2s"
       />
     </StyledBox>

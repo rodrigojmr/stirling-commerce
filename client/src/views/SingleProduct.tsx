@@ -1,13 +1,11 @@
-import { useState, useEffect } from 'react';
+import { Box, Button, Flex, Text } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import { allProducts } from '../data/products';
+import { useEffect, useState } from 'react';
 import { RouteComponentProps, useParams } from 'react-router-dom';
 import { Heading, StyledInput } from '../components/styled';
 import { stars } from '../components/styled/Stars';
+import { allProducts } from '../data/products';
 import theme from '../theme/theme';
-import { Box, Text, Flex, Button } from '@chakra-ui/react';
-import { RoundButton } from '../components/Buttons';
-import ButtonLink from '../components/Buttons/ButtonLink';
 
 const ImgWrapper = styled.div`
   grid-column: center-start / col-end 3;
@@ -100,7 +98,9 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
                   name="stock"
                   id="stock-input"
                 />
-                <Button>Add to cart</Button>
+                <Button fontSize="1.6rem" size="lg" variant="primary">
+                  Add to cart
+                </Button>
               </Flex>
             </form>
           </Details>

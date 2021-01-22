@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Box, Input } from '@chakra-ui/react';
+import { Box, Input, Text } from '@chakra-ui/react';
 
 const Wrapper = styled.div`
   position: relative;
@@ -21,7 +21,7 @@ const ToggleWrapper = styled.div`
 const StyledLabel = styled.label`
   position: relative;
   display: inline-block;
-  width: 9rem;
+  width: 6rem;
   font-size: 0;
   padding: 5px;
   border: 3px solid black;
@@ -36,7 +36,7 @@ const StyledLabel = styled.label`
 
 const SwitchWrapper = styled.div<{ checked: boolean }>`
   width: 100%;
-  height: 2.5rem;
+  height: 1.6rem;
   transition: 0.25s all ease-in-out;
   transform: ${({ checked }) => `translateX(${checked ? '100%' : '0%'})`};
 `;
@@ -45,8 +45,8 @@ const StyledSwitch = ({ checked }: { checked: boolean }) => (
   <Box
     as="span"
     display="inline-block"
-    width="3.5rem"
-    height="2.5rem"
+    width="2.2rem"
+    height="1.6rem"
     borderRadius="2rem"
     bg="primary.500"
     transition="0.25s all ease-in-out"
@@ -77,7 +77,9 @@ const Toggle: React.FC<Props> = ({ id, checked, onChange, optionLabels }) => {
 
   return (
     <ToggleWrapper>
-      <OptionLabel>{optionLabels[0]}</OptionLabel>
+      <Text fontSize="xl" fontWeight="600" fontFamily="heading">
+        {optionLabels[1]}
+      </Text>
       <Wrapper>
         <Input
           type="checkbox"
@@ -99,7 +101,9 @@ const Toggle: React.FC<Props> = ({ id, checked, onChange, optionLabels }) => {
           </StyledLabel>
         ) : null}
       </Wrapper>
-      <OptionLabel>{optionLabels[1]}</OptionLabel>
+      <Text fontSize="xl" fontWeight="600" fontFamily="heading">
+        {optionLabels[1]}
+      </Text>
     </ToggleWrapper>
   );
 };

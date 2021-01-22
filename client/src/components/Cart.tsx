@@ -34,15 +34,15 @@ const ItemCounter = ({ num }: { num: number }) => (
 const Cart = () => {
   return (
     <Button
-      height="4rem"
+      height="2.5rem"
       borderRadius="3rem"
-      pr="1rem"
+      pr={4}
       border="none"
-      px="1.6rem"
+      px={6}
       fontWeight="400"
       fontFamily="Bebas Neue"
-      iconSpacing="1rem"
-      fontSize="1.7rem"
+      iconSpacing={4}
+      fontSize="xl"
       color="white"
       bg="primary.500"
       _hover={{ bg: 'primary.300' }}

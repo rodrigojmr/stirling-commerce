@@ -32,26 +32,27 @@ const CategoryLink = ({
   return (
     <Flex
       flexBasis="50%"
-      p="8rem"
+      px="5vw"
+      py={28}
       color="white"
       alignItems="center"
       bgColor={bg}
     >
-      <Box mr="2rem">
+      <Box mr={12}>
         <Image src={image} />
       </Box>
-      <Flex direction="column" align="start">
-        <Heading color="white" fontSize="3rem" as="h3">
+      <Flex flexBasis="40%" direction="column" align="start">
+        <Heading color="white" fontSize="3xl" as="h3">
           {category}
         </Heading>
-        <Heading color="white" mb="1rem" as="h1" fontSize="7rem">
+        <Heading color="white" mb="1rem" as="h1" fontSize="7xl">
           {title}
         </Heading>
-        <Text fontSize="1.8rem" mb="3rem">
+        <Text fontSize="xl" mb="3rem">
           {children}
         </Text>
         <ButtonLink
-          fontSize="2rem"
+          fontSize="2xl"
           color={color}
           iconColor="white"
           buttonColor={buttonColor}
