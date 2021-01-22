@@ -18,9 +18,9 @@
     "server-develop": "nodemon -r dotenv/config",
     "develop": "concurrently --kill-others-on-fail \"yarn server-develop\"  \"yarn client-develop\"",
     "build": "yarn run clean-dist && yarn run prod:serverbuild && yarn workspace client build",
-    "clean-dist": "rimraf -rf ./dist && mkdirp -p ./dist/public",
+    "clean-dist": "rimraf -rf ./dist && mkdirp -p ./dist/src/public",
     "prod:serverbuild": "tsc --build tsconfig.prod.json",
-    "start": "node -r module-alias/register ./dist -r dotenv/config dotenv_config_path=./dist/.env.production"
+    "start": "node -r module-alias/register ./dist/src -r dotenv/config"
   },
   "nodemonConfig": {
     "watch": [
@@ -28,7 +28,7 @@
     ],
     "ext": "ts, html",
     "ignore": [
-      "./server/src/public"
+      "./server/src/client"
     ],
     "exec": "ts-node -r tsconfig-paths/register ./server/src"
   },

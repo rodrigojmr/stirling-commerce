@@ -61,7 +61,7 @@ const ButtonLink = ({
         display="block"
         color={iconColor}
         backgroundColor={buttonColor}
-        borderRadius="3em"
+        borderRadius="5em"
         w="1.5em"
         h="1.1em"
       />

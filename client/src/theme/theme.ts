@@ -87,7 +87,7 @@ const theme = extendTheme({
           paddingRight: '.7em',
           borderWidth: '3px',
           borderStyle: 'solid',
-          borderRadius: '3rem',
+          borderRadius: '6rem',
           fontFamile: 'Bebas Neue'
         },
         link: {

@@ -8,12 +8,14 @@ import Navbar from './components/Nav/Navbar';
 import Footer from './components/Footer';
 import Home from './views/Home';
 import SingleProduct from './views/SingleProduct';
+import ScrollToTop from './hooks/ScrollToTop';
 
 const App: React.FC = () => {
   return (
     <ChakraProvider resetCSS theme={theme}>
       <Provider store={store}>
         <BrowserRouter>
+          <ScrollToTop />
           {/* <GlobalStyle /> */}
           <Navbar />
           <Switch>

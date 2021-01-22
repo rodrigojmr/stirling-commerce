@@ -69,7 +69,13 @@ const Footer = () => {
             spacing="1rem"
           >
             <Link to="#">
-              <Icon as={InstagramLogo} w={30} h={30} stroke="white" />
+              <Icon
+                as={InstagramLogo}
+                w={30}
+                h={30}
+                stroke="white"
+                _hover={{ stroke: 'primary.500' }}
+              />
             </Link>
             <Link to="#">
               <Icon
@@ -78,6 +84,7 @@ const Footer = () => {
                 h={30}
                 stroke="none"
                 fill="white"
+                _hover={{ fill: 'primary.500' }}
               />
             </Link>
             <Link to="#">
@@ -87,6 +94,7 @@ const Footer = () => {
                 h={30}
                 strokeWidth="2.5"
                 stroke="white"
+                _hover={{ stroke: 'primary.500' }}
               />
             </Link>
           </Flex>

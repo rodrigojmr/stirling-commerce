@@ -36,25 +36,31 @@ const SlideOne = ({ background }: SlideTypes): ReactElement => {
   return (
     <Flex
       align="center"
-      p="8rem 12rem"
-      height="90vh"
+      p="8rem 13vw"
+      height="45vw"
+      minH="60rem"
       background={`url(${background}), linear-gradient(to right, black, black)`}
       bgSize="auto 100%, cover"
       backgroundPosition="left center"
       backgroundRepeat="no-repeat"
     >
       <Box maxHeight="auto" zIndex={1} ml="auto">
-        <Heading fontSize="12rem" lineHeight="none" color="white" as="h1">
+        <Heading
+          fontSize="clamp(8rem, 8vw,  14rem)"
+          lineHeight="none"
+          color="white"
+          as="h1"
+        >
           Bicycle
           <br />
           Accessories
         </Heading>
-        <Text mb="3rem" fontSize="2rem" color="lighter-grey">
+        <Text mb="3rem" fontSize="1vw" color="lighter-grey">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit.
         </Text>
         <ButtonLink
           to="/"
-          fontSize="2.4rem"
+          fontSize="1.5vw"
           buttonColor="primary.500"
           iconColor="white"
         >
