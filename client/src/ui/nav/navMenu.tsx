@@ -5,7 +5,7 @@ interface Props {
   links: Link[];
 }
 
-const MenuItem = ({ links }: Props) => {
+const Menu = ({ links }: Props) => {
   return (
     <UnorderedList display="flex" align="center" styleType="none">
       {links.map(link => (
@@ -19,4 +19,4 @@ const MenuItem = ({ links }: Props) => {
   );
 };
 
-export default MenuItem;
+export default Menu;

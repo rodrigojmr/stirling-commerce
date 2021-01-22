@@ -1,7 +1,7 @@
 import { Box, Text } from '@chakra-ui/react';
 import React, { useEffect, useRef, useState } from 'react';
 import { SwitchTransition } from 'react-transition-group';
-import FadeTransition from './Animations/FadeTransition';
+import FadeTransition from '../animations/fadeTransition';
 
 interface Position {
   x: string;
@@ -14,87 +14,12 @@ interface Description {
 
 type Props = Position & Description;
 
-// const Container = styled.div<Position>`
-//   position: absolute;
-//   top: ${({ y }) => y};
-//   left: ${({ x }) => x};
-//   width: 50px;
-//   height: 50px;
-//   border-radius: 50%;
-//   background-color: rgba(102, 102, 102, 0.5);
-//   outline: none;
-//   transition: all 0.2s;
-
-//   &:hover,
-//   &:focus {
-//     background-color: ${({ theme }) => theme.colors.primary};
-
-//     &::before {
-//       background-color: black;
-//     }
-//   }
-
-//   &::before {
-//     content: '';
-//     display: block;
-//     width: 50%;
-//     height: 50%;
-//     position: absolute;
-//     top: 50%;
-//     left: 50%;
-//     transform: translate(-50%, -50%);
-//     border-radius: 50%;
-//     background-color: ${({ theme }) => theme.colors.primary};
-//     transition: all 0.2s;
-//   }
-
-//   &::after {
-//     content: '';
-//     display: block;
-//     width: 10%;
-//     height: 10%;
-//     position: absolute;
-//     top: 50%;
-//     left: 50%;
-//     transform: translate(-50%, -50%);
-//     border-radius: 50%;
-//     background-color: white;
-//   }
-// `;
-
 const FocusStyles = {
   backgroundColor: 'primary.500',
   _before: {
     backgroundColor: 'black'
   }
 };
-
-// const ToolTip = styled.div`
-//   position: absolute;
-//   bottom: 150%;
-//   left: -175%;
-//   padding: 12px;
-//   border-radius: 5px;
-//   width: 450%;
-//   height: 60px;
-//   background-color: rgba(23, 23, 23, 0.8);
-//   color: white;
-//   z-index: 1;
-//   text-overflow: clip;
-
-//   &::before {
-//     content: '';
-//     position: absolute;
-//     top: 100%;
-//     left: 50%;
-//     transform: translateX(-50%);
-//     width: 0;
-//     height: 0;
-//     border-style: solid;
-//     border-width: 10px 15px 0 15px;
-//     border-color: rgba(23, 23, 23, 0.8) transparent transparent transparent;
-//   }
-// `;
 
 const ToolTip = ({ children }: { children: React.ReactNode }) => (
   <Box
@@ -202,3 +127,78 @@ const HighlightDot: React.FC<Props> = ({ x, y, text }) => {
 };
 
 export default HighlightDot;
+
+// const Container = styled.div<Position>`
+//   position: absolute;
+//   top: ${({ y }) => y};
+//   left: ${({ x }) => x};
+//   width: 50px;
+//   height: 50px;
+//   border-radius: 50%;
+//   background-color: rgba(102, 102, 102, 0.5);
+//   outline: none;
+//   transition: all 0.2s;
+
+//   &:hover,
+//   &:focus {
+//     background-color: ${({ theme }) => theme.colors.primary};
+
+//     &::before {
+//       background-color: black;
+//     }
+//   }
+
+//   &::before {
+//     content: '';
+//     display: block;
+//     width: 50%;
+//     height: 50%;
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     border-radius: 50%;
+//     background-color: ${({ theme }) => theme.colors.primary};
+//     transition: all 0.2s;
+//   }
+
+//   &::after {
+//     content: '';
+//     display: block;
+//     width: 10%;
+//     height: 10%;
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     border-radius: 50%;
+//     background-color: white;
+//   }
+// `;
+
+// const ToolTip = styled.div`
+//   position: absolute;
+//   bottom: 150%;
+//   left: -175%;
+//   padding: 12px;
+//   border-radius: 5px;
+//   width: 450%;
+//   height: 60px;
+//   background-color: rgba(23, 23, 23, 0.8);
+//   color: white;
+//   z-index: 1;
+//   text-overflow: clip;
+
+//   &::before {
+//     content: '';
+//     position: absolute;
+//     top: 100%;
+//     left: 50%;
+//     transform: translateX(-50%);
+//     width: 0;
+//     height: 0;
+//     border-style: solid;
+//     border-width: 10px 15px 0 15px;
+//     border-color: rgba(23, 23, 23, 0.8) transparent transparent transparent;
+//   }
+// `;

@@ -1,8 +1,8 @@
 import { Flex, Text, VStack, Heading } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import React, { useLayoutEffect, useRef } from 'react';
-import ButtonLink from '../Buttons/ButtonLink';
-import HighlightDot from '../HighlightDot';
+import ButtonLink from '../buttons/buttonLink';
+import HighlightDot from './highlightDot';
 import { stars } from '../styled/Stars';
 
 const ProductContainer = styled.article`

@@ -1,21 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-interface HeaderProps {
-  fontSize: string;
-  as: string;
-  children?: string | JSX.Element[] | JSX.Element;
-}
-
-export const Heading = styled.h1<HeaderProps>`
-  font-size: ${({ fontSize }) => fontSize};
-  line-height: 1;
-`;
-
-export const ProductTitle = styled(Heading)`
-  font-family: 'Source Sans Pro';
-  font-weight: 700;
-`;
 interface InputStyleProps {
   backgroundColor?: string;
   color: string;

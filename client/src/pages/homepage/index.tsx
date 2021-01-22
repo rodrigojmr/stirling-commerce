@@ -1,14 +1,14 @@
 import { Box, Flex, Link, Heading, Container } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import React from 'react';
-import EmblaCarousel from '../components/Carousel/EmblaCarousel';
-import ProductsCarousel from '../components/Carousel/ProductsCarousel';
-import CategoryLink from '../components/CategoryLink';
-import NewsletterForm from '../components/Form/NewsletterForm';
-import ProductHighlight from '../components/Products/ProductHighlight';
-import SlideOne from '../components/Slides/SlideOne';
-import ToggleSlider from '../components/ToggleSlider';
-import { allProducts } from '../data/products';
+import EmblaCarousel from 'components/carousel/emblaCarousel';
+import ProductsCarousel from 'components/carousel/productsCarousel';
+import CategoryLink from 'components/categoryCTA';
+import NewsletterForm from 'components/form/newsletterForm';
+import ProductHighlight from 'components/products/productHighlight';
+import SlideOne from 'pages/homepage/slides/slideOne';
+import ToggleSlider from 'components/toggleSlider';
+import { allProducts } from '../../data/products';
 import { Link as RouterLink } from 'react-router-dom';
 
 const carouselOptions = {

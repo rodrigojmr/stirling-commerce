@@ -5,13 +5,6 @@ import { stars } from '../styled/Stars';
 import { Link } from 'react-router-dom';
 import { capitalizeEveryWord } from '../../utils';
 
-const ImageContainer = styled.div`
-  position: relative;
-  height: 25rem;
-  margin-bottom: 4rem;
-  background-color: white;
-`;
-
 interface Props {
   product: Product;
 }

@@ -6,10 +6,10 @@ import React, {
   useLayoutEffect
 } from 'react';
 import styled from '@emotion/styled';
-import { PrevButton, NextButton } from './EmblaCarouselButtons';
+import { PrevButton, NextButton } from './carouselButtons';
 import { useEmblaCarousel } from 'embla-carousel/react';
 import { Embla, Viewport, CarouselContainer, Slide } from './styles';
-import ProductSlide from './ProductSlide';
+import ProductSlide from './carouselProduct';
 
 // Progress bar width = width of component / something
 // Move progress bar by a certain amount

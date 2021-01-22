@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import Toggle from './Toggle';
+import Toggle from './toggle';
 import { Flex } from '@chakra-ui/react';
 import { css } from '@emotion/react';
 import { Heading } from '@chakra-ui/react';
 import { SwitchTransition } from 'react-transition-group';
-import FadeTransition from './Animations/FadeTransition';
+import FadeTransition from './animations/fadeTransition';
 interface Props {
   title?: string;
   labels?: [string, string];

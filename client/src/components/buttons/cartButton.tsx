@@ -1,7 +1,7 @@
 import { Button, Flex, Icon } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import React from 'react';
-import { ReactComponent as CartLogo } from '../assets/shopping-cart.svg';
+import { ReactComponent as CartLogo } from 'assets/shopping-cart.svg';
 
 // const StyledContainer = styled.div`
 //   display: flex;

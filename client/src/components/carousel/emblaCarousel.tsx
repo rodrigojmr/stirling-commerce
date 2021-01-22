@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, ReactElement } from 'react';
 import { useEmblaCarousel } from 'embla-carousel/react';
 import styled from '@emotion/styled';
-import { DotButton, PrevButton, NextButton } from './EmblaCarouselButtons';
+import { DotButton, PrevButton, NextButton } from './carouselButtons';
 import { Embla, Viewport, CarouselContainer } from './styles';
 
 // TODO Split style from the component itself, pass through props

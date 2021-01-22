@@ -4,7 +4,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { ReactComponent as SearchIcon } from '../../assets/search.svg';
 import { allProducts } from '../../data/products';
-import Results from './SearchResults';
+import Results from './navSearchResults';
 
 const StyledForm = styled.form`
   position: relative;
@@ -14,6 +14,8 @@ const StyledForm = styled.form`
   margin-right: 4rem;
   font-size: 2rem;
 `;
+
+//TODO Separate search concern from UI
 
 const Search = () => {
   const [query, setQuery] = useState('');

@@ -4,11 +4,13 @@ import { ChakraProvider } from '@chakra-ui/react';
 import theme from './theme/theme';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import store from './store';
-import Navbar from './components/Nav/Navbar';
-import Footer from './components/Footer';
-import Home from './views/Home';
-import SingleProduct from './views/SingleProduct';
+import Navbar from './ui/nav/navbar';
+import Footer from './ui/footer';
+import Home from './pages/homepage';
+import SingleProduct from './pages/SingleProduct';
 import ScrollToTop from './hooks/ScrollToTop';
+import UserLogin from './pages/UserLogin';
+import PrivateRoute from './utils/privateRoute';
 
 const App: React.FC = () => {
   return (
@@ -32,6 +34,7 @@ const App: React.FC = () => {
               Kids
             </Route>
             <Route path="/product/:id" component={SingleProduct} />
+            <PrivateRoute path="/login" component={UserLogin} />
             <Route render={() => <Redirect to="/" />} />
           </Switch>
           <Footer />

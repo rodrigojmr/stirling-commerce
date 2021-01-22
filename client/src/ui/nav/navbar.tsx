@@ -5,10 +5,10 @@ import { useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/logo.svg';
 import { RootState } from '../../store/rootReducer';
-import Cart from '../Cart';
-import Search from '../Search/Search';
-import User from '../User';
-import Menu from './Menu';
+import Cart from 'components/buttons/cartButton';
+import Search from 'components/search/navSearch';
+import User from 'components/userIcon';
+import Menu from './navMenu';
 
 const StyledLogo = styled(Logo)`
   fill: white;

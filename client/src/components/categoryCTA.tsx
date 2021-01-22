@@ -1,7 +1,7 @@
 import { Box, Flex, Heading, Text } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import React from 'react';
-import ButtonLink from './Buttons/ButtonLink';
+import ButtonLink from './buttons/buttonLink';
 
 interface CategoryProps {
   bg: string;
