@@ -143,8 +143,8 @@ const HighlightDot: React.FC<Props> = ({ x, y, text }) => {
       onMouseEnter={() => setSelected(true)}
       onMouseLeave={() => setSelected(false)}
       position="absolute"
-      top={x}
-      left={y}
+      top={y}
+      left={x}
       width="50px"
       height="50px"
       borderRadius="50%"
