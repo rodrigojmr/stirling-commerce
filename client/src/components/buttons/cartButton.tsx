@@ -1,6 +1,6 @@
-import { Button, Center, Flex, Icon } from '@chakra-ui/react';
-import React from 'react';
+import { Button, Center, Icon, useMediaQuery } from '@chakra-ui/react';
 import { ReactComponent as CartLogo } from 'assets/shopping-cart.svg';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/rootReducer';
 
@@ -31,36 +31,60 @@ const ItemCounter = ({ num }: { num: string }) => (
   </Center>
 );
 
-const Cart = () => {
+const Cart = ({ order }: { order?: number | number[] }) => {
   const cart = useSelector((state: RootState) => state.cart);
   const productNum: number = cart.reduce((acc, curr) => {
     return curr.amount;
   }, 0);
 
+  const [isLargerThanPhone] = useMediaQuery('(min-width:36rem)');
+
+  // TODO Link to Cart or popup
+
   return (
-    <Button
-      height="2.5rem"
-      borderRadius="3rem"
-      pr={4}
-      border="none"
-      px={6}
-      fontWeight="400"
-      fontFamily="Bebas Neue"
-      iconSpacing={4}
-      fontSize="xl"
-      color="white"
-      bg="primary.500"
-      _hover={{ bg: 'primary.300' }}
-      leftIcon={
-        <Icon as={CartLogo} viewBox="1rem" fill="white" stroke="white" />
-      }
-      rightIcon={<ItemCounter num={productNum.toString()} />}
-    >
-      CART
-    </Button>
+    <>
+      {isLargerThanPhone ? (
+        <Button
+          order={order}
+          flexShrink={0}
+          height="2.5rem"
+          borderRadius="3rem"
+          pr={4}
+          border="none"
+          px={6}
+          fontWeight="400"
+          fontFamily="Bebas Neue"
+          iconSpacing={4}
+          fontSize="xl"
+          color="white"
+          bg="primary.500"
+          _hover={{ bg: 'primary.300' }}
+          leftIcon={
+            <Icon as={CartLogo} viewBox="1rem" fill="white" stroke="white" />
+          }
+          rightIcon={<ItemCounter num={productNum.toString()} />}
+        >
+          CART
+        </Button>
+      ) : (
+        <Center order={order} pos="relative">
+          <Icon as={CartLogo} w="2rem" h="2rem" fill="white" stroke="white" />
+          <Center
+            width="1.3rem"
+            height="1.3rem"
+            borderRadius="50%"
+            pos="absolute"
+            top="-30%"
+            right="-30%"
+            bg="primary.500"
+            color="white"
+          >
+            {productNum.toString()}
+          </Center>
+        </Center>
+      )}
+    </>
   );
 };
-
-// TODO Get items with redux, show length
 
 export default Cart;

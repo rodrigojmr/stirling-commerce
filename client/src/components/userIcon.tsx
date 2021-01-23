@@ -15,13 +15,14 @@ const StyledBox = styled(Box)`
   }
 `;
 
-const User = () => {
+const User = ({ order }: { order?: number | number[] }) => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.auth.user);
   console.log('user: ', user);
 
   return (
     <Center
+      order={order}
       h={10}
       w={10}
       borderRadius="50%"

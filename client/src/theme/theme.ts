@@ -32,28 +32,12 @@ const theme = extendTheme({
     'lighter-grey': '#aaaaaa',
     red: 'red'
   },
-  breakpoints: ['36em', '42.5em', '62em', '80em', '87.5em'],
+  breakpoints: ['30em', '36em', '48em', '62em', '80em', '87.5em'],
   fonts: {
     heading: 'Bebas Neue',
     product: 'Source Sans Pro',
     body: 'Source Sans Pro, sans-serif'
   },
-  // TODO replace components' spacing with default them evalues
-  // space: [
-  //   '4px',
-  //   '8px',
-  //   '10px',
-  //   '1rem',
-  //   '1.2rem',
-  //   '1.4rem',
-  //   '1.6rem',
-  //   '1.8rem',
-  //   '2rem',
-  //   '2.5rem',
-  //   '3rem',
-  //   '4rem',
-  //   '5rem'
-  // ],
   sizes: {
     max: '95rem'
   },
@@ -99,7 +83,40 @@ const theme = extendTheme({
         primary: {
           bg: 'primary.500',
           color: 'white'
-        }
+        },
+        hamburger: ({ checked }: { checked: boolean }) => ({
+          background: checked ? 'transparent' : 'primary.500',
+          height: '3px',
+          position: 'relative',
+          transition: 'background 0.2s ease-out',
+          minWidth: '30px',
+          _before: {
+            content: `""`,
+            display: 'block',
+            top: checked ? '1px' : '-10px',
+            left: '0',
+            position: 'absolute',
+            width: '100%',
+            background: 'primary.500',
+            height: '100%',
+            transition: 'all 0.2s ease-out',
+            transformOrigin: 'top center',
+            transform: checked ? 'rotate(-45deg)' : 'rotate(0)'
+          },
+          _after: {
+            content: `""`,
+            top: checked ? '0px' : '10px',
+            left: '0',
+            position: 'absolute',
+            display: 'block',
+            width: '100%',
+            background: 'primary.500',
+            height: '100%',
+            transition: 'all 0.2s ease-out',
+            transformOrigin: 'bottom center',
+            transform: checked ? 'rotate(45deg)' : 'rotate(0)'
+          }
+        })
       }
     }
   }

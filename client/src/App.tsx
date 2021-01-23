@@ -4,7 +4,7 @@ import { Box, ChakraProvider } from '@chakra-ui/react';
 import theme from './theme/theme';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import store from './store';
-import Navbar from './ui/nav/navbar';
+import Navbar from './ui/header/navbar';
 import Footer from './ui/footer';
 import Home from './pages/homepage';
 import SingleProduct from './pages/productPage';
