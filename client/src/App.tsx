@@ -11,14 +11,29 @@ import SingleProduct from './pages/productPage';
 import ScrollToTop from './hooks/ScrollToTop';
 import UserLogin from './pages/UserLogin';
 import PrivateRoute from './utils/privateRoute';
+import { Helmet } from 'react-helmet';
 
 const App: React.FC = () => {
   return (
     <ChakraProvider resetCSS theme={theme}>
       <Provider store={store}>
         <BrowserRouter>
-          <ScrollToTop />
-          {/* <GlobalStyle /> */}
+          <Helmet>
+            <html lang="en" />
+            {/* body attributes */}
+            <body className="root" />
+            {/* multiple meta elements */}
+            <title>Stirling Sports</title>
+            <meta name="description" content="Helmet application" />
+            <meta
+              property="og:description"
+              content="Stirling Sports Redesign React Site"
+            />
+            <meta
+              property="og:image"
+              content="https://res.cloudinary.com/dxxvlmkqg/image/upload/v1611417522/sports-commerce/chrome_ec3wlWQA4i_g635l9.png"
+            />
+          </Helmet>
           <Navbar />
           <Box as="main" minHeight="30rem">
             <Switch>
@@ -28,6 +43,7 @@ const App: React.FC = () => {
               <Route exact path="/men">
                 Men's
               </Route>
+              c
               <Route exact path="/women">
                 Women's
               </Route>
@@ -40,6 +56,7 @@ const App: React.FC = () => {
             </Switch>
           </Box>
           <Footer />
+          <ScrollToTop />{' '}
         </BrowserRouter>
       </Provider>
     </ChakraProvider>
