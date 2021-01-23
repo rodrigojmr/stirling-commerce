@@ -72,7 +72,7 @@ const Home = () => {
       </Box>
       {/* Featured Products */}
       <Container py={24} maxW="max" as="section">
-        <Flex justifyContent="space-between" mb={2}>
+        <Flex mx="3vw" justifyContent="space-between" mb={2}>
           <Heading as="h2" fontSize="3xl">
             Featured Products
           </Heading>
@@ -92,7 +92,7 @@ const Home = () => {
         />
       </Container>
       {/* Accessories Section */}
-      <Flex as="section">
+      <Flex as="section" flexDirection={['column', 'column', 'row']}>
         <CategoryLink
           color="black"
           category="Acessories"

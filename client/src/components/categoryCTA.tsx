@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, Text, useBreakpointValue } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import React from 'react';
 import ButtonLink from './buttons/buttonLink';

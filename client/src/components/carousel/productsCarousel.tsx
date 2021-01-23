@@ -10,6 +10,7 @@ import { PrevButton, NextButton } from './carouselButtons';
 import { useEmblaCarousel } from 'embla-carousel/react';
 import { Embla, Viewport, CarouselContainer, Slide } from './styles';
 import ProductSlide from './carouselProduct';
+import { useMediaQuery } from '@chakra-ui/react';
 
 // Progress bar width = width of component / something
 // Move progress bar by a certain amount
@@ -93,13 +94,31 @@ const ProductsCarousel: React.FC<{
     embla.on('scroll', onScroll);
   }, [embla, onSelect, onScroll]);
 
+  const [
+    isLargerThan1280,
+    isLargerThan768px,
+    isLargerThan600px
+  ] = useMediaQuery([
+    '(min-width: 1280px)',
+    '(min-width: 768px)',
+    '(min-width:600px)'
+  ]);
+
+  const slides = isLargerThan1280
+    ? 4
+    : isLargerThan768px
+    ? 3
+    : isLargerThan600px
+    ? 2
+    : 1;
+
   return (
     <>
       <Embla>
         <Viewport ref={emblaRef}>
           <CarouselContainer>
             {products.map((product, i) => (
-              <Slide key={i} slides={4}>
+              <Slide key={i} slides={slides}>
                 <ProductSlide product={product} />
               </Slide>
             ))}

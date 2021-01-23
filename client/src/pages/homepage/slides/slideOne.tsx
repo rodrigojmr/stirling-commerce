@@ -54,12 +54,17 @@ const SlideOne = ({ background }: SlideTypes): ReactElement => {
           <br />
           Accessories
         </Heading>
-        <Text maxW="80%" mb={12} fontSize="1.4vw" color="lighter-grey">
+        <Text
+          maxW="80%"
+          mb={12}
+          fontSize="clamp(1.5rem, 1.4vw, 2.2rem)"
+          color="lighter-grey"
+        >
           Lorem ipsum, dolor sit amet consectetur adipisicing elit.
         </Text>
         <ButtonLink
           to="/"
-          fontSize="1.3vw"
+          fontSize="clamp(1.8rem, 1.4vw, 2.2rem)"
           buttonColor="primary.500"
           iconColor="white"
         >
