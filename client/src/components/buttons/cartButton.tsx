@@ -1,7 +1,8 @@
-import { Button, Flex, Icon } from '@chakra-ui/react';
-import styled from '@emotion/styled';
+import { Button, Center, Flex, Icon } from '@chakra-ui/react';
 import React from 'react';
 import { ReactComponent as CartLogo } from 'assets/shopping-cart.svg';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/rootReducer';
 
 // const StyledContainer = styled.div`
 //   display: flex;
@@ -16,22 +17,26 @@ import { ReactComponent as CartLogo } from 'assets/shopping-cart.svg';
 //   }
 // `;
 
-const ItemCounter = ({ num }: { num: number }) => (
-  <Flex
-    align="center"
+const ItemCounter = ({ num }: { num: string }) => (
+  <Center
     justify="center"
-    width="22px"
-    height="22px"
+    minW="1.7em"
+    p="5px"
     bg="black"
     color="white"
     fontSize="1.2rem"
     borderRadius="50%"
   >
-    {num}
-  </Flex>
+    {num.toString()}
+  </Center>
 );
 
 const Cart = () => {
+  const cart = useSelector((state: RootState) => state.cart);
+  const productNum: number = cart.reduce((acc, curr) => {
+    return curr.amount;
+  }, 0);
+
   return (
     <Button
       height="2.5rem"
@@ -49,7 +54,7 @@ const Cart = () => {
       leftIcon={
         <Icon as={CartLogo} viewBox="1rem" fill="white" stroke="white" />
       }
-      rightIcon={<ItemCounter num={2} />}
+      rightIcon={<ItemCounter num={productNum.toString()} />}
     >
       CART
     </Button>

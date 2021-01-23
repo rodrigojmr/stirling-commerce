@@ -39,7 +39,7 @@ const columnContent = (navSection: footerNavSectionType) => (
     </Heading>
     <UnorderedList ml="0" spacing=".8rem" listStyleType="none">
       {navSection.links.map(link => (
-        <ListItem>
+        <ListItem key={link.name.toLowerCase()}>
           <Link
             as={RouterLink}
             fontSize="2xl"

@@ -11,7 +11,7 @@ const StyledForm = styled.form`
   max-width: 25rem;
   width: 100%;
   margin-left: auto;
-  margin-right: 4rem;
+  margin-right: 2rem;
   font-size: 2rem;
 `;
 

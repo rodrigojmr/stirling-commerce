@@ -53,7 +53,7 @@ const Home = () => {
   const allNewProducts = [...newProducts, ...newProducts];
 
   return (
-    <>
+    <Box as="main">
       {/* Sliders */}
       <EmblaCarousel options={carouselOptions}>
         <SlideOne background="/images/carousel-bicycle.webp" />
@@ -191,7 +191,7 @@ const Home = () => {
         </FormContainer>
         <Image src="./images/stretching.webp" alt="Man stretching" />
       </Flex>
-    </>
+    </Box>
   );
 };
 

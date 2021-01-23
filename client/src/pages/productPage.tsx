@@ -1,6 +1,8 @@
 import { Box, Heading, Button, Flex, Text, Input } from '@chakra-ui/react';
 import styled from '@emotion/styled';
+import { addProduct } from 'features/cart/cartSlice';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps, useParams } from 'react-router-dom';
 import { StyledInput } from '../components/styled';
 import { stars } from '../components/styled/Stars';
@@ -26,8 +28,10 @@ const NumInput = styled(StyledInput)`
 
 const SingleProduct = ({ match }: RouteComponentProps) => {
   const [product, setProduct] = useState<Product | undefined>(undefined);
-
   const { id } = useParams<{ id: string }>();
+  const [amount, setAmount] = useState('1');
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setProduct(
@@ -35,8 +39,8 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
     );
   }, [id]);
 
-  const handleFormSubmission = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const updateCart = () => {
+    if (product) dispatch(addProduct({ amount: parseInt(amount), product }));
   };
 
   const numReviews =
@@ -82,9 +86,10 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
             <Text fontSize="lg" mb={4}>
               {product.description}
             </Text>
-            <form onSubmit={handleFormSubmission}>
+            {/* TODO Split to separate component */}
+            <form>
               <Flex>
-                <label htmlFor="stock-input"></label>
+                <label htmlFor="amount-input"></label>
                 <Input
                   w="4rem"
                   border="1px solid black"
@@ -93,15 +98,21 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
                   px={4}
                   mr={4}
                   height="3rem"
-                  defaultValue="1"
+                  value={amount}
+                  onChange={e => setAmount(e.target.value)}
                   min={1}
                   fontSize="xl"
                   color={theme.colors.grey}
                   type="number"
-                  name="stock"
-                  id="stock-input"
+                  name="amount"
+                  id="amount-input"
                 />
-                <Button fontSize="1.3rem" size="lg" variant="primary">
+                <Button
+                  onClick={updateCart}
+                  fontSize="1.3rem"
+                  size="lg"
+                  variant="primary"
+                >
                   Add to cart
                 </Button>
               </Flex>

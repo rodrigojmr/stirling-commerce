@@ -21,36 +21,36 @@ const { BAD_REQUEST, OK, UNAUTHORIZED } = StatusCodes;
  ******************************************************************************/
 
 // router.post('/login', async (req: IRequest, res: Response) => {
-//     // Check email and password present
-//     const { email, password } = req.body;
-//     if (!(email && password)) {
-//         return res.status(BAD_REQUEST).json({
-//             error: paramMissingError,
-//         });
-//     }
-//     // Fetch user
-//     const user = await userDao.getOne(email);
-//     if (!user) {
-//         return res.status(UNAUTHORIZED).json({
-//             error: loginFailedErr,
-//         });
-//     }
-//     // Check password
-//     const pwdPassed = await bcrypt.compare(password, user.pwdHash);
-//     if (!pwdPassed) {
-//         return res.status(UNAUTHORIZED).json({
-//             error: loginFailedErr,
-//         });
-//     }
-//     // Setup Admin Cookie
-//     const jwt = await jwtService.getJwt({
-//         id: user.id,
-//         role: user.role,
+//   // Check email and password present
+//   const { email, password } = req.body;
+//   if (!(email && password)) {
+//     return res.status(BAD_REQUEST).json({
+//       error: paramMissingError
 //     });
-//     const { key, options } = cookieProps;
-//     res.cookie(key, jwt, options);
-//     // Return
-//     return res.status(OK).end();
+//   }
+//   // Fetch user
+//   const user = await userDao.getOne(email);
+//   if (!user) {
+//     return res.status(UNAUTHORIZED).json({
+//       error: loginFailedErr
+//     });
+//   }
+//   // Check password
+//   const pwdPassed = await bcrypt.compare(password, user.pwdHash);
+//   if (!pwdPassed) {
+//     return res.status(UNAUTHORIZED).json({
+//       error: loginFailedErr
+//     });
+//   }
+//   // Setup Admin Cookie
+//   const jwt = await jwtService.getJwt({
+//     id: user.id,
+//     role: user.role
+//   });
+//   const { key, options } = cookieProps;
+//   res.cookie(key, jwt, options);
+//   // Return
+//   return res.status(OK).end();
 // });
 
 /******************************************************************************

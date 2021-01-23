@@ -42,7 +42,6 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan<Request, Response>('dev'));
 }
 
-console.log('PORT', process.env.PORT);
 // Security
 if (process.env.NODE_ENV === 'production') {
   app.use(helmet());
