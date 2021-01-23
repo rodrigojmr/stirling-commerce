@@ -8,6 +8,9 @@ const router = Router();
 // Add sub-routes
 router.use('/users', UserRouter);
 router.use('/auth', AuthRouter);
+router.get('/hello', (req, res) => {
+  return res.send('Hello');
+});
 
 // Export the base-router
 export default router;
