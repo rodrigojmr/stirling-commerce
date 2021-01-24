@@ -1,31 +1,34 @@
-import { Box, Flex, Icon, Link, useMediaQuery } from '@chakra-ui/react';
+/* @jsxImportSource @emotion/react */
+import { Box, Button, Flex, Icon, Link, useMediaQuery } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link as RouterLink } from 'react-router-dom';
-import { ReactComponent as Logo } from 'assets/logo.svg';
+import { ReactComponent as loginIcon } from 'assets/log-in.svg';
 import { ReactComponent as LogoS } from 'assets/logo-s.svg';
-import { RootState } from 'store/rootReducer';
+import { ReactComponent as Logo } from 'assets/logo.svg';
 import Cart from 'components/buttons/cartButton';
 import Search from 'components/search/navSearch';
 import User from 'components/userIcon';
-import Menu from './header';
-import { ReactComponent as loginIcon } from 'assets/log-in.svg';
 import { requestLogin } from 'features/auth/userSlice';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link as RouterLink } from 'react-router-dom';
+import { RootState } from 'store/rootReducer';
+import Menu from './headerMenu';
 
-const StyledLogo = styled(Logo)`
-  fill: white;
-  width: 200px;
-  display: inline-block;
-  margin-right: 3rem;
+const StyledLogo = styled(Icon)`
+  // Customize logo color, otherwise it would show as grey
+  // Large logo
   & .st0 {
     fill: white;
   }
   & .st2 {
     fill: white;
   }
+  // Small logo
+  & .cls-3 {
+    fill: white;
+  }
 
-  .gradient-1-stop {
+  #linear-gradient {
     color: white;
   }
   .gradient-2-stop {
@@ -65,11 +68,9 @@ const Navbar = () => {
   const user = useSelector((state: RootState) => state.auth.user);
 
   const [isLargerThan768px] = useMediaQuery('(min-width: 48em)');
-  console.log('isLargerThan768px: ', isLargerThan768px);
+  const [isLargerThan991px] = useMediaQuery('(min-width: 62em)');
 
-  const centerLogo = isLargerThan768px
-    ? {}
-    : { pos: 'absolute', left: '50%', transform: 'translateX(-50%)' };
+  const searchBtnOrder: number = user ? 2 : 4;
 
   return (
     <Flex
@@ -77,38 +78,39 @@ const Navbar = () => {
       as="header"
       bg="dark-grey"
       align="center"
-      px={[5, 7, 10]}
-      py={[4, 6]}
+      px={{ base: 5, sm: 7, md: 10 }}
+      py={{ base: 5, sm: 6 }}
       background-color="dark-grey"
       maxW="100vw"
     >
       <Link
-        {...centerLogo}
-        pos={['absolute', 'relative']}
-        order={[3, 1]}
-        ml={['auto', 'none']}
-        mr={['auto', 12]}
+        position={{ base: 'absolute', md: 'relative' }}
+        left={{ base: '50%', md: 'initial' }}
+        transform={{ base: 'translateX(-50%)', md: 'initial' }}
+        order={{ base: 3, md: 'initial' }}
+        ml={['auto', 'initial']}
+        mr={['auto', 6]}
         as={RouterLink}
         to="/"
         color="white"
       >
-        <Icon
-          as={isLargerThan768px ? Logo : LogoS}
+        <StyledLogo
+          as={isLargerThan991px ? Logo : LogoS}
           fill="white"
-          w={isLargerThan768px ? '8rem' : '2.5rem'}
-          h={isLargerThan768px ? '3rem' : '2.5rem'}
+          w={isLargerThan991px ? '15rem' : '2.5rem'}
+          h={isLargerThan991px ? '3rem' : '2.5rem'}
         />
       </Link>
       {/* TODO Fix order */}
-      <Menu order={[1, 2]} links={navLinks} />
-      <Search order={[user ? 2 : 4, 3]} />
+      <Menu order={{ base: 1, md: 'initial' }} links={navLinks} />
+      <Search order={{ base: 1, md: 'initial' }} />
       {user ? (
         <>
-          <Cart order={5} />
-          <User order={[4]} />
+          <User order={{ base: 4, md: 'initial' }} />
+          <Cart order={{ base: 5, md: 'initial' }} />
         </>
       ) : (
-        <Box order={[5, 5]} mr={['none', 8]}>
+        <Box order={{ base: 5, md: 'initial' }} mr={['none', 8]}>
           <Icon
             onClick={() =>
               dispatch(

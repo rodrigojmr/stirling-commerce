@@ -4,7 +4,7 @@ import { useState, useRef } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 interface Props {
   links: Link[];
-  order?: number | number[];
+  order: ChakraOrder;
 }
 // const Hamburger = styled.button<{ checked: boolean }>`
 //   background: ${({ checked }) => (checked ? 'transparent' : 'primary.500')};
@@ -44,10 +44,14 @@ const Menu = ({ order, links }: Props) => {
   return (
     <>
       {/* <Hamburger checked={show} onClick={() => setShow(!show)}></Hamburger> */}
-      <Box cursor="pointer" p=".25rem" onClick={() => setShow(!show)}>
+      <Box
+        display={{ base: 'inline-block', md: 'none' }}
+        cursor="pointer"
+        p=".25rem"
+        onClick={() => setShow(!show)}
+      >
         <Button
           order={order}
-          display="inline-block"
           minW="none"
           width=".5rem"
           checked={show}
@@ -59,15 +63,15 @@ const Menu = ({ order, links }: Props) => {
         ref={navRef}
         as="nav"
         position={{ base: 'absolute', md: 'relative' }}
-        top={{ base: '97%', md: 'none' }}
-        left={{ base: show ? '0' : '-50%', md: 'none' }}
+        top={{ base: '97%', md: 'initial' }}
+        left={{ base: show ? '0' : '-50%', md: 'initial' }}
         zIndex={3}
         bg="dark-grey"
         height={{ base: '100vh', md: 'auto' }}
         px={{ base: '5', md: '3' }}
         py={{ base: '8', md: '2' }}
         animation="all .5s ease-in-out"
-        order={[1, 2]}
+        order={{ base: 1, md: 'initial' }}
         transition=".5s all ease-in-out"
       >
         <UnorderedList

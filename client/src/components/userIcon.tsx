@@ -22,6 +22,7 @@ const User = ({ order }: { order?: number | number[] }) => {
 
   return (
     <Center
+      flexShrink={0}
       order={order}
       h={10}
       w={10}

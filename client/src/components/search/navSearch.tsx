@@ -1,13 +1,10 @@
 import {
-  Button,
-  Icon,
+  Box,
+  IconButton,
   Input,
   InputGroup,
-  InputRightElement,
-  IconButton,
-  Box
+  InputRightElement
 } from '@chakra-ui/react';
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import * as React from 'react';
 import { useState } from 'react';
@@ -26,8 +23,10 @@ const StyledForm = styled.form<{ order?: number }>`
 `;
 
 //TODO Separate search concern from UI
-
-const Search = ({ order }: { order?: number | number[] }) => {
+interface Props {
+  order: ChakraOrder;
+}
+const Search = ({ order }: Props) => {
   const [query, setQuery] = useState('');
   const [error, setError] = useState({ message: '' });
 

@@ -30,20 +30,22 @@ const ItemCounter = ({ num }: { num: string }) => (
     {num.toString()}
   </Center>
 );
-
-const Cart = ({ order }: { order?: number | number[] }) => {
+interface Props {
+  order: ChakraOrder;
+}
+const Cart = ({ order }: Props) => {
   const cart = useSelector((state: RootState) => state.cart);
   const productNum: number = cart.reduce((acc, curr) => {
     return curr.amount;
   }, 0);
 
-  const [isLargerThanPhone] = useMediaQuery('(min-width:36rem)');
+  const [isLargerThan991px] = useMediaQuery('(min-width:62rem)');
 
   // TODO Link to Cart or popup
 
   return (
     <>
-      {isLargerThanPhone ? (
+      {isLargerThan991px ? (
         <Button
           order={order}
           flexShrink={0}

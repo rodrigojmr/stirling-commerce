@@ -53,12 +53,15 @@ const Home = () => {
   const allNewProducts = [...newProducts, ...newProducts];
 
   return (
-    <Box as="main">
+    <>
       {/* Sliders */}
-      <EmblaCarousel options={carouselOptions}>
-        <SlideOne background="/images/carousel-bicycle.webp" />
-        <SlideOne background="/images/carousel-bicycle.webp" />
-      </EmblaCarousel>
+      <Box as="section">
+        <EmblaCarousel options={carouselOptions}>
+          <SlideOne background="/images/carousel-bicycle.webp" />
+          <SlideOne background="/images/carousel-bicycle.webp" />
+        </EmblaCarousel>
+      </Box>
+
       {/* Tagline Section */}
       <Box py={24} as="section" bg="light-grey">
         <Container maxW="max" centerContent>
@@ -191,7 +194,7 @@ const Home = () => {
         </FormContainer>
         <Image src="./images/stretching.webp" alt="Man stretching" />
       </Flex>
-    </Box>
+    </>
   );
 };
 
