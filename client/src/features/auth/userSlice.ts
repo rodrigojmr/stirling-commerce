@@ -11,17 +11,24 @@ interface AuthParams {
 export const requestLogin = createAsyncThunk(
   'users/login',
   async ({ username, password }: AuthParams) => {
-    // const res = await api.post('/api/auth/login/', { username, password });
-    // return (await response.json()) as LoginProps;
-    return {
+    function wait(milliseconds: number) {
+      return new Promise(resolve => setTimeout(resolve, milliseconds));
+    }
+    await wait(1000);
+
+    return Promise.resolve({
       username: 'storm',
       name: 'rodrigo',
       avatar: 'red'
-    };
+    });
+
+    // const res = await api.post('/api/auth/login/', { username, password });
+    // return (await response.json()) as LoginProps;
   }
 );
 
 export const requestLogout = createAsyncThunk('users/logout', async () => {
+  return true;
   // const res = await api.post('/api/auth/login/', { username, password });
   // return (await response.json()) as LoginProps;
 });
@@ -52,6 +59,23 @@ const authSlice = createSlice({
       state.user = action.payload;
       // Add user to the state array
       // state.username = action.payload.username;
+    });
+    builder.addCase(requestLogin.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(requestLogin.rejected, (state, action) => {
+      state.loading = false;
+    });
+    builder.addCase(requestLogout.fulfilled, (state, action) => {
+      state.user = null;
+      // Add user to the state array
+      // state.username = action.payload.username;
+    });
+    builder.addCase(requestLogout.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(requestLogout.rejected, (state, action) => {
+      state.loading = false;
     });
   }
 });

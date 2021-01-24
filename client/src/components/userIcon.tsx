@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as UserIcon } from '../assets/user.svg';
-import { requestLogin } from '../features/auth/userSlice';
+import { requestLogout } from '../features/auth/userSlice';
 import { RootState } from '../store/rootReducer';
 
 const StyledBox = styled(Box)`
@@ -15,10 +15,13 @@ const StyledBox = styled(Box)`
   }
 `;
 
-const User = ({ order }: { order?: number | number[] }) => {
+interface Props {
+  order: ChakraOrder;
+}
+
+const User = ({ order }: Props) => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.auth.user);
-  console.log('user: ', user);
 
   return (
     <Center
@@ -31,9 +34,7 @@ const User = ({ order }: { order?: number | number[] }) => {
       mr={8}
       transition="all .2s"
       _hover={{ bg: 'primary.500' }}
-      onClick={() =>
-        dispatch(requestLogin({ username: 'asddasdas', password: 'dashdkass' }))
-      }
+      onClick={() => dispatch(requestLogout())}
     >
       <Icon
         as={UserIcon}
