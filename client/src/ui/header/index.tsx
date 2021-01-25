@@ -1,5 +1,5 @@
 /* @jsxImportSource @emotion/react */
-import { Box, Button, Flex, Icon, Link, useMediaQuery } from '@chakra-ui/react';
+import { Button, Flex, Icon, Link, useMediaQuery } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { ReactComponent as loginIcon } from 'assets/log-in.svg';
 import { ReactComponent as LogoS } from 'assets/logo-s.svg';
@@ -7,12 +7,11 @@ import { ReactComponent as Logo } from 'assets/logo.svg';
 import Cart from 'components/buttons/cartButton';
 import Search from 'components/search/navSearch';
 import User from 'components/userIcon';
-import { requestLogin } from 'features/auth/userSlice';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link as RouterLink } from 'react-router-dom';
 import { RootState } from 'store/rootReducer';
 import Menu from './headerMenu';
+import { Link as RouterLink } from 'react-router-dom';
 
 const StyledLogo = styled(Icon)`
   // Customize logo color, otherwise it would show as grey
@@ -110,19 +109,32 @@ const Navbar = () => {
           <Cart order={{ base: 5, md: 'initial' }} />
         </>
       ) : (
-        <Box order={{ base: 5, md: 'initial' }} mr={['none', 8]}>
-          <Icon
-            onClick={() =>
-              dispatch(
-                requestLogin({ username: 'asddasdas', password: 'dashdkass' })
-              )
+        <Link order={{ base: 5, md: 'initial' }} as={RouterLink} to="/login">
+          <Button
+            bg="primary.500"
+            color="white"
+            _hover={{ bg: 'primary.400' }}
+            _focus={{ bg: 'primary.400' }}
+            rightIcon={
+              <Icon as={loginIcon} stroke="white" w={[6, 8]} h={[6, 8]} />
             }
-            as={loginIcon}
-            stroke="white"
-            w={[8, 10]}
-            h={[8, 10]}
-          />
-        </Box>
+          >
+            Log In
+          </Button>
+        </Link>
+        // <Box order={{ base: 5, md: 'initial' }} mr={['none', 8]}>
+        //   <Icon
+        //     onClick={() =>
+        //       dispatch(
+        //         requestLogin({ username: 'asddasdas', password: 'dashdkass' })
+        //       )
+        //     }
+        //     as={loginIcon}
+        //     stroke="white"
+        //     w={[8, 10]}
+        //     h={[8, 10]}
+        //   />
+        // </Box>
       )}
     </Flex>
   );

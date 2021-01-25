@@ -56,6 +56,7 @@ const Search = ({ order }: Props) => {
       <form>
         <InputGroup>
           <Input
+            width={{ base: toggled ? 10 : 0, md: 10 }}
             paddingBottom={2}
             variant="unstyled"
             lineHeight="3"
@@ -77,7 +78,7 @@ const Search = ({ order }: Props) => {
             }}
           />
           <InputRightElement
-            top={{ base: toggled ? '-2px' : '-5px' }}
+            top={{ base: '-5px' }}
             children={
               <IconButton
                 maxH="2rem"
