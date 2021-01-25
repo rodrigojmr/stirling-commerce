@@ -1,21 +1,21 @@
-import React from 'react';
+import * as React from 'react';
 import { RouteProps, Route, Redirect } from 'react-router-dom';
 
 // import { useAppContext } from 'containers/App/AppContext';
 
-type PrivateRouteProps = {
-  path: RouteProps['path'];
-  component: React.ElementType;
-};
-const PrivateRoute: React.FunctionComponent<PrivateRouteProps> = ({
-  component: Component,
-  ...routeProps
-}) => {
-  const isSignedIn = false;
+const PrivateRoute: React.FC<RouteProps> = ({ children, ...rest }) => {
+  // TODO Change to signed in state
+  const isSignedIn = true;
   return (
     <Route
-      {...routeProps}
-      render={props => (isSignedIn ? <Component /> : <Redirect to="/login" />)}
+      {...rest}
+      render={({ location }) => {
+        return isSignedIn ? (
+          children
+        ) : (
+          <Redirect to={{ pathname: '/login', state: { from: location } }} />
+        );
+      }}
     />
   );
 };
