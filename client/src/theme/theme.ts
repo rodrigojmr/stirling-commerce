@@ -35,7 +35,6 @@ const theme = extendTheme({
   breakpoints: ['30em', '36em', '48em', '62em', '80em', '87.5em'],
   fonts: {
     heading: 'Bebas Neue',
-    product: 'Source Sans Pro',
     body: 'Source Sans Pro, sans-serif'
   },
   sizes: {

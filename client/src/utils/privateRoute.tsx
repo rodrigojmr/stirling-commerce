@@ -13,7 +13,7 @@ const PrivateRoute: React.FC<RouteProps> = ({ children, ...rest }) => {
         return isSignedIn ? (
           children
         ) : (
-          <Redirect to={{ pathname: '/login', state: { from: location } }} />
+          <Redirect to={{ pathname: '/sign-in', state: { from: location } }} />
         );
       }}
     />

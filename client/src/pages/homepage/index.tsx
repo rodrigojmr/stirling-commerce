@@ -192,7 +192,7 @@ const Home = () => {
         <FormContainer>
           <NewsletterForm />
         </FormContainer>
-        <Image src="./images/stretching.webp" alt="Man stretching" />
+        <Image src="/images/stretching.webp" alt="Man stretching" />
       </Flex>
     </>
   );

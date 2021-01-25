@@ -64,7 +64,7 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
             <img src={product?.image} alt={product?.title} />
           </ImgWrapper>
           <Flex direction="column" gridColumn="col-start 5 / col-end 7">
-            <Heading mb={4} as="h1" fontSize="3xl" fontFamily="product">
+            <Heading mb={4} as="h1" fontSize="3xl" fontFamily="body">
               {product.title}
             </Heading>
             <Flex align="center">

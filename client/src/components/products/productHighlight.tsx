@@ -61,7 +61,7 @@ const ProductHighlight: React.FC<{ product: ProductsWithHighlightPoints }> = ({
         align="start"
       >
         <Flex>{stars(product.rating)}</Flex>
-        <Heading fontFamily="product" as="h2" color="black" fontSize="4xl">
+        <Heading fontFamily="body" as="h2" color="black" fontSize="4xl">
           {product.title}
         </Heading>
         <Text

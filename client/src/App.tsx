@@ -8,10 +8,11 @@ import Footer from './ui/footer';
 import Home from './pages/homepage';
 import SingleProduct from './pages/productPage';
 import ScrollToTop from './hooks/ScrollToTop';
-import UserLogin from './pages/UserLogin';
+import UserLogin from './pages/logIn';
 import PrivateRoute from './utils/privateRoute';
 import { Helmet } from 'react-helmet';
 import Navbar from 'ui/header';
+import SignUpPage from './pages/signUp';
 
 const App = () => {
   return (
@@ -51,7 +52,8 @@ const App = () => {
                 Kids
               </Route>
               <Route path="/product/:id" component={SingleProduct} />
-              <PrivateRoute path="/login" component={UserLogin} />
+              <PrivateRoute path="/sign-in" component={UserLogin} />
+              <PrivateRoute path="/sign-up" component={SignUpPage} />
               <Route render={() => <Redirect to="/" />} />
             </Switch>
           </Box>

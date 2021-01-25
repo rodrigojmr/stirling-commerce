@@ -109,7 +109,7 @@ const Navbar = () => {
           <Cart order={{ base: 5, md: 'initial' }} />
         </>
       ) : (
-        <Link order={{ base: 5, md: 'initial' }} as={RouterLink} to="/login">
+        <Link order={{ base: 5, md: 'initial' }} as={RouterLink} to="/sign-in">
           <Button
             bg="primary.500"
             color="white"
