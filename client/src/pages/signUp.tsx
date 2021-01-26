@@ -1,20 +1,7 @@
-import React, { useState } from 'react';
-import styled from '@emotion/styled';
-import {
-  Grid,
-  Box,
-  Image,
-  Heading,
-  FormErrorMessage,
-  FormLabel,
-  FormControl,
-  Input,
-  Button
-} from '@chakra-ui/react';
-import { Redirect, useLocation } from 'react-router-dom';
-import LifterImg from 'assets/lifter.avif';
-import { useForm } from 'react-hook-form';
+import { Box, Grid, Heading } from '@chakra-ui/react';
 import RegisterForm from 'components/form/signUpForm';
+import React, { useState } from 'react';
+import { Redirect, useLocation } from 'react-router-dom';
 
 interface stateType {
   from: { pathname: string };
