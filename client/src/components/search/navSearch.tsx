@@ -56,7 +56,7 @@ const Search = ({ order }: Props) => {
       <form>
         <InputGroup>
           <Input
-            width={{ base: toggled ? 10 : 0, md: 10 }}
+            width={{ base: toggled ? 10 : 0, xl: 'initial' }}
             paddingBottom={2}
             variant="unstyled"
             lineHeight="3"

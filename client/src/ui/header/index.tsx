@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/rootReducer';
 import Menu from './headerMenu';
 import { Link as RouterLink } from 'react-router-dom';
+import { requestLogin } from 'store/slices/userSlice';
 
 const StyledLogo = styled(Icon)`
   // Customize logo color, otherwise it would show as grey
@@ -77,8 +78,8 @@ const Navbar = () => {
       as="header"
       bg="dark-grey"
       align="center"
-      px={{ base: 5, sm: 7, md: 10 }}
-      py={{ base: 5, sm: 6 }}
+      px={{ base: 5, sm: 7, md: 6 }}
+      py={{ base: 5, sm: 5 }}
       background-color="dark-grey"
       maxW="100vw"
     >
@@ -111,6 +112,11 @@ const Navbar = () => {
       ) : (
         <Link order={{ base: 5, md: 'initial' }} as={RouterLink} to="/sign-in">
           <Button
+            onClick={() =>
+              dispatch(
+                requestLogin({ username: 'asddasdas', password: 'dashdkass' })
+              )
+            }
             bg="primary.500"
             color="white"
             _hover={{ bg: 'primary.400' }}

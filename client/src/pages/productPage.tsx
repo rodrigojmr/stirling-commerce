@@ -1,9 +1,18 @@
-import { Box, Heading, Button, Flex, Text, Input } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Select,
+  Text,
+  Image
+} from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import { addProduct } from 'features/cart/cartSlice';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { drawerContext } from 'hooks/useDrawer';
+import { useContext, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { RouteComponentProps, useParams } from 'react-router-dom';
+import { addProduct } from 'store/slices/cartSlice';
 import { StyledInput } from '../components/styled';
 import { stars } from '../components/styled/Stars';
 import { allProducts } from '../data/products';
@@ -32,6 +41,7 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
   const [amount, setAmount] = useState('1');
 
   const dispatch = useDispatch();
+  const { isOpen, setDrawer } = useContext(drawerContext);
 
   useEffect(() => {
     setProduct(
@@ -40,7 +50,12 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
   }, [id]);
 
   const updateCart = () => {
-    if (product) dispatch(addProduct({ amount: parseInt(amount), product }));
+    if (product) {
+      setDrawer(true);
+      setTimeout(() => {
+        dispatch(addProduct({ amount: parseInt(amount), product }));
+      }, 600);
+    }
   };
 
   const numReviews =
@@ -51,19 +66,27 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
   return (
     <>
       {product ? (
-        <Box
-          sx={{
-            display: 'grid',
-            padding: '6rem 0',
-            gridTemplateColumns:
-              '[full-start] minmax(12rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 12rem) [col-end])[center-end] minmax(12rem, 1fr) [full-end]',
-            alignItems: 'center'
-          }}
+        <Flex
+          width="100%"
+          alignItems="center"
+          py={24}
+          px="clamp(6rem, 5vw, 10rem)"
+          justifyContent="space-between"
+          margin="0 auto"
+          maxWidth="max"
         >
-          <ImgWrapper>
-            <img src={product?.image} alt={product?.title} />
-          </ImgWrapper>
-          <Flex direction="column" gridColumn="col-start 5 / col-end 7">
+          <Box flexBasis="45%">
+            <Image
+              objectFit="cover"
+              src={product?.image}
+              alt={product?.title}
+            />
+          </Box>
+          <Flex
+            flexBasis="45%"
+            direction="column"
+            gridColumn="col-start 5 / col-end 7"
+          >
             <Heading mb={4} as="h1" fontSize="3xl" fontFamily="body">
               {product.title}
             </Heading>
@@ -90,23 +113,26 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
             <form>
               <Flex>
                 <label htmlFor="amount-input"></label>
-                <Input
+                <Select
+                  as="select"
                   w="4rem"
                   border="1px solid black"
                   borderRadius="5px"
-                  py={3}
-                  px={4}
                   mr={4}
                   height="3rem"
                   value={amount}
                   onChange={e => setAmount(e.target.value)}
-                  min={1}
                   fontSize="xl"
                   color={theme.colors.grey}
-                  type="number"
                   name="amount"
                   id="amount-input"
-                />
+                >
+                  {[...Array(product.stock).keys()].map(x => (
+                    <option key={x + 1} value={x + 1}>
+                      {x + 1}
+                    </option>
+                  ))}
+                </Select>
                 <Button
                   onClick={updateCart}
                   fontSize="1.3rem"
@@ -118,7 +144,7 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
               </Flex>
             </form>
           </Flex>
-        </Box>
+        </Flex>
       ) : null}
     </>
   );

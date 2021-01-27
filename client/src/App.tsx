@@ -13,53 +13,58 @@ import PrivateRoute from './utils/privateRoute';
 import { Helmet } from 'react-helmet';
 import Navbar from 'ui/header';
 import SignUpPage from './pages/signUp';
+import { drawerContext, useDrawer } from 'hooks/useDrawer';
 
 const App = () => {
+  const drawer = useDrawer();
+
   return (
     <ChakraProvider resetCSS theme={theme}>
       <Provider store={store}>
-        <BrowserRouter>
-          <Helmet>
-            <html lang="en" />
-            {/* body attributes */}
-            <body className="root" />
-            {/* multiple meta elements */}
-            <title>Stirling Sports</title>
-            <meta name="description" content="Helmet application" />
-            <meta
-              property="og:description"
-              content="Stirling Sports Redesign React Site"
-            />
-            <meta
-              property="og:image"
-              content="https://res.cloudinary.com/dxxvlmkqg/image/upload/v1611417522/sports-commerce/chrome_ec3wlWQA4i_g635l9.png"
-            />
-          </Helmet>
-          <Navbar />
-          <Box as="main" minHeight="30rem">
-            <Switch>
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route exact path="/men">
-                Men's
-              </Route>
-              c
-              <Route exact path="/women">
-                Women's
-              </Route>
-              <Route exact path="/kids">
-                Kids
-              </Route>
-              <Route path="/product/:id" component={SingleProduct} />
-              <PrivateRoute path="/sign-in" component={UserLogin} />
-              <PrivateRoute path="/sign-up" component={SignUpPage} />
-              <Route render={() => <Redirect to="/" />} />
-            </Switch>
-          </Box>
-          <Footer />
-          <ScrollToTop />{' '}
-        </BrowserRouter>
+        <drawerContext.Provider value={drawer}>
+          <BrowserRouter>
+            <Helmet>
+              <html lang="en" />
+              {/* body attributes */}
+              <body className="root" />
+              {/* multiple meta elements */}
+              <title>Stirling Sports</title>
+              <meta name="description" content="Helmet application" />
+              <meta
+                property="og:description"
+                content="Stirling Sports Redesign React Site"
+              />
+              <meta
+                property="og:image"
+                content="https://res.cloudinary.com/dxxvlmkqg/image/upload/v1611417522/sports-commerce/chrome_ec3wlWQA4i_g635l9.png"
+              />
+            </Helmet>
+            <Navbar />
+            <Box as="main" minHeight="30rem">
+              <Switch>
+                <Route exact path="/">
+                  <Home />
+                </Route>
+                <Route exact path="/men">
+                  Men's
+                </Route>
+                c
+                <Route exact path="/women">
+                  Women's
+                </Route>
+                <Route exact path="/kids">
+                  Kids
+                </Route>
+                <Route path="/product/:id" component={SingleProduct} />
+                <PrivateRoute path="/sign-in" component={UserLogin} />
+                <PrivateRoute path="/sign-up" component={SignUpPage} />
+                <Route render={() => <Redirect to="/" />} />
+              </Switch>
+            </Box>
+            <Footer />
+            <ScrollToTop />{' '}
+          </BrowserRouter>
+        </drawerContext.Provider>
       </Provider>
     </ChakraProvider>
   );
