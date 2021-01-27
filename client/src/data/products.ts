@@ -1,12 +1,14 @@
 // export const featuredProducts = [
 //   {
 //     image: '/images/products/shoes/puma-ignite-flash-evoknit.webp',
+// stock: 10,
 //     rating: 4,
 //     title: "Ignite Flash EvoKNITMen's",
 //     price: 99.99
 //   },
 //   {
 //     image:
+// stock: 10,
 //       '/images/products/shirts/puma-essential-big-cat-tree-grey-heather.webp',
 //     rating: 3,
 //     title: "Pume - Essential Big Cat Tee - Grey Heather - Men's",
@@ -14,12 +16,14 @@
 //   },
 //   {
 //     image: '/images/products/nike-pro-hypercool-capri-black-womens.webp',
+// stock: 10,
 //     rating: 5,
 //     title: "Pro Hypercool CapriWomen's",
 //     price: 49.99
 //   },
 //   {
 //     image:
+// stock: 10,
 //       '/images/products/shoes/nike-free-rn-2017-running-shoe-black-mens.webp',
 //     rating: 4,
 //     title: "Free RN 2017 Running Shoe - Black - Men's",
@@ -27,12 +31,14 @@
 //   },
 //   {
 //     image: '/images/products/shoes/puma-ignite-flash-evoknit.webp',
+// stock: 10,
 //     rating: 4,
 //     title: "Ignite Flash EvoKNIT - Black - Men's",
 //     price: 99.99
 //   },
 //   {
 //     image:
+// stock: 10,
 //       '/images/products/shirts/puma-essential-big-cat-tree-grey-heather.webp',
 //     rating: 3,
 //     title: "Pume - Essential Big Cat Tee - Grey Heather - Men's",
@@ -40,12 +46,14 @@
 //   },
 //   {
 //     image: '/images/products/nike-pro-hypercool-capri-black-womens.webp',
+// stock: 10,
 //     rating: 5,
 //     title: "Pro Hypercool Capri - Black - Women's",
 //     price: 49.99
 //   },
 //   {
 //     image:
+// stock: 10,
 //       "/images/products/shoes/nike-free-rn-2017-running-shoe-black-Men's.webp",
 //     rating: 4,
 //     title: "Free RN 2017 Running Shoe - Black - Men's",
@@ -56,6 +64,7 @@
 // export const highlightedProducts = [
 //   {
 //     image: "/images/products/shoes/adidas-originals-swift-run-cargo-Men's.webp",
+// stock: 10,
 //     title: "Adidas Originals - Swift Run - Black - Men's",
 //     rating: 5,
 //     price: 140.99,
@@ -99,6 +108,7 @@
 //   },
 //   {
 //     image:
+// stock: 10,
 //       "/images/products/shoes/floatride-fuel-run-women's-running-shoes.webp",
 //     rating: 5,
 //     title: "Floatride Fuel Run - Blue - Women's",
@@ -141,48 +151,56 @@
 // export const newProducts = [
 //   {
 //     image: '/images/products/shoes/rebook-ex-o-fit_hi_black.webp',
+// stock: 10,
 //     rating: 4,
 //     title: "Ex-O-Fit Hi - Black - Men's",
 //     price: 179.99
 //   },
 //   {
 //     image: '/images/products/shoes/rebook-classic_nylon_white_standard.webp',
+// stock: 10,
 //     rating: 3,
 //     title: "Classic Nylon - White/Pink - Women's",
 //     price: 120.99
 //   },
 //   {
 //     image: '/images/products/shoes/nike-free-tr-v8.webp',
+// stock: 10,
 //     rating: 5,
 //     title: "Free TR V8 - Grey - Men's",
 //     price: 109.99
 //   },
 //   {
 //     image: '/images/products/shoes/rebook-classic_nylon_shoes_black.webp',
+// stock: 10,
 //     rating: 4,
 //     title: "Classic Slide - Black - Men's",
 //     price: 200.99
 //   },
 //   {
 //     image: '/images/products/shoes/rebook-ex-o-fit_hi_black.webp',
+// stock: 10,
 //     rating: 4,
 //     title: "Ex-O-Fit Hi - Black - Men's",
 //     price: 179.99
 //   },
 //   {
 //     image: '/images/products/shoes/rebook-classic_nylon_white_standard.webp',
+// stock: 10,
 //     rating: 3,
 //     title: "Classic Nylon - White/Pink - Women's",
 //     price: 120.99
 //   },
 //   {
 //     image: '/images/products/shoes/nike-free-tr-v8.webp',
+// stock: 10,
 //     rating: 5,
 //     title: "Free TR V8 - Grey - Men's",
 //     price: 109.99
 //   },
 //   {
 //     image: '/images/products/shoes/rebook-classic_nylon_shoes_black.webp',
+// stock: 10,
 //     rating: 4,
 //     title: "Classic Slide - Black - Men's",
 //     price: 200.99
@@ -195,6 +213,7 @@ export const allProducts: Products[] = [
   {
     _id: '1',
     image: '/images/products/shoes/puma-ignite-flash-evoknit.webp',
+    stock: 10,
     rating: 4,
     title: 'Ignite Flash EvoKNIT',
     brand: 'puma',
@@ -204,7 +223,6 @@ export const allProducts: Products[] = [
     price: 99.99,
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. At praesentium, aut eaque quos repellendus error exercitationem corporis sequi consectetur impedit doloribus a quisquam cumque repudiandae, repellat, pariatur recusandae ipsa? Architecto.',
-    stock: '',
     numReviews: 2,
     featured: true,
     new: false
@@ -213,6 +231,8 @@ export const allProducts: Products[] = [
     _id: '2',
     image:
       '/images/products/shirts/puma-essential-big-cat-tree-grey-heather.webp',
+    stock: 10,
+
     rating: 3,
     title: 'Essential Big Cat Tee ',
     brand: 'puma',
@@ -222,7 +242,6 @@ export const allProducts: Products[] = [
     price: 30.99,
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. At praesentium, aut eaque quos repellendus error exercitationem corporis sequi consectetur impedit doloribus a quisquam cumque repudiandae, repellat, pariatur recusandae ipsa? Architecto.',
-    stock: '',
     numReviews: 2,
     featured: true,
     new: false
@@ -230,6 +249,7 @@ export const allProducts: Products[] = [
   {
     _id: '3',
     image: '/images/products/nike-pro-hypercool-capri-black-womens.webp',
+    stock: 10,
     rating: 5,
     title: 'Pro Hypercool CapriWo',
     brand: 'nike',
@@ -239,7 +259,6 @@ export const allProducts: Products[] = [
     price: 49.99,
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. At praesentium, aut eaque quos repellendus error exercitationem corporis sequi consectetur impedit doloribus a quisquam cumque repudiandae, repellat, pariatur recusandae ipsa? Architecto.',
-    stock: '',
     numReviews: 2,
     featured: true,
     new: false
@@ -248,6 +267,8 @@ export const allProducts: Products[] = [
     _id: '4',
     image:
       '/images/products/shoes/nike-free-rn-2017-running-shoe-black-mens.webp',
+    stock: 10,
+
     rating: 4,
     title: 'Free RN 2017 Running Shoe',
     brand: 'nike',
@@ -257,7 +278,6 @@ export const allProducts: Products[] = [
     price: 99.99,
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. At praesentium, aut eaque quos repellendus error exercitationem corporis sequi consectetur impedit doloribus a quisquam cumque repudiandae, repellat, pariatur recusandae ipsa? Architecto.',
-    stock: '',
     numReviews: 2,
     featured: true,
     new: false
@@ -265,6 +285,7 @@ export const allProducts: Products[] = [
   {
     _id: '5',
     image: '/images/products/shoes/rebook-ex-o-fit_hi_black.webp',
+    stock: 10,
     rating: 4,
     title: 'Ex-O-Fit Hi',
     brand: 'reebok',
@@ -274,7 +295,6 @@ export const allProducts: Products[] = [
     price: 179.99,
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. At praesentium, aut eaque quos repellendus error exercitationem corporis sequi consectetur impedit doloribus a quisquam cumque repudiandae, repellat, pariatur recusandae ipsa? Architecto.',
-    stock: '',
     numReviews: 2,
     featured: false,
     new: true
@@ -282,6 +302,7 @@ export const allProducts: Products[] = [
   {
     _id: '6',
     image: '/images/products/shoes/rebook-classic_nylon_white_standard.webp',
+    stock: 10,
     rating: 3,
     title: 'Classic Nylon',
     brand: 'reebok',
@@ -291,7 +312,6 @@ export const allProducts: Products[] = [
     price: 120.99,
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. At praesentium, aut eaque quos repellendus error exercitationem corporis sequi consectetur impedit doloribus a quisquam cumque repudiandae, repellat, pariatur recusandae ipsa? Architecto.',
-    stock: '',
     numReviews: 2,
     featured: false,
     new: true
@@ -299,6 +319,7 @@ export const allProducts: Products[] = [
   {
     _id: '7',
     image: '/images/products/shoes/nike-free-tr-v8.webp',
+    stock: 10,
     rating: 5,
     title: 'Free TR V8',
     brand: 'nike',
@@ -308,7 +329,6 @@ export const allProducts: Products[] = [
     price: 109.99,
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. At praesentium, aut eaque quos repellendus error exercitationem corporis sequi consectetur impedit doloribus a quisquam cumque repudiandae, repellat, pariatur recusandae ipsa? Architecto.',
-    stock: '',
     numReviews: 2,
     featured: false,
     new: true
@@ -316,6 +336,7 @@ export const allProducts: Products[] = [
   {
     _id: '8',
     image: '/images/products/shoes/rebook-classic_nylon_shoes_black.webp',
+    stock: 10,
     rating: 4,
     title: 'Classic Slide',
     brand: 'rebook',
@@ -325,7 +346,6 @@ export const allProducts: Products[] = [
     price: 200.99,
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. At praesentium, aut eaque quos repellendus error exercitationem corporis sequi consectetur impedit doloribus a quisquam cumque repudiandae, repellat, pariatur recusandae ipsa? Architecto.',
-    stock: '',
     numReviews: 2,
     featured: false,
     new: true
@@ -333,6 +353,7 @@ export const allProducts: Products[] = [
   {
     _id: '9',
     image: '/images/products/shoes/adidas-originals-swift-run-cargo-mens.webp',
+    stock: 10,
     title: 'Adidas Originals - Swift Run',
     brand: 'adidas originals',
     color: 'black',
@@ -342,7 +363,6 @@ export const allProducts: Products[] = [
     price: 140.99,
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. At praesentium, aut eaque quos repellendus error exercitationem corporis sequi consectetur impedit doloribus a quisquam cumque repudiandae, repellat, pariatur recusandae ipsa? Architecto.',
-    stock: '',
     numReviews: 2,
     featured: false,
     new: false,
@@ -388,6 +408,8 @@ export const allProducts: Products[] = [
     _id: '10',
     image:
       "/images/products/shoes/floatride-fuel-run-women's-running-shoes.webp",
+    stock: 10,
+
     rating: 5,
     title: 'Floatride Fuel Run - Blue - womens',
     brand: 'reebok',
@@ -397,7 +419,6 @@ export const allProducts: Products[] = [
     price: 99.99,
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. At praesentium, aut eaque quos repellendus error exercitationem corporis sequi consectetur impedit doloribus a quisquam cumque repudiandae, repellat, pariatur recusandae ipsa? Architecto.',
-    stock: '',
     numReviews: 2,
     featured: false,
     new: false,
