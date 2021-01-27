@@ -8,6 +8,7 @@ import {
 import styled from '@emotion/styled';
 import * as React from 'react';
 import { useState } from 'react';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { ReactComponent as SearchIcon } from '../../assets/search.svg';
 import { allProducts } from '../../data/products';
 import Results from './navSearchResults';
@@ -23,14 +24,14 @@ const StyledForm = styled.form<{ order?: number }>`
 `;
 
 //TODO Separate search concern from UI
-interface Props {
+interface Props extends RouteComponentProps {
   order: ChakraOrder;
 }
-const Search = ({ order }: Props) => {
+const Search: React.FC<Props> = ({ order, history }) => {
   const [query, setQuery] = useState('');
-  const [error, setError] = useState({ message: '' });
-
+  const [searchFocus, setSearchFocus] = useState(false);
   const [toggled, setToggled] = useState(false);
+  const [error, setError] = useState({ message: '' });
 
   const filteredProducts = allProducts.filter(product =>
     product.title.toLowerCase().includes(query.toLowerCase())
@@ -42,6 +43,10 @@ const Search = ({ order }: Props) => {
     e.preventDefault();
     setToggled(!toggled);
   };
+
+  history.listen((location, action) => {
+    setQuery('');
+  });
 
   // TODO Change form to Box
   return (
@@ -56,6 +61,8 @@ const Search = ({ order }: Props) => {
       <form>
         <InputGroup>
           <Input
+            onFocus={() => setSearchFocus(true)}
+            onBlur={() => setSearchFocus(false)}
             width={{ base: toggled ? 10 : 0, xl: 'initial' }}
             paddingBottom={2}
             variant="unstyled"
@@ -99,7 +106,7 @@ const Search = ({ order }: Props) => {
             }
           />
         </InputGroup>
-        {query && filteredProducts.length > 0 && (
+        {searchFocus && query && filteredProducts.length > 0 && (
           <Results products={filteredProducts} />
         )}
       </form>
@@ -107,4 +114,4 @@ const Search = ({ order }: Props) => {
   );
 };
 
-export default Search;
+export default withRouter(Search);
