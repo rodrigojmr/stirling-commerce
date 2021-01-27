@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { ReactComponent as loginIcon } from 'assets/log-in.svg';
 import { ReactComponent as LogoS } from 'assets/logo-s.svg';
 import { ReactComponent as Logo } from 'assets/logo.svg';
-import Cart from 'components/buttons/cartButton';
+import Cart from 'components/cart/cart';
 import Search from 'components/search/navSearch';
 import User from 'components/userIcon';
 import React from 'react';
@@ -110,7 +110,10 @@ const Navbar = () => {
           <Cart order={{ base: 5, md: 'initial' }} />
         </>
       ) : (
-        <Link order={{ base: 5, md: 'initial' }} as={RouterLink} to="/sign-in">
+        <Link
+          order={{ base: 5, md: 'initial' }}
+          // as={RouterLink} to="/sign-in"
+        >
           <Button
             onClick={() =>
               dispatch(

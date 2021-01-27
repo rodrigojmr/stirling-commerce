@@ -3,20 +3,21 @@ import {
   Button,
   Flex,
   Heading,
+  Image,
   Select,
-  Text,
-  Image
+  Text
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { drawerContext } from 'hooks/useDrawer';
 import { useContext, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps, useParams } from 'react-router-dom';
 import { addProduct } from 'store/slices/cartSlice';
 import { StyledInput } from '../components/styled';
 import { stars } from '../components/styled/Stars';
 import { allProducts } from '../data/products';
 import theme from '../theme/theme';
+import { RootState } from 'store/rootReducer';
 
 const ImgWrapper = styled.div`
   grid-column: center-start / col-end 3;
@@ -39,6 +40,7 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
   const [product, setProduct] = useState<Product | undefined>(undefined);
   const { id } = useParams<{ id: string }>();
   const [amount, setAmount] = useState('1');
+  const cart = useSelector((state: RootState) => state.cart);
 
   const dispatch = useDispatch();
   const { isOpen, setDrawer } = useContext(drawerContext);
@@ -51,7 +53,6 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
 
   const updateCart = () => {
     if (product) {
-      setDrawer(true);
       setTimeout(() => {
         dispatch(addProduct({ amount: parseInt(amount), product }));
       }, 600);
@@ -62,6 +63,19 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
     product && product.numReviews > 1
       ? `${product?.numReviews} customer reviews`
       : '1 customer review';
+
+  const inCartIsMoreThanStock = (): boolean => {
+    const cartItem = cart.find(item => item.product._id === product?._id);
+    if (cartItem && product) {
+      return cartItem.amount >= product?.stock;
+    } else return false;
+  };
+
+  const stockText =
+    product && product?.stock > 0
+      ? `In Stock:
+  ${product.stock}`
+      : 'Not in stock.';
 
   return (
     <>
@@ -106,8 +120,11 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
             <Text color="primary" fontSize="2xl" fontWeight={600} mb={4}>
               €{product.price}
             </Text>
-            <Text fontSize="lg" mb={4}>
+            <Text fontSize="lg" mb={2}>
               {product.description}
+            </Text>
+            <Text color="grey" mb={2}>
+              {stockText}
             </Text>
             {/* TODO Split to separate component */}
             <form>
@@ -115,7 +132,7 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
                 <label htmlFor="amount-input"></label>
                 <Select
                   as="select"
-                  w="4rem"
+                  w="5rem"
                   border="1px solid black"
                   borderRadius="5px"
                   mr={4}
@@ -134,6 +151,8 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
                   ))}
                 </Select>
                 <Button
+                  _hover={{ _disabled: { bg: 'primary.400' } }}
+                  disabled={inCartIsMoreThanStock()}
                   onClick={updateCart}
                   fontSize="1.3rem"
                   size="lg"
