@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as UserIcon } from '../assets/user.svg';
-import { requestLogout } from '../features/auth/userSlice';
+import { requestLogout } from '../store/slices/userSlice';
 import { RootState } from '../store/rootReducer';
 
 const StyledBox = styled(Box)`
