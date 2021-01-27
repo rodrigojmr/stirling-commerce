@@ -12,12 +12,12 @@ import { drawerContext } from 'hooks/useDrawer';
 import { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps, useParams } from 'react-router-dom';
+import { RootState } from 'store/rootReducer';
 import { addProduct } from 'store/slices/cartSlice';
 import { StyledInput } from '../components/styled';
 import { stars } from '../components/styled/Stars';
 import { allProducts } from '../data/products';
 import theme from '../theme/theme';
-import { RootState } from 'store/rootReducer';
 
 const ImgWrapper = styled.div`
   grid-column: center-start / col-end 3;
