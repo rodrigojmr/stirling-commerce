@@ -66,13 +66,13 @@ const Menu = ({ order, links }: Props) => {
         top={{ base: '97%', md: 'initial' }}
         left={{ base: show ? '0' : '-50%', md: 'initial' }}
         zIndex={3}
-        bg="dark-grey"
+        bg={show ? 'dark-grey' : ''}
         height={{ base: '100vh', md: 'auto' }}
         px={{ base: '5', md: '3' }}
         py={{ base: '8', md: '2' }}
         animation="all .5s ease-in-out"
         order={{ base: 1, md: 'initial' }}
-        transition=".5s all ease-in-out"
+        transition=".4s all ease-in-out"
       >
         <UnorderedList
           ml="0"

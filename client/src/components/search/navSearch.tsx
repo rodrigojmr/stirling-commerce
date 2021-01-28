@@ -7,7 +7,7 @@ import {
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { ReactComponent as SearchIcon } from '../../assets/search.svg';
 import { allProducts } from '../../data/products';
@@ -37,11 +37,20 @@ const Search: React.FC<Props> = ({ order, history }) => {
     product.title.toLowerCase().includes(query.toLowerCase())
   );
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const handleButtonClick = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-    setToggled(!toggled);
+    if (toggled) {
+      setQuery('');
+      setToggled(false);
+      if (inputRef.current) inputRef.current.blur();
+    } else {
+      setToggled(true);
+      if (inputRef.current) inputRef.current.focus();
+    }
   };
 
   history.listen((location, action) => {
@@ -61,17 +70,17 @@ const Search: React.FC<Props> = ({ order, history }) => {
       <form>
         <InputGroup>
           <Input
+            ref={inputRef}
             onFocus={() => setSearchFocus(true)}
             onBlur={() => setSearchFocus(false)}
-            width={{ base: toggled ? 10 : 0, xl: 'initial' }}
+            maxWidth={{ base: toggled ? 64 : 0, xl: 'initial' }}
             paddingBottom={2}
             variant="unstyled"
             lineHeight="3"
             borderBottomRadius="0"
             fontSize="xl"
             borderBottom={{
-              base: toggled ? '1px solid grey' : 'none',
-              md: '1px solid grey'
+              base: toggled ? '1px solid grey' : 'none'
             }}
             focusBorderColor="primary.500"
             errorBorderColor="red"
@@ -80,6 +89,7 @@ const Search: React.FC<Props> = ({ order, history }) => {
             placeholder="search"
             color="white"
             backgroundColor="transparent"
+            transition="all .3s ease-out"
             _focus={{
               borderColor: 'primary.500'
             }}
