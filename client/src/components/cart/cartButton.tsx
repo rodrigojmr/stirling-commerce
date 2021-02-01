@@ -15,42 +15,37 @@ const ItemCounter = ({ num }: { num: string }) => (
     {num.toString()}
   </Center>
 );
-interface CartButtonProps {
-  productNum: number;
-  order: ChakraOrder;
-  onClick: () => void;
-}
 
-const CartButton: React.FC<CartButtonProps> = ({
-  order,
-  productNum,
-  onClick
-}) => {
-  return (
-    <Button
-      onClick={onClick}
-      order={order}
-      flexShrink={0}
-      height="2.5rem"
-      borderRadius="3rem"
-      pr={4}
-      border="none"
-      px={6}
-      fontWeight="400"
-      fontFamily="Bebas Neue"
-      iconSpacing={4}
-      fontSize="xl"
-      color="white"
-      bg="primary.500"
-      _hover={{ bg: 'primary.300' }}
-      leftIcon={
-        <Icon as={CartLogo} viewBox="1rem" fill="white" stroke="white" />
-      }
-      rightIcon={<ItemCounter num={productNum.toString()} />}
-    >
-      CART
-    </Button>
-  );
-};
+const CartButton = React.forwardRef<HTMLButtonElement | null, CartProps>(
+  (props, ref) => {
+    const { productNum, onClick } = props;
+    return (
+      <Button
+        ref={ref}
+        onClick={onClick}
+        flexShrink={0}
+        height="2.5rem"
+        borderRadius="3rem"
+        pr={4}
+        border="none"
+        px={6}
+        fontWeight="400"
+        fontFamily="Bebas Neue"
+        iconSpacing={4}
+        fontSize="xl"
+        color="white"
+        bg="primary.500"
+        position="relative"
+        _hover={{ bg: 'primary.300' }}
+        leftIcon={
+          <Icon as={CartLogo} viewBox="1rem" fill="white" stroke="white" />
+        }
+        rightIcon={<ItemCounter num={productNum.toString()} />}
+      >
+        CART
+      </Button>
+    );
+  }
+);
 
 export default CartButton;

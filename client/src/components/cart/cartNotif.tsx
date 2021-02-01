@@ -2,9 +2,7 @@ import {
   Popover,
   PopoverArrow,
   PopoverBody,
-  PopoverCloseButton,
   PopoverContent,
-  PopoverHeader,
   PopoverTrigger
 } from '@chakra-ui/react';
 import React from 'react';
@@ -16,26 +14,37 @@ interface Props {
 }
 
 const CartNotif: React.FC<Props> = ({ isOpen, setIsOpen, children }) => {
+  console.log('children: ', { children });
+  const childrenCounnt = React.Children.count(children);
+  console.log('childrenCounnt: ', childrenCounnt);
   return (
-    <>
-      <Popover
-        returnFocusOnClose={false}
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        placement="right"
-        closeOnBlur={false}
-      >
-        <PopoverTrigger>{children} </PopoverTrigger>
-        <PopoverContent>
-          <PopoverHeader fontWeight="semibold">Confirmation</PopoverHeader>
-          <PopoverArrow />
-          <PopoverCloseButton />
-          <PopoverBody>
-            Are you sure you want to continue with your action?
-          </PopoverBody>
-        </PopoverContent>
-      </Popover>
-    </>
+    <Popover
+      returnFocusOnClose={false}
+      isOpen={isOpen}
+      onClose={() => setIsOpen(false)}
+      placement="bottom"
+      closeOnBlur={true}
+      modifiers={[
+        {
+          name: 'offset',
+          enabled: true,
+          phase: 'main',
+          fn: () => {},
+          options: {
+            offset: [0, 200]
+          }
+        }
+      ]}
+    >
+      <PopoverTrigger>
+        <>{children}</>
+      </PopoverTrigger>
+      <PopoverContent minWidth={30}>
+        {/* <PopoverHeader fontWeight="semibold">Confirmation</PopoverHeader> */}
+        <PopoverArrow />
+        <PopoverBody>Added!</PopoverBody>
+      </PopoverContent>
+    </Popover>
   );
 };
 

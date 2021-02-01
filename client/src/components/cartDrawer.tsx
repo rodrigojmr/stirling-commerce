@@ -1,36 +1,30 @@
-import React, { useRef, useContext, ButtonHTMLAttributes } from 'react';
-import { RootState } from 'store/rootReducer';
-import { useDispatch, useSelector } from 'react-redux';
+import { SmallCloseIcon } from '@chakra-ui/icons';
 import {
+  Box,
+  Button,
   Drawer,
   DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-  Button,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  PopoverFooter,
-  PopoverArrow,
-  PopoverCloseButton,
-  useDisclosure,
-  Box,
-  Heading,
-  Text,
-  Grid,
-  Image,
   Flex,
-  Center,
+  Heading,
   IconButton,
-  ButtonGroup
+  Image,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverTrigger,
+  Text
 } from '@chakra-ui/react';
 import { drawerContext } from 'hooks/useDrawer';
-import { SmallCloseIcon } from '@chakra-ui/icons';
+import React, { useContext, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store/rootReducer';
 import { removeProduct } from 'store/slices/cartSlice';
 
 interface Props {

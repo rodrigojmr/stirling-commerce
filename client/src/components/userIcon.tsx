@@ -1,10 +1,11 @@
-import { Box, Center, Icon } from '@chakra-ui/react';
+import { Box, Button, Center, Icon } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as UserIcon } from '../assets/user.svg';
 import { requestLogout } from '../store/slices/userSlice';
 import { RootState } from '../store/rootReducer';
+import { Link } from 'react-router-dom';
 
 const StyledBox = styled(Box)`
   &:hover {
@@ -25,6 +26,8 @@ const User = ({ order }: Props) => {
 
   return (
     <Center
+      as={Link}
+      to="/account"
       flexShrink={0}
       order={order}
       h={10}
