@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@chakra-ui/icons": "^1.0.3",
-    "@chakra-ui/react": "^1.1.5",
+    "@chakra-ui/icons": "^1.0.4",
+    "@chakra-ui/react": "^1.2.1",
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
     "@reduxjs/toolkit": "^1.5.0",
@@ -51,7 +51,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },"jest": {
+  },
+  "jest": {
     "transform": {
       "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/ts-jest"
     },
@@ -61,8 +62,6 @@
     "moduleNameMapper": {
       "src/(.*)$": "<rootDir>/src/$1",
       "test-utils": "<rootDir>/src/utils/test-utils"
-
-
     }
   },
   "devDependencies": {
@@ -76,9 +75,9 @@
     "@types/react-transition-group": "^4.4.0",
     "@types/rebass__forms": "^4.0.4",
     "@types/webpack-env": "^1.16.0",
-    "@typescript-eslint/eslint-plugin": "^4.14.0",
-    "@typescript-eslint/parser": "^4.14.0",
-    "eslint": "^7.18.0",
+    "@typescript-eslint/eslint-plugin": "^4.14.1",
+    "@typescript-eslint/parser": "^4.14.1",
+    "eslint": "^7.19.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-typescript": "^12.0.0",
     "eslint-config-prettier": "^7.2.0",
