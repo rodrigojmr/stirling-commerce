@@ -22,7 +22,7 @@
     "prod:serverbuild": "tsc --build tsconfig.prod.json",
     "start": "node -r module-alias/register ./dist -r dotenv/config",
     "clean-dist": "rimraf -rf ./dist",
-    "migrate": "knex --knexfile server/src/knexfile.ts migrate:latest"
+    "migrate": "npx prisma migrate dev --preview-feature "
   },
   "nodemonConfig": {
     "watch": [
@@ -75,9 +75,11 @@
     "build.ts"
   ],
   "dependencies": {
+    "@prisma/client": "^2.15.0",
     "bcrypt": "^5.0.0",
     "cookie-parser": "^1.4.5",
     "custom-env": "^2.0.1",
+    "date-fns": "^2.16.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
