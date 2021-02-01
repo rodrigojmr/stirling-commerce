@@ -114,7 +114,7 @@ const HighlightDot: React.FC<Props> = ({ x, y, text }) => {
                 overflow="hidden"
                 textOverflow="initial"
               >
-                <Text fontWeight={600} fontSize="1.3rem">
+                <Text fontWeight={'600'} fontSize="1.3rem">
                   {text}
                 </Text>
               </Box>

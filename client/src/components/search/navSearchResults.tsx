@@ -1,6 +1,5 @@
 import { Box, Flex, Image, Link } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
-import { css } from '@emotion/react';
 
 const Result = ({ product }: { product: Product }) => (
   <Link as={RouterLink} to={`/product/${product._id}`}>

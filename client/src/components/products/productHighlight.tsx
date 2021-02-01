@@ -49,8 +49,8 @@ const ProductHighlight: React.FC<{ product: ProductsWithHighlightPoints }> = ({
     <ProductContainer>
       <ImageContainer ref={imgContainerRef}>
         <StyledImage ref={imgRef} src={product.image} alt={product.title} />
-        {product.highlightPoints.map(point => (
-          <HighlightDot {...point} />
+        {product.highlightPoints.map((point, i) => (
+          <HighlightDot key={i} {...point} />
         ))}
       </ImageContainer>
       <VStack
@@ -65,7 +65,7 @@ const ProductHighlight: React.FC<{ product: ProductsWithHighlightPoints }> = ({
           {product.title}
         </Heading>
         <Text
-          fontWeight={600}
+          fontWeight={'600'}
           fontSize="4xl"
           fontFamily="Bebas Neue"
         >{`$${product.price}`}</Text>

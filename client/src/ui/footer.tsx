@@ -58,8 +58,8 @@ const Footer = () => {
   return (
     <Container>
       <Wrapper>
-        {footerLinks.map(section => (
-          <Column>{columnContent(section)}</Column>
+        {footerLinks.map((section, i) => (
+          <Column key={i}>{columnContent(section)}</Column>
         ))}
         <Column>
           <Heading as="h3" color="primary.500" fontSize="2xl">

@@ -19,23 +19,6 @@ import { stars } from '../components/styled/Stars';
 import { allProducts } from '../data/products';
 import theme from '../theme/theme';
 
-const ImgWrapper = styled.div`
-  grid-column: center-start / col-end 3;
-  img {
-    object-fit: cover;
-    max-width: 100%;
-    max-height: auto;
-  }
-`;
-
-const NumInput = styled(StyledInput)`
-  width: 6rem;
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 0.75rem 1rem;
-  margin-right: 1.5rem;
-`;
-
 const SingleProduct = ({ match }: RouteComponentProps) => {
   const [product, setProduct] = useState<Product | undefined>(undefined);
   const { id } = useParams<{ id: string }>();
@@ -44,6 +27,7 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
 
   const dispatch = useDispatch();
   const { isOpen, setDrawer } = useContext(drawerContext);
+  const user = useSelector((state: RootState) => state.auth.user);
 
   useEffect(() => {
     setProduct(
@@ -52,10 +36,12 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
   }, [id]);
 
   const updateCart = () => {
-    if (product) {
+    if (product && user) {
+      setDrawer(true);
+      dispatch(addProduct({ amount: parseInt(amount), product }));
       setTimeout(() => {
-        dispatch(addProduct({ amount: parseInt(amount), product }));
-      }, 600);
+        setDrawer(false);
+      }, 1200);
     }
   };
 
@@ -117,7 +103,7 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
                 ({numReviews})
               </Text>
             </Flex>
-            <Text color="primary" fontSize="2xl" fontWeight={600} mb={4}>
+            <Text color="primary" fontSize="2xl" fontWeight={'600'} mb={4}>
               €{product.price}
             </Text>
             <Text fontSize="lg" mb={2}>

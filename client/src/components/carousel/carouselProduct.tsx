@@ -17,13 +17,13 @@ const ProductSlide = ({ product }: Props) => {
           <Image objectFit="cover" src={product.image} alt={product.title} />
         </Flex>
         <Flex>{stars(product.rating)}</Flex>
-        <Text fontWeight={700} fontSize="xl" color="black">
+        <Text fontWeight={'700'} fontSize="xl" color="black">
           {capitalizeEveryWord(
             `${product.brand} - ${product.title} - ${product.color} - ${product.gender}'s`
           )}
         </Text>
         <Text
-          fontWeight={600}
+          fontWeight={'600'}
           fontSize="2xl"
           fontFamily="Bebas Neue"
         >{`$${product.price}`}</Text>

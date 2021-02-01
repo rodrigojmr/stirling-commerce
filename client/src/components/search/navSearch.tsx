@@ -44,6 +44,7 @@ const Search: React.FC<Props> = ({ order, history }) => {
   ) => {
     e.preventDefault();
     if (toggled) {
+      console.log('click');
       setQuery('');
       setToggled(false);
       if (inputRef.current) inputRef.current.blur();
@@ -72,7 +73,12 @@ const Search: React.FC<Props> = ({ order, history }) => {
           <Input
             ref={inputRef}
             onFocus={() => setSearchFocus(true)}
-            onBlur={() => setSearchFocus(false)}
+            onBlur={e => {
+              // If not clicking on a link like a search result
+              if (e.relatedTarget! instanceof HTMLLinkElement) {
+                setSearchFocus(false);
+              }
+            }}
             maxWidth={{ base: toggled ? 64 : 0, xl: 'initial' }}
             paddingBottom={2}
             variant="unstyled"
@@ -80,7 +86,8 @@ const Search: React.FC<Props> = ({ order, history }) => {
             borderBottomRadius="0"
             fontSize="xl"
             borderBottom={{
-              base: toggled ? '1px solid grey' : 'none'
+              base: toggled ? '1px solid grey' : 'none',
+              xl: '1px solid grey'
             }}
             focusBorderColor="primary.500"
             errorBorderColor="red"
