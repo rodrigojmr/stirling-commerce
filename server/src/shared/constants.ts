@@ -24,9 +24,16 @@ export const cookieProps = Object.freeze({
 });
 
 // IRequest object for express routes
+export interface SignupRequest extends Request {
+  body: {
+    name: string;
+    email: string;
+    password: string;
+  };
+}
 export interface IRequest extends Request {
   body: {
-    user: IUser;
+    name: string;
     email: string;
     password: string;
   };
