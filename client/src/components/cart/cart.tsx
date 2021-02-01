@@ -34,18 +34,21 @@ const Cart = ({ order }: Props) => {
   }, [cart]);
 
   // TODO Link to Cart or popup
-  const [notifTop, setNotifTop] = useState<number | undefined>(0);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  useLayoutEffect(() => {
-    function updatePosition() {
-      setNotifTop(buttonRef?.current?.getBoundingClientRect().bottom);
-    }
+  // Was going to be used alongside CartNotif to programatically update the position of the notification
 
-    window.addEventListener('resize', updatePosition);
-    updatePosition();
-    return () => window.removeEventListener('resize', updatePosition);
-  }, []);
+  // const [notifTop, setNotifTop] = useState<number | undefined>(0);
+  // useLayoutEffect(() => {
+  //   function updatePosition() {
+  //     setNotifTop(buttonRef?.current?.getBoundingClientRect().bottom);
+  //   }
+
+  //   window.addEventListener('resize', updatePosition);
+  //   updatePosition();
+  //   return () => window.removeEventListener('resize', updatePosition);
+  // }, []);
+
   const [isLargerThan1280px] = useMediaQuery('(min-width:80rem)');
 
   const SelectedButton = isLargerThan1280px ? (
