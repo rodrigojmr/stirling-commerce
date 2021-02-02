@@ -8,10 +8,11 @@ import {
   Input,
   Text
 } from '@chakra-ui/react';
+import { signUp } from 'features/auth';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link as RouterLink, Redirect, useLocation } from 'react-router-dom';
-
+import { SignUpFormValues } from '@types';
 interface stateType {
   from: { pathname: string };
 }
@@ -19,7 +20,7 @@ interface stateType {
 const RegisterForm = () => {
   const [redirectToReferrer, setredirectToReferrer] = useState(false);
   const { state } = useLocation<stateType>();
-  const { handleSubmit, errors, register, formState } = useForm();
+  const { handleSubmit, errors, register, formState, getValues } = useForm();
   const [password, setPassword] = useState('');
 
   if (redirectToReferrer) {
@@ -56,19 +57,10 @@ const RegisterForm = () => {
     }
   };
 
-  interface FormValues {
-    email: string;
-    password: string;
+  function onSubmit(values: SignUpFormValues) {
+    signUp(values);
   }
 
-  function onSubmit(values: FormValues) {
-    return new Promise<void>(resolve => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        resolve();
-      }, 3000);
-    });
-  }
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormControl id="name" isInvalid={errors.email}>
@@ -119,6 +111,26 @@ const RegisterForm = () => {
         {password && (
           <Box my=".5rem" ml=".5rem">
             <Text>{passStrenght(password)}</Text>
+          </Box>
+        )}
+      </FormControl>
+      <FormControl id="password" isInvalid={errors.confirm}>
+        <FormLabel htmlFor="password"></FormLabel>
+        <Input
+          fontFamily="body"
+          required
+          minLength={7}
+          type="password"
+          name="confirm"
+          placeholder="Confirm Password."
+          ref={register({
+            validate: value =>
+              value === getValues('password') ? true : "Password doesn't match."
+          })}
+        />
+        {errors.confirm && (
+          <Box my=".5rem" ml=".5rem">
+            <Text>{errors.confirm.message}</Text>
           </Box>
         )}
       </FormControl>

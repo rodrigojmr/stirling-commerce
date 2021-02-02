@@ -70,8 +70,6 @@ const Navbar = () => {
   const [isLargerThan768px] = useMediaQuery('(min-width: 48em)');
   const [isLargerThan991px] = useMediaQuery('(min-width: 62em)');
 
-  const searchBtnOrder: number = user ? 2 : 4;
-
   return (
     <Flex
       pos="relative"
@@ -110,16 +108,13 @@ const Navbar = () => {
           <Cart order={{ base: 5, md: 'initial' }} />
         </>
       ) : (
-        <Link
-          order={{ base: 5, md: 'initial' }}
-          // as={RouterLink} to="/sign-in"
-        >
+        <Link order={{ base: 5, md: 'initial' }} as={RouterLink} to="/sign-in">
           <Button
-            onClick={() =>
-              dispatch(
-                requestLogin({ username: 'asddasdas', password: 'dashdkass' })
-              )
-            }
+            // onClick={() =>
+            //   dispatch(
+            //     requestLogin({ username: 'asddasdas', password: 'dashdkass' })
+            //   )
+            // }
             bg="primary.500"
             color="white"
             _hover={{ bg: 'primary.400' }}

@@ -18,7 +18,7 @@ const SignUpPage = () => {
   return (
     <Grid
       templateColumns="repeat(2, 1fr)"
-      templateRows="repeat(1, minmax(30rem, min-content))"
+      templateRows="repeat(1, minmax(40rem, min-content))"
       alignItems="center"
     >
       <Box padding="0 10vw" gridColumn="1 / 2" gridRow="1 / span 1">
