@@ -4,7 +4,6 @@ import path from 'path';
 import helmet from 'helmet';
 import StatusCodes from 'http-status-codes';
 import express, { NextFunction, Request, Response } from 'express';
-import { Model, ForeignKeyViolationError, ValidationError } from 'objection';
 
 import BaseRouter from './routes';
 import logger from '@shared/logger';
@@ -12,19 +11,9 @@ import { cookieProps } from '@shared/constants';
 
 import 'express-async-errors';
 
-import Knex from 'knex';
-import knexConfig from './knexfile';
-
 /************************************************************************************
  *                              Set Database settings
  ***********************************************************************************/
-
-const knex = Knex(
-  process.env.NODE_ENV === 'development'
-    ? knexConfig.development
-    : knexConfig.production
-);
-Model.knex(knex);
 
 const app = express();
 const { BAD_REQUEST } = StatusCodes;

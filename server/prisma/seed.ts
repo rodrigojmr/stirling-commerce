@@ -1,9 +1,8 @@
-import { PrismaClient } from '@prisma/client';
 import { add } from 'date-fns';
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 import bcrypt from 'bcrypt';
-import { readFileSync } from 'fs';
 import products from './products';
 
 async function main() {
@@ -51,6 +50,7 @@ main()
     console.error(e);
     process.exit(1);
   })
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   .finally(async () => {
     await prisma.$disconnect();
   });
