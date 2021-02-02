@@ -15,14 +15,15 @@ import 'express-async-errors';
 import Knex from 'knex';
 import knexConfig from './knexfile';
 
-import dotenv from 'dotenv';
-dotenv.config();
-
 /************************************************************************************
  *                              Set Database settings
  ***********************************************************************************/
 
-const knex = Knex(knexConfig.development);
+const knex = Knex(
+  process.env.NODE_ENV === 'development'
+    ? knexConfig.development
+    : knexConfig.production
+);
 Model.knex(knex);
 
 const app = express();

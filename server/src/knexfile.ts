@@ -1,32 +1,31 @@
+import dotenv from 'dotenv';
+dotenv.config({ path: '../../.env' });
+
+import pg from 'pg';
+pg.defaults.ssl = true;
+
 export default {
   development: {
     client: 'pg',
     useNullAsDefault: true,
-    connection: {
-      host: process.env.DB_HOST || '127.0.0.1',
-      database: 'test',
-      user: 'postgres',
-      password: process.env.DB_PASSWORD
-    },
-    // connection: `postgresql://localhost/test?user=postgres&password=${process.env.DB_PASSWORD}`,
+    connection: process.env.DATABASE_URL,
     migrations: {
-      directory: './src/db/migrations',
+      directory: __dirname + '/db/migrations',
       tableName: 'knex_migrations',
       extension: 'ts'
     },
-    pool: {
-      min: 2,
-      max: 10
+    seeds: {
+      directory: __dirname + '/db/seeds/development'
     }
   },
   production: {
     client: 'pg',
     connection: process.env.DATABASE_URL,
     migrations: {
-      directory: './db/migrations'
+      directory: __dirname + '/db/migrations'
     },
     seeds: {
-      directory: './db/seeds/production'
+      directory: __dirname + '/db/seeds/production'
     }
   }
 };
