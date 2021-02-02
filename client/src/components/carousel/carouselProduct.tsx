@@ -1,9 +1,8 @@
+import { Flex, Image, Text, VStack } from '@chakra-ui/react';
 import React from 'react';
-import styled from '@emotion/styled';
-import { Box, Image, Text, Flex, VStack } from '@chakra-ui/react';
-import { stars } from '../styled/Stars';
 import { Link } from 'react-router-dom';
 import { capitalizeEveryWord } from '../../utils';
+import { stars } from '../styled/Stars';
 
 interface Props {
   product: Product;
