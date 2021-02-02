@@ -4,6 +4,7 @@ import { add } from 'date-fns';
 const prisma = new PrismaClient();
 import bcrypt from 'bcrypt';
 import { readFileSync } from 'fs';
+import products from './products';
 
 async function main() {
   await prisma.user.deleteMany({}); // Erase users table, not done in production
@@ -29,12 +30,19 @@ async function main() {
 }
 
 async function seedProducts() {
-  const products = JSON.parse(
-    readFileSync(`${__dirname}/products.json`, 'utf8')
-  );
-  for (let product of products) {
-    const { type, ...data } = product;
-    await prisma.product.create({ data });
+  for (const product of products) {
+    const { categories, ...data } = product;
+    await prisma.product.create({
+      data: {
+        ...data,
+        categories: {
+          connectOrCreate: categories.map(category => ({
+            where: { name: category },
+            create: { name: category }
+          }))
+        }
+      }
+    });
   }
 }
 
