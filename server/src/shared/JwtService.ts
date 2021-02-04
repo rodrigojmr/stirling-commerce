@@ -2,11 +2,12 @@
 
 import randomString from 'randomstring';
 import jsonwebtoken, { VerifyErrors } from 'jsonwebtoken';
-import { cookieProps } from '@shared/constants';
+import { cookieProps } from '@servershared/constants';
 
 interface IClientData {
+  email: string;
   id: number;
-  role: number;
+  role?: number;
 }
 
 interface IOptions {

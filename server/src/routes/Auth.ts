@@ -1,16 +1,16 @@
-import bcrypt from 'bcrypt';
+import { cookieProps } from '@servershared/constants';
+// import UserDao from '@daos/User/UserDao.mock';
+import { JwtService } from '@servershared/JwtService';
 import { Request, Response, Router } from 'express';
 import StatusCodes from 'http-status-codes';
+import { signUpUser } from './../controllers/userController';
 
-// import UserDao from '@daos/User/UserDao.mock';
-import { JwtService } from '@shared/JwtService';
-import {
-  paramMissingError,
-  loginFailedErr,
-  cookieProps,
-  IRequest
-} from '@shared/constants';
-
+// import {
+//   paramMissingError,
+//   loginFailedErr,
+//   cookieProps,
+//   IRequest
+// } from '@shared/constants';
 const router = Router();
 // const userDao = new UserDao();
 const jwtService = new JwtService();

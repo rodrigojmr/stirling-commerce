@@ -4,9 +4,9 @@ import {
   paramMissingError,
   pwdSaltRounds,
   SignupRequest
-} from '@shared/constants';
+} from '@servershared/constants';
 // import UserDao from '@daos/User/UserDao.mock';
-import { JwtService } from '@shared/JwtService';
+import { JwtService } from '@servershared/JwtService';
 import bcrypt from 'bcrypt';
 import { Response, Router } from 'express';
 import asyncHandler from 'express-async-handler';

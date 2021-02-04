@@ -48,10 +48,10 @@
       "@frontend/*": ["client/*"],
       "@daos/*": ["server/src/daos/*"],
       "@models/*": ["server/src/models/*"],
-      "@shared/*": ["server/src/shared/*"],
+      "@servershared/*": ["server/src/shared/*"],
       "@server": ["server/src/Server"],
       "@db/*": ["server/src/db/*"],
-      "@types": ["shared/types.ts"]
+      "@shared/*": ["shared/*"]
     },
     // "paths": {},                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
     "rootDirs": [] /* List of root folders whose combined content represents the structure of the project at runtime. */,

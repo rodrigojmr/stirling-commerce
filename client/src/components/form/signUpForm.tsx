@@ -12,7 +12,7 @@ import { signUp } from 'features/auth';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link as RouterLink, Redirect, useLocation } from 'react-router-dom';
-import { SignUpFormValues } from '@types';
+import { SignUpFormValues } from '@shared/types';
 interface stateType {
   from: { pathname: string };
 }

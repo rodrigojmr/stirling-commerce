@@ -1,8 +1,8 @@
 import StatusCodes from 'http-status-codes';
 import { Request, Response, NextFunction } from 'express';
 
-import { cookieProps } from '@shared/constants';
-import { JwtService } from '@shared/JwtService';
+import { cookieProps } from '@servershared/constants';
+import { JwtService } from '@servershared/JwtService';
 
 const jwtService = new JwtService();
 const { UNAUTHORIZED } = StatusCodes;

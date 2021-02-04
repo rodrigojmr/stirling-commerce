@@ -26,11 +26,11 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "prod:build": "npm i && react-scripts build && mv build ../dist/public",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject",
+    "prod:build": "npm i && react-app-rewired build && mv build ../dist/public",
     "format": "prettier --write src/**/*.ts{,x}",
     "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
     "start:all": "cd .. && npm run develop"
@@ -90,6 +90,8 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "file-loader": "^6.2.0",
     "prettier": "^2.2.1",
+    "react-app-rewire-alias": "^0.2.0",
+    "react-app-rewired": "^2.1.8",
     "typescript": "^4.1.3"
   }
 }
