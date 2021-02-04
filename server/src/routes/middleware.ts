@@ -1,13 +1,14 @@
-import StatusCodes from 'http-status-codes';
 import { Request, Response, NextFunction } from 'express';
+import asyncHandler from 'express-async-handler';
+import { JWTClass } from '@servershared/jwtService';
+import StatusCodes from 'http-status-codes';
+import { ClientRequest, cookieProps } from '@servershared/constants';
+import { resolveSoa } from 'dns';
 
-import { cookieProps } from '@servershared/constants';
-import { JwtService } from '@servershared/JwtService';
-
-const jwtService = new JwtService();
+const JWTService = new JWTClass();
 const { UNAUTHORIZED } = StatusCodes;
 
-// Middleware to verify if user is an admin
+// // Middleware to verify if user is an admin
 // export const adminMW = async (
 //   req: Request,
 //   res: Response,
@@ -20,7 +21,7 @@ const { UNAUTHORIZED } = StatusCodes;
 //     throw Error('JWT not present in signed cookie.');
 //   }
 //   // Make sure user role is an admin
-//   const clientData = await jwtService.decodeJwt(jwt);
+//   const clientData = await JWTService.decodeJwt(jwt);
 //   if (clientData.role === UserRoles.Admin) {
 //     res.locals.userId = clientData.id;
 //     next();
@@ -29,8 +30,23 @@ const { UNAUTHORIZED } = StatusCodes;
 //   }
 // } catch (err) {
 //   next(err);
-//   //   return res.status(UNAUTHORIZED).json({
-//   //   error: err.message
-//   // });
+//     return res.status(UNAUTHORIZED).json({
+//     error: err.message
+//   });
 // }
 // };
+
+export const authenticateToken = asyncHandler(
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+  async (req: ClientRequest, res: Response, next: NextFunction) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+    if (token == null)
+      return res.status(UNAUTHORIZED).json({ error: 'Unauthorized.' });
+
+    // Should not need to handle rejection as asyncHandler does that for us
+    const clientData = await JWTService.decodeJwt(token);
+    req.user = clientData;
+    next();
+  }
+);

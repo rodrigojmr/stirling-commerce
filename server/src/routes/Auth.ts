@@ -1,6 +1,6 @@
 import { cookieProps } from '@servershared/constants';
 // import UserDao from '@daos/User/UserDao.mock';
-import { JwtService } from '@servershared/JwtService';
+import { JWTClass } from '@servershared/jwtService';
 import { Request, Response, Router } from 'express';
 import StatusCodes from 'http-status-codes';
 import { signUpUser } from './../controllers/userController';
@@ -13,7 +13,6 @@ import { signUpUser } from './../controllers/userController';
 // } from '@shared/constants';
 const router = Router();
 // const userDao = new UserDao();
-const jwtService = new JwtService();
 const { BAD_REQUEST, OK, UNAUTHORIZED } = StatusCodes;
 
 /******************************************************************************
@@ -23,6 +22,7 @@ const { BAD_REQUEST, OK, UNAUTHORIZED } = StatusCodes;
 // router.post('/login', async (req: IRequest, res: Response) => {
 //   // Check email and password present
 //   const { email, password } = req.body;
+
 //   if (!(email && password)) {
 //     return res.status(BAD_REQUEST).json({
 //       error: paramMissingError
@@ -43,7 +43,7 @@ const { BAD_REQUEST, OK, UNAUTHORIZED } = StatusCodes;
 //     });
 //   }
 //   // Setup Admin Cookie
-//   const jwt = await jwtService.getJwt({
+//   const jwt = await JWTService.getJwt({
 //     id: user.id,
 //     role: user.role
 //   });
@@ -52,6 +52,12 @@ const { BAD_REQUEST, OK, UNAUTHORIZED } = StatusCodes;
 //   // Return
 //   return res.status(OK).end();
 // });
+
+/******************************************************************************
+ *                      Signup User - "POST /api/auth/signup"
+ ******************************************************************************/
+
+router.post('/signup', signUpUser);
 
 /******************************************************************************
  *                      Logout - "GET /api/auth/logout"

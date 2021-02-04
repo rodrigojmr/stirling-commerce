@@ -8,6 +8,7 @@ import express, { NextFunction, Request, Response } from 'express';
 import BaseRouter from './routes';
 import logger from '@servershared/logger';
 import { cookieProps } from '@servershared/constants';
+import cors from 'cors';
 
 import 'express-async-errors';
 
@@ -22,6 +23,7 @@ const { BAD_REQUEST } = StatusCodes;
  *                              Set basic express settings
  ***********************************************************************************/
 
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, './public/build')));
@@ -44,9 +46,8 @@ app.get('/*', (req: Request, res: Response) => {
 });
 
 // Print API errors
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line @shared/typescript-eslint/no-unused-vars
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  logger.err(err, true);
   return res.status(BAD_REQUEST).json({
     error: err.message
   });

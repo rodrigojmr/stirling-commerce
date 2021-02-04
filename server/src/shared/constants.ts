@@ -1,5 +1,4 @@
 import { Request } from 'express';
-import { IUser } from '@models/User';
 
 // Strings
 export const paramMissingError =
@@ -11,7 +10,7 @@ export const pwdSaltRounds = 12;
 
 // Cookie Properties
 export const cookieProps = Object.freeze({
-  key: 'ExpressGeneratorTs',
+  key: 'token',
   secret: process.env.COOKIE_SECRET,
   options: {
     httpOnly: true,
@@ -31,10 +30,12 @@ export interface SignupRequest extends Request {
     password: string;
   };
 }
-export interface IRequest extends Request {
-  body: {
-    name: string;
-    email: string;
-    password: string;
-  };
+export interface ClientRequest extends Request {
+  user?: IClientData;
+}
+
+export interface IClientData {
+  email: string;
+  id: number;
+  role?: number;
 }

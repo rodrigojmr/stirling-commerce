@@ -57,9 +57,10 @@ const RegisterForm = () => {
     }
   };
 
-  function onSubmit(values: SignUpFormValues) {
-    signUp(values);
-  }
+  const onSubmit = async (values: SignUpFormValues) => {
+    const data = await signUp(values);
+    console.log(data);
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
