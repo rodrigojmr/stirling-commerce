@@ -1,21 +1,17 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { RouteComponentProps } from 'react-router-dom';
-import { SignInParams } from './../../../../shared/types';
-
-const api = axios.create({
-  baseURL: `${process.env.REACT_APP_API}/api/auth`,
-  withCredentials: true
-});
+import api from 'utils/api';
+import { SignInParams, SignupParams } from './../../../../shared/types';
 
 export const requestSignup = createAsyncThunk(
   'users/signup',
   async (
-    data: { values: SignInParams; history: RouteComponentProps['history'] },
+    data: { values: SignupParams; history: RouteComponentProps['history'] },
     { rejectWithValue }
   ) => {
     try {
-      const res = await api.post('/signIn', data.values);
+      const res = await api.auth.userSignUp(data.values);
       data.history.push('/');
       return res.data;
     } catch (error) {
@@ -35,7 +31,7 @@ export const requestLogin = createAsyncThunk(
     { rejectWithValue }
   ) => {
     try {
-      const res = await api.post('/signIn', data.values);
+      const res = await api.auth.userLogin(data.values);
       data.history.push('/');
       return res.data;
     } catch (error) {
