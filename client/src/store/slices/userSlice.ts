@@ -1,29 +1,50 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Dispatch } from 'redux';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { RouteComponentProps } from 'react-router-dom';
+import { SignInParams } from './../../../../shared/types';
 
-// Slice
+const api = axios.create({
+  baseURL: `${process.env.REACT_APP_API}/api/auth`,
+  withCredentials: true
+});
 
-interface AuthParams {
-  username: string;
-  password: string;
-}
+export const requestSignup = createAsyncThunk(
+  'users/signup',
+  async (
+    data: { values: SignInParams; history: RouteComponentProps['history'] },
+    { rejectWithValue }
+  ) => {
+    try {
+      const res = await api.post('/signIn', data.values);
+      data.history.push('/');
+      return res.data;
+    } catch (error) {
+      console.log(error.response);
+      return rejectWithValue({
+        status: error.response.status,
+        message: error.response.data
+      });
+    }
+  }
+);
 
 export const requestLogin = createAsyncThunk(
   'users/login',
-  async ({ username, password }: AuthParams) => {
-    function wait(milliseconds: number) {
-      return new Promise(resolve => setTimeout(resolve, milliseconds));
+  async (
+    data: { values: SignInParams; history: RouteComponentProps['history'] },
+    { rejectWithValue }
+  ) => {
+    try {
+      const res = await api.post('/signIn', data.values);
+      data.history.push('/');
+      return res.data;
+    } catch (error) {
+      console.log(error.response);
+      return rejectWithValue({
+        status: error.response.status,
+        message: error.response.data
+      });
     }
-    await wait(1000);
-
-    return Promise.resolve({
-      username: 'storm',
-      name: 'rodrigo',
-      avatar: 'red'
-    });
-
-    // const res = await api.post('/api/auth/login/', { username, password });
-    // return (await response.json()) as LoginProps;
   }
 );
 
@@ -33,53 +54,70 @@ export const requestLogout = createAsyncThunk('users/logout', async () => {
   // return (await response.json()) as LoginProps;
 });
 
-interface User {
-  username: string;
+export interface User {
+  id: number;
   name: string;
-  avatar: string;
 }
 
 interface Auth {
-  loading: boolean;
   user: User | null;
   token?: string;
+  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  error: string | null | undefined;
 }
 
 const authSlice = createSlice({
   name: 'user',
   initialState: {
-    loading: true,
+    status: 'idle',
+    error: null,
     user: null,
     token: undefined
   } as Auth,
   reducers: {},
   extraReducers: builder => {
     // Add reducers for additional action types here, and handle loading state as needed
+    builder.addCase(requestSignup.fulfilled, (state, action) => {
+      console.log(action.payload);
+      const { user, token } = action.payload;
+      state.user = user;
+      state.token = token;
+      state.status = 'succeeded';
+    });
+    builder.addCase(requestSignup.pending, (state, action) => {
+      state.status = 'loading';
+    });
+    builder.addCase(requestSignup.rejected, (state, action) => {
+      console.log('rejected', action.payload);
+    });
     builder.addCase(requestLogin.fulfilled, (state, action) => {
-      state.user = action.payload;
-      // Add user to the state array
-      // state.username = action.payload.username;
+      const { token, user } = action.payload;
+      state.user = user;
+      state.token = token;
+      state.status = 'succeeded';
     });
     builder.addCase(requestLogin.pending, (state, action) => {
-      state.loading = true;
+      state.status = 'loading';
     });
     builder.addCase(requestLogin.rejected, (state, action) => {
-      state.loading = false;
+      state.status = 'failed';
     });
     builder.addCase(requestLogout.fulfilled, (state, action) => {
+      state.status = 'idle';
       state.user = null;
+      state.token = undefined;
       // Add user to the state array
       // state.username = action.payload.username;
     });
     builder.addCase(requestLogout.pending, (state, action) => {
-      state.loading = true;
+      state.status = 'loading';
     });
     builder.addCase(requestLogout.rejected, (state, action) => {
-      state.loading = false;
+      state.status = 'failed';
     });
   }
 });
 
 export default authSlice.reducer;
 
-export const getUser = (state: { user: AuthParams }) => state.user;
+// export const getUser = (state: { user: AuthParams }) => state.user;

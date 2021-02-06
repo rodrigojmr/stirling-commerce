@@ -8,21 +8,37 @@ import {
   Input,
   Text
 } from '@chakra-ui/react';
-import { signUp } from 'features/auth';
+import { unwrapResult } from '@reduxjs/toolkit';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link as RouterLink, Redirect, useLocation } from 'react-router-dom';
-import { SignUpFormValues } from '@shared/types';
+import { useSelector } from 'react-redux';
+import {
+  Link as RouterLink,
+  Redirect,
+  useHistory,
+  useLocation
+} from 'react-router-dom';
+import { useAppDispatch } from 'store';
+import { RootState } from 'store/rootReducer';
+import { requestSignup } from 'store/slices/userSlice';
+
 interface stateType {
   from: { pathname: string };
 }
 
 const RegisterForm = () => {
+  const history = useHistory();
+
+  const dispatch = useAppDispatch();
+  const submitStatus = useSelector((state: RootState) => state.auth.status);
+
   const [redirectToReferrer, setredirectToReferrer] = useState(false);
-  const { state } = useLocation<stateType>();
   const { handleSubmit, errors, register, formState, getValues } = useForm();
+  const [error, setError] = useState<{ status: number; message: string }>();
+
   const [password, setPassword] = useState('');
 
+  const { state } = useLocation<stateType>();
   if (redirectToReferrer) {
     return <Redirect to={state?.from || '/'} />;
   }
@@ -56,10 +72,20 @@ const RegisterForm = () => {
       return 'Weak!';
     }
   };
+  interface SignUpFormValues {
+    name: string;
+    email: string;
+    password: string;
+    confirm: string;
+  }
 
   const onSubmit = async (values: SignUpFormValues) => {
-    const data = await signUp(values);
-    console.log(data);
+    dispatch(requestSignup({ values, history }))
+      .then(unwrapResult)
+      .then(originalPromiseResult => {})
+      .catch(rejectedValueOrSerializedError => {
+        setError(rejectedValueOrSerializedError);
+      });
   };
 
   return (
@@ -115,8 +141,8 @@ const RegisterForm = () => {
           </Box>
         )}
       </FormControl>
-      <FormControl id="password" isInvalid={errors.confirm}>
-        <FormLabel htmlFor="password"></FormLabel>
+      <FormControl id="confirm" isInvalid={errors.confirm}>
+        <FormLabel htmlFor="confirm"></FormLabel>
         <Input
           fontFamily="body"
           required
@@ -139,7 +165,8 @@ const RegisterForm = () => {
         <Button
           flexBasis="48%"
           colorScheme="teal"
-          isLoading={formState.isSubmitting}
+          isLoading={formState.isSubmitting || submitStatus === 'loading'}
+          loadingText="Submitting"
           type="submit"
         >
           Register

@@ -65,6 +65,7 @@
       "test-utils": "<rootDir>/src/utils/test-utils"
     }
   },
+  "proxy": "http://localhost:3001",
   "devDependencies": {
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.22",

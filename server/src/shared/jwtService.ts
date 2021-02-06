@@ -6,7 +6,7 @@ import jsonwebtoken, { VerifyErrors } from 'jsonwebtoken';
 import { cookieProps } from '@servershared/constants';
 
 interface IOptions {
-  expiresIn: string;
+  expiresIn: number;
 }
 
 export class JWTClass {
@@ -17,7 +17,7 @@ export class JWTClass {
   constructor() {
     this.secret = process.env.JWT_SECRET || randomString.generate(100);
     this.options = {
-      expiresIn: cookieProps?.options?.maxAge?.toString()
+      expiresIn: cookieProps?.options?.maxAge
     };
   }
 

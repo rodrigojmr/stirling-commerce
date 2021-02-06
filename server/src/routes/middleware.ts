@@ -32,16 +32,20 @@ const { UNAUTHORIZED } = StatusCodes;
 //   next(err);
 //     return res.status(UNAUTHORIZED).json({
 //     error: err.message
-//   });
+//   });p
 // }
 // };
 
 export const authenticateToken = asyncHandler(
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
   async (req: ClientRequest, res: Response, next: NextFunction) => {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-    if (token == null)
+    // Through authorization header
+    // const authHeader = req.headers['authorization'];
+    // const token = authHeader && authHeader.split(' ')[1];
+
+    // Through HTTP only cookie
+    const token = req.cookies.token;
+    if (!token)
       return res.status(UNAUTHORIZED).json({ error: 'Unauthorized.' });
 
     // Should not need to handle rejection as asyncHandler does that for us

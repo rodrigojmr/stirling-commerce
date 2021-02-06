@@ -1,9 +1,12 @@
+import { SignupParams, SignInParams } from '@shared/types';
 import { Request } from 'express';
-
+import * as dotenv from 'dotenv';
+dotenv.config();
 // Strings
 export const paramMissingError =
   'One or more of the required parameters was missing.';
-export const loginFailedErr = 'Login failed';
+export const loginFailedErr = 'Password is incorrect.';
+export const userNotFound = 'User with this e-mail was not found.';
 
 // Numbers
 export const pwdSaltRounds = 12;
@@ -24,11 +27,10 @@ export const cookieProps = Object.freeze({
 
 // IRequest object for express routes
 export interface SignupRequest extends Request {
-  body: {
-    name: string;
-    email: string;
-    password: string;
-  };
+  body: SignupParams;
+}
+export interface LoginRequest extends Request {
+  body: SignInParams;
 }
 export interface ClientRequest extends Request {
   user?: IClientData;
@@ -37,5 +39,5 @@ export interface ClientRequest extends Request {
 export interface IClientData {
   email: string;
   id: number;
-  role?: number;
+  role?: string;
 }

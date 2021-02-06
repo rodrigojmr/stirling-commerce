@@ -9,10 +9,9 @@ import Search from 'components/search/navSearch';
 import User from 'components/userIcon';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link as RouterLink } from 'react-router-dom';
 import { RootState } from 'store/rootReducer';
 import Menu from './headerMenu';
-import { Link as RouterLink } from 'react-router-dom';
-import { requestLogin } from 'store/slices/userSlice';
 
 const StyledLogo = styled(Icon)`
   // Customize logo color, otherwise it would show as grey
@@ -110,11 +109,6 @@ const Navbar = () => {
       ) : (
         <Link order={{ base: 5, md: 'initial' }} as={RouterLink} to="/sign-in">
           <Button
-            // onClick={() =>
-            //   dispatch(
-            //     requestLogin({ username: 'asddasdas', password: 'dashdkass' })
-            //   )
-            // }
             bg="primary.500"
             color="white"
             _hover={{ bg: 'primary.400' }}
@@ -126,19 +120,6 @@ const Navbar = () => {
             Log In
           </Button>
         </Link>
-        // <Box order={{ base: 5, md: 'initial' }} mr={['none', 8]}>
-        //   <Icon
-        //     onClick={() =>
-        //       dispatch(
-        //         requestLogin({ username: 'asddasdas', password: 'dashdkass' })
-        //       )
-        //     }
-        //     as={loginIcon}
-        //     stroke="white"
-        //     w={[8, 10]}
-        //     h={[8, 10]}
-        //   />
-        // </Box>
       )}
     </Flex>
   );

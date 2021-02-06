@@ -1,6 +1,10 @@
-export interface SignUpFormValues {
+export interface SignupParams {
   name: string;
   email: string;
   password: string;
-  confirm: string;
+}
+
+export interface SignInParams {
+  email: string;
+  password: string;
 }

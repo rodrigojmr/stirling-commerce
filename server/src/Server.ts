@@ -12,6 +12,12 @@ import cors from 'cors';
 
 import 'express-async-errors';
 
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
+console.log(process.env.COOKIE_SECRET);
+
 /************************************************************************************
  *                              Set Database settings
  ***********************************************************************************/
@@ -48,6 +54,7 @@ app.get('/*', (req: Request, res: Response) => {
 // Print API errors
 // eslint-disable-next-line @shared/typescript-eslint/no-unused-vars
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  console.log('err', err);
   return res.status(BAD_REQUEST).json({
     error: err.message
   });

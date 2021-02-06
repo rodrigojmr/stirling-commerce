@@ -33,7 +33,8 @@
     "ignore": [
       "./server/src/client"
     ],
-    "exec": "ts-node -r tsconfig-paths/register ./server/src"
+    "exec": "ts-node -r tsconfig-paths/register ./server/src -r dotenv/config",
+    "require": "dotenv/config"
   },
   "_moduleAliases": {
     "@daos": "dist/daos",

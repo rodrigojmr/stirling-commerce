@@ -10,20 +10,42 @@ import {
   Link,
   Text
 } from '@chakra-ui/react';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { SignInParams } from '@shared/types';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link as RouterLink, Redirect, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  Link as RouterLink,
+  Redirect,
+  RouteComponentProps,
+  useLocation
+} from 'react-router-dom';
+import { useAppDispatch } from 'store';
+import { RootState } from 'store/rootReducer';
+import { requestLogin } from 'store/slices/userSlice';
+import { useHistory } from 'react-router-dom';
 
 interface stateType {
   from: { pathname: string };
 }
 
 const LogInForm = () => {
-  const [redirectToReferrer, setredirectToReferrer] = useState(false);
-  const { state } = useLocation<stateType>();
+  const history = useHistory();
+  const dispatch = useAppDispatch();
+
+  // Form
+  const submitStatus = useSelector((state: RootState) => state.auth.status);
   const { handleSubmit, errors, register, formState } = useForm();
   const [password, setPassword] = useState('');
 
+  // Receive error from server is login fails
+  const [error, setError] = useState<{ status: number; message: string }>();
+
+  // Prepare redirect to page where user came from once they log in
+  const [redirectToReferrer, setredirectToReferrer] = useState(false);
+  const { state } = useLocation<stateType>();
+  console.log('state: ', state);
   if (redirectToReferrer) {
     return <Redirect to={state?.from || '/'} />;
   }
@@ -38,19 +60,16 @@ const LogInForm = () => {
     } else return true;
   }
 
-  interface FormValues {
-    email: string;
-    password: string;
-  }
+  const onSubmit = (values: SignInParams) => {
+    // Pass history so that thunk can push redirect once logged in
+    dispatch(requestLogin({ values, history }))
+      .then(unwrapResult)
+      .then(originalPromiseResult => {})
+      .catch(rejectedValueOrSerializedError => {
+        setError(rejectedValueOrSerializedError);
+      });
+  };
 
-  function onSubmit(values: FormValues) {
-    return new Promise<void>(resolve => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        resolve();
-      }, 3000);
-    });
-  }
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormControl id="email" isInvalid={errors.email}>
@@ -67,6 +86,7 @@ const LogInForm = () => {
           <FormErrorMessage>
             {errors.email && errors.email.message}
           </FormErrorMessage>
+          {error?.status === 404 && <Text>{error.message}</Text>}
         </Box>
       </FormControl>
       <FormControl id="password" isInvalid={errors.password}>
@@ -83,12 +103,14 @@ const LogInForm = () => {
           ref={register()}
         />
       </FormControl>
+      {error?.status === 401 && <Text>{error.message}</Text>}
       <Button
         mt="1.5rem"
         width="100%"
         colorScheme="teal"
-        isLoading={formState.isSubmitting}
         type="submit"
+        isLoading={formState.isSubmitting || submitStatus === 'loading'}
+        loadingText="Submitting"
       >
         Sign In
       </Button>

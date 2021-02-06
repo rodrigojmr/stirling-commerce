@@ -1,9 +1,11 @@
+import { ClientRequest } from './../shared/constants';
+import { authenticateToken } from './middleware';
 import { cookieProps } from '@servershared/constants';
 // import UserDao from '@daos/User/UserDao.mock';
 import { JWTClass } from '@servershared/jwtService';
 import { Request, Response, Router } from 'express';
 import StatusCodes from 'http-status-codes';
-import { signUpUser } from './../controllers/userController';
+import { signUpUser, signInUser } from './../controllers/userController';
 
 // import {
 //   paramMissingError,
@@ -58,6 +60,11 @@ const { BAD_REQUEST, OK, UNAUTHORIZED } = StatusCodes;
  ******************************************************************************/
 
 router.post('/signup', signUpUser);
+router.post('/signin', signInUser);
+router.get('/me', authenticateToken, (req: ClientRequest, res: Response) => {
+  const user = req.user;
+  res.status(200).send(user);
+});
 
 /******************************************************************************
  *                      Logout - "GET /api/auth/logout"

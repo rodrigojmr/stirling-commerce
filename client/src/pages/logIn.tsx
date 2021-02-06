@@ -1,14 +1,22 @@
 import { Box, Grid, Heading } from '@chakra-ui/react';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { SignInParams } from '@shared/types';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
+
 import LogInForm from 'components/form/loginForm';
 import React, { useState } from 'react';
 import { Redirect, useLocation } from 'react-router-dom';
+import { useAppDispatch } from 'store';
+import { requestLogin } from 'store/slices/userSlice';
+
 interface stateType {
   from: { pathname: string };
 }
 
-const UserLogin = () => {
+const UserLogin = ({ history }: RouteComponentProps) => {
   const [redirectToReferrer, setredirectToReferrer] = useState(false);
   const { state } = useLocation<stateType>();
+  const dispatch = useAppDispatch();
 
   if (redirectToReferrer) {
     return <Redirect to={state?.from || '/'} />;
