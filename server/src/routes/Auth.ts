@@ -1,5 +1,4 @@
-import { ClientRequest } from './../shared/constants';
-import { authenticateToken } from './middleware';
+import asyncHandler from 'express-async-handler';
 import { cookieProps } from '@servershared/constants';
 // import UserDao from '@daos/User/UserDao.mock';
 import { JWTClass } from '@servershared/jwtService';
@@ -16,6 +15,7 @@ import { signUpUser, signInUser } from './../controllers/userController';
 const router = Router();
 // const userDao = new UserDao();
 const { BAD_REQUEST, OK, UNAUTHORIZED } = StatusCodes;
+const JWTService = new JWTClass();
 
 /******************************************************************************
  *                      Login User - "POST /api/auth/login"
@@ -61,10 +61,18 @@ const { BAD_REQUEST, OK, UNAUTHORIZED } = StatusCodes;
 
 router.post('/signup', signUpUser);
 router.post('/signin', signInUser);
-router.get('/me', authenticateToken, (req: ClientRequest, res: Response) => {
-  const user = req.user;
-  res.status(200).send(user);
-});
+router.get(
+  '/me',
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+  asyncHandler(async (req: Request, res: Response) => {
+    const token = req.cookies.token;
+    if (!token) return;
+
+    // Should not need to handle rejection as asyncHandler does that for us
+    const clientData = await JWTService.decodeJwt(token);
+    res.json(clientData);
+  })
+);
 
 /******************************************************************************
  *                      Logout - "GET /api/auth/logout"

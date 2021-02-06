@@ -4,6 +4,7 @@ import { JWTClass } from '@servershared/jwtService';
 import StatusCodes from 'http-status-codes';
 import { ClientRequest, cookieProps } from '@servershared/constants';
 import { resolveSoa } from 'dns';
+import { IUser } from '@shared/types';
 
 const JWTService = new JWTClass();
 const { UNAUTHORIZED } = StatusCodes;
@@ -49,7 +50,7 @@ export const authenticateToken = asyncHandler(
       return res.status(UNAUTHORIZED).json({ error: 'Unauthorized.' });
 
     // Should not need to handle rejection as asyncHandler does that for us
-    const clientData = await JWTService.decodeJwt(token);
+    const clientData: IUser = await JWTService.decodeJwt(token);
     req.user = clientData;
     next();
   }

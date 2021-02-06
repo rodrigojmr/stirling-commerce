@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { RouteComponentProps } from 'react-router-dom';
 import api from 'utils/api';
-import { SignInParams, SignupParams } from './../../../../shared/types';
+import { SignInParams, SignupParams, IUser } from './../../../../shared/types';
 
 export const requestSignup = createAsyncThunk(
   'users/signup',
@@ -15,7 +14,6 @@ export const requestSignup = createAsyncThunk(
       data.history.push('/');
       return res.data;
     } catch (error) {
-      console.log(error.response);
       return rejectWithValue({
         status: error.response.status,
         message: error.response.data
@@ -35,7 +33,21 @@ export const requestLogin = createAsyncThunk(
       data.history.push('/');
       return res.data;
     } catch (error) {
-      console.log(error.response);
+      return rejectWithValue({
+        status: error.response.status,
+        message: error.response.data
+      });
+    }
+  }
+);
+
+export const getUser = createAsyncThunk(
+  'users/get',
+  async (data, { rejectWithValue }) => {
+    try {
+      const res = await api.auth.findUser();
+      return res.data;
+    } catch (error) {
       return rejectWithValue({
         status: error.response.status,
         message: error.response.data
@@ -50,14 +62,8 @@ export const requestLogout = createAsyncThunk('users/logout', async () => {
   // return (await response.json()) as LoginProps;
 });
 
-export interface User {
-  id: number;
-  name: string;
-}
-
 interface Auth {
-  user: User | null;
-  token?: string;
+  user: IUser | null;
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null | undefined;
 }
@@ -67,17 +73,13 @@ const authSlice = createSlice({
   initialState: {
     status: 'idle',
     error: null,
-    user: null,
-    token: undefined
+    user: null
   } as Auth,
   reducers: {},
   extraReducers: builder => {
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(requestSignup.fulfilled, (state, action) => {
-      console.log(action.payload);
-      const { user, token } = action.payload;
-      state.user = user;
-      state.token = token;
+      state.user = action.payload;
       state.status = 'succeeded';
     });
     builder.addCase(requestSignup.pending, (state, action) => {
@@ -87,9 +89,7 @@ const authSlice = createSlice({
       console.log('rejected', action.payload);
     });
     builder.addCase(requestLogin.fulfilled, (state, action) => {
-      const { token, user } = action.payload;
-      state.user = user;
-      state.token = token;
+      state.user = action.payload;
       state.status = 'succeeded';
     });
     builder.addCase(requestLogin.pending, (state, action) => {
@@ -101,14 +101,21 @@ const authSlice = createSlice({
     builder.addCase(requestLogout.fulfilled, (state, action) => {
       state.status = 'idle';
       state.user = null;
-      state.token = undefined;
-      // Add user to the state array
-      // state.username = action.payload.username;
     });
     builder.addCase(requestLogout.pending, (state, action) => {
       state.status = 'loading';
     });
     builder.addCase(requestLogout.rejected, (state, action) => {
+      state.status = 'failed';
+    });
+    builder.addCase(getUser.fulfilled, (state, action) => {
+      state.status = 'idle';
+      state.user = action.payload;
+    });
+    builder.addCase(getUser.pending, (state, action) => {
+      state.status = 'loading';
+    });
+    builder.addCase(getUser.rejected, (state, action) => {
       state.status = 'failed';
     });
   }

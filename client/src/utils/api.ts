@@ -1,4 +1,4 @@
-import { SignInParams } from './../../../shared/types';
+import { SignInParams, IUser } from './../../../shared/types';
 //here we are importing our Axios dependency
 import axios from 'axios';
 
@@ -17,14 +17,14 @@ const apiClient = axios.create({
 const api = {
   auth: {
     userSignUp(payload: SignInParams) {
-      return apiClient.post('/auth/signup/', payload);
+      return apiClient.post<IUser>('/auth/signup/', payload);
     },
     userLogin(payload: SignInParams) {
-      return apiClient.post('/auth/signin/', payload);
+      return apiClient.post<IUser>('/auth/signin/', payload);
+    },
+    findUser() {
+      return apiClient.get<IUser>('/auth/me');
     }
-    // userAliveAndActive() {
-    //   return apiClient.post('/auth/check/');
-    // },
     // userLogout() {
     //   return apiClient.post('/auth/logout/');
     // },
