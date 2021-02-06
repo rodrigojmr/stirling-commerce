@@ -15,8 +15,7 @@
   },
   "scripts": {
     "start": "node -r module-alias/register server/src/index.js",
-    "build": "yarn run clean-dist && yarn run prod:serverbuild && mkdirp dist/public && yarn workspace client prod:build",
-    "heroku-postbuild": "npm run migrate",
+    "build": "yarn run clean-dist && yarn run prod:serverbuild && mkdirp dist/public && yarn workspace client prod:build && npm run migrate",
     "client-develop": "yarn workspace client start",
     "server-develop": "nodemon -r dotenv/config",
     "develop": "concurrently --kill-others-on-fail \"yarn server-develop\"  \"yarn client-develop\"",
