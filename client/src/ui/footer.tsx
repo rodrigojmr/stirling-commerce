@@ -27,7 +27,7 @@ const Wrapper = styled.div`
 `;
 
 const Column = styled.div`
-  & > *:first-child {
+  & > *:first-of-type {
     margin-bottom: 3rem;
   }
 `;

@@ -10,7 +10,7 @@ const ToggleWrapper = styled.div`
   display: flex;
   align-items: center;
 
-  > *:first-child {
+  > *:first-of-type {
     margin-right: 1.8rem;
   }
   > *:last-child {
