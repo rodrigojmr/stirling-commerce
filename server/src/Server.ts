@@ -16,8 +16,6 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-console.log(process.env.COOKIE_SECRET);
-
 /************************************************************************************
  *                              Set Database settings
  ***********************************************************************************/

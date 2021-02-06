@@ -65,10 +65,10 @@ router.get(
   '/me',
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
   asyncHandler(async (req: Request, res: Response) => {
+    console.log('req: ', req.cookies);
     const token = req.cookies.token;
-    if (!token) return;
+    if (!token) return {};
 
-    // Should not need to handle rejection as asyncHandler does that for us
     const clientData = await JWTService.decodeJwt(token);
     res.json(clientData);
   })

@@ -1,4 +1,4 @@
-import { SignupParams, SignInParams, IClientData, IUser } from '@shared/types';
+import { SignupParams, SignInParams, IUser } from '@shared/types';
 import { Request } from 'express';
 import * as dotenv from 'dotenv';
 dotenv.config();

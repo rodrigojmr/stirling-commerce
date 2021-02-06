@@ -1,10 +1,7 @@
-/* eslint-disable @shared/typescript-eslint/ban-types */
-
-import { IClientData } from './constants';
 import randomString from 'randomstring';
 import jsonwebtoken, { VerifyErrors } from 'jsonwebtoken';
 import { cookieProps } from '@servershared/constants';
-
+import { IUser } from '@shared/types';
 interface IOptions {
   expiresIn: number;
 }
@@ -26,7 +23,7 @@ export class JWTClass {
    *
    * @param data
    */
-  public getJwt(data: IClientData): Promise<string> {
+  public getJwt(data: IUser): Promise<string> {
     return new Promise((resolve, reject) => {
       jsonwebtoken.sign(data, this.secret, this.options, (err, token) => {
         err ? reject(err) : resolve(token || '');
@@ -39,13 +36,13 @@ export class JWTClass {
    *
    * @param jwt
    */
-  public decodeJwt(jwt: string): Promise<IClientData> {
+  public decodeJwt(jwt: string): Promise<IUser> {
     return new Promise((res, rej) => {
       jsonwebtoken.verify(
         jwt,
         this.secret,
         (err: VerifyErrors | null, decoded?: object) => {
-          return err ? rej(this.VALIDATION_ERROR) : res(decoded as IClientData);
+          return err ? rej(this.VALIDATION_ERROR) : res(decoded as IUser);
         }
       );
     });
