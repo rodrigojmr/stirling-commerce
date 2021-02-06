@@ -15,7 +15,7 @@ export const StyledStar = styled(Star)<{ filled: string }>`
 export const stars = (num: number) => {
   const starArray = [];
   for (let i = 1; i <= 5; i++) {
-    starArray.push(<StyledStar filled={(i <= num).toString()} />);
+    starArray.push(<StyledStar key={i} filled={(i <= num).toString()} />);
   }
 
   return starArray;
