@@ -14,18 +14,23 @@
     "node": "15.x"
   },
   "scripts": {
+    "start": "node -r module-alias/register ./dist/server/src/index.js",
+    "build": "yarn run clean-dist && yarn run prod:serverbuild && mkdirp dist/public && yarn workspace client prod:build",
     "client-develop": "yarn workspace client start",
     "server-develop": "nodemon -r dotenv/config",
     "develop": "concurrently --kill-others-on-fail \"yarn server-develop\"  \"yarn client-develop\"",
-    "start": "ts-node -r tsconfig-paths/register ./server/src",
-    "build": "rimraf -rf ./server/public && mkdirp server/public && yarn workspace client prod:build",
-    "dev:serverbuild": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./server -o ./dist",
-    "prod:serverbuild": "tsc --project tsconfig.prod.json && tscpaths -p tsconfig.prod.json -s ./server -o ./dist",
+    "dev:serverbuild": "tsc --build",
+    "prod:serverbuild": "tsc --build tsconfig.prod.json",
     "clean-dist": "rimraf -rf ./dist && rimraf -rf ./server/public",
     "migrate": "prisma migrate dev --preview-feature --schema=./server/prisma/schema.prisma",
-    "migrate:reset": "prisma migrate reset --preview-feature --schema=./server/prisma/schema.prisma",
-    "old:build": "yarn run clean-dist && yarn run prod:serverbuild && mkdirp dist/public && yarn workspace client prod:build",
-    "old:start": "node -r tsconfig-paths/register dotenv/config ./dist"
+    "migrate:reset": "prisma migrate reset --preview-feature --schema=./server/prisma/schema.prisma"
+  },
+  "_moduleAliases": {
+    "@frontend": "dist/client",
+    "@servershared": "dist/server/src/shared",
+    "@server": "dist/server/src/Server",
+    "@db": "dist/server/src/db",
+    "@shared": "dist/shared"
   },
   "nodemonConfig": {
     "watch": [

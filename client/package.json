@@ -30,7 +30,7 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
-    "prod:build": "npm i && react-app-rewired build && mv build ../server/public",
+    "prod:build": "npm i && react-app-rewired build && mv build ../dist/public",
     "format": "prettier --write src/**/*.ts{,x}",
     "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
     "start:all": "cd .. && npm run develop"

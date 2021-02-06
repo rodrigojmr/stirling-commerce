@@ -49,8 +49,6 @@
     "baseUrl": "./" /* Base directory to resolve non-absolute module names. */,
     "paths": {
       "@frontend/*": ["client/*"],
-      "@daos/*": ["server/src/daos/*"],
-      "@models/*": ["server/src/models/*"],
       "@servershared/*": ["server/src/shared/*"],
       "@server": ["server/src/Server"],
       "@db/*": ["server/src/db/*"],
