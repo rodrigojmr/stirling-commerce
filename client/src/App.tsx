@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { Box, ChakraProvider } from '@chakra-ui/react';
 import theme from './theme/theme';
@@ -14,9 +15,15 @@ import { Helmet } from 'react-helmet';
 import Navbar from 'ui/header';
 import SignUpPage from './pages/signUp';
 import { drawerContext, useDrawer } from 'hooks/useDrawer';
+import { useAppDispatch } from 'store';
+import { getUser } from 'store/slices/userSlice';
 
 const App = () => {
   const drawer = useDrawer();
+
+  useEffect(() => {
+    store.dispatch(getUser());
+  }, []);
 
   return (
     <ChakraProvider resetCSS theme={theme}>
