@@ -45,7 +45,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // Add APIs
 app.use('/api', BaseRouter);
-app.get('/*', (req: Request, res: Response) => {
+app.get('*', (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
