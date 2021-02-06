@@ -32,7 +32,11 @@ const { BAD_REQUEST } = StatusCodes;
 app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, './public/build')));
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../public/build')));
+} else {
+  app.use(express.static(path.join(__dirname, './public/build')));
+}
 app.use(cookieParser(cookieProps.secret));
 
 // Show routes called in console during development
@@ -52,9 +56,7 @@ app.get('/*', (req: Request, res: Response) => {
 });
 
 // Print API errors
-// eslint-disable-next-line @shared/typescript-eslint/no-unused-vars
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  console.log('err', err);
   return res.status(BAD_REQUEST).json({
     error: err.message
   });
