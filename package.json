@@ -14,7 +14,7 @@
     "node": "15.x"
   },
   "scripts": {
-    "start": "node -r module-alias/register server/src/index.js",
+    "start": "node -r module-alias/register dist/server/src/index.js",
     "build": "yarn run clean-dist && yarn run prod:serverbuild && mkdirp dist/public && yarn workspace client prod:build && npm run migrate",
     "client-develop": "yarn workspace client start",
     "server-develop": "nodemon -r dotenv/config",
@@ -26,11 +26,11 @@
     "migrate:reset": "prisma migrate reset --preview-feature --schema=./server/prisma/schema.prisma"
   },
   "_moduleAliases": {
-    "@frontend": "client",
-    "@servershared": "server/src/shared",
-    "@server": "server/src/Server",
-    "@db": "server/src/db",
-    "@shared": "shared"
+    "@frontend": "dist/client",
+    "@servershared": "dist/server/src/shared",
+    "@server": "dist/server/src/Server",
+    "@db": "dist/server/src/db",
+    "@shared": "dist/shared"
   },
   "nodemonConfig": {
     "watch": [
