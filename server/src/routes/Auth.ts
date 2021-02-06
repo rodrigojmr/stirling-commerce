@@ -65,12 +65,13 @@ router.get(
   '/me',
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
   asyncHandler(async (req: Request, res: Response) => {
-    console.log('req: ', req.cookies);
-    const token = req.cookies.token;
-    if (!token) return {};
-
-    const clientData = await JWTService.decodeJwt(token);
-    res.json(clientData);
+    const token = req?.signedCookies?.token;
+    if (!token) {
+      res.json({});
+    } else {
+      const clientData = await JWTService.decodeJwt(token);
+      res.json(clientData);
+    }
   })
 );
 
@@ -78,7 +79,7 @@ router.get(
  *                      Logout - "GET /api/auth/logout"
  ******************************************************************************/
 
-router.get('/logout', (req: Request, res: Response) => {
+router.post('/logout', (req: Request, res: Response) => {
   const { key, options } = cookieProps;
   res.clearCookie(key, options);
   return res.status(OK).end();

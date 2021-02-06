@@ -57,7 +57,10 @@ export const getUser = createAsyncThunk(
 );
 
 export const requestLogout = createAsyncThunk('users/logout', async () => {
-  return true;
+  try {
+    const res = await api.auth.userLogout();
+    return res.status;
+  } catch (error) {}
   // const res = await api.post('/api/auth/login/', { username, password });
   // return (await response.json()) as LoginProps;
 });
@@ -110,7 +113,7 @@ const authSlice = createSlice({
     });
     builder.addCase(getUser.fulfilled, (state, action) => {
       state.status = 'idle';
-      state.user = action.payload;
+      if (action.payload.email) state.user = action.payload;
     });
     builder.addCase(getUser.pending, (state, action) => {
       state.status = 'loading';

@@ -64,7 +64,7 @@ const navLinks: Link[] = [
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state: RootState) => state.auth.user);
+  const { user, status } = useSelector((state: RootState) => state.auth);
 
   const [isLargerThan768px] = useMediaQuery('(min-width: 48em)');
   const [isLargerThan991px] = useMediaQuery('(min-width: 62em)');
@@ -109,6 +109,7 @@ const Navbar = () => {
       ) : (
         <Link order={{ base: 5, md: 'initial' }} as={RouterLink} to="/sign-in">
           <Button
+            isLoading={status === 'loading'}
             bg="primary.500"
             color="white"
             _hover={{ bg: 'primary.400' }}

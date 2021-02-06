@@ -24,10 +24,10 @@ const api = {
     },
     findUser() {
       return apiClient.get<IUser>('/auth/me');
+    },
+    userLogout() {
+      return apiClient.post('/auth/logout/');
     }
-    // userLogout() {
-    //   return apiClient.post('/auth/logout/');
-    // },
     // generateResetToken(payload) {
     //   return apiClient.post('/auth/generate_reset_token/', payload);
     // },
