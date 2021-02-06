@@ -30,7 +30,7 @@ const { BAD_REQUEST } = StatusCodes;
 app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('../../public/build'));
+app.use(express.static(path.join(__dirname, '../../public/build')));
 app.use(cookieParser(cookieProps.secret));
 
 // Show routes called in console during development
@@ -45,8 +45,8 @@ if (process.env.NODE_ENV === 'production') {
 
 // Add APIs
 app.use('/api', BaseRouter);
-app.get('*', (req: Request, res: Response) => {
-  res.sendFile('index.html');
+app.get('/*', (req: Request, res: Response) => {
+  res.sendFile('index.html', { root: __dirname });
 });
 
 // Print API errors
