@@ -5,7 +5,7 @@ import { RouteProps, Route, Redirect } from 'react-router-dom';
 import { RootState } from 'store/rootReducer';
 
 const PublicRoute: React.FC<
-  RouteProps & { component: Component; restricted: boolean }
+  RouteProps & { component: React.ElementType; restricted: boolean }
 > = ({ component: Component, restricted, ...rest }) => {
   // restricted = false meaning public route
   // restricted = true meaning restricted route
