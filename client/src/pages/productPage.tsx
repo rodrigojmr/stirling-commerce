@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Center,
   Flex,
   Heading,
   Image,
@@ -9,7 +10,7 @@ import {
   useTheme
 } from '@chakra-ui/react';
 import { drawerContext } from 'hooks/useDrawer';
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps, useParams } from 'react-router-dom';
 import { RootState } from 'store/rootReducer';
@@ -68,21 +69,26 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
     <>
       {product ? (
         <Flex
+          flexDir={{ base: 'column', xl: 'row' }}
           width="100%"
           alignItems="center"
-          py={24}
+          py={{ base: 10, md: 20 }}
           px="clamp(6rem, 5vw, 10rem)"
           justifyContent="space-between"
           margin="0 auto"
           maxWidth="max"
         >
-          <Box flexBasis="45%">
+          <Center
+            width="100%"
+            minHeight={{ base: '20rem', xl: '30rem' }}
+            flexBasis="48%"
+          >
             <Image
               objectFit="cover"
               src={product?.image}
               alt={product?.title}
             />
-          </Box>
+          </Center>
           <Flex
             flexBasis="45%"
             direction="column"
