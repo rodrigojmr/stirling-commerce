@@ -3,17 +3,17 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import { SignInParams } from '@shared/types';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
-import LogInForm from 'components/form/loginForm';
+import SignInForm from 'components/form/loginForm';
 import React, { useState } from 'react';
 import { Redirect, useLocation } from 'react-router-dom';
 import { useAppDispatch } from 'store';
-import { requestLogin } from 'store/slices/userSlice';
+import { requestSignIn } from 'store/slices/userSlice';
 
 interface stateType {
   from: { pathname: string };
 }
 
-const UserLogin = ({ history }: RouteComponentProps) => {
+const SignInPage = ({ history }: RouteComponentProps) => {
   const [redirectToReferrer, setredirectToReferrer] = useState(false);
   const { state } = useLocation<stateType>();
   const dispatch = useAppDispatch();
@@ -30,7 +30,7 @@ const UserLogin = ({ history }: RouteComponentProps) => {
     >
       <Box padding="0 10vw" gridColumn="1 / 2" gridRow="1 / span 1">
         <Heading as="h1">Log In</Heading>
-        <LogInForm />
+        <SignInForm />
       </Box>
       <Box gridColumn="1 / 2" gridRow="2 / span 1"></Box>
       <Box
@@ -44,4 +44,4 @@ const UserLogin = ({ history }: RouteComponentProps) => {
   );
 };
 
-export default UserLogin;
+export default SignInPage;

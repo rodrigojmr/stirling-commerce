@@ -16,10 +16,10 @@ const apiClient = axios.create({
 
 const api = {
   auth: {
-    userSignUp(payload: SignInParams) {
+    userRegister(payload: SignInParams) {
       return apiClient.post<IUser>('/auth/signup/', payload);
     },
-    userLogin(payload: SignInParams) {
+    userSignIn(payload: SignInParams) {
       return apiClient.post<IUser>('/auth/signin/', payload);
     },
     findUser() {

@@ -2,7 +2,7 @@ import { Box, Button, Center, Icon } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ReactComponent as UserIcon } from '../assets/user.svg';
+import { ReactComponent as UserSVG } from '../assets/user.svg';
 import { requestLogout } from '../store/slices/userSlice';
 import { RootState } from '../store/rootReducer';
 import { Link } from 'react-router-dom';
@@ -20,7 +20,7 @@ interface Props {
   order: ChakraOrder;
 }
 
-const User = ({ order }: Props) => {
+const UserIcon = ({ order }: Props) => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.auth.user);
 
@@ -40,7 +40,7 @@ const User = ({ order }: Props) => {
       onClick={() => dispatch(requestLogout())}
     >
       <Icon
-        as={UserIcon}
+        as={UserSVG}
         fill="lighter-grey"
         stroke="lighter-grey"
         boxSize={6}
@@ -50,4 +50,4 @@ const User = ({ order }: Props) => {
   );
 };
 
-export default User;
+export default UserIcon;

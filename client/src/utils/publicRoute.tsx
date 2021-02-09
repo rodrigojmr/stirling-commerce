@@ -1,26 +1,29 @@
 import * as React from 'react';
+import { Component } from 'react';
+import { useSelector } from 'react-redux';
 import { RouteProps, Route, Redirect } from 'react-router-dom';
+import { RootState } from 'store/rootReducer';
 
-// import { useAppContext } from 'containers/App/AppContext';
-
-const PublicRoute: React.FC<RouteProps & { restricted: boolean }> = ({
-  children,
-  restricted,
-  ...rest
-}) => {
+const PublicRoute: React.FC<
+  RouteProps & { component: Component; restricted: boolean }
+> = ({ component: Component, restricted, ...rest }) => {
   // restricted = false meaning public route
   // restricted = true meaning restricted route
+
+  const { user } = useSelector((state: RootState) => state.auth);
+
   return (
     <Route
       {...rest}
-      render={({ location }) => {
-        // TODO Get user from state
-        return restricted ? (
-          children
+      render={props =>
+        user && restricted ? (
+          <Redirect
+            to={{ pathname: '/dashboard', state: { from: props.location } }}
+          />
         ) : (
-          <Redirect to={{ pathname: '/sign-in', state: { from: location } }} />
-        );
-      }}
+          <Component {...props} />
+        )
+      }
     />
   );
 };

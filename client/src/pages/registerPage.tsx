@@ -7,7 +7,7 @@ interface stateType {
   from: { pathname: string };
 }
 
-const SignUpPage = () => {
+const RegisterPage = () => {
   const [redirectToReferrer, setredirectToReferrer] = useState(false);
   const { state } = useLocation<stateType>();
 
@@ -37,4 +37,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default RegisterPage;

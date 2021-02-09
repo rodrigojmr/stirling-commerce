@@ -1,12 +1,12 @@
 /* @jsxImportSource @emotion/react */
 import { Button, Flex, Icon, Link, useMediaQuery } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import { ReactComponent as loginIcon } from 'assets/log-in.svg';
+import { ReactComponent as SignInIcon } from 'assets/log-in.svg';
 import { ReactComponent as LogoS } from 'assets/logo-s.svg';
 import { ReactComponent as Logo } from 'assets/logo.svg';
 import Cart from 'components/cart/cart';
 import Search from 'components/search/navSearch';
-import User from 'components/userIcon';
+import UserIcon from 'components/userIcon';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
@@ -103,7 +103,7 @@ const Navbar = () => {
       <Search order={{ base: 1, md: 'initial' }} />
       {user ? (
         <>
-          <User order={{ base: 4, md: 'initial' }} />
+          <UserIcon order={{ base: 4, md: 'initial' }} />
           <Cart order={{ base: 5, md: 'initial' }} />
         </>
       ) : (
@@ -115,7 +115,7 @@ const Navbar = () => {
             _hover={{ bg: 'primary.400' }}
             _focus={{ bg: 'primary.400' }}
             rightIcon={
-              <Icon as={loginIcon} stroke="white" w={[6, 8]} h={[6, 8]} />
+              <Icon as={SignInIcon} stroke="white" w={[6, 8]} h={[6, 8]} />
             }
           >
             Log In

@@ -2,18 +2,18 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { Box, ChakraProvider } from '@chakra-ui/react';
-import theme from './theme/theme';
+import { CustomTheme, ThemeType } from './theme/theme';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import store from './store';
 import Footer from './ui/footer';
 import Home from './pages/homepage';
 import SingleProduct from './pages/productPage';
 import ScrollToTop from './hooks/ScrollToTop';
-import UserLogin from './pages/logIn';
+import SignInPage from './pages/signInPage';
 import PrivateRoute from './utils/privateRoute';
 import { Helmet } from 'react-helmet';
 import Navbar from 'ui/header';
-import SignUpPage from './pages/signUp';
+import RegisterPage from './pages/registerPage';
 import { drawerContext, useDrawer } from 'hooks/useDrawer';
 import { useAppDispatch } from 'store';
 import { getUser } from 'store/slices/userSlice';
@@ -26,7 +26,7 @@ const App = () => {
   }, []);
 
   return (
-    <ChakraProvider resetCSS theme={theme}>
+    <ChakraProvider resetCSS theme={CustomTheme}>
       <Provider store={store}>
         <drawerContext.Provider value={drawer}>
           <BrowserRouter>
@@ -63,8 +63,8 @@ const App = () => {
                   Kids
                 </Route>
                 <Route path="/product/:id" component={SingleProduct} />
-                <PrivateRoute path="/sign-in" component={UserLogin} />
-                <PrivateRoute path="/sign-up" component={SignUpPage} />
+                <PrivateRoute path="/sign-in" component={SignInPage} />
+                <PrivateRoute path="/register" component={RegisterPage} />
                 <Route render={() => <Redirect to="/" />} />
               </Switch>
             </Box>

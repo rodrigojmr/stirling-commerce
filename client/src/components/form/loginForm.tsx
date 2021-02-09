@@ -23,14 +23,14 @@ import {
 } from 'react-router-dom';
 import { useAppDispatch } from 'store';
 import { RootState } from 'store/rootReducer';
-import { requestLogin } from 'store/slices/userSlice';
+import { requestSignIn } from 'store/slices/userSlice';
 import { useHistory } from 'react-router-dom';
 
 interface stateType {
   from: { pathname: string };
 }
 
-const LogInForm = () => {
+const SignInForm = () => {
   const history = useHistory();
   const dispatch = useAppDispatch();
 
@@ -62,7 +62,7 @@ const LogInForm = () => {
 
   const onSubmit = (values: SignInParams) => {
     // Pass history so that thunk can push redirect once logged in
-    dispatch(requestLogin({ values, history }))
+    dispatch(requestSignIn({ values, history }))
       .then(unwrapResult)
       .then(originalPromiseResult => {})
       .catch(rejectedValueOrSerializedError => {
@@ -126,4 +126,4 @@ const LogInForm = () => {
   );
 };
 
-export default LogInForm;
+export default SignInForm;

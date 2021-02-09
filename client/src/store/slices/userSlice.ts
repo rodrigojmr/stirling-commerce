@@ -4,13 +4,13 @@ import api from 'utils/api';
 import { SignInParams, SignupParams, IUser } from './../../../../shared/types';
 
 export const requestSignup = createAsyncThunk(
-  'users/signup',
+  'users/register',
   async (
     data: { values: SignupParams; history: RouteComponentProps['history'] },
     { rejectWithValue }
   ) => {
     try {
-      const res = await api.auth.userSignUp(data.values);
+      const res = await api.auth.userRegister(data.values);
       data.history.push('/');
       return res.data;
     } catch (error) {
@@ -22,14 +22,14 @@ export const requestSignup = createAsyncThunk(
   }
 );
 
-export const requestLogin = createAsyncThunk(
-  'users/login',
+export const requestSignIn = createAsyncThunk(
+  'users/sign-in',
   async (
     data: { values: SignInParams; history: RouteComponentProps['history'] },
     { rejectWithValue }
   ) => {
     try {
-      const res = await api.auth.userLogin(data.values);
+      const res = await api.auth.userSignIn(data.values);
       data.history.push('/');
       return res.data;
     } catch (error) {
@@ -91,14 +91,14 @@ const authSlice = createSlice({
     builder.addCase(requestSignup.rejected, (state, action) => {
       console.log('rejected', action.payload);
     });
-    builder.addCase(requestLogin.fulfilled, (state, action) => {
+    builder.addCase(requestSignIn.fulfilled, (state, action) => {
       state.user = action.payload;
       state.status = 'succeeded';
     });
-    builder.addCase(requestLogin.pending, (state, action) => {
+    builder.addCase(requestSignIn.pending, (state, action) => {
       state.status = 'loading';
     });
-    builder.addCase(requestLogin.rejected, (state, action) => {
+    builder.addCase(requestSignIn.rejected, (state, action) => {
       state.status = 'failed';
     });
     builder.addCase(requestLogout.fulfilled, (state, action) => {
