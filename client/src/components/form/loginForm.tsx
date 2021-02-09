@@ -114,14 +114,6 @@ const SignInForm = () => {
       >
         Sign In
       </Button>
-      <Center mt=".5rem">
-        <Text color="grey">
-          Don't have an account?{' '}
-          <Link fontFamily="body" as={RouterLink} to="/sign-up">
-            Sign Up!
-          </Link>
-        </Text>
-      </Center>
     </form>
   );
 };

@@ -17,6 +17,8 @@ import RegisterPage from './pages/registerPage';
 import { drawerContext, useDrawer } from 'hooks/useDrawer';
 import { useAppDispatch } from 'store';
 import { getUser } from 'store/slices/userSlice';
+import PublicRoute from 'utils/publicRoute';
+import routes from 'data/routes';
 
 const App = () => {
   const drawer = useDrawer();
@@ -24,6 +26,18 @@ const App = () => {
   useEffect(() => {
     store.dispatch(getUser());
   }, []);
+
+  const routeComponents = routes.map((routeProps, key) => {
+    if (routeProps.restricted) {
+      return <PublicRoute {...routeProps} key={key} />;
+    } else if (routeProps.isPrivate) {
+      const { isPrivate, ...props } = routeProps;
+      return <PrivateRoute {...props} key={key} />;
+    } else {
+      const { restricted, isPrivate, ...props } = routeProps;
+      return <Route {...props} key={key} />;
+    }
+  });
 
   return (
     <ChakraProvider resetCSS theme={CustomTheme}>
@@ -49,7 +63,8 @@ const App = () => {
             <Navbar />
             <Box as="main" minHeight="30rem">
               <Switch>
-                <Route exact path="/">
+                {routeComponents}
+                {/* <Route exact path="/">
                   <Home />
                 </Route>
                 <Route exact path="/men">
@@ -63,8 +78,16 @@ const App = () => {
                   Kids
                 </Route>
                 <Route path="/product/:id" component={SingleProduct} />
-                <PrivateRoute path="/sign-in" component={SignInPage} />
-                <PrivateRoute path="/register" component={RegisterPage} />
+                <PublicRoute
+                  restricted={true}
+                  path="/sign-in"
+                  component={SignInPage}
+                />
+                <PublicRoute
+                  restricted={true}
+                  path="/register"
+                  component={RegisterPage}
+                /> */}
                 <Route render={() => <Redirect to="/" />} />
               </Switch>
             </Box>

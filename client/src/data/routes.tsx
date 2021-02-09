@@ -2,8 +2,9 @@ import Home from 'pages/homepage';
 import SignInPage from 'pages/signInPage';
 import SingleProduct from 'pages/productPage';
 import RegisterPage from 'pages/registerPage';
+import Dashboard from 'pages/dashboard';
 
-const Routes = [
+const routes = [
   {
     path: '/',
     exact: true,
@@ -12,36 +13,41 @@ const Routes = [
   {
     path: '/men',
     exact: true,
-    component: Home
+    component: () => <>Men</>
   },
   {
     path: '/women',
     exact: true,
-    component: Home
+    component: () => <>Women</>
   },
   {
     path: '/kids',
     exact: true,
-    component: Home
+    component: () => <>Kids</>
   },
   {
     path: '/product/:id',
     exact: true,
-    component: SingleProduct,
-    restriction: false
+    component: SingleProduct
   },
   {
     path: '/register',
     exact: true,
     component: RegisterPage,
-    restriction: 'public'
+    restricted: true
   },
   {
     path: '/sign-in',
     exact: true,
     component: SignInPage,
-    restriction: 'public'
+    restricted: true
+  },
+  {
+    path: '/dashboard',
+    exact: true,
+    component: Dashboard,
+    isPrivate: true
   }
 ];
 
-export default Routes;
+export default routes;

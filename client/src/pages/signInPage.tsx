@@ -1,7 +1,11 @@
-import { Box, Grid, Heading } from '@chakra-ui/react';
+import { Box, Text, Link, Center, Grid, Heading } from '@chakra-ui/react';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { SignInParams } from '@shared/types';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import {
+  withRouter,
+  Link as RouterLink,
+  RouteComponentProps
+} from 'react-router-dom';
 
 import SignInForm from 'components/form/loginForm';
 import React, { useState } from 'react';
@@ -31,6 +35,14 @@ const SignInPage = ({ history }: RouteComponentProps) => {
       <Box padding="0 10vw" gridColumn="1 / 2" gridRow="1 / span 1">
         <Heading as="h1">Log In</Heading>
         <SignInForm />
+        <Center mt=".5rem">
+          <Text color="grey">
+            Don't have an account?{' '}
+            <Link fontFamily="body" as={RouterLink} to="/register">
+              Sign Up!
+            </Link>
+          </Text>
+        </Center>
       </Box>
       <Box gridColumn="1 / 2" gridRow="2 / span 1"></Box>
       <Box
