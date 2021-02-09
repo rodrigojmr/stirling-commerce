@@ -22,7 +22,7 @@
     "dev:serverbuild": "tsc --build",
     "prod:serverbuild": "tsc --build tsconfig.prod.json",
     "clean-dist": "rimraf -rf ./dist && rimraf -rf ./server/public",
-    "migrate:prod": "npx prisma db push --preview-feature && ",
+    "migrate:prod": "npx prisma db push --preview-feature",
     "seed": "npx prisma db seed --preview-feature",
     "migrate:reset": "npx prisma migrate reset --preview-feature"
   },
