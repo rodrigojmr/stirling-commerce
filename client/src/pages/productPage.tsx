@@ -5,7 +5,8 @@ import {
   Heading,
   Image,
   Select,
-  Text
+  Text,
+  useTheme
 } from '@chakra-ui/react';
 import { drawerContext } from 'hooks/useDrawer';
 import { useContext, useEffect, useState } from 'react';
@@ -13,11 +14,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps, useParams } from 'react-router-dom';
 import { RootState } from 'store/rootReducer';
 import { addProduct } from 'store/slices/cartSlice';
+import { CustomTheme, ThemeType } from 'theme/theme';
 import { stars } from '../components/styled/Stars';
 import { allProducts } from '../data/products';
-import theme from '../theme/theme';
 
 const SingleProduct = ({ match }: RouteComponentProps) => {
+  const theme = useTheme<ThemeType>();
+
   const [product, setProduct] = useState<Product | undefined>(undefined);
   const { id } = useParams<{ id: string }>();
   const [amount, setAmount] = useState('1');

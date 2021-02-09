@@ -1,6 +1,6 @@
 import { extendTheme } from '@chakra-ui/react';
 
-const theme = extendTheme({
+export const CustomTheme = extendTheme({
   styles: {
     global: {
       body: {
@@ -83,8 +83,8 @@ const theme = extendTheme({
           bg: 'primary.500',
           color: 'white'
         },
-        hamburger: ({ checked }: { checked: boolean }) => ({
-          background: checked ? 'transparent' : 'primary.500',
+        hamburger: props => ({
+          background: props.checked ? 'transparent' : 'primary.500',
           height: '3px',
           position: 'relative',
           transition: 'background 0.2s ease-out',
@@ -92,7 +92,7 @@ const theme = extendTheme({
           _before: {
             content: `""`,
             display: 'block',
-            top: checked ? '1px' : '-10px',
+            top: props.checked ? '1px' : '-10px',
             left: '0',
             position: 'absolute',
             width: '100%',
@@ -100,11 +100,11 @@ const theme = extendTheme({
             height: '100%',
             transition: 'all 0.2s ease-out',
             transformOrigin: 'top center',
-            transform: checked ? 'rotate(-45deg)' : 'rotate(0)'
+            transform: props.checked ? 'rotate(-45deg)' : 'rotate(0)'
           },
           _after: {
             content: `""`,
-            top: checked ? '0px' : '10px',
+            top: props.checked ? '0px' : '10px',
             left: '0',
             position: 'absolute',
             display: 'block',
@@ -113,7 +113,7 @@ const theme = extendTheme({
             height: '100%',
             transition: 'all 0.2s ease-out',
             transformOrigin: 'bottom center',
-            transform: checked ? 'rotate(45deg)' : 'rotate(0)'
+            transform: props.checked ? 'rotate(45deg)' : 'rotate(0)'
           }
         })
       }
@@ -121,8 +121,4 @@ const theme = extendTheme({
   }
 });
 
-interface RoundButtonProps {
-  borderColor: string;
-}
-
-export default theme;
+export type ThemeType = typeof CustomTheme;
