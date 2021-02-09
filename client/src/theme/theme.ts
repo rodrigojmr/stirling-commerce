@@ -1,4 +1,14 @@
 import { extendTheme } from '@chakra-ui/react';
+import { createBreakpoints } from '@chakra-ui/theme-tools';
+
+const breakpoints = createBreakpoints({
+  sm: '30em',
+  md: '36em',
+  lg: '48em',
+  xl: '62em',
+  '2xl': '80em',
+  '3xl': '87.5em'
+});
 
 export const CustomTheme = extendTheme({
   styles: {
@@ -32,7 +42,7 @@ export const CustomTheme = extendTheme({
     'lighter-grey': '#aaaaaa',
     red: 'red'
   },
-  breakpoints: ['30em', '36em', '48em', '62em', '80em', '87.5em'],
+  breakpoints: breakpoints,
   fonts: {
     heading: 'Bebas Neue',
     body: 'Source Sans Pro, sans-serif'
