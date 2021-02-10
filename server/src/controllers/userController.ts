@@ -1,6 +1,5 @@
 import { PrismaClient } from '@prisma/client';
 import {
-  ClientRequest,
   cookieProps,
   loginFailedErr,
   paramMissingError,
@@ -28,7 +27,8 @@ export const signUpUser = asyncHandler(
   async (req: SignupRequest, res: Response) => {
     const { name, email, password } = req.body;
     if (!(email && password)) {
-      return res.status(BAD_REQUEST).send(paramMissingError);
+      res.status(BAD_REQUEST);
+      throw new Error(paramMissingError);
     }
 
     const passwordHash = await bcrypt.hash(password, pwdSaltRounds);
@@ -66,12 +66,22 @@ export const signInUser = asyncHandler(
 
     // Find user
     const user = await prisma.user.findUnique({ where: { email: email } });
-    if (!user) return res.status(NOT_FOUND).send(userNotFound);
+    if (!user) {
+      res.status(NOT_FOUND);
+      new Error(userNotFound);
+    }
+
+    // Typescript complains otherwise
+    if (!user?.passHash) {
+      res.status(BAD_REQUEST);
+      throw new Error('User does not have password set.');
+    }
 
     // Check password
     const pwdPassed = await bcrypt.compare(password, user?.passHash);
     if (!pwdPassed) {
-      return res.status(UNAUTHORIZED).send(loginFailedErr);
+      res.status(UNAUTHORIZED);
+      throw new Error(loginFailedErr);
     }
 
     // Generate JWT

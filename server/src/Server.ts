@@ -13,6 +13,7 @@ import cors from 'cors';
 import 'express-async-errors';
 
 import * as dotenv from 'dotenv';
+import { errorHandler } from './routes/middleware';
 
 dotenv.config();
 
@@ -50,11 +51,7 @@ app.get('/*', (req: Request, res: Response) => {
 });
 
 // Print API errors
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  return res.status(BAD_REQUEST).json({
-    error: err.message
-  });
-});
+app.use(errorHandler);
 
 /************************************************************************************
  *                              Export Server

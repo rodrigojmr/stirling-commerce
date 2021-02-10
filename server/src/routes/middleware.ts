@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import asyncHandler from 'express-async-handler';
 import { JWTClass } from '@servershared/jwtService';
-import StatusCodes from 'http-status-codes';
+import StatusCodes, { BAD_REQUEST } from 'http-status-codes';
 import { ClientRequest, cookieProps } from '@servershared/constants';
 import { resolveSoa } from 'dns';
 import { IUser } from '@shared/types';
@@ -55,3 +55,17 @@ export const authenticateToken = asyncHandler(
     next();
   }
 );
+
+export const errorHandler = (
+  err: Error,
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+  res.status(statusCode);
+  return res.json({
+    error: err.message,
+    stack: process.env.NODE_ENV === 'production' ? null : err.stack
+  });
+};
