@@ -2,7 +2,7 @@ import { Box, Flex, Image, Link } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 
 const Result = ({ product }: { product: Product }) => (
-  <Link as={RouterLink} to={`/product/${product._id}`}>
+  <Link as={RouterLink} to={`/product/${product.id}`}>
     <Flex
       as="li"
       p={3}

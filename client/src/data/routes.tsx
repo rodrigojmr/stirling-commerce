@@ -3,6 +3,7 @@ import SignInPage from 'pages/signInPage';
 import SingleProduct from 'pages/productPage';
 import RegisterPage from 'pages/registerPage';
 import Dashboard from 'pages/dashboard';
+import Search from 'pages/search';
 
 const routes = [
   {
@@ -11,19 +12,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/men',
+    path: '/search/:param1?/:param2?',
     exact: true,
-    component: () => <>Men</>
-  },
-  {
-    path: '/women',
-    exact: true,
-    component: () => <>Women</>
-  },
-  {
-    path: '/kids',
-    exact: true,
-    component: () => <>Kids</>
+    component: Search
   },
   {
     path: '/product/:id',

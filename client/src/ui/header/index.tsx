@@ -37,27 +37,27 @@ const StyledLogo = styled(Icon)`
 
 const navLinks: Link[] = [
   {
-    to: '/men',
+    to: '/search/men',
     text: "Men's"
   },
   {
-    to: '/women',
+    to: '/search/women',
     text: "Women's"
   },
   {
-    to: '/kids',
+    to: '/search/kids',
     text: "Kid's"
   },
   {
-    to: '/sport',
+    to: '/search/sport',
     text: 'Sport'
   },
   {
-    to: '/gear',
+    to: '/search/gear',
     text: 'Gear'
   },
   {
-    to: '/new',
+    to: '/search/new',
     text: 'New'
   }
 ];
@@ -75,16 +75,16 @@ const Navbar = () => {
       as="header"
       bg="dark-grey"
       align="center"
-      px={{ base: 5, sm: 7, md: 6 }}
+      px={{ base: 5, sm: 7, lg: 6 }}
       py={{ base: 5, sm: 5 }}
       background-color="dark-grey"
       maxW="100vw"
     >
       <Link
-        position={{ base: 'absolute', md: 'relative' }}
-        left={{ base: '50%', md: 'initial' }}
-        transform={{ base: 'translateX(-50%)', md: 'initial' }}
-        order={{ base: 3, md: 'initial' }}
+        position={{ base: 'absolute', lg: 'relative' }}
+        left={{ base: '50%', lg: 'initial' }}
+        transform={{ base: 'translateX(-50%)', lg: 'initial' }}
+        order={{ base: 3, lg: 'initial' }}
         ml={['auto', 'initial']}
         mr={['auto', 6]}
         as={RouterLink}
@@ -99,15 +99,15 @@ const Navbar = () => {
         />
       </Link>
       {/* TODO Fix order */}
-      <Menu order={{ base: 1, md: 'initial' }} links={navLinks} />
-      <Search order={{ base: 1, md: 'initial' }} />
+      <Menu order={{ base: 1, lg: 'initial' }} links={navLinks} />
+      <Search order={{ base: 1, lg: 'initial' }} />
       {user ? (
         <>
-          <UserIcon order={{ base: 4, md: 'initial' }} />
-          <Cart order={{ base: 5, md: 'initial' }} />
+          <UserIcon order={{ base: 4, lg: 'initial' }} />
+          <Cart order={{ base: 5, lg: 'initial' }} />
         </>
       ) : (
-        <Link order={{ base: 5, md: 'initial' }} as={RouterLink} to="/sign-in">
+        <Link order={{ base: 5, lg: 'initial' }} as={RouterLink} to="/sign-in">
           <Button
             isLoading={status === 'loading'}
             bg="primary.500"
