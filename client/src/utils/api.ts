@@ -34,6 +34,11 @@ const api = {
     // resetPassword(payload) {
     //   return apiClient.post('/auth/reset_password/', payload);
     // }
+  },
+  products: {
+    fetchAll() {
+      return apiClient.get('/products/all');
+    }
   }
 };
 

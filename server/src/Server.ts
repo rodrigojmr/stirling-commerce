@@ -5,7 +5,7 @@ import helmet from 'helmet';
 import StatusCodes from 'http-status-codes';
 import express, { NextFunction, Request, Response } from 'express';
 
-import BaseRouter from './routes';
+import BaseRouter from './api';
 import logger from '@servershared/logger';
 import { cookieProps } from '@servershared/constants';
 import cors from 'cors';
@@ -13,7 +13,7 @@ import cors from 'cors';
 import 'express-async-errors';
 
 import * as dotenv from 'dotenv';
-import { errorHandler } from './routes/middleware';
+import { errorHandler } from './api/middleware';
 
 dotenv.config();
 

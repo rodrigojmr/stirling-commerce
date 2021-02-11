@@ -4,7 +4,7 @@ import { cookieProps } from '@servershared/constants';
 import { JWTClass } from '@servershared/jwtService';
 import { Request, Response, Router } from 'express';
 import StatusCodes from 'http-status-codes';
-import { signUpUser, signInUser } from './../controllers/userController';
+import { signUpUser, signInUser } from '../controllers/userController';
 
 // import {
 //   paramMissingError,
@@ -16,44 +16,6 @@ const router = Router();
 // const userDao = new UserDao();
 const { BAD_REQUEST, OK, UNAUTHORIZED } = StatusCodes;
 const JWTService = new JWTClass();
-
-/******************************************************************************
- *                      Login User - "POST /api/auth/login"
- ******************************************************************************/
-
-// router.post('/login', async (req: IRequest, res: Response) => {
-//   // Check email and password present
-//   const { email, password } = req.body;
-
-//   if (!(email && password)) {
-//     return res.status(BAD_REQUEST).json({
-//       error: paramMissingError
-//     });
-//   }
-//   // Fetch user
-//   const user = await userDao.getOne(email);
-//   if (!user) {
-//     return res.status(UNAUTHORIZED).json({
-//       error: loginFailedErr
-//     });
-//   }
-//   // Check password
-//   const pwdPassed = await bcrypt.compare(password, user.pwdHash);
-//   if (!pwdPassed) {
-//     return res.status(UNAUTHORIZED).json({
-//       error: loginFailedErr
-//     });
-//   }
-//   // Setup Admin Cookie
-//   const jwt = await JWTService.getJwt({
-//     id: user.id,
-//     role: user.role
-//   });
-//   const { key, options } = cookieProps;
-//   res.cookie(key, jwt, options);
-//   // Return
-//   return res.status(OK).end();
-// });
 
 /******************************************************************************
  *                      Signup User - "POST /api/auth/signup"

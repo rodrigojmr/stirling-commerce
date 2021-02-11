@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const products = [
   {
     image: '/images/products/shoes/puma-ignite-flash-evoknit.webp',
@@ -5,7 +6,7 @@ const products = [
     title: 'Ignite Flash EvoKNIT',
     brand: 'puma',
     colors: ['black'],
-    categories: ['footwear'],
+    categories: ['shoes'],
     gender: 'men',
     price: 9999,
     description:
