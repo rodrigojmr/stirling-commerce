@@ -69,7 +69,7 @@ const CartDrawer = React.forwardRef<HTMLButtonElement, Props>((props, ref) => {
 
             <DrawerBody>
               {cart.map(item => (
-                <Flex key={item.product._id} _notLast={{ marginBottom: 4 }}>
+                <Flex key={item.product.id} _notLast={{ marginBottom: 4 }}>
                   <Box flexBasis="30%" mr={[4]}>
                     <Image alt={item.product.title} src={item.product.image} />
                   </Box>

@@ -1,4 +1,5 @@
 import { Box, Flex, Image, Link } from '@chakra-ui/react';
+import { Product } from '@prisma/client';
 import { Link as RouterLink } from 'react-router-dom';
 
 const Result = ({ product }: { product: Product }) => (

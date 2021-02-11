@@ -1,6 +1,14 @@
-import { Box, Flex, Link, Heading, Container } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  Link,
+  Heading,
+  Container,
+  Spinner,
+  Center
+} from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import EmblaCarousel from 'components/carousel/emblaCarousel';
 import ProductsCarousel from 'components/carousel/productsCarousel';
 import CategoryLink from 'components/categoryCTA';
@@ -8,8 +16,15 @@ import NewsletterForm from 'components/form/newsletterForm';
 import ProductHighlight from 'components/products/productHighlight';
 import SlideOne from 'pages/homepage/slides/slideOne';
 import ToggleSlider from 'components/toggleSlider';
-import { allProducts } from '../../data/products';
+import {
+  homeProductOneHighlights,
+  ProductsWithHighlightPoints
+} from '../../data/products';
 import { Link as RouterLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/rootReducer';
+import { Product } from '@prisma/client';
+import ensure from 'utils/ensure';
 
 const carouselOptions = {
   draggable: false,
@@ -32,25 +47,42 @@ const Image = styled.img`
 
 const Home = () => {
   // TODO Replace duplicated values with new products
+  const products = useSelector((state: RootState) => state.products.products);
 
-  // TODO Add typing?
-  const featuredProducts = [
-    ...allProducts.filter(product => product.featured),
-    ...allProducts.filter(product => product.featured)
+  const [highlightedProducts, setHighlightedProducts] = useState<
+    ProductsWithHighlightPoints[]
+  >();
+
+  useEffect(() => {
+    if (products && products.length > 0) {
+      const firstHighlightedProduct = ensure(
+        products?.find(product => product.id === 9)
+      );
+      const secondHighlightedProduct = ensure(
+        products?.find(product => product.id === 10)
+      );
+      setHighlightedProducts([
+        { ...firstHighlightedProduct, highlights: homeProductOneHighlights },
+        { ...secondHighlightedProduct, highlights: homeProductOneHighlights }
+      ]);
+    }
+  }, [products]);
+
+  // From JSON
+  // const featuredProducts = [
+  //   ...allProducts.filter(product => product.featured),
+  //   ...allProducts.filter(product => product.featured)
+  // ];
+  const featuredProducts = (products: Product[]) => [
+    ...products.slice(0, 4),
+    ...products.slice(0, 4)
   ];
 
-  const highlightedProducts: ProductsWithHighlightPoints[] = allProducts.filter(
-    (product): product is ProductsWithHighlightPoints =>
-      product.hasOwnProperty('highlightPoints')
-  );
+  const newFootwear = products;
 
-  type newProduct = Overwrite<Product, { new: true }>;
-
-  const newProducts: newProduct[] = allProducts.filter(
-    (product): product is newProduct => product.new === true
-  );
-
-  const allNewProducts = [...newProducts, ...newProducts];
+  if (!products) {
+    return <Spinner />;
+  }
 
   return (
     <>
@@ -91,7 +123,7 @@ const Home = () => {
             dragFree: true,
             containScroll: 'keepSnaps' as const
           }}
-          products={featuredProducts}
+          products={featuredProducts(products)}
         />
       </Container>
       {/* Accessories Section */}
@@ -144,10 +176,14 @@ const Home = () => {
         }}
       >
         <Box maxWidth="max" margin="0 auto">
-          <ToggleSlider title="This week we recommend">
-            <ProductHighlight product={highlightedProducts[0]} />
-            <ProductHighlight product={highlightedProducts[1]} />
-          </ToggleSlider>
+          {!highlightedProducts || highlightedProducts.length !== 2 ? (
+            <Center height="600px" width="100%"></Center>
+          ) : (
+            <ToggleSlider title="This week we recommend">
+              <ProductHighlight product={highlightedProducts[0]} />
+              <ProductHighlight product={highlightedProducts[1]} />
+            </ToggleSlider>
+          )}
         </Box>
       </Box>
       {/* New Items */}
@@ -165,16 +201,18 @@ const Home = () => {
               View All &gt;
             </Link>
           </Flex>
-          <ProductsCarousel
-            options={{
-              loop: false,
-              draggable: true,
-              arrows: false,
-              dragFree: true,
-              containScroll: 'keepSnaps' as const
-            }}
-            products={allNewProducts}
-          />
+          {newFootwear && (
+            <ProductsCarousel
+              options={{
+                loop: false,
+                draggable: true,
+                arrows: false,
+                dragFree: true,
+                containScroll: 'keepSnaps' as const
+              }}
+              products={newFootwear}
+            />
+          )}
         </Box>
       </Box>
       {/* Newsletter */}

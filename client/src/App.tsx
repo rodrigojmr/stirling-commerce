@@ -19,12 +19,14 @@ import { useAppDispatch } from 'store';
 import { getUser } from 'store/slices/userSlice';
 import PublicRoute from 'utils/publicRoute';
 import routes from 'data/routes';
+import { requestProducts } from 'store/slices/productSlice';
 
 const App = () => {
   const drawer = useDrawer();
 
   useEffect(() => {
     store.dispatch(getUser());
+    store.dispatch(requestProducts());
   }, []);
 
   const routeComponents = routes.map((routeProps, key) => {

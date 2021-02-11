@@ -45,7 +45,7 @@ const Menu = ({ order, links }: Props) => {
     <>
       {/* <Hamburger checked={show} onClick={() => setShow(!show)}></Hamburger> */}
       <Box
-        display={{ base: 'inline-block', md: 'none' }}
+        display={{ base: 'inline-block', lg: 'none' }}
         cursor="pointer"
         p=".25rem"
         onClick={() => setShow(!show)}
@@ -62,22 +62,22 @@ const Menu = ({ order, links }: Props) => {
       <Box
         ref={navRef}
         as="nav"
-        position={{ base: 'absolute', md: 'relative' }}
-        top={{ base: '97%', md: 'initial' }}
-        left={{ base: show ? '0' : '-50%', md: 'initial' }}
+        position={{ base: 'absolute', lg: 'relative' }}
+        top={{ base: '97%', lg: 'initial' }}
+        left={{ base: show ? '0' : '-50%', lg: 'initial' }}
         zIndex={3}
         bg={show ? 'dark-grey' : ''}
-        height={{ base: '100vh', md: 'auto' }}
-        px={{ base: '5', md: '3' }}
-        py={{ base: '8', md: '2' }}
+        height={{ base: '100vh', lg: 'auto' }}
+        px={{ base: '5', lg: '3' }}
+        py={{ base: '8', lg: '2' }}
         animation="all .5s ease-in-out"
-        order={{ base: 1, md: 'initial' }}
+        order={{ base: 1, lg: 'initial' }}
         transition=".4s all ease-in-out"
       >
         <UnorderedList
           ml="0"
           display="flex"
-          flexDirection={{ base: 'column', md: 'row' }}
+          flexDirection={{ base: 'column', lg: 'row' }}
           align="center"
           styleType="none"
         >

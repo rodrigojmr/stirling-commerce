@@ -11,6 +11,7 @@ import { useEmblaCarousel } from 'embla-carousel/react';
 import { Embla, Viewport, CarouselContainer, Slide } from './styles';
 import ProductSlide from './carouselProduct';
 import { useMediaQuery } from '@chakra-ui/react';
+import { Product } from '@prisma/client';
 
 // Progress bar width = width of component / something
 // Move progress bar by a certain amount

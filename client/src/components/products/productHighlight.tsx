@@ -4,6 +4,8 @@ import React, { useLayoutEffect, useRef } from 'react';
 import ButtonLink from '../buttons/buttonLink';
 import HighlightDot from './highlightDot';
 import { stars } from '../styled/Stars';
+import { ProductsWithHighlightPoints } from 'data/products';
+import { getProductAverageReviews } from 'utils';
 
 const ProductContainer = styled.article`
   display: flex;
@@ -45,11 +47,13 @@ const ProductHighlight: React.FC<{ product: ProductsWithHighlightPoints }> = ({
     heightOffset = containerHeight - imgHeight;
   }, []);
 
+  const rating = getProductAverageReviews(product);
+
   return (
     <ProductContainer>
       <ImageContainer ref={imgContainerRef}>
         <StyledImage ref={imgRef} src={product.image} alt={product.title} />
-        {product.highlightPoints.map((point, i) => (
+        {product.highlights.map((point, i) => (
           <HighlightDot key={i} {...point} />
         ))}
       </ImageContainer>
@@ -60,7 +64,7 @@ const ProductHighlight: React.FC<{ product: ProductsWithHighlightPoints }> = ({
         justifyContent="center"
         align="start"
       >
-        <Flex>{stars(product.rating)}</Flex>
+        <Flex>{stars(rating)}</Flex>
         <Heading fontFamily="body" as="h2" color="black" fontSize="4xl">
           {product.title}
         </Heading>

@@ -9,6 +9,7 @@ import {
   Text,
   useTheme
 } from '@chakra-ui/react';
+import { Product } from '@prisma/client';
 import { drawerContext } from 'hooks/useDrawer';
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,16 +17,17 @@ import { RouteComponentProps, useParams } from 'react-router-dom';
 import { RootState } from 'store/rootReducer';
 import { addProduct } from 'store/slices/cartSlice';
 import { CustomTheme, ThemeType } from 'theme/theme';
+import { getProductAverageReviews } from 'utils';
 import { stars } from '../components/styled/Stars';
-import { allProducts } from '../data/products';
 
 const SingleProduct = ({ match }: RouteComponentProps) => {
-  const theme = useTheme<ThemeType>();
+  const cart = useSelector((state: RootState) => state.cart);
+  const products = useSelector((state: RootState) => state.products.products);
 
+  const theme = useTheme<ThemeType>();
   const [product, setProduct] = useState<Product | undefined>(undefined);
   const { id } = useParams<{ id: string }>();
   const [amount, setAmount] = useState('1');
-  const cart = useSelector((state: RootState) => state.cart);
 
   const dispatch = useDispatch();
   const { isOpen, setDrawer } = useContext(drawerContext);
@@ -33,7 +35,7 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
 
   useEffect(() => {
     setProduct(
-      allProducts.find((product): product is Product => product._id === id)
+      products?.find((product): product is Product => product.id === Number(id))
     );
   }, [id]);
 
@@ -48,12 +50,12 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
   };
 
   const numReviews =
-    product && product.numReviews > 1
-      ? `${product?.numReviews} customer reviews`
+    product && product.reviews.length > 1
+      ? `${product?.reviews.length} customer reviews`
       : '1 customer review';
 
   const inCartIsMoreThanStock = (): boolean => {
-    const cartItem = cart.find(item => item.product._id === product?._id);
+    const cartItem = cart.find(item => item.product.id === product?.id);
     if (cartItem && product) {
       return cartItem.amount >= product?.stock;
     } else return false;
@@ -98,7 +100,7 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
               {product.title}
             </Heading>
             <Flex align="center">
-              {stars(product.rating)}
+              {stars(getProductAverageReviews(product))}
               <Text
                 ml="12px"
                 fontSize="lg"

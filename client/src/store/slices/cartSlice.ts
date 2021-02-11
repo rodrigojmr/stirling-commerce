@@ -1,3 +1,4 @@
+import { Product } from '@prisma/client';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Dispatch } from 'redux';
 
@@ -12,7 +13,7 @@ const cartSlice = createSlice({
     addProduct: (state, action: PayloadAction<CartProduct>) => {
       const { amount, product } = action.payload;
       const matchingProduct = state.find(
-        (item: CartProduct) => item.product._id === product._id
+        (item: CartProduct) => item.product.id === product.id
       );
       if (!state.length || !matchingProduct) {
         state.push(action.payload);
@@ -24,7 +25,7 @@ const cartSlice = createSlice({
     },
     removeProduct: (state, action: PayloadAction<Product>) => {
       state.splice(
-        state.findIndex(item => item.product._id === action.payload._id),
+        state.findIndex(item => item.product.id === action.payload.id),
         1
       );
     }

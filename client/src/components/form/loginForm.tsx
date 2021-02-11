@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   Box,
   Button,
@@ -10,22 +11,20 @@ import {
   Link,
   Text
 } from '@chakra-ui/react';
-import { unwrapResult } from '@reduxjs/toolkit';
 import { SignInParams } from '@shared/types';
-import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   Link as RouterLink,
   Redirect,
   RouteComponentProps,
-  useLocation
+  useLocation,
+  useHistory
 } from 'react-router-dom';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { useDispatch, useSelector } from 'react-redux';
 import { useAppDispatch } from 'store';
 import { RootState } from 'store/rootReducer';
 import { requestSignIn } from 'store/slices/userSlice';
-import { useHistory } from 'react-router-dom';
-
 interface stateType {
   from: { pathname: string };
 }

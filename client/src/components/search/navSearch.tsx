@@ -8,9 +8,10 @@ import {
 import styled from '@emotion/styled';
 import * as React from 'react';
 import { useState, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { RootState } from 'store/rootReducer';
 import { ReactComponent as SearchIcon } from '../../assets/search.svg';
-import { allProducts } from '../../data/products';
 import Results from './navSearchResults';
 
 const StyledForm = styled.form<{ order?: number }>`
@@ -28,14 +29,17 @@ interface Props extends RouteComponentProps {
   order: ChakraOrder;
 }
 const Search: React.FC<Props> = ({ order, history }) => {
+  const products = useSelector((state: RootState) => state.products.products);
+
   const [query, setQuery] = useState('');
   const [searchFocus, setSearchFocus] = useState(false);
   const [toggled, setToggled] = useState(false);
   const [error, setError] = useState({ message: '' });
 
-  const filteredProducts = allProducts.filter(product =>
-    product.title.toLowerCase().includes(query.toLowerCase())
-  );
+  const filteredProducts =
+    products?.filter(product =>
+      product.title.toLowerCase().includes(query.toLowerCase())
+    ) || [];
 
   const inputRef = useRef<HTMLInputElement>(null);
 

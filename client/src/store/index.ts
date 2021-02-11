@@ -9,6 +9,7 @@ const store = configureStore({
   devTools: process.env.NODE_ENV !== 'development' ? false : true
 });
 
+// Hot module reload for redux
 if (process.env.NODE_ENV === 'development' && module.hot) {
   module.hot.accept('./rootReducer', () => {
     const newRootReducer = require('./rootReducer').default;
