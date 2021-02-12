@@ -1,3 +1,4 @@
+import Loader from 'components/Loader';
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { RouteProps, Route, Redirect } from 'react-router-dom';
@@ -9,13 +10,16 @@ const PrivateRoute: React.FC<RouteProps & { component: React.ElementType }> = ({
   component: Component,
   ...rest
 }) => {
-  const { user } = useSelector((state: RootState) => state.auth);
+  const auth = useSelector((state: RootState) => state.auth);
+
+  if (!auth || auth.status === 'idle' || auth.status === 'loading')
+    return <Loader />;
 
   return (
     <Route
       {...rest}
       render={props =>
-        user ? (
+        auth.user ? (
           <Component {...props} />
         ) : (
           <Redirect
