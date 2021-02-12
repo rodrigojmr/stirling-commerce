@@ -1,15 +1,16 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { RouteComponentProps } from 'react-router-dom';
-import api from 'utils/api';
-import { SignInParams, SignupParams, IUser } from '../../../../shared/types';
 import { Product } from '@prisma/client';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import api from 'utils/api';
 
 export const requestProducts = createAsyncThunk(
-  'users/register',
+  'products/get-all',
   async (data, { rejectWithValue }) => {
     try {
       const res = await api.products.fetchAll();
-      console.log('res: ', res);
+      // Prices are stored as Int on database, need to parse
+      // to two point decimals as Prisma.Decimal
+      // type wasn't being handled properly with typescript
+      res.data.forEach(product => (product.price = product.price / 100));
       return res.data;
     } catch (error) {
       return rejectWithValue({
@@ -27,7 +28,7 @@ interface ProductStore {
 }
 
 const productSlice = createSlice({
-  name: 'product',
+  name: 'products',
   initialState: {
     status: 'idle',
     error: null,

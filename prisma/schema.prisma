@@ -26,7 +26,7 @@ model Product {
   title String
   reviews Int[]
   brand String
-  price Float // Divide by 10 to get float val
+  price Int // Divide by 10 to get price val
   image String
   description String
   stock Int

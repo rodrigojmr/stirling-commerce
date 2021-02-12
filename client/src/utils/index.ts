@@ -9,3 +9,5 @@ export const capitalizeEveryWord = (str: string) => {
 export const getProductAverageReviews = (product: Product) =>
   product.reviews.reduce((acc, current) => acc + current) /
   product.reviews.length;
+
+export const getPriceDecimals = (price: number) => price / 100;

@@ -21,7 +21,7 @@ CREATE TABLE "Product" (
     "title" TEXT NOT NULL,
     "reviews" INTEGER[],
     "brand" TEXT NOT NULL,
-    "price" DECIMAL(65,30) NOT NULL,
+    "price" INTEGER NOT NULL,
     "image" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "stock" INTEGER NOT NULL,
