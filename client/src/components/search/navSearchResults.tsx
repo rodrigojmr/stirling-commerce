@@ -1,12 +1,20 @@
-import { Box, Flex, Image, Link } from '@chakra-ui/react';
+import { Box, Flex, Center, Image, Link, Spinner } from '@chakra-ui/react';
 import { Product } from '@prisma/client';
+import { LayoutProps } from 'framer-motion';
 import { Link as RouterLink } from 'react-router-dom';
+
+const Loading = () => (
+  <Center>
+    <Spinner />
+  </Center>
+);
 
 const Result = ({ product }: { product: Product }) => (
   <Link as={RouterLink} to={`/product/${product.id}`}>
     <Flex
       as="li"
       p={3}
+      minHeight="9rem"
       align="center"
       transition="all .2s"
       borderBottom="1px solid"
@@ -14,15 +22,27 @@ const Result = ({ product }: { product: Product }) => (
       _hover={{ bg: 'light-grey' }}
     >
       <Box flexBasis="8rem" mr={3}>
-        <Image objectFit="cover" src={product.image} alt={product.title} />
+        <Image
+          objectFit="cover"
+          fallback={<Loading />}
+          src={product.image}
+          alt={product.title}
+        />
       </Box>
       <Box>{product.title}</Box>
     </Flex>
   </Link>
 );
 
-const Results = ({ products }: { products: Product[] }) => (
+const Results = ({
+  products,
+  display
+}: {
+  products: Product[];
+  display?: string;
+}) => (
   <Box
+    display={display || 'initial'}
     pos="absolute"
     bg="white"
     right="0px"
@@ -44,8 +64,8 @@ const Results = ({ products }: { products: Product[] }) => (
       }
     }}
   >
-    {products.map((product: Product) => (
-      <Result product={product} />
+    {products.map((product: Product, key: number) => (
+      <Result key={key} product={product} />
     ))}
   </Box>
 );

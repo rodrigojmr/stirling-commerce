@@ -32,7 +32,7 @@ const Search: React.FC<Props> = ({ order, history }) => {
   const products = useSelector((state: RootState) => state.products.products);
 
   const [query, setQuery] = useState('');
-  const [searchFocus, setSearchFocus] = useState(false);
+  const [display, setDisplay] = useState('');
   const [toggled, setToggled] = useState(false);
   const [error, setError] = useState({ message: '' });
 
@@ -76,12 +76,10 @@ const Search: React.FC<Props> = ({ order, history }) => {
         <InputGroup>
           <Input
             ref={inputRef}
-            onFocus={() => setSearchFocus(true)}
+            onFocus={() => setDisplay('block')}
             onBlur={e => {
               // If not clicking on a link like a search result
-              if (e.relatedTarget! instanceof HTMLLinkElement) {
-                setSearchFocus(false);
-              }
+              setDisplay('none');
             }}
             maxWidth={{ base: toggled ? 64 : 0, xl: 'initial' }}
             paddingBottom={2}
@@ -127,8 +125,8 @@ const Search: React.FC<Props> = ({ order, history }) => {
             }
           />
         </InputGroup>
-        {searchFocus && query && filteredProducts.length > 0 && (
-          <Results products={filteredProducts} />
+        {query && filteredProducts.length > 0 && (
+          <Results display={display} products={filteredProducts} />
         )}
       </form>
     </Box>
