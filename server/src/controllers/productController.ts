@@ -32,7 +32,11 @@ export const fetchAllProducts = asyncHandler(
       res.status(NOT_FOUND);
       throw new Error('No products found.');
     }
-    res.json(allProducts);
+    const products = allProducts.map(product => {
+      const { ordersId, ...restOfProduct } = product;
+      return restOfProduct;
+    });
+    res.json(products);
   }
 );
 
