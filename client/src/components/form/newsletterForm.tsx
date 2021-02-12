@@ -37,7 +37,6 @@ const NewsletterForm = () => {
   const { handleSubmit, errors, register, formState } = useForm();
 
   const [error, setError] = useState('');
-  const [email, setEmail] = useState('');
 
   const onSubmit = (values: Values) => {
     console.log({ values });
@@ -79,20 +78,6 @@ const NewsletterForm = () => {
           {errors.email && errors.email.message}
         </FormErrorMessage>
       </FormControl>
-      {/* <StyledInput
-        fontSize={'2rem'}
-        id="email-input"
-        backgroundColor="transparent"
-        borderColor="black"
-        color={theme.colors.grey}
-        name="email"
-        placeholder="Enter your email address"
-        value={email}
-        type="email"
-        onChange={(e: React.ChangeEvent<HTMLInputElement>): void =>
-          setEmail(e.target.value)
-        }
-      /> */}
     </form>
   );
 };

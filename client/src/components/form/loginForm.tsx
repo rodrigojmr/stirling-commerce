@@ -1,27 +1,18 @@
-import React, { useState } from 'react';
 import {
   Box,
   Button,
-  Center,
-  Flex,
   FormControl,
   FormErrorMessage,
   FormLabel,
   Input,
-  Link,
   Text
 } from '@chakra-ui/react';
-import { SignInParams } from '@shared/types';
-import { useForm } from 'react-hook-form';
-import {
-  Link as RouterLink,
-  Redirect,
-  RouteComponentProps,
-  useLocation,
-  useHistory
-} from 'react-router-dom';
 import { unwrapResult } from '@reduxjs/toolkit';
-import { useDispatch, useSelector } from 'react-redux';
+import { SignInParams } from '@shared/types';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import { Redirect, useHistory, useLocation } from 'react-router-dom';
 import { useAppDispatch } from 'store';
 import { RootState } from 'store/rootReducer';
 import { requestSignIn } from 'store/slices/userSlice';
@@ -44,7 +35,7 @@ const SignInForm = () => {
   // Prepare redirect to page where user came from once they log in
   const [redirectToReferrer, setredirectToReferrer] = useState(false);
   const { state } = useLocation<stateType>();
-  console.log('state: ', state);
+
   if (redirectToReferrer) {
     return <Redirect to={state?.from || '/'} />;
   }
