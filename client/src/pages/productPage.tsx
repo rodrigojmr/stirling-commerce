@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Center,
   Flex,
@@ -16,17 +15,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps, useParams } from 'react-router-dom';
 import { RootState } from 'store/rootReducer';
 import { addProduct } from 'store/slices/cartSlice';
-import { CustomTheme, ThemeType } from 'theme/theme';
+import { ThemeType } from 'theme/theme';
 import { getProductAverageReviews } from 'utils';
 import { stars } from '../components/styled/Stars';
 
 const SingleProduct = ({ match }: RouteComponentProps) => {
   const cart = useSelector((state: RootState) => state.cart);
   const products = useSelector((state: RootState) => state.products.products);
+  const { id } = useParams<{ id: string }>();
 
   const theme = useTheme<ThemeType>();
   const [product, setProduct] = useState<Product | undefined>(undefined);
-  const { id } = useParams<{ id: string }>();
   const [amount, setAmount] = useState('1');
 
   const dispatch = useDispatch();
@@ -37,7 +36,7 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
     setProduct(
       products?.find((product): product is Product => product.id === Number(id))
     );
-  }, [id]);
+  }, [products, id]);
 
   const updateCart = () => {
     if (product && user) {
@@ -135,7 +134,7 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
                   value={amount}
                   onChange={e => setAmount(e.target.value)}
                   fontSize="xl"
-                  color={theme.colors.grey}
+                  color="grey.500"
                   name="amount"
                   id="amount-input"
                 >

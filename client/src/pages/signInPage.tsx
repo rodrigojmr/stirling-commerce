@@ -1,17 +1,13 @@
-import { Box, Text, Link, Center, Grid, Heading } from '@chakra-ui/react';
-import { unwrapResult } from '@reduxjs/toolkit';
-import { SignInParams } from '@shared/types';
-import {
-  withRouter,
-  Link as RouterLink,
-  RouteComponentProps
-} from 'react-router-dom';
-
+import { Box, Center, Grid, Heading, Link, Text } from '@chakra-ui/react';
 import SignInForm from 'components/form/loginForm';
 import React, { useState } from 'react';
-import { Redirect, useLocation } from 'react-router-dom';
+import {
+  Link as RouterLink,
+  Redirect,
+  RouteComponentProps,
+  useLocation
+} from 'react-router-dom';
 import { useAppDispatch } from 'store';
-import { requestSignIn } from 'store/slices/userSlice';
 
 interface stateType {
   from: { pathname: string };
