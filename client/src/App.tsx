@@ -4,7 +4,6 @@ import routes from 'data/routes';
 import { drawerContext, useDrawer } from 'hooks/useDrawer';
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import { Provider } from 'react-redux';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { requestProducts } from 'store/slices/productSlice';
 import { getUser } from 'store/slices/userSlice';
@@ -64,7 +63,7 @@ const App = () => {
             </Switch>
           </Box>
           <Footer />
-          <ScrollToTop />{' '}
+          <ScrollToTop />
         </BrowserRouter>
       </drawerContext.Provider>
     </ChakraProvider>
