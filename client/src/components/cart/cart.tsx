@@ -1,6 +1,6 @@
-import { useMediaQuery, usePrevious } from '@chakra-ui/react';
+import { Box, useMediaQuery, usePrevious } from '@chakra-ui/react';
 import CartDrawer from 'components/cartDrawer';
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/rootReducer';
 import CartButton from './cartButton';
@@ -61,7 +61,7 @@ const Cart = ({ order }: Props) => {
   return (
     <>
       <CartDrawer>
-        {SelectedButton}
+        <Box order={order}>{SelectedButton}</Box>
         {/* Not using notif popup
         <Box order={order} pos="relative">
           <CartNotif isOpen={isNotifOpen} setIsOpen={setIsNotifOpen}>
