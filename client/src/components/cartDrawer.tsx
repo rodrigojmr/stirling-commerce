@@ -22,10 +22,11 @@ import {
   Text
 } from '@chakra-ui/react';
 import { drawerContext } from 'hooks/useDrawer';
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/rootReducer';
 import { removeProduct } from 'store/slices/cartSlice';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 
 interface Props {
   children?: React.ReactNode;
@@ -38,6 +39,19 @@ const CartDrawer = React.forwardRef<HTMLButtonElement, Props>((props, ref) => {
   const cart = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
   const { isOpen, setDrawer } = useContext(drawerContext);
+
+  // TODO Decide reset every location change?
+  const location = useLocation();
+  useEffect(() => {
+    setDrawer(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (!cart.length) {
+      setDrawer(false);
+    }
+    return () => {};
+  }, [cart]);
 
   const btnRef = useRef<HTMLButtonElement>(null);
 
@@ -93,7 +107,6 @@ const CartDrawer = React.forwardRef<HTMLButtonElement, Props>((props, ref) => {
                       </PopoverTrigger>
                       <PopoverContent bg="dark-grey">
                         <PopoverArrow />
-                        <PopoverCloseButton />
                         <PopoverBody>
                           <Text mb=".5rem">Remove item from the cart?</Text>
                           <Button
@@ -114,16 +127,18 @@ const CartDrawer = React.forwardRef<HTMLButtonElement, Props>((props, ref) => {
             </DrawerBody>
 
             <DrawerFooter>
-              <Box>Total: €{totalPrice}</Box>
+              <Box mr="auto">Total: €{totalPrice}</Box>
               <Button
                 variant="outline"
                 colorScheme="teal"
                 mr={3}
-                onClose={() => setDrawer(false)}
+                onClick={() => setDrawer(false)}
               >
                 Cancel
               </Button>
-              <Button colorScheme="teal">Check Out</Button>
+              <Button as={RouterLink} to="/checkout" colorScheme="teal">
+                Check Out
+              </Button>
             </DrawerFooter>
           </DrawerContent>
         </DrawerOverlay>
