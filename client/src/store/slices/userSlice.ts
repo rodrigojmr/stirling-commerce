@@ -46,6 +46,7 @@ export const getUser = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const res = await api.auth.findUser();
+
       return res.data;
     } catch (error) {
       return rejectWithValue({
@@ -88,9 +89,7 @@ const authSlice = createSlice({
     builder.addCase(requestSignup.pending, (state, action) => {
       state.status = 'loading';
     });
-    builder.addCase(requestSignup.rejected, (state, action) => {
-      console.log('rejected', action.payload);
-    });
+    builder.addCase(requestSignup.rejected, (state, action) => {});
     builder.addCase(requestSignIn.fulfilled, (state, action) => {
       state.user = action.payload;
       state.status = 'succeeded';
@@ -112,8 +111,14 @@ const authSlice = createSlice({
       state.status = 'failed';
     });
     builder.addCase(getUser.fulfilled, (state, action) => {
-      state.status = 'idle';
-      if (action.payload.email) state.user = action.payload;
+      if (!action.payload.email) {
+        state.status = 'failed';
+        state.user = null;
+      }
+      if (action.payload.email) {
+        state.status = 'succeeded';
+        state.user = action.payload;
+      }
     });
     builder.addCase(getUser.pending, (state, action) => {
       state.status = 'loading';
