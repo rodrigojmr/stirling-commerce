@@ -42,9 +42,6 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
     if (product && user) {
       setDrawer(true);
       dispatch(addProduct({ amount: parseInt(amount), product }));
-      setTimeout(() => {
-        setDrawer(false);
-      }, 1200);
     }
   };
 
