@@ -4,13 +4,9 @@ import SingleProduct from 'pages/productPage';
 import RegisterPage from 'pages/registerPage';
 import Dashboard from 'pages/dashboard';
 import Search from 'pages/search';
+import Checkout from 'pages/checkout';
 
 const routes = [
-  {
-    path: '/',
-    exact: true,
-    component: Home
-  },
   {
     path: '/search/:param1?/:param2?',
     exact: true,
@@ -38,6 +34,17 @@ const routes = [
     exact: true,
     component: Dashboard,
     isPrivate: true
+  },
+  {
+    path: '/checkout',
+    exact: true,
+    component: Checkout,
+    isPrivate: true
+  },
+  {
+    path: '/',
+    exact: true,
+    component: Home
   }
 ];
 
