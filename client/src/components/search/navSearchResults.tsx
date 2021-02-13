@@ -3,12 +3,6 @@ import { Product } from '@prisma/client';
 import { LayoutProps } from 'framer-motion';
 import { Link as RouterLink } from 'react-router-dom';
 
-const Loading = () => (
-  <Center>
-    <Spinner />
-  </Center>
-);
-
 const Result = ({ product }: { product: Product }) => (
   <Link as={RouterLink} to={`/product/${product.id}`}>
     <Flex
@@ -24,7 +18,11 @@ const Result = ({ product }: { product: Product }) => (
       <Box flexBasis="8rem" mr={3}>
         <Image
           objectFit="cover"
-          fallback={<Loading />}
+          fallback={
+            <Center>
+              <Spinner />
+            </Center>
+          }
           src={product.image}
           alt={product.title}
         />

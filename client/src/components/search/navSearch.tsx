@@ -28,6 +28,7 @@ const StyledForm = styled.form<{ order?: number }>`
 interface Props extends RouteComponentProps {
   order: ChakraOrder;
 }
+
 const Search: React.FC<Props> = ({ order, history }) => {
   const products = useSelector((state: RootState) => state.products.products);
 
