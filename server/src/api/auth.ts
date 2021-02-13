@@ -29,7 +29,7 @@ router.get(
   asyncHandler(async (req: Request, res: Response) => {
     const token = req?.signedCookies?.token;
     if (!token) {
-      res.json({});
+      res.status(StatusCodes.NOT_FOUND).json({});
     } else {
       const clientData = await JWTService.decodeJwt(token);
       res.json(clientData);
