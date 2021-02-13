@@ -58,6 +58,7 @@ export const CustomTheme = extendTheme({
     },
     Link: {
       baseStyle: {
+        lineHeight: 1,
         fontFamily: 'Bebas Neue',
         fontWeight: '600',
         _hover: {
