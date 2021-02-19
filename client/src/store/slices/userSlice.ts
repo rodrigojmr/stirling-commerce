@@ -46,7 +46,6 @@ export const getUser = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const res = await api.auth.findUser();
-
       return res.data;
     } catch (error) {
       return rejectWithValue({
@@ -57,14 +56,21 @@ export const getUser = createAsyncThunk(
   }
 );
 
-export const requestLogout = createAsyncThunk('users/logout', async () => {
-  try {
-    const res = await api.auth.userLogout();
-    return res.status;
-  } catch (error) {}
-  // const res = await api.post('/api/auth/login/', { username, password });
-  // return (await response.json()) as LoginProps;
-});
+export const requestLogout = createAsyncThunk(
+  'users/logout',
+  async (data, { rejectWithValue }) => {
+    try {
+      const res = await api.auth.userLogout();
+
+      return res.status;
+    } catch (error) {
+      return rejectWithValue({
+        status: error.response.status,
+        message: error.response.data
+      });
+    }
+  }
+);
 
 interface Auth {
   user: IUser | null;
