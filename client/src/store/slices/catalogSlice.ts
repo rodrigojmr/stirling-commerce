@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import api from 'utils/api';
 
 export const requestProducts = createAsyncThunk(
-  'products/get-all',
+  'catalog/get-all',
   async (data, { rejectWithValue }) => {
     try {
       const res = await api.products.fetchAll();
@@ -21,19 +21,19 @@ export const requestProducts = createAsyncThunk(
   }
 );
 
-interface ProductStore {
+interface Catalog {
   products: Product[] | null;
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null | undefined;
 }
 
-const productSlice = createSlice({
-  name: 'products',
+const catalog = createSlice({
+  name: 'catalog',
   initialState: {
     status: 'idle',
     error: null,
     products: null
-  } as ProductStore,
+  } as Catalog,
   reducers: {},
   extraReducers: builder => {
     // Add reducers for additional action types here, and handle loading state as needed
@@ -50,6 +50,6 @@ const productSlice = createSlice({
   }
 });
 
-export default productSlice.reducer;
+export default catalog.reducer;
 
 // export const getUser = (state: { user: AuthParams }) => state.user;

@@ -30,7 +30,7 @@ interface Props extends RouteComponentProps {
 }
 
 const Search: React.FC<Props> = ({ order, history }) => {
-  const products = useSelector((state: RootState) => state.products.products);
+  const products = useSelector((state: RootState) => state.catalog.products);
 
   const [query, setQuery] = useState('');
   const [display, setDisplay] = useState('');

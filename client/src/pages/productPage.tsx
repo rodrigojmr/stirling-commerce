@@ -5,6 +5,8 @@ import {
   Heading,
   Image,
   Select,
+  Skeleton,
+  SkeletonText,
   Text,
   useTheme
 } from '@chakra-ui/react';
@@ -15,28 +17,31 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps, useParams } from 'react-router-dom';
 import { RootState } from 'store/rootReducer';
 import { addProduct } from 'store/slices/cartSlice';
+import { requestProduct } from 'store/slices/productDetailsSlice';
 import { ThemeType } from 'theme/theme';
 import { getProductAverageReviews } from 'utils';
 import { stars } from '../components/styled/Stars';
 
 const SingleProduct = ({ match }: RouteComponentProps) => {
-  const cart = useSelector((state: RootState) => state.cart);
-  const products = useSelector((state: RootState) => state.products.products);
+  // Get Product
   const { id } = useParams<{ id: string }>();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(requestProduct(id));
+  }, []);
+
+  const { product, error, status } = useSelector(
+    (state: RootState) => state.productDetails
+  );
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  const cart = useSelector((state: RootState) => state.cart);
 
   const theme = useTheme<ThemeType>();
-  const [product, setProduct] = useState<Product | undefined>(undefined);
   const [amount, setAmount] = useState('1');
 
-  const dispatch = useDispatch();
   const { isOpen, setDrawer } = useContext(drawerContext);
   const user = useSelector((state: RootState) => state.auth.user);
-
-  useEffect(() => {
-    setProduct(
-      products?.find((product): product is Product => product.id === Number(id))
-    );
-  }, [products, id]);
 
   const updateCart = () => {
     if (product && user) {
@@ -65,36 +70,51 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
 
   return (
     <>
-      {product ? (
-        <Flex
-          flexDir={{ base: 'column', xl: 'row' }}
+      <Flex
+        flexDir={{ base: 'column', xl: 'row' }}
+        width="100%"
+        alignItems="center"
+        py={{ base: 10, md: 20 }}
+        px="clamp(6rem, 5vw, 10rem)"
+        justifyContent="space-between"
+        margin="0 auto"
+        maxWidth="max"
+      >
+        <Center
           width="100%"
-          alignItems="center"
-          py={{ base: 10, md: 20 }}
-          px="clamp(6rem, 5vw, 10rem)"
-          justifyContent="space-between"
-          margin="0 auto"
-          maxWidth="max"
+          minHeight={{ base: '20rem', xl: '30rem' }}
+          flexBasis="48%"
         >
-          <Center
+          <Skeleton
+            minHeight={{ base: '20rem' }}
             width="100%"
-            minHeight={{ base: '20rem', xl: '30rem' }}
-            flexBasis="48%"
+            borderRadius={8}
+            isLoaded={status === 'succeeded' && imageLoaded}
           >
             <Image
+              onLoad={() => setImageLoaded(true)}
               objectFit="cover"
               src={product?.image}
               alt={product?.title}
             />
-          </Center>
-          <Flex
-            flexBasis="45%"
-            direction="column"
-            gridColumn="col-start 5 / col-end 7"
+          </Skeleton>
+        </Center>
+        <Flex
+          flexBasis="45%"
+          direction="column"
+          gridColumn="col-start 5 / col-end 7"
+        >
+          <Skeleton
+            borderRadius={8}
+            minH={6}
+            isLoaded={status === 'succeeded'}
+            mb={4}
           >
-            <Heading mb={4} as="h1" fontSize="3xl" fontFamily="body">
-              {product.title}
+            <Heading as="h1" fontSize="3xl" fontFamily="body">
+              {product?.title}
             </Heading>
+          </Skeleton>
+          {product && status === 'succeeded' ? (
             <Flex align="center">
               {stars(getProductAverageReviews(product))}
               <Text
@@ -108,16 +128,33 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
                 ({numReviews})
               </Text>
             </Flex>
-            <Text color="primary" fontSize="2xl" fontWeight={'600'} mb={4}>
-              €{product.price}
+          ) : (
+            <Skeleton height={4} mb={4} />
+          )}
+          <SkeletonText
+            noOfLines={1}
+            maxW="30%"
+            mb={4}
+            minH={2}
+            isLoaded={status === 'succeeded'}
+          >
+            <Text color="gray.600" fontSize="2xl" fontWeight={'600'}>
+              €{product?.price}
             </Text>
+          </SkeletonText>
+          <SkeletonText
+            noOfLines={8}
+            spacing="4"
+            mb={4}
+            isLoaded={status === 'succeeded'}
+          >
             <Text fontSize="lg" mb={2}>
-              {product.description}
+              {product?.description}
             </Text>
-            <Text color="grey" mb={2}>
-              {stockText}
-            </Text>
-            {/* TODO Split to separate component */}
+            <Text color="grey">{stockText}</Text>
+          </SkeletonText>
+          {/* TODO Split to separate component */}
+          <Skeleton isLoaded={status === 'succeeded'}>
             <form>
               <Flex>
                 <label htmlFor="amount-input"></label>
@@ -135,7 +172,7 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
                   name="amount"
                   id="amount-input"
                 >
-                  {[...Array(product.stock).keys()].map(x => (
+                  {[...Array(product?.stock).keys()].map(x => (
                     <option key={x + 1} value={x + 1}>
                       {x + 1}
                     </option>
@@ -153,9 +190,9 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
                 </Button>
               </Flex>
             </form>
-          </Flex>
+          </Skeleton>
         </Flex>
-      ) : null}
+      </Flex>
     </>
   );
 };

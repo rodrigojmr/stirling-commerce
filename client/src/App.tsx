@@ -5,7 +5,7 @@ import { drawerContext, useDrawer } from 'hooks/useDrawer';
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import { requestProducts } from 'store/slices/productSlice';
+import { requestProducts } from 'store/slices/catalogSlice';
 import { getUser } from 'store/slices/userSlice';
 import Navbar from 'ui/header';
 import PublicRoute from 'utils/publicRoute';
@@ -20,7 +20,6 @@ const App = () => {
 
   useEffect(() => {
     store.dispatch(getUser());
-    store.dispatch(requestProducts());
   }, []);
 
   const routeComponents = routes.map((routeProps, key) => {

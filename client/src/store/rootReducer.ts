@@ -1,12 +1,14 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import authReducer from './slices/userSlice';
 import cartReducer from './slices/cartSlice';
-import productReducer from './slices/productSlice';
+import catalogReducer from './slices/catalogSlice';
+import productDetailsSlice from './slices/productDetailsSlice';
 
 const rootReducer = combineReducers({
   auth: authReducer,
   cart: cartReducer,
-  products: productReducer
+  catalog: catalogReducer,
+  productDetails: productDetailsSlice
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
