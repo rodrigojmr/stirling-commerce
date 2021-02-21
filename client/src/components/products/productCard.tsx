@@ -32,7 +32,7 @@ const ProductCard = ({ product }: Props) => {
           </Flex>
           <Text fontWeight={'700'} fontSize={{ base: 'xl' }} color="black">
             {capitalizeEveryWord(
-              `${product.brand} - ${product.title} - ${product.colors[0]} - ${product.gender}'s`
+              `${product.brand} - ${product.title} - ${product.colors[0]}'s`
             )}
           </Text>
           <Flex>{stars(rating)}</Flex>

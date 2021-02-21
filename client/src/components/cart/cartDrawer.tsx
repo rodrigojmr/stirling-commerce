@@ -61,8 +61,7 @@ const CartDrawer = React.forwardRef<HTMLButtonElement, Props>((props, ref) => {
     return child;
   });
 
-  const totalPrice = cart?.reduce((acc, current, arr) => {
-    // Round to two decimal places
+  const totalPrice = cart?.reduce((acc, current) => {
     return acc + Math.round(current.product.price * current.amount * 100) / 100;
   }, 0);
 

@@ -21,7 +21,7 @@ const ProductSlide = ({ product }: Props) => {
         <Flex>{stars(rating)}</Flex>
         <Text fontWeight={'700'} fontSize="xl" color="black">
           {capitalizeEveryWord(
-            `${product.brand} - ${product.title} - ${product.colors[0]} - ${product.gender}'s`
+            `${product.brand} - ${product.title} - ${product.colors[0]}'s`
           )}
         </Text>
         <Text

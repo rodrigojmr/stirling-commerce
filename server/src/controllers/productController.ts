@@ -33,7 +33,7 @@ export const fetchAllProducts = asyncHandler(
       throw new Error('No products found.');
     }
     const products = allProducts.map(product => {
-      const { ordersId, ...restOfProduct } = product;
+      const { ...restOfProduct } = product;
       return restOfProduct;
     });
     res.json(products);
@@ -52,6 +52,6 @@ export const fetchProduct = asyncHandler(
       res.status(NOT_FOUND);
       throw new Error('Product not found.');
     }
-    return product;
+    res.json(product);
   }
 );

@@ -8,6 +8,7 @@ import products from './products';
 async function main() {
   await prisma.user.deleteMany({}); // Erase users table, not done in production
   await prisma.product.deleteMany({}); // Erase users table, not done in production
+  await prisma.category.deleteMany({});
 
   const admin = await prisma.user.create({
     data: {
@@ -50,7 +51,7 @@ main()
     console.error(e);
     process.exit(1);
   })
-  // eslint-disable-next-line @shared/typescript-eslint/no-misused-promises
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   .finally(async () => {
     await prisma.$disconnect();
   });

@@ -26,21 +26,18 @@ CREATE TABLE "Product" (
     "description" TEXT NOT NULL,
     "stock" INTEGER NOT NULL,
     "colors" TEXT[],
-    "gender" TEXT NOT NULL,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "ordersId" INTEGER,
 
     PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "Orders" (
+CREATE TABLE "Order" (
     "id" SERIAL NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "cost" INTEGER NOT NULL,
-    "productsId" INTEGER[],
-    "buyerId" INTEGER NOT NULL,
+    "userId" INTEGER NOT NULL,
 
     PRIMARY KEY ("id")
 );
@@ -59,6 +56,12 @@ CREATE TABLE "_CategoryToProduct" (
     "B" INTEGER NOT NULL
 );
 
+-- CreateTable
+CREATE TABLE "_OrderToProduct" (
+    "A" INTEGER NOT NULL,
+    "B" INTEGER NOT NULL
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User.email_unique" ON "User"("email");
 
@@ -71,14 +74,23 @@ CREATE UNIQUE INDEX "_CategoryToProduct_AB_unique" ON "_CategoryToProduct"("A", 
 -- CreateIndex
 CREATE INDEX "_CategoryToProduct_B_index" ON "_CategoryToProduct"("B");
 
--- AddForeignKey
-ALTER TABLE "Product" ADD FOREIGN KEY ("ordersId") REFERENCES "Orders"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+-- CreateIndex
+CREATE UNIQUE INDEX "_OrderToProduct_AB_unique" ON "_OrderToProduct"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_OrderToProduct_B_index" ON "_OrderToProduct"("B");
 
 -- AddForeignKey
-ALTER TABLE "Orders" ADD FOREIGN KEY ("buyerId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Order" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_CategoryToProduct" ADD FOREIGN KEY ("A") REFERENCES "Category"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_CategoryToProduct" ADD FOREIGN KEY ("B") REFERENCES "Product"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_OrderToProduct" ADD FOREIGN KEY ("A") REFERENCES "Order"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_OrderToProduct" ADD FOREIGN KEY ("B") REFERENCES "Product"("id") ON DELETE CASCADE ON UPDATE CASCADE;

@@ -22,36 +22,33 @@ model User {
 }
 
 model Product {
-  id Int @id @default(autoincrement())
-  title String
-  reviews Int[]
-  brand String
-  price Int // Divide by 10 to get price val
-  image String
+  id          Int        @id @default(autoincrement())
+  title       String
+  reviews     Int[]
+  brand       String
+  price       Int // Divide by 10 to get price val
+  image       String
   description String
-  stock Int
-  colors String[]
-  gender String
-  updatedAt DateTime @updatedAt
-  createdAt DateTime @default(now())
-
-  categories Category[] @relation(references: [id])
+  stock       Int
+  colors      String[]
+  updatedAt   DateTime   @updatedAt
+  createdAt   DateTime   @default(now())
+  categories  Category[]
+  orders      Order[]
 }
-
-model Orders {
-  id Int @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  cost Int
-  productsId Int[]
-  products Product[] // @relation(fields: [productsId], references: [id])
-  buyerId Int
-  buyer User @relation(fields: [buyerId], references: [id])
+model Order {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  cost      Int
+  products  Product[]
+  buyer     User      @relation(fields: [userId], references: [id])
+  userId    Int
 }
 
 model Category {
   id    Int     @id @default(autoincrement())
   name  String @unique
-  products Product[]  @relation(references: [id])
+  products Product[]
 }
 
 enum Role {
