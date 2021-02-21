@@ -39,8 +39,7 @@ export const CustomTheme = extendTheme({
     'dark-grey': '#171717',
     'light-grey': '#F2F2F2',
     grey: '#444444',
-    'lighter-grey': '#aaaaaa',
-    red: 'red'
+    'lighter-grey': '#aaaaaa'
   },
   breakpoints: breakpoints,
   fonts: {
@@ -53,7 +52,7 @@ export const CustomTheme = extendTheme({
   components: {
     Input: {
       baseStyle: {
-        fontFamily: 'Bebas Neue'
+        fontFamily: "'Source Sans Pro', sans-serif"
       }
     },
     Link: {
