@@ -1,7 +1,6 @@
 import { Product } from '@prisma/client';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/rootReducer';
-import ensure from 'utils/ensure';
 
 export interface ProductsWithHighlightPoints extends Product {
   highlights: HighlightPoints[];

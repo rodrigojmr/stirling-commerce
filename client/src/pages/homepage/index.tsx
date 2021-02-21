@@ -1,14 +1,6 @@
-import {
-  Box,
-  Flex,
-  Link,
-  Heading,
-  Container,
-  Spinner,
-  Center
-} from '@chakra-ui/react';
-import styled from '@emotion/styled';
 import React, { useEffect, useState } from 'react';
+import { Box, Flex, Link, Heading, Container, Center } from '@chakra-ui/react';
+import styled from '@emotion/styled';
 import EmblaCarousel from 'components/carousel/emblaCarousel';
 import ProductsCarousel from 'components/carousel/productsCarousel';
 import CategoryLink from 'components/categoryCTA';
@@ -24,7 +16,9 @@ import { Link as RouterLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/rootReducer';
 import { Product } from '@prisma/client';
-import ensure from 'utils/ensure';
+import { useAppDispatch } from 'store';
+import { requestProducts } from 'store/slices/catalogSlice';
+import { ensure } from 'utils';
 
 const carouselOptions = {
   draggable: false,

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RouteComponentProps } from 'react-router-dom';
 import api from 'utils/api';
-import { SignInParams, SignupParams, IUser } from './../../../../shared/types';
+import { SignInParams, SignupParams, IUser } from '@shared/types';
 
 export const requestSignup = createAsyncThunk(
   'users/register',

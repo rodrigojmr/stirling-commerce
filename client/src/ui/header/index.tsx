@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
 import { RootState } from 'store/rootReducer';
 import Menu from './headerMenu';
+import { useLocation } from 'react-router-dom';
 
 const StyledLogo = styled(Icon)`
   // Customize logo color, otherwise it would show as grey

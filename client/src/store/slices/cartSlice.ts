@@ -1,10 +1,6 @@
 import { Product } from '@prisma/client';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-export interface CartProduct {
-  product: Product;
-  amount: number;
-}
+import { CartProduct } from '@shared/types';
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
   ? JSON.parse(localStorage.getItem('cartItems') || '{}')
