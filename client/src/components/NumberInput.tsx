@@ -49,7 +49,7 @@ const NumberInput = ({
       <Button px={2} minW={0} {...dec}>
         -
       </Button>
-      <Input sx={style} type="number" {...input} />
+      <Input textAlign="center" sx={style} type="number" {...input} />
       <Button px={2} minW={0} {...inc}>
         +
       </Button>
