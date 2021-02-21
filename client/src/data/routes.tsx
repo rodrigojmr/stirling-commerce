@@ -4,7 +4,7 @@ import SingleProduct from 'pages/productPage';
 import RegisterPage from 'pages/registerPage';
 import Dashboard from 'pages/dashboard';
 import Search from 'pages/search';
-import Checkout from 'pages/checkout';
+import Checkout from 'pages/checkoutPage';
 
 const routes = [
   {

@@ -23,7 +23,7 @@ interface Props extends RouteComponentProps<MatchParams> {}
 
 const Search = ({ match }: Props) => {
   const { param1, param2 } = match.params;
-  const products = useSelector((state: RootState) => state.products.products);
+  const products = useSelector((state: RootState) => state.catalog.products);
 
   // TODO Change from JSON to database
   // const filteredProducts = products?.filter(product => product.title.)
