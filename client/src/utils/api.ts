@@ -1,4 +1,4 @@
-import { SignInParams, IUser } from './../../../shared/types';
+import { SignInParams, IUser, OrderPayload } from '@shared/types';
 //here we are importing our Axios dependency
 import axios from 'axios';
 import { Product } from '@prisma/client';
