@@ -19,7 +19,8 @@ import {
   PopoverArrow,
   PopoverCloseButton,
   Button,
-  useDisclosure
+  useDisclosure,
+  useTheme
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { Product } from '@prisma/client';
@@ -28,22 +29,21 @@ import NumberInput from 'components/NumberInput';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'store';
 import { RootState } from 'store/rootReducer';
-import {
-  CartProduct,
-  removeProduct,
-  setProductAmount
-} from 'store/slices/cartSlice';
+import { removeProduct, setProductAmount } from 'store/slices/cartSlice';
 import { CustomTheme } from 'theme/theme';
 import { capitalizeEveryWord } from 'utils';
+import { ThemeType } from 'theme/theme';
+import { CartProduct } from '@shared/types';
 
-const inputStyle: SystemStyleObject = { width: '2.5rem' };
+const inputStyle: SystemStyleObject = {
+  width: '2.5rem',
+  paddingLeft: '.5rem',
+  paddingRight: '.5rem'
+};
 
 const TrashButton = styled(IconButton)`
   svg {
     transition: stroke 0.3s;
-  }
-  &:hover svg {
-    stroke: ${CustomTheme.colors.primary[500]};
   }
 `;
 
@@ -65,11 +65,21 @@ function CartRow({ item }: Props) {
       dispatch(setProductAmount({ product, amount }));
     }
   };
+
   const productTotal = ({ product, amount }: CartProduct) =>
     (amount * product.price).toFixed(2);
 
+  const { colors } = useTheme<ThemeType>();
+  const { red, gray } = colors;
+
   return (
-    <Flex align="center">
+    <Flex
+      align="center"
+      _notLast={{ borderBottom: `1px solid ${gray['200']}` }}
+      bg="white"
+      _first={{ borderTopRadius: '10px' }}
+      _last={{ borderBottomRadius: '10px' }}
+    >
       <Image
         p={4}
         mr={6}
@@ -83,7 +93,7 @@ function CartRow({ item }: Props) {
         src={product.image}
         alt={product.title}
       />
-      <VStack align="flex-start" flexGrow={1} maxW={{ base: '17rem' }}>
+      <VStack align="flex-start" flexGrow={1}>
         <Heading fontSize="xl" fontFamily="body" as="h3">
           {`${capitalizeEveryWord(product.brand)} - ${product.title}`}
         </Heading>
@@ -98,7 +108,7 @@ function CartRow({ item }: Props) {
         />
       </Box>
       <Box textAlign="center" px={4} width={{ base: '6rem' }}>
-        <Text>{productTotal({ product, amount })}</Text>
+        <Text>€{productTotal({ product, amount })}</Text>
       </Box>
       <Popover isOpen={isOpen} onOpen={onOpen} onClose={onClose}>
         <PopoverTrigger>
@@ -108,6 +118,9 @@ function CartRow({ item }: Props) {
             h={8}
             fontSize={4}
             _hover={{ bg: 'transparent' }}
+            css={{
+              '&:hover svg': { stroke: red['500'] }
+            }}
             aria-label="Remove product"
             icon={<Icon w={6} h={6} as={Trash} />}
           />
