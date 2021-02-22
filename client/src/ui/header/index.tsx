@@ -70,6 +70,8 @@ const Navbar = () => {
   const [isLargerThan768px] = useMediaQuery('(min-width: 48em)');
   const [isLargerThan991px] = useMediaQuery('(min-width: 62em)');
 
+  const { pathname } = useLocation();
+
   return (
     <Flex
       pos="relative"
@@ -105,7 +107,9 @@ const Navbar = () => {
       {user ? (
         <>
           <UserIcon order={{ base: 4, lg: 'initial' }} />
-          <Cart order={{ base: 5, lg: 'initial' }} />
+          {!pathname.includes('checkout') && (
+            <Cart order={{ base: 5, lg: 'initial' }} />
+          )}
         </>
       ) : (
         <Link order={{ base: 5, lg: 'initial' }} as={RouterLink} to="/sign-in">
