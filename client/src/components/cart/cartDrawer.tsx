@@ -27,6 +27,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/rootReducer';
 import { removeProduct } from 'store/slices/cartSlice';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { cartPriceTotal } from 'utils';
 
 interface Props {
   children?: React.ReactNode;
@@ -61,9 +62,7 @@ const CartDrawer = React.forwardRef<HTMLButtonElement, Props>((props, ref) => {
     return child;
   });
 
-  const totalPrice = cart?.reduce((acc, current) => {
-    return acc + Math.round(current.product.price * current.amount * 100) / 100;
-  }, 0);
+  const totalPrice = cartPriceTotal(cart);
 
   return (
     <>

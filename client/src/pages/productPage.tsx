@@ -11,6 +11,7 @@ import {
   useTheme
 } from '@chakra-ui/react';
 import { Product } from '@prisma/client';
+import { IProduct } from '@shared/types';
 import { drawerContext } from 'hooks/useDrawer';
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

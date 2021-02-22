@@ -24,6 +24,7 @@ import {
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { Product } from '@prisma/client';
+import { IProduct } from '@shared/types';
 import { ReactComponent as Trash } from 'assets/trash.svg';
 import NumberInput from 'components/NumberInput';
 import { useSelector } from 'react-redux';
@@ -59,7 +60,7 @@ function CartRow({ item }: Props) {
   const dispatch = useAppDispatch();
   const cart = useSelector((state: RootState) => state.cart);
 
-  const onAmountChange = (product: Product, amount: number) => {
+  const onAmountChange = (product: IProduct, amount: number) => {
     const matchingProduct = cart.find(item => item.product.id === product.id);
     if (matchingProduct?.amount !== amount && amount > 0) {
       dispatch(setProductAmount({ product, amount }));

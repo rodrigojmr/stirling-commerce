@@ -1,4 +1,6 @@
 import { Product } from '@prisma/client';
+import { IProduct } from '@shared/types';
+import { CartProduct } from '@shared/types';
 import React from 'react';
 
 // (?<!['-]) is to look behind one character '?<' and exclude '!' if previous character was not ' or -
@@ -7,7 +9,7 @@ export const capitalizeEveryWord = (str: string) => {
   return allLowerCase.replace(/\b(?<!['-])[a-z]/g, char => char.toUpperCase());
 };
 
-export const getProductAverageReviews = (product: Product) =>
+export const getProductAverageReviews = (product: IProduct) =>
   product.reviews.reduce((acc, current) => acc + current) /
   product.reviews.length;
 
@@ -31,3 +33,8 @@ export const ensure = <T>(
 
   return argument;
 };
+
+export const cartPriceTotal = (cart: CartProduct[]) =>
+  cart.reduce((acc, current) => {
+    return acc + Math.round(current.product.price * current.amount * 100) / 100;
+  }, 0);

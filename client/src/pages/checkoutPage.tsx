@@ -15,6 +15,7 @@ import {
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { Product } from '@prisma/client';
+import { IProduct } from '@shared/types';
 import CartRow from 'components/cart/cartRow';
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -28,6 +29,7 @@ import { CartProduct } from '@shared/types';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { InjectedCheckoutForm } from 'components/stripe/checkoutForm';
+import { cartPriceTotal } from 'utils';
 
 const stripePromise = loadStripe('pk_test_7sQOtVSSKa0t8rdQDRDkWLgQ');
 
@@ -41,10 +43,7 @@ const Checkout = ({}: CheckoutProps) => {
     return acc + curr.amount;
   }, 0);
 
-  const totalPrice = cart?.reduce((acc, current) => {
-    // Round to two decimal places
-    return acc + Math.round(current.product.price * current.amount * 100) / 100;
-  }, 0);
+  const totalPrice = cartPriceTotal(cart);
 
   return (
     <Box bg="light-grey">

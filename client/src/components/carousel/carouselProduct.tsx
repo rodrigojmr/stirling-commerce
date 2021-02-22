@@ -1,12 +1,13 @@
 import { Flex, Image, Text, VStack } from '@chakra-ui/react';
 import { Product } from '@prisma/client';
+import { IProduct } from '@shared/types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { capitalizeEveryWord, getProductAverageReviews } from 'utils';
 import { stars } from '../styled/Stars';
 
 interface Props {
-  product: Product;
+  product: IProduct;
 }
 
 const ProductSlide = ({ product }: Props) => {

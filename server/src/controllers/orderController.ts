@@ -11,7 +11,7 @@ import {
 } from '@servershared/constants';
 // import UserDao from '@daos/User/UserDao.mock';
 import { JWTClass } from '@servershared/jwtService';
-import { OrderPayload } from '@shared/types';
+import { IProduct, OrderPayload } from '@shared/types';
 import { ensure } from '@shared/utils';
 import bcrypt from 'bcrypt';
 import { Request, Response, Router } from 'express';

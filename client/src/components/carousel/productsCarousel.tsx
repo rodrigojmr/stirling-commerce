@@ -12,6 +12,7 @@ import { Embla, Viewport, CarouselContainer, Slide } from './styles';
 import ProductSlide from './carouselProduct';
 import { useMediaQuery } from '@chakra-ui/react';
 import { Product } from '@prisma/client';
+import { IProduct } from '@shared/types';
 
 // Progress bar width = width of component / something
 // Move progress bar by a certain amount
@@ -57,7 +58,7 @@ interface Options {
 
 const ProductsCarousel: React.FC<{
   options: Options;
-  products: Product[];
+  products: IProduct[];
 }> = ({ options, products }) => {
   const [emblaRef, embla] = useEmblaCarousel(options);
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);

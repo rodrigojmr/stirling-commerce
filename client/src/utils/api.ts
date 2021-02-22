@@ -2,6 +2,7 @@ import { SignInParams, IUser, OrderPayload } from '@shared/types';
 //here we are importing our Axios dependency
 import axios from 'axios';
 import { Product } from '@prisma/client';
+import { IProduct } from '@shared/types';
 
 const baseURL =
   process.env.NODE_ENV === 'development'
@@ -38,10 +39,10 @@ const api = {
   },
   products: {
     fetchAll() {
-      return apiClient.get<Product[]>('/products/all');
+      return apiClient.get<IProduct[]>('/products/all');
     },
     fetchProduct(id: string) {
-      return apiClient.get<Product>(`/products/${id}`);
+      return apiClient.get<IProduct>(`/products/${id}`);
     }
   },
   orders: {

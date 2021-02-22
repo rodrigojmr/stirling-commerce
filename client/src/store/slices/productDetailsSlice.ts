@@ -1,4 +1,5 @@
 import { Product } from '@prisma/client';
+import { IProduct } from '@shared/types';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import api from 'utils/api';
 
@@ -22,7 +23,7 @@ export const requestProduct = createAsyncThunk(
 );
 
 interface ProductStore {
-  product: Product | null;
+  product: IProduct | null;
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null | undefined;
 }

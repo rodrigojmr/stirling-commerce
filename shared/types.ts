@@ -1,4 +1,4 @@
-import { Product } from '@prisma/client';
+import { Category, Product } from '@prisma/client';
 import { Token } from '@stripe/stripe-js';
 
 export interface SignupParams {
@@ -17,8 +17,12 @@ export interface IUser {
   name: string;
   role?: string;
 }
+
+export interface IProduct extends Product {
+  categories: Category[];
+}
 export interface CartProduct {
-  product: Product;
+  product: IProduct;
   amount: number;
 }
 

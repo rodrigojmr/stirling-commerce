@@ -1,8 +1,9 @@
 import { Product } from '@prisma/client';
+import { IProduct } from '@shared/types';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/rootReducer';
 
-export interface ProductsWithHighlightPoints extends Product {
+export interface ProductsWithHighlightPoints extends IProduct {
   highlights: HighlightPoints[];
 }
 
@@ -13,7 +14,7 @@ export interface HighlightPoints {
 }
 
 export const createHighlightedProduct = (
-  product: Product,
+  product: IProduct,
   highlights: HighlightPoints[]
 ) => ({ ...product, highlights });
 

@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { ReactComponent as Star } from '../../assets/star.svg';
 import { Product } from '@prisma/client';
+import { IProduct } from '@shared/types';
 
 // TODO Refactor as Functional Component?
 

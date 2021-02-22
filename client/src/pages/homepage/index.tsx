@@ -16,9 +16,11 @@ import { Link as RouterLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/rootReducer';
 import { Product } from '@prisma/client';
+import { IProduct } from '@shared/types';
 import { useAppDispatch } from 'store';
 import { requestProducts } from 'store/slices/catalogSlice';
 import { ensure } from 'utils';
+import Loader from 'components/Loader';
 
 const carouselOptions = {
   draggable: false,
@@ -41,19 +43,26 @@ const Image = styled.img`
 
 const Home = () => {
   // TODO Replace duplicated values with new products
-  const products = useSelector((state: RootState) => state.products.products);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(requestProducts());
+  }, []);
+
+  const products = useSelector((state: RootState) => state.catalog.products);
 
   const [highlightedProducts, setHighlightedProducts] = useState<
     ProductsWithHighlightPoints[]
   >();
 
   useEffect(() => {
-    if (products && products.length > 0) {
+    console.log('products: ', products);
+    if (products && products?.length > 0) {
       const firstHighlightedProduct = ensure(
-        products?.find(product => product.id === 9)
+        products?.find(product => product.title.toLowerCase().includes('swift'))
       );
       const secondHighlightedProduct = ensure(
-        products?.find(product => product.id === 10)
+        products?.find(product => product.title.toLowerCase().includes('fuel'))
       );
       setHighlightedProducts([
         { ...firstHighlightedProduct, highlights: homeProductOneHighlights },
@@ -67,15 +76,20 @@ const Home = () => {
   //   ...allProducts.filter(product => product.featured),
   //   ...allProducts.filter(product => product.featured)
   // ];
-  const featuredProducts = (products: Product[]) => [
+  const featuredProducts = (products: IProduct[]) => [
     ...products.slice(0, 4),
     ...products.slice(0, 4)
   ];
 
-  const newFootwear = products;
+  const newFootwear = (products: IProduct[]) => {
+    const randomFootwear = products.filter(product =>
+      product.categories.find(category => category.name === 'footwear')
+    );
+    return [...randomFootwear.slice(0, 4), ...randomFootwear.slice(0, 4)];
+  };
 
   if (!products) {
-    return <Spinner />;
+    return <Loader />;
   }
 
   return (
@@ -109,16 +123,18 @@ const Home = () => {
             View All &gt;
           </Link>
         </Flex>
-        <ProductsCarousel
-          options={{
-            loop: false,
-            draggable: true,
-            arrows: false,
-            dragFree: true,
-            containScroll: 'keepSnaps' as const
-          }}
-          products={featuredProducts(products)}
-        />
+        {products && (
+          <ProductsCarousel
+            options={{
+              loop: false,
+              draggable: true,
+              arrows: false,
+              dragFree: true,
+              containScroll: 'keepSnaps' as const
+            }}
+            products={featuredProducts(products)}
+          />
+        )}
       </Container>
       {/* Accessories Section */}
       <Flex as="section" flexDirection={['column', 'column', 'row']}>
@@ -169,6 +185,7 @@ const Home = () => {
           overflow: 'hidden'
         }}
       >
+        // TODO Skeleton view
         <Box maxWidth="max" margin="0 auto">
           {!highlightedProducts || highlightedProducts.length !== 2 ? (
             <Center height="600px" width="100%"></Center>
@@ -195,7 +212,7 @@ const Home = () => {
               View All &gt;
             </Link>
           </Flex>
-          {newFootwear && (
+          {/* {newFootwear && (
             <ProductsCarousel
               options={{
                 loop: false,
@@ -206,7 +223,7 @@ const Home = () => {
               }}
               products={newFootwear}
             />
-          )}
+          )} */}
         </Box>
       </Box>
       {/* Newsletter */}

@@ -1,9 +1,10 @@
 import { Box, Flex, Center, Image, Link, Spinner } from '@chakra-ui/react';
 import { Product } from '@prisma/client';
+import { IProduct } from '@shared/types';
 import { LayoutProps } from 'framer-motion';
 import { Link as RouterLink } from 'react-router-dom';
 
-const Result = ({ product }: { product: Product }) => (
+const Result = ({ product }: { product: IProduct }) => (
   <Link as={RouterLink} to={`/product/${product.id}`}>
     <Flex
       as="li"
@@ -36,7 +37,7 @@ const Results = ({
   products,
   display
 }: {
-  products: Product[];
+  products: IProduct[];
   display?: string;
 }) => (
   <Box
@@ -62,7 +63,7 @@ const Results = ({
       }
     }}
   >
-    {products.map((product: Product, key: number) => (
+    {products.map((product: IProduct, key: number) => (
       <Result key={key} product={product} />
     ))}
   </Box>
