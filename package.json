@@ -23,7 +23,7 @@
     "prod:serverbuild": "tsc --build tsconfig.prod.json",
     "clean-dist": "rimraf -rf ./dist && rimraf -rf ./server/public",
     "prisma": "npx prisma generate && npm run seed:prod",
-    "seed:prod": "npx prisma db push --preview-feature —-force-reset",
+    "seed:prod": "npx prisma db push --preview-feature --accept-data-loss --force-reset",
     "seed": "npx prisma db seed --preview-feature"
   },
   "_moduleAliases": {
