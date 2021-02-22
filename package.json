@@ -24,7 +24,7 @@
     "clean-dist": "rimraf -rf ./dist && rimraf -rf ./server/public",
     "prisma": "npx prisma generate && npm run seed:prod",
     "seed:prod": "npx prisma db push --preview-feature —-force-reset",
-    "seed": "npx prisma db seed --preview-feature",
+    "seed": "npx prisma db seed --preview-feature"
   },
   "_moduleAliases": {
     "@frontend": "dist/client",
