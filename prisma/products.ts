@@ -101,7 +101,7 @@ const products = [
   {
     image: '/images/products/shoes/adidas-originals-swift-run-cargo-mens.webp',
     stock: 10,
-    title: 'Adidas Originals - Swift Run',
+    title: 'Swift Run',
     brand: 'adidas originals',
     colors: ['Black'],
     categories: ['Men', 'Shoes'],
@@ -114,9 +114,9 @@ const products = [
     image:
       "/images/products/shoes/floatride-fuel-run-women's-running-shoes.webp",
     stock: 10,
-    title: 'Floatride Fuel Run - Blue - womens',
+    title: 'Floatride Fuel Run',
     brand: 'reebok',
-    colors: ['grey'],
+    colors: ['blue'],
     categories: ['Women', 'Shoes'],
     price: 9999,
     description:

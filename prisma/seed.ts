@@ -6,9 +6,11 @@ import bcrypt from 'bcrypt';
 import products from './products';
 
 async function main() {
-  await prisma.user.deleteMany({}); // Erase users table, not done in production
+  await prisma.productInOrder.deleteMany({}); // Erase users table, not done in production
+  await prisma.order.deleteMany({});
   await prisma.product.deleteMany({}); // Erase users table, not done in production
   await prisma.category.deleteMany({});
+  await prisma.user.deleteMany({});
 
   const admin = await prisma.user.create({
     data: {
@@ -27,6 +29,36 @@ async function main() {
     }
   });
   await seedProducts();
+
+  const products = await prisma.product.findMany({});
+
+  //   const order = await prisma.order.create({
+  //     data: {
+  //       cost: 200,
+  //       userId: user.id,
+  //       products: {
+  //         create: {
+  //           product: {
+  //             connect: {
+  //               id: products[0].id
+  //             }
+  //           },
+  //           productId: products[0].id,
+  //           amount: 2
+  //         }
+  //         // products.map(product => ({
+  //         //   productId: product.id,
+  //         //   amount: ensure(
+  //         //     req.body.products.find(item => item.product.id === product.id)
+  //         //   ).amount
+  //         // }))
+  //       }
+  //     },
+  //     include: {
+  //       products: true,
+  //       buyer: true
+  //     }
+  //   });
 }
 
 async function seedProducts() {
