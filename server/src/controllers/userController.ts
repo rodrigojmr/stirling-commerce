@@ -68,7 +68,7 @@ export const signInUser = asyncHandler(
     const user = await prisma.user.findUnique({ where: { email: email } });
     if (!user) {
       res.status(NOT_FOUND);
-      new Error(userNotFound);
+      throw new Error(userNotFound);
     }
 
     // Typescript complains otherwise
