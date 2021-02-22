@@ -39,6 +39,14 @@ const api = {
   products: {
     fetchAll() {
       return apiClient.get<Product[]>('/products/all');
+    },
+    fetchProduct(id: string) {
+      return apiClient.get<Product>(`/products/${id}`);
+    }
+  },
+  orders: {
+    submitOrder(payload: OrderPayload) {
+      return apiClient.post('/orders/submit', payload);
     }
   }
 };
