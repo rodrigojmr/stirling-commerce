@@ -45,7 +45,7 @@ export const authenticateToken = asyncHandler(
     // const token = authHeader && authHeader.split(' ')[1];
 
     // Through HTTP only cookie
-    const token = req.cookies.token;
+    const token = req.signedCookies.token;
     if (!token)
       return res.status(UNAUTHORIZED).json({ error: 'Unauthorized.' });
 
