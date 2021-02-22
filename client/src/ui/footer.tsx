@@ -71,7 +71,6 @@ const Footer = () => {
                 margin-right: 1rem;
               }
             `}
-            spacing="1rem"
           >
             <Link to="#">
               <Icon
