@@ -64,7 +64,7 @@ async function main() {
 async function seedProducts() {
   for (const product of products) {
     const { categories, ...data } = product;
-    await prisma.product.create({
+    const dbProduct = await prisma.product.create({
       data: {
         ...data,
         categories: {
@@ -73,6 +73,9 @@ async function seedProducts() {
             create: { name: category }
           }))
         }
+      },
+      include: {
+        categories: true
       }
     });
   }
