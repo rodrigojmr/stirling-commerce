@@ -21,8 +21,8 @@
     "develop": "concurrently --kill-others-on-fail \"yarn server-develop\"  \"yarn client-develop\"",
     "dev:serverbuild": "tsc --build",
     "prod:serverbuild": "tsc --build tsconfig.prod.json",
-    "clean-dist": "rimraf -rf ./dist && rimraf -rf ./server/public",
-    "prisma:prod": "npx prisma db push --preview-feature --accept-data-loss --force-reset && npx prisma db seed --preview-feature"
+    "prisma:prod": "npx prisma db push --preview-feature --accept-data-loss --force-reset && npx prisma db seed --preview-feature",
+    "clean-dist": "rimraf -rf ./dist && rimraf -rf ./server/public"
   },
   "_moduleAliases": {
     "@frontend": "dist/client",
