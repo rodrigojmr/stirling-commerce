@@ -26,7 +26,11 @@ const { BAD_REQUEST, OK, UNAUTHORIZED, NOT_FOUND } = StatusCodes;
 export const fetchAllProducts = asyncHandler(
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
   async (req: Request, res: Response) => {
-    const allProducts = await prisma.product.findMany();
+    const allProducts = await prisma.product.findMany({
+      include: {
+        categories: true
+      }
+    });
 
     if (!allProducts || allProducts.length === 0) {
       res.status(NOT_FOUND);
@@ -46,6 +50,9 @@ export const fetchProduct = asyncHandler(
     const product = await prisma.product.findUnique({
       where: {
         id: Number(req.params.id)
+      },
+      include: {
+        categories: true
       }
     });
     if (!product) {
