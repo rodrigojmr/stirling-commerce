@@ -32,33 +32,26 @@ async function main() {
 
   const products = await prisma.product.findMany({});
 
-  //   const order = await prisma.order.create({
-  //     data: {
-  //       cost: 200,
-  //       userId: user.id,
-  //       products: {
-  //         create: {
-  //           product: {
-  //             connect: {
-  //               id: products[0].id
-  //             }
-  //           },
-  //           productId: products[0].id,
-  //           amount: 2
-  //         }
-  //         // products.map(product => ({
-  //         //   productId: product.id,
-  //         //   amount: ensure(
-  //         //     req.body.products.find(item => item.product.id === product.id)
-  //         //   ).amount
-  //         // }))
+  // const order = await prisma.order.create({
+  //   data: {
+  //     cost: 200,
+  //     userId: user.id,
+  //     products: {
+  //       create: {
+  //         product: {
+  //           connect: {
+  //             id: products[0].id
+  //           }
+  //         },
+  //         amount: 2
   //       }
-  //     },
-  //     include: {
-  //       products: true,
-  //       buyer: true
   //     }
-  //   });
+  //   },
+  //   include: {
+  //     products: true,
+  //     buyer: true
+  //   }
+  // });
 }
 
 async function seedProducts() {
@@ -83,7 +76,6 @@ async function seedProducts() {
 
 main()
   .catch(e => {
-    console.error(e);
     process.exit(1);
   })
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
