@@ -87,7 +87,7 @@ export const signInUser = asyncHandler(
     // Generate JWT
     const { key, options } = cookieProps;
     const token = await JWTService.getJwt({
-      id: 1,
+      id: user.id,
       name: user.name,
       email: user.email,
       role: user.role
