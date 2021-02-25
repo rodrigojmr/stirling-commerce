@@ -56,7 +56,6 @@ const Home = () => {
   >();
 
   useEffect(() => {
-    console.log('products: ', products);
     if (products && products?.length > 0) {
       const firstHighlightedProduct = ensure(
         products?.find(product => product.title.toLowerCase().includes('swift'))
@@ -83,7 +82,9 @@ const Home = () => {
 
   const newFootwear = (products: IProduct[]) => {
     const randomFootwear = products.filter(product =>
-      product.categories.find(category => category.name === 'footwear')
+      product.categories.some(
+        category => category.name.toLowerCase() === 'shoes'
+      )
     );
     return [...randomFootwear.slice(0, 4), ...randomFootwear.slice(0, 4)];
   };
@@ -185,7 +186,6 @@ const Home = () => {
           overflow: 'hidden'
         }}
       >
-        // TODO Skeleton view
         <Box maxWidth="max" margin="0 auto">
           {!highlightedProducts || highlightedProducts.length !== 2 ? (
             <Center height="600px" width="100%"></Center>
@@ -212,7 +212,7 @@ const Home = () => {
               View All &gt;
             </Link>
           </Flex>
-          {/* {newFootwear && (
+          {products && (
             <ProductsCarousel
               options={{
                 loop: false,
@@ -221,9 +221,9 @@ const Home = () => {
                 dragFree: true,
                 containScroll: 'keepSnaps' as const
               }}
-              products={newFootwear}
+              products={newFootwear(products)}
             />
-          )} */}
+          )}
         </Box>
       </Box>
       {/* Newsletter */}
