@@ -34,9 +34,7 @@ export const CarouselContainer = styled.ul`
 export const Slide = styled.li<{ slides: number }>`
   position: relative;
   flex: ${({ slides }) => `0 0 ${100 / slides}%`};
-  &:not(:last-child) {
-    padding-right: 2rem;
-  }
+  padding: 0 1rem;
   /* min-width: 25%;
   max-width: 33rem; */
 `;
