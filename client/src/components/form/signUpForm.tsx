@@ -63,10 +63,8 @@ const RegisterForm = () => {
       'g'
     );
     if (strongRegex.test(password)) {
-      console.log('strong');
       return 'Strong!';
     } else if (mediumRegex.test(password)) {
-      console.log('medium');
       return "It's decent.";
     } else if (password.length > 7) {
       return 'Weak!';

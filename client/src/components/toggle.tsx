@@ -68,7 +68,6 @@ interface Props {
 
 const Toggle: React.FC<Props> = ({ id, checked, onChange, optionLabels }) => {
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    console.log(e);
     if (e.keyCode !== 32) return;
 
     e.preventDefault();
