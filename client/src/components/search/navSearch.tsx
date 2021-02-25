@@ -7,9 +7,9 @@ import {
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import * as React from 'react';
-import { useState, useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { RootState } from 'store/rootReducer';
 import { ReactComponent as SearchIcon } from '../../assets/search.svg';
 import Results from './navSearchResults';
@@ -49,7 +49,6 @@ const Search: React.FC<Props> = ({ order, history }) => {
   ) => {
     e.preventDefault();
     if (toggled) {
-      console.log('click');
       setQuery('');
       setToggled(false);
       if (inputRef.current) inputRef.current.blur();

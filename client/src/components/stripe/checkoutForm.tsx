@@ -1,5 +1,5 @@
-import { Text, Box, Button, Flex, Input } from '@chakra-ui/react';
-import { ElementsConsumer, CardElement } from '@stripe/react-stripe-js';
+import { Box, Button, Flex, Input, Text } from '@chakra-ui/react';
+import { CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
 import { Stripe, StripeElements } from '@stripe/stripe-js';
 import CardSection from 'components/stripe/cardSection';
 import { useState } from 'react';
@@ -19,27 +19,35 @@ export const CheckoutForm = ({
   const dispatch = useAppDispatch();
   const cart = useSelector((state: RootState) => state.cart);
   const [error, setError] = useState('');
+  const [isSubmitBlocked, setIsSubmitBlocked] = useState(false);
 
   const { handleSubmit, errors, register, formState } = useForm();
 
   const onSubmit = async (values: any) => {
-    // handle payment request
-    if (!stripe || !elements) {
-      return;
-    }
+    if (!isSubmitBlocked) {
+      if (!stripe || !elements) {
+        return;
+      }
+      setIsSubmitBlocked(true);
+      const card = elements.getElement(CardElement);
+      const result = card && (await stripe.createToken(card));
 
-    const card = elements.getElement(CardElement);
-    const result = card && (await stripe.createToken(card));
-    if (result?.error) {
-      console.log(result.error.message);
-      if (result?.error?.message) setError(result.error.message);
-    } else if (result?.token) {
-      console.log(result?.token);
-      const order = {
-        products: cart,
-        cardToken: result?.token
-      };
-      api.orders.submitOrder(order);
+      if (result?.error?.message) {
+        setError(result.error.message);
+      } else if (result?.token) {
+        const order = {
+          products: cart,
+          cardToken: result?.token
+        };
+        try {
+          const res = await api.orders.submitOrder(order);
+          // Redirect to order page
+          console.log('res: ', res);
+        } catch (error) {
+          setError(error.message);
+        }
+      }
+      setIsSubmitBlocked(false);
     }
   };
 
@@ -77,13 +85,15 @@ export const CheckoutForm = ({
           minLength={3}
         />
         <Input
+          // ref={register({
+          //   pattern: /^(?(^00000(|-0000))|(\d{5}(|-\d{4})))$/
+          // })}
           required
           flex="1 1 0"
           fontFamily="body"
           name="zip"
           placeholder="Zip Code"
           inputmode="numeric"
-          pattern="^(?(^00000(|-0000))|(\d{5}(|-\d{4})))$"
         />
         <Input
           required
@@ -104,7 +114,9 @@ export const CheckoutForm = ({
         <CardSection />
       </Box>
       <Flex align="center">
-        <Button type="submit">Buy Now</Button>
+        <Button isDisabled={isSubmitBlocked} type="submit">
+          Buy Now
+        </Button>
         {error && <Text px={2}>{error}</Text>}
       </Flex>
     </form>

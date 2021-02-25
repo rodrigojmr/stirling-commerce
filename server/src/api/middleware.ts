@@ -1,10 +1,9 @@
-import { Request, Response, NextFunction } from 'express';
-import asyncHandler from 'express-async-handler';
+import { ClientRequest } from '@servershared/constants';
 import { JWTClass } from '@servershared/jwtService';
-import StatusCodes, { BAD_REQUEST } from 'http-status-codes';
-import { ClientRequest, cookieProps } from '@servershared/constants';
-import { resolveSoa } from 'dns';
 import { IUser } from '@shared/types';
+import { NextFunction, Request, Response } from 'express';
+import asyncHandler from 'express-async-handler';
+import StatusCodes from 'http-status-codes';
 
 const JWTService = new JWTClass();
 const { UNAUTHORIZED } = StatusCodes;
@@ -62,6 +61,7 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
+  console.log(err, err.message);
   const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
   res.status(statusCode);
   return res.json({

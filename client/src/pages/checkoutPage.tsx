@@ -1,34 +1,23 @@
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import {
   Box,
-  Button,
   Flex,
   Grid,
   Heading,
   Icon,
-  IconButton,
   Link,
   Select,
-  SystemStyleObject,
-  Text,
-  VStack
+  Text
 } from '@chakra-ui/react';
-import styled from '@emotion/styled';
-import { Product } from '@prisma/client';
-import { IProduct } from '@shared/types';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import CartRow from 'components/cart/cartRow';
+import { InjectedCheckoutForm } from 'components/stripe/checkoutForm';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
 import { useAppDispatch } from 'store';
 import { RootState } from 'store/rootReducer';
-import { setProductAmount } from 'store/slices/cartSlice';
-import { CustomTheme } from 'theme/theme';
-import { CartProduct } from '@shared/types';
-
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
-import { InjectedCheckoutForm } from 'components/stripe/checkoutForm';
 import { cartPriceTotal } from 'utils';
 
 const stripePromise = loadStripe('pk_test_7sQOtVSSKa0t8rdQDRDkWLgQ');

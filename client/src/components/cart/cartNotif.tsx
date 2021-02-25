@@ -14,9 +14,7 @@ interface Props {
 }
 
 const CartNotif: React.FC<Props> = ({ isOpen, setIsOpen, children }) => {
-  console.log('children: ', { children });
   const childrenCounnt = React.Children.count(children);
-  console.log('childrenCounnt: ', childrenCounnt);
   return (
     <Popover
       returnFocusOnClose={false}
