@@ -1,5 +1,6 @@
 import { Category, Product } from '@prisma/client';
 import { Token } from '@stripe/stripe-js';
+import { Response } from 'express';
 
 export interface SignupParams {
   name: string;
@@ -41,3 +42,14 @@ export const ensure = <T>(
 
   return argument;
 };
+
+export interface OrderResPayload {
+  status: 'succeeded' | 'failed';
+  message: string;
+  orderId: number;
+}
+
+type Send<T = Response> = (body?: OrderResPayload) => T;
+export interface OrderResponse extends Response {
+  json: Send<this>;
+}

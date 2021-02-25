@@ -1,24 +1,10 @@
 import { PrismaClient, Product } from '@prisma/client';
-import {
-  ClientRequest,
-  cookieProps,
-  loginFailedErr,
-  OrderRequest,
-  paramMissingError,
-  pwdSaltRounds,
-  SignupRequest,
-  userNotFound
-} from '@servershared/constants';
-// import UserDao from '@daos/User/UserDao.mock';
-import { JWTClass } from '@servershared/jwtService';
-import { IProduct, OrderPayload } from '@shared/types';
+import { OrderRequest } from '@servershared/constants';
+import { OrderPayload, OrderResponse } from '@shared/types';
 import { ensure } from '@shared/utils';
-import bcrypt from 'bcrypt';
-import { Request, Response, Router } from 'express';
+import { Router } from 'express';
 import asyncHandler from 'express-async-handler';
-import StatusCodes, { BAD_REQUEST, NOT_FOUND } from 'http-status-codes';
-import { LoginRequest } from '../shared/constants';
-import { loadStripe } from '@stripe/stripe-js';
+import StatusCodes from 'http-status-codes';
 import Stripe from 'stripe';
 
 const prisma = new PrismaClient();
@@ -38,21 +24,27 @@ const checkStock = ({
   order: OrderPayload;
   products: Product[];
 }) => {
-  const stockCheck: number[] = [];
+  const productsNotInStock: number[] = [];
   order.products.forEach(item => {
     const product = ensure(
       products.find(product => product.id === item.product.id)
     );
     if (item.amount > product.stock) {
-      stockCheck.push(product.id);
+      productsNotInStock.push(product.id);
     }
   });
-  return stockCheck;
+  return productsNotInStock;
 };
 
 export const submitOrder = asyncHandler(
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  async (req: OrderRequest, res: Response) => {
+  async (req: OrderRequest, res: OrderResponse) => {
+    if (!req.user) {
+      res.status(StatusCodes.FORBIDDEN);
+      throw new Error(
+        'Not authorized to order. Something went wrong with authentication.'
+      );
+    }
     // Verify products to database
     const products = await Promise.all(
       req.body.products.map(async item => {
@@ -70,24 +62,22 @@ export const submitOrder = asyncHandler(
     );
 
     // Verify if stock is available
+
     const productsNotInStock = checkStock({ order: req.body, products });
-    if (productsNotInStock?.length) {
+
+    if (productsNotInStock?.length > 0) {
       res.status(StatusCodes.BAD_REQUEST);
       throw new Error('Some products are not in stock.');
     }
 
     const totalAmount = products.reduce((acc, current) => {
-      return acc + current.price / 10;
+      return acc + current.price; // Prices in DB are Int, so do not divide by 100
     }, 0);
 
     const order = await prisma.order.create({
       data: {
-        cost: totalAmount,
-        buyer: {
-          connect: {
-            id: req?.user?.id
-          }
-        },
+        cost: totalAmount, // This is an int, so 53,45 is 5345
+        userId: req.user.id,
         products: {
           create: products.map(product => ({
             product: {
@@ -102,10 +92,11 @@ export const submitOrder = asyncHandler(
         }
       },
       include: {
-        products: true,
-        buyer: true
+        products: true
       }
     });
+
+    console.log('order: ', order);
 
     const description = `Payment for ${products.length} ${
       products.length === 1 ? 'product' : 'producs'
@@ -136,7 +127,8 @@ export const submitOrder = asyncHandler(
 
     res.json({
       status: 'succeeded',
-      message: 'Payment successeful.'
+      message: 'Payment successeful.',
+      orderId: order.id
     });
   }
 );
