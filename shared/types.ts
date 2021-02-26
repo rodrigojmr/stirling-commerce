@@ -1,4 +1,3 @@
-import { OrderResponse } from './types';
 import { Category, Order, Product, ProductInOrder } from '@prisma/client';
 import { Token } from '@stripe/stripe-js';
 import { Response } from 'express';
