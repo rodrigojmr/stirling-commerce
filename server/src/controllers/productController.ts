@@ -1,20 +1,9 @@
 import { PrismaClient } from '@prisma/client';
-import {
-  ClientRequest,
-  cookieProps,
-  loginFailedErr,
-  paramMissingError,
-  pwdSaltRounds,
-  SignupRequest,
-  userNotFound
-} from '@servershared/constants';
 // import UserDao from '@daos/User/UserDao.mock';
 import { JWTClass } from '@servershared/jwtService';
-import bcrypt from 'bcrypt';
 import { Request, Response, Router } from 'express';
 import asyncHandler from 'express-async-handler';
 import StatusCodes from 'http-status-codes';
-import { LoginRequest } from '../shared/constants';
 
 const prisma = new PrismaClient();
 

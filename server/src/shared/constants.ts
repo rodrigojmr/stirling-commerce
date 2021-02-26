@@ -1,4 +1,9 @@
-import { SignupParams, SignInParams, IUser, OrderPayload } from '@shared/types';
+import {
+  SignupParams,
+  SignInParams,
+  IUser,
+  SubmitOrderPayload
+} from '@shared/types';
 import { Request } from 'express';
 import * as dotenv from 'dotenv';
 dotenv.config();
@@ -37,5 +42,5 @@ export interface ClientRequest extends Request {
 }
 
 export interface OrderRequest extends ClientRequest {
-  body: OrderPayload;
+  body: SubmitOrderPayload;
 }
