@@ -1,10 +1,11 @@
-import { Box, Button, Flex, Input, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Input, Text, Select } from '@chakra-ui/react';
 import { CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
 import { Stripe, StripeElements } from '@stripe/stripe-js';
 import CardSection from 'components/stripe/cardSection';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { useAppDispatch } from 'store';
 import { RootState } from 'store/rootReducer';
 import api from 'utils/api';
@@ -20,6 +21,7 @@ export const CheckoutForm = ({
   const cart = useSelector((state: RootState) => state.cart);
   const [error, setError] = useState('');
   const [isSubmitBlocked, setIsSubmitBlocked] = useState(false);
+  const history = useHistory();
 
   const { handleSubmit, errors, register, formState } = useForm();
 
@@ -41,13 +43,13 @@ export const CheckoutForm = ({
         };
         try {
           const res = await api.orders.submitOrder(order);
-          // Redirect to order page
-          console.log('res: ', res);
+          const orderId = res.data.id;
+          history.push(`/order/${orderId.toString()}`);
         } catch (error) {
           setError(error.message);
+          setIsSubmitBlocked(false);
         }
       }
-      setIsSubmitBlocked(false);
     }
   };
 
@@ -95,14 +97,23 @@ export const CheckoutForm = ({
           placeholder="Zip Code"
           inputmode="numeric"
         />
-        <Input
+        <Select
           required
           flex="1 1 0"
           fontFamily="body"
           name="country"
           placeholder="Country"
+          _placeholder={{ color: 'gray.400' }}
           minLength={3}
-        />
+          sx={{ 'option:first-of-type': { color: 'gray.300' } }}
+        >
+          <option value="portugal">Portugal</option>
+          <option value="spain">Spain</option>
+          <option value="france">France</option>
+          <option value="portugal">Portugal</option>
+          <option value="germany">Germany</option>
+          <option value="italy">Italy</option>
+        </Select>
       </Flex>
       <Box
         borderRadius="lg"

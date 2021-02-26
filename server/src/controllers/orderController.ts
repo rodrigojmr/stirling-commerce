@@ -1,8 +1,8 @@
 import { PrismaClient, Product } from '@prisma/client';
 import { OrderRequest } from '@servershared/constants';
-import { OrderPayload, OrderResponse } from '@shared/types';
+import { SubmitOrderPayload } from '@shared/types';
 import { ensure } from '@shared/utils';
-import { Router } from 'express';
+import { Router, Response } from 'express';
 import asyncHandler from 'express-async-handler';
 import StatusCodes from 'http-status-codes';
 import Stripe from 'stripe';
@@ -21,7 +21,7 @@ const checkStock = ({
   order,
   products
 }: {
-  order: OrderPayload;
+  order: SubmitOrderPayload;
   products: Product[];
 }) => {
   const productsNotInStock: number[] = [];
@@ -38,7 +38,7 @@ const checkStock = ({
 
 export const submitOrder = asyncHandler(
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  async (req: OrderRequest, res: OrderResponse) => {
+  async (req: OrderRequest, res: Response) => {
     if (!req.user) {
       res.status(StatusCodes.FORBIDDEN);
       throw new Error(
@@ -74,7 +74,7 @@ export const submitOrder = asyncHandler(
       return acc + current.price; // Prices in DB are Int, so do not divide by 100
     }, 0);
 
-    const order = await prisma.order.create({
+    const orderWithProducts = await prisma.order.create({
       data: {
         cost: totalAmount, // This is an int, so 53,45 is 5345
         userId: req.user.id,
@@ -96,8 +96,6 @@ export const submitOrder = asyncHandler(
       }
     });
 
-    console.log('order: ', order);
-
     const description = `Payment for ${products.length} ${
       products.length === 1 ? 'product' : 'producs'
     }.`;
@@ -105,7 +103,7 @@ export const submitOrder = asyncHandler(
     // Stripe metadata doesn't take arrays, only key value pairs such as strings.
     // This is a hacky way of getting several IDs in a string.
     // This has to be trimmed and split whenever it needs to be called.
-    const idString = order.products.reduce((string, product) => {
+    const idString = orderWithProducts.products.reduce((string, product) => {
       return string.toString() + product.productId.toString() + ' ';
     }, '');
 
@@ -120,15 +118,35 @@ export const submitOrder = asyncHandler(
     });
 
     if (charge.status === 'failed') {
-      await prisma.order.delete({ where: { id: order.id } });
+      await prisma.order.delete({ where: { id: orderWithProducts.id } });
       res.status(StatusCodes.BAD_REQUEST);
       throw new Error('Payment was unsuccessful, please try again.');
     }
 
-    res.json({
-      status: 'succeeded',
-      message: 'Payment successeful.',
-      orderId: order.id
+    res.json(orderWithProducts);
+  }
+);
+
+export const fetchOrder = asyncHandler(
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+  async (req: OrderRequest, res: Response) => {
+    if (!req.user) {
+      res.status(StatusCodes.FORBIDDEN);
+      throw new Error('Not authorized to fetch order.');
+    }
+    // Verify products to database
+    const order = await prisma.order.findUnique({
+      where: {
+        id: Number(req.params.id)
+      },
+      include: {
+        products: { include: { product: true } }
+      }
     });
+    if (!order) {
+      res.status(StatusCodes.NOT_FOUND);
+      throw new Error('Order not found.');
+    }
+    res.json(order);
   }
 );

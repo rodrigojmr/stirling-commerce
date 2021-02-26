@@ -1,4 +1,9 @@
-import { SignInParams, IUser, OrderPayload } from '@shared/types';
+import {
+  SignInParams,
+  IUser,
+  SubmitOrderPayload,
+  OrderPayload
+} from '@shared/types';
 //here we are importing our Axios dependency
 import axios from 'axios';
 import { Product } from '@prisma/client';
@@ -46,8 +51,11 @@ const api = {
     }
   },
   orders: {
-    submitOrder(payload: OrderPayload) {
-      return apiClient.post('/orders/submit', payload);
+    submitOrder(payload: SubmitOrderPayload) {
+      return apiClient.post<OrderPayload>('/orders/submit', payload);
+    },
+    fetchOrder(id: string) {
+      return apiClient.get<OrderPayload>(`/orders/${id}`);
     }
   }
 };

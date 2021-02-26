@@ -1,4 +1,5 @@
-import { Category, Product } from '@prisma/client';
+import { OrderResponse } from './types';
+import { Category, Order, Product, ProductInOrder } from '@prisma/client';
 import { Token } from '@stripe/stripe-js';
 import { Response } from 'express';
 
@@ -6,30 +7,6 @@ export interface SignupParams {
   name: string;
   email: string;
   password: string;
-}
-
-export interface SignInParams {
-  email: string;
-  password: string;
-}
-export interface IUser {
-  id: number;
-  email: string;
-  name: string;
-  role?: string;
-}
-
-export interface IProduct extends Product {
-  categories: Category[];
-}
-export interface CartProduct {
-  product: IProduct;
-  amount: number;
-}
-
-export interface OrderPayload {
-  products: CartProduct[];
-  cardToken: Token;
 }
 
 export const ensure = <T>(
@@ -43,13 +20,31 @@ export const ensure = <T>(
   return argument;
 };
 
-export interface OrderResPayload {
-  status: 'succeeded' | 'failed';
-  message: string;
-  orderId: number;
+export interface SignInParams {
+  email: string;
+  password: string;
+}
+export interface IUser {
+  id: number;
+  email: string;
+  name: string;
+  role?: string;
+}
+export interface IProduct extends Product {
+  categories: Category[];
+}
+export interface CartProduct {
+  product: IProduct;
+  amount: number;
+}
+export interface SubmitOrderPayload {
+  products: CartProduct[];
+  cardToken: Token;
 }
 
-type Send<T = Response> = (body?: OrderResPayload) => T;
-export interface OrderResponse extends Response {
-  json: Send<this>;
-}
+export type OrderPayload = Order & {
+  products: ProductInOrder[];
+};
+
+// How to make "this", (the response function) take whatever
+// Payload type I pass to make sure it's sending the right payload

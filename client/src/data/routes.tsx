@@ -5,6 +5,7 @@ import RegisterPage from 'pages/registerPage';
 import Dashboard from 'pages/dashboard';
 import Search from 'pages/search';
 import Checkout from 'pages/checkoutPage';
+import OrderPage from 'pages/orderPage';
 
 const routes = [
   {
@@ -33,6 +34,12 @@ const routes = [
     path: '/dashboard',
     exact: true,
     component: Dashboard,
+    isPrivate: true
+  },
+  {
+    path: '/order/:id',
+    exact: true,
+    component: OrderPage,
     isPrivate: true
   },
   {
