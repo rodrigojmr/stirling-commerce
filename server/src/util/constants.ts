@@ -6,6 +6,7 @@ import {
 } from '@shared/types';
 import { Request } from 'express';
 import * as dotenv from 'dotenv';
+import { ParamsDictionary } from 'express-serve-static-core';
 dotenv.config();
 // Strings
 export const paramMissingError =
@@ -31,16 +32,6 @@ export const cookieProps = Object.freeze({
 });
 
 // IRequest object for express routes
-export interface SignupRequest extends Request {
-  body: SignupParams;
-}
-export interface LoginRequest extends Request {
-  body: SignInParams;
-}
-export interface ClientRequest extends Request {
+export type IWithUser<T extends Request> = T & {
   user?: IUser;
-}
-
-export interface OrderRequest extends ClientRequest {
-  body: SubmitOrderPayload;
-}
+};

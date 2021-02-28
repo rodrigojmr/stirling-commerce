@@ -6,8 +6,8 @@ import StatusCodes from 'http-status-codes';
 import express, { NextFunction, Request, Response } from 'express';
 
 import BaseRouter from './api';
-import logger from '@servershared/logger';
-import { cookieProps } from '@servershared/constants';
+import logger from 'server/src/util/logger';
+import { cookieProps } from 'server/src/util/constants';
 import cors from 'cors';
 
 import 'express-async-errors';
