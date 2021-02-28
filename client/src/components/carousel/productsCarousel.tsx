@@ -10,7 +10,7 @@ import { PrevButton, NextButton } from './carouselButtons';
 import { useEmblaCarousel } from 'embla-carousel/react';
 import { Embla, Viewport, CarouselContainer, Slide } from './styles';
 import ProductSlide from './carouselProduct';
-import { useMediaQuery } from '@chakra-ui/react';
+import { Skeleton, useMediaQuery } from '@chakra-ui/react';
 import { Product } from '@prisma/client';
 import { IProduct } from '@shared/types';
 
@@ -58,7 +58,7 @@ interface Options {
 
 const ProductsCarousel: React.FC<{
   options: Options;
-  products: IProduct[];
+  products?: IProduct[];
 }> = ({ options, products }) => {
   const [emblaRef, embla] = useEmblaCarousel(options);
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
@@ -77,6 +77,7 @@ const ProductsCarousel: React.FC<{
 
   const progressBar = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
+    // TODO Add on resize event
     if (progressBar.current !== null) {
       setProgressBarWidth(progressBar.current.clientWidth);
     }
@@ -119,11 +120,30 @@ const ProductsCarousel: React.FC<{
       <Embla>
         <Viewport ref={emblaRef}>
           <CarouselContainer>
-            {products.map((product, i) => (
-              <Slide key={i} slides={slides}>
-                <ProductSlide product={product} />
-              </Slide>
-            ))}
+            {products ? (
+              <>
+                {products.map((product, i) => (
+                  <Slide key={i} slides={slides}>
+                    <ProductSlide product={product} />
+                  </Slide>
+                ))}
+              </>
+            ) : (
+              <>
+                <Slide slides={4}>
+                  <Skeleton minH={'10vh'}></Skeleton>
+                </Slide>
+                <Slide slides={4}>
+                  <Skeleton minH={'10vh'}></Skeleton>
+                </Slide>
+                <Slide slides={4}>
+                  <Skeleton minH={'10vh'}></Skeleton>
+                </Slide>
+                <Slide slides={4}>
+                  <Skeleton minH={'10vh'}></Skeleton>
+                </Slide>
+              </>
+            )}
           </CarouselContainer>
         </Viewport>
         {options.arrows && (
@@ -137,7 +157,7 @@ const ProductsCarousel: React.FC<{
         <ProgressBar
           parentWidth={progressBarWidth}
           progress={scrollProgress}
-          slides={products.length}
+          slides={products?.length || 4}
         />
       </Progress>
     </>

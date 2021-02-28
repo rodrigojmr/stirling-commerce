@@ -89,10 +89,6 @@ const Home = () => {
     return [...randomFootwear.slice(0, 4), ...randomFootwear.slice(0, 4)];
   };
 
-  if (!products) {
-    return <Loader />;
-  }
-
   return (
     <>
       {/* Sliders */}
@@ -212,18 +208,16 @@ const Home = () => {
               View All &gt;
             </Link>
           </Flex>
-          {products && (
-            <ProductsCarousel
-              options={{
-                loop: false,
-                draggable: true,
-                arrows: false,
-                dragFree: true,
-                containScroll: 'keepSnaps' as const
-              }}
-              products={newFootwear(products)}
-            />
-          )}
+          <ProductsCarousel
+            options={{
+              loop: false,
+              draggable: true,
+              arrows: false,
+              dragFree: true,
+              containScroll: 'keepSnaps' as const
+            }}
+            products={products ? newFootwear(products) : undefined}
+          />
         </Box>
       </Box>
       {/* Newsletter */}
