@@ -49,13 +49,13 @@
     "baseUrl": "./" /* Base directory to resolve non-absolute module names. */,
     "paths": {
       "@frontend/*": ["client/*"],
-      "@servershared/*": ["server/src/shared/*"],
+      "@util/*": ["server/src/util/*"],
       "@server": ["server/src/Server"],
       "@db/*": ["server/src/db/*"],
       "@shared/*": ["shared/*"]
     },
     // "paths": {},                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
-    "typeRoots": ["./node_modules/@types", "./shared/types"],
+    "typeRoots": ["./node_modules/@types", "./shared"],
     "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
     // "allowSyntheticDefaultImports": true,  /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
     // "preserveSymlinks": true,              /* Do not resolve the real path of symlinks. */
