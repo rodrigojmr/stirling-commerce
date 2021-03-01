@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useAppDispatch } from 'store';
 import { RootState } from 'store/rootReducer';
+import { emptyCart } from 'store/slices/cartSlice';
 import api from 'utils/api';
 
 export const CheckoutForm = ({
@@ -44,6 +45,7 @@ export const CheckoutForm = ({
         try {
           const res = await api.orders.submitOrder(order);
           const orderId = res.data.id;
+          dispatch(emptyCart());
           history.push(`/order/${orderId.toString()}`);
         } catch (error) {
           setError(error.message);
@@ -95,7 +97,7 @@ export const CheckoutForm = ({
           fontFamily="body"
           name="zip"
           placeholder="Zip Code"
-          inputmode="numeric"
+          inputMode="numeric"
         />
         <Select
           required

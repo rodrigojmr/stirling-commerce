@@ -1,6 +1,7 @@
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import {
   Box,
+  Button,
   Flex,
   Grid,
   Heading,
@@ -15,7 +16,7 @@ import CartRow from 'components/cart/cartRow';
 import { InjectedCheckoutForm } from 'components/stripe/checkoutForm';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useHistory, useLocation } from 'react-router-dom';
 import { useAppDispatch } from 'store';
 import { RootState } from 'store/rootReducer';
 import { cartPriceTotal } from 'utils';
@@ -28,6 +29,8 @@ const Checkout = ({}: CheckoutProps) => {
   const dispatch = useAppDispatch();
   const cart = useSelector((state: RootState) => state.cart);
 
+  const history = useHistory();
+
   const productNum: number = cart.reduce((acc, curr) => {
     return acc + curr.amount;
   }, 0);
@@ -35,7 +38,7 @@ const Checkout = ({}: CheckoutProps) => {
   const totalPrice = cartPriceTotal(cart);
 
   return (
-    <Box bg="light-grey">
+    <Box bg="light-grey" minH="30rem">
       <Grid
         py={20}
         mx={{ base: 5, md: '10vw' }}
@@ -56,15 +59,18 @@ const Checkout = ({}: CheckoutProps) => {
             borderBottom="1px solid"
             borderColor="gray.300"
           >
-            <Link
-              to="/"
-              as={RouterLink}
+            <Button
+              fontFamily="body"
               fontSize={{ base: '2xl' }}
               color="gray.700"
+              bg="transparent"
+              border="none"
+              _hover={{ bg: 'transparent', color: 'primary.500' }}
+              leftIcon={<Icon w={6} h={6} mr={2} as={ArrowBackIcon} />}
+              onClick={() => history.goBack()}
             >
-              <Icon w={6} h={6} mr={2} as={ArrowBackIcon} />
               Continue Shopping
-            </Link>
+            </Button>
           </Flex>
           <Box my={6}>
             {cart.length === 0 ? (
@@ -96,11 +102,13 @@ const Checkout = ({}: CheckoutProps) => {
             )}
           </Box>
         </Box>
-        <Box gridArea="shipping" bg="white" borderRadius={8} p={8}>
-          <Elements stripe={stripePromise}>
-            <InjectedCheckoutForm />
-          </Elements>
-        </Box>
+        {cart.length > 0 ? (
+          <Box gridArea="shipping" bg="white" borderRadius={8} p={8}>
+            <Elements stripe={stripePromise}>
+              <InjectedCheckoutForm />
+            </Elements>
+          </Box>
+        ) : null}
       </Grid>
     </Box>
   );
