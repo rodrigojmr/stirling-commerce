@@ -2,7 +2,8 @@ import {
   SignInParams,
   IUser,
   SubmitOrderPayload,
-  OrderPayload
+  OrderPayload,
+  SingleOrderPayload
 } from '@shared/types';
 //here we are importing our Axios dependency
 import axios from 'axios';
@@ -55,7 +56,7 @@ const api = {
       return apiClient.post<OrderPayload>('/orders/submit', payload);
     },
     fetchOrder(id: string) {
-      return apiClient.get<OrderPayload>(`/orders/${id}`);
+      return apiClient.get<SingleOrderPayload>(`/orders/${id}`);
     }
   }
 };

@@ -1,9 +1,10 @@
-import { ClientRequest } from '@servershared/constants';
-import { JWTClass } from '@servershared/jwtService';
 import { IUser } from '@shared/types';
 import { NextFunction, Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
+import { ParamsDictionary } from 'express-serve-static-core';
 import StatusCodes from 'http-status-codes';
+import { IWithUser } from 'server/src/util/constants';
+import { JWTClass } from 'server/src/util/jwtService';
 
 const JWTService = new JWTClass();
 const { UNAUTHORIZED } = StatusCodes;
@@ -38,7 +39,11 @@ const { UNAUTHORIZED } = StatusCodes;
 
 export const authenticateToken = asyncHandler(
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  async (req: ClientRequest, res: Response, next: NextFunction) => {
+  async (
+    req: IWithUser<Request<ParamsDictionary>>,
+    res: Response,
+    next: NextFunction
+  ) => {
     // Through authorization header
     // const authHeader = req.headers['authorization'];
     // const token = authHeader && authHeader.split(' ')[1];

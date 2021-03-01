@@ -41,6 +41,12 @@ export interface SubmitOrderPayload {
   cardToken: Token;
 }
 
+export type SingleOrderPayload = Order & {
+  products: (ProductInOrder & {
+    product: Product;
+  })[];
+};
+
 export type OrderPayload = Order & {
   products: ProductInOrder[];
 };

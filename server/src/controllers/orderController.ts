@@ -1,11 +1,13 @@
 import { PrismaClient, Product } from '@prisma/client';
-import { OrderRequest } from '@servershared/constants';
-import { SubmitOrderPayload } from '@shared/types';
+import { SingleOrderPayload, SubmitOrderPayload } from '@shared/types';
 import { ensure } from '@shared/utils';
-import { Router, Response } from 'express';
+import { Request, Response, Router } from 'express';
 import asyncHandler from 'express-async-handler';
+import { ParamsDictionary } from 'express-serve-static-core';
 import StatusCodes from 'http-status-codes';
+import { IWithUser } from 'server/src/util/constants';
 import Stripe from 'stripe';
+import { OrderPayload } from './../../../shared/types';
 
 const prisma = new PrismaClient();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -36,9 +38,19 @@ const checkStock = ({
   return productsNotInStock;
 };
 
+interface OrderResBody {
+  resProperty: string;
+}
+interface OrderReqBody {
+  reqProperty: number;
+}
+
 export const submitOrder = asyncHandler(
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  async (req: OrderRequest, res: Response) => {
+  async (
+    req: IWithUser<Request<ParamsDictionary, OrderPayload, SubmitOrderPayload>>,
+    res: Response
+  ) => {
     if (!req.user) {
       res.status(StatusCodes.FORBIDDEN);
       throw new Error(
@@ -129,13 +141,16 @@ export const submitOrder = asyncHandler(
 
 export const fetchOrder = asyncHandler(
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  async (req: OrderRequest, res: Response) => {
+  async (
+    req: IWithUser<Request<ParamsDictionary, OrderPayload, SingleOrderPayload>>,
+    res: Response
+  ) => {
     if (!req.user) {
       res.status(StatusCodes.FORBIDDEN);
       throw new Error('Not authorized to fetch order.');
     }
     // Verify products to database
-    const order = await prisma.order.findUnique({
+    const order: SingleOrderPayload | null = await prisma.order.findUnique({
       where: {
         id: Number(req.params.id)
       },

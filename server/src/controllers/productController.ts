@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 // import UserDao from '@daos/User/UserDao.mock';
-import { JWTClass } from '@servershared/jwtService';
+import { JWTClass } from 'server/src/util/jwtService';
 import { Request, Response, Router } from 'express';
 import asyncHandler from 'express-async-handler';
 import StatusCodes from 'http-status-codes';
