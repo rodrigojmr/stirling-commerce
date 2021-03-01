@@ -8,7 +8,12 @@ import {
   Skeleton,
   SkeletonText,
   Text,
-  useTheme
+  useTheme,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  Box
 } from '@chakra-ui/react';
 import { Product } from '@prisma/client';
 import { IProduct } from '@shared/types';
@@ -22,6 +27,7 @@ import { requestProduct } from 'store/slices/productDetailsSlice';
 import { ThemeType } from 'theme/theme';
 import { getProductAverageReviews } from 'utils';
 import { stars } from '../components/styled/Stars';
+import { Link as RouterLink } from 'react-router-dom';
 
 const SingleProduct = ({ match }: RouteComponentProps) => {
   // Get Product
@@ -71,129 +77,148 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
 
   return (
     <>
-      <Flex
-        flexDir={{ base: 'column', xl: 'row' }}
-        width="100%"
-        alignItems="center"
-        py={{ base: 10, md: 20 }}
-        px="clamp(6rem, 5vw, 10rem)"
-        justifyContent="space-between"
-        margin="0 auto"
-        maxWidth="max"
-      >
-        <Center
-          width="100%"
-          minHeight={{ base: '20rem', xl: '30rem' }}
-          flexBasis="48%"
-        >
-          <Skeleton
-            minHeight={{ base: '20rem' }}
-            width="100%"
-            borderRadius={8}
-            isLoaded={status === 'succeeded' && imageLoaded}
-          >
-            <Image
-              onLoad={() => setImageLoaded(true)}
-              objectFit="cover"
-              src={product?.image}
-              alt={product?.title}
-            />
-          </Skeleton>
-        </Center>
+      <Box py={{ base: 10, md: 20 }} px="clamp(6rem, 5vw, 10rem)">
+        <Box mb={6}>
+          <Breadcrumb color="gray.500" _hover={{ color: 'gray.700' }}>
+            {product?.categories?.map((category, i, categoriesArray) => {
+              const urlString = categoriesArray
+                .slice(0, i + 1)
+                .reduce((string, category) => {
+                  return string + '/' + category.name.toLowerCase();
+                }, '/search');
+
+              return (
+                <BreadcrumbItem>
+                  <BreadcrumbLink as={RouterLink} to={urlString}>
+                    {category.name}
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+              );
+            })}
+          </Breadcrumb>
+        </Box>
         <Flex
-          flexBasis="45%"
-          direction="column"
-          gridColumn="col-start 5 / col-end 7"
+          flexDir={{ base: 'column', xl: 'row' }}
+          width="100%"
+          alignItems="center"
+          justifyContent="space-between"
+          margin="0 auto"
+          maxWidth="max"
         >
-          <Skeleton
-            borderRadius={8}
-            minH={6}
-            isLoaded={status === 'succeeded'}
-            mb={4}
+          <Center
+            width="100%"
+            minHeight={{ base: '20rem', xl: '30rem' }}
+            flexBasis="48%"
           >
-            <Heading as="h1" fontSize="3xl" fontFamily="body">
-              {product?.title}
-            </Heading>
-          </Skeleton>
-          {product && status === 'succeeded' ? (
-            <Flex align="center">
-              {stars(getProductAverageReviews(product))}
-              <Text
-                ml="12px"
-                fontSize="lg"
-                color="primary"
-                css={`
-                  margin-right: 10px;
-                `}
-              >
-                ({numReviews})
-              </Text>
-            </Flex>
-          ) : (
-            <Skeleton height={4} mb={4} />
-          )}
-          <SkeletonText
-            noOfLines={1}
-            maxW="30%"
-            mb={4}
-            minH={2}
-            isLoaded={status === 'succeeded'}
+            <Skeleton
+              minHeight={{ base: '20rem' }}
+              width="100%"
+              borderRadius={8}
+              isLoaded={status === 'succeeded' && imageLoaded}
+            >
+              <Image
+                onLoad={() => setImageLoaded(true)}
+                objectFit="cover"
+                src={product?.image}
+                alt={product?.title}
+              />
+            </Skeleton>
+          </Center>
+          <Flex
+            flexBasis="45%"
+            direction="column"
+            gridColumn="col-start 5 / col-end 7"
           >
-            <Text color="gray.600" fontSize="2xl" fontWeight={'600'}>
-              €{product?.price}
-            </Text>
-          </SkeletonText>
-          <SkeletonText
-            noOfLines={8}
-            spacing="4"
-            mb={4}
-            isLoaded={status === 'succeeded'}
-          >
-            <Text fontSize="lg" mb={2}>
-              {product?.description}
-            </Text>
-            <Text color="grey">{stockText}</Text>
-          </SkeletonText>
-          {/* TODO Split to separate component */}
-          <Skeleton isLoaded={status === 'succeeded'}>
-            <form>
-              <Flex>
-                <label htmlFor="amount-input"></label>
-                <Select
-                  as="select"
-                  w="5rem"
-                  border="1px solid black"
-                  borderRadius="5px"
-                  mr={4}
-                  height="3rem"
-                  value={amount}
-                  onChange={e => setAmount(e.target.value)}
-                  fontSize="xl"
-                  color="grey.500"
-                  name="amount"
-                  id="amount-input"
+            <Skeleton
+              borderRadius={8}
+              minH={6}
+              isLoaded={status === 'succeeded'}
+              mb={4}
+            >
+              <Heading as="h1" fontSize="3xl" fontFamily="body">
+                {product?.title}
+              </Heading>
+            </Skeleton>
+            {product && status === 'succeeded' ? (
+              <Flex align="center">
+                {stars(getProductAverageReviews(product))}
+                <Text
+                  ml="12px"
+                  fontSize="lg"
+                  color="primary"
+                  css={`
+                    margin-right: 10px;
+                  `}
                 >
-                  {[...Array(product?.stock).keys()].map(x => (
-                    <option key={x + 1} value={x + 1}>
-                      {x + 1}
-                    </option>
-                  ))}
-                </Select>
-                <Button
-                  _hover={{ _disabled: { bg: 'primary.400' } }}
-                  disabled={inCartIsMoreThanStock()}
-                  onClick={updateCart}
-                  fontSize="1.3rem"
-                  size="lg"
-                  variant="primary"
-                >
-                  Add to cart
-                </Button>
+                  ({numReviews})
+                </Text>
               </Flex>
-            </form>
-          </Skeleton>
+            ) : (
+              <Skeleton height={4} mb={4} />
+            )}
+            <SkeletonText
+              noOfLines={1}
+              maxW="30%"
+              mb={4}
+              minH={2}
+              isLoaded={status === 'succeeded'}
+            >
+              <Text color="gray.600" fontSize="2xl" fontWeight={'600'}>
+                €{product?.price}
+              </Text>
+            </SkeletonText>
+            <SkeletonText
+              noOfLines={8}
+              spacing="4"
+              mb={4}
+              isLoaded={status === 'succeeded'}
+            >
+              <Text fontSize="lg" mb={2}>
+                {product?.description}
+              </Text>
+              <Text color="grey">{stockText}</Text>
+            </SkeletonText>
+            {/* TODO Split to separate component */}
+            <Skeleton isLoaded={status === 'succeeded'}>
+              <form>
+                <Flex>
+                  <label htmlFor="amount-input"></label>
+                  <Select
+                    as="select"
+                    w="5rem"
+                    border="1px solid black"
+                    borderRadius="5px"
+                    mr={4}
+                    height="3rem"
+                    value={amount}
+                    onChange={e => setAmount(e.target.value)}
+                    fontSize="xl"
+                    color="grey.500"
+                    name="amount"
+                    id="amount-input"
+                  >
+                    {[...Array(product?.stock).keys()].map(x => (
+                      <option key={x + 1} value={x + 1}>
+                        {x + 1}
+                      </option>
+                    ))}
+                  </Select>
+                  <Button
+                    _hover={{ _disabled: { bg: 'primary.400' } }}
+                    disabled={inCartIsMoreThanStock()}
+                    onClick={updateCart}
+                    fontSize="1.3rem"
+                    size="lg"
+                    variant="primary"
+                  >
+                    Add to cart
+                  </Button>
+                </Flex>
+              </form>
+            </Skeleton>
+          </Flex>
         </Flex>
-      </Flex>
+      </Box>
     </>
   );
 };
