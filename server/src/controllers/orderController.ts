@@ -79,7 +79,9 @@ export const submitOrder = asyncHandler(
 
     if (productsNotInStock?.length > 0) {
       res.status(StatusCodes.BAD_REQUEST);
-      throw new Error('Some products are not in stock.');
+      throw new Error(
+        'Some products are not in stock or you have requested too much stock.'
+      );
     }
 
     const totalAmount = products.reduce((acc, current) => {

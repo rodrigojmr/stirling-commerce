@@ -62,8 +62,9 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
       ? `${product?.reviews.length} customer reviews`
       : '1 customer review';
 
+  const cartItem = cart?.find(item => item.product.id === product?.id);
+
   const inCartIsMoreThanStock = (): boolean => {
-    const cartItem = cart.find(item => item.product.id === product?.id);
     if (cartItem && product) {
       return cartItem.amount >= product?.stock;
     } else return false;
@@ -197,15 +198,20 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
                     name="amount"
                     id="amount-input"
                   >
-                    {[...Array(product?.stock).keys()].map(x => (
-                      <option key={x + 1} value={x + 1}>
-                        {x + 1}
-                      </option>
-                    ))}
+                    {product &&
+                      [
+                        ...Array(
+                          product?.stock - (cartItem?.amount || 0)
+                        ).keys()
+                      ].map(x => (
+                        <option key={x + 1} value={x + 1}>
+                          {x + 1}
+                        </option>
+                      ))}
                   </Select>
                   <Button
                     _hover={{ _disabled: { bg: 'primary.400' } }}
-                    disabled={inCartIsMoreThanStock()}
+                    disabled={inCartIsMoreThanStock() || !user}
                     onClick={updateCart}
                     fontSize="1.3rem"
                     size="lg"
