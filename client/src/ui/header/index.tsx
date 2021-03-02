@@ -37,27 +37,33 @@ const StyledLogo = styled(Icon)`
 
 const navLinks: Link[] = [
   {
-    to: '/search/men',
+    to: '#',
+    // to: '/search/men',
     text: "Men's"
   },
   {
-    to: '/search/women',
+    to: '#',
+    // to: '/search/women',
     text: "Women's"
   },
   {
-    to: '/search/kids',
+    to: '#',
+    // to: '/search/kids',
     text: "Kid's"
   },
   {
-    to: '/search/sport',
+    to: '#',
+    // to: '/search/sport',
     text: 'Sport'
   },
   {
-    to: '/search/gear',
+    to: '#',
+    // to: '/search/gear',
     text: 'Gear'
   },
   {
-    to: '/search/new',
+    to: '#',
+    // to: '/search/new',
     text: 'New'
   }
 ];

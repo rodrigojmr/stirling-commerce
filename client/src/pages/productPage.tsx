@@ -80,12 +80,12 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
         <Box mb={6}>
           <Breadcrumb color="gray.500" _hover={{ color: 'gray.700' }}>
             {product?.categories?.map((category, i, categoriesArray) => {
-              const urlString = categoriesArray
-                .slice(0, i + 1)
-                .reduce((string, category) => {
-                  return string + '/' + category.name.toLowerCase();
-                }, '/search');
-
+              // const urlString = categoriesArray
+              //   .slice(0, i + 1)
+              //   .reduce((string, category) => {
+              //     return string + '/' + category.name.toLowerCase();
+              //   }, '/search');
+              const urlString = '#';
               return (
                 <BreadcrumbItem key={i}>
                   <BreadcrumbLink as={RouterLink} to={urlString}>
