@@ -1,5 +1,5 @@
 import app from './Server';
-import logger from 'server/src/util/logger';
+import logger from '@util/logger';
 
 // Start the server
 const port = Number(process.env.PORT || 3000);

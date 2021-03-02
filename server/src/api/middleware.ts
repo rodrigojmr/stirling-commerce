@@ -3,8 +3,8 @@ import { NextFunction, Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
 import { ParamsDictionary } from 'express-serve-static-core';
 import StatusCodes from 'http-status-codes';
-import { IWithUser } from 'server/src/util/constants';
-import { JWTClass } from 'server/src/util/jwtService';
+import { IWithUser } from '@util/constants';
+import { JWTClass } from '@util/jwtService';
 
 const JWTService = new JWTClass();
 const { UNAUTHORIZED } = StatusCodes;

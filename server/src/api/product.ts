@@ -3,9 +3,9 @@ import {
   fetchProduct
 } from '../controllers/productController';
 import asyncHandler from 'express-async-handler';
-import { cookieProps } from 'server/src/util/constants';
+import { cookieProps } from '@util/constants';
 // import UserDao from '@daos/User/UserDao.mock';
-import { JWTClass } from 'server/src/util/jwtService';
+import { JWTClass } from '@util/jwtService';
 import { Request, Response, Router } from 'express';
 import StatusCodes from 'http-status-codes';
 import { signUpUser, signInUser } from '../controllers/userController';

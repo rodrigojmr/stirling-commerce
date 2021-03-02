@@ -1,6 +1,6 @@
 import randomString from 'randomstring';
 import jsonwebtoken, { VerifyErrors } from 'jsonwebtoken';
-import { cookieProps } from 'server/src/util/constants';
+import { cookieProps } from '@util/constants';
 import { IUser } from '@shared/types';
 interface IOptions {
   expiresIn: number;

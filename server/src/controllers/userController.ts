@@ -6,9 +6,9 @@ import {
   paramMissingError,
   pwdSaltRounds,
   userNotFound
-} from 'server/src/util/constants';
+} from '@util/constants';
 // import UserDao from '@daos/User/UserDao.mock';
-import { JWTClass } from 'server/src/util/jwtService';
+import { JWTClass } from '@util/jwtService';
 import bcrypt from 'bcrypt';
 import { Request, Response, Router } from 'express';
 import asyncHandler from 'express-async-handler';

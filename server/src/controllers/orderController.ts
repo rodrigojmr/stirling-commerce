@@ -5,7 +5,7 @@ import { Request, Response, Router } from 'express';
 import asyncHandler from 'express-async-handler';
 import { ParamsDictionary } from 'express-serve-static-core';
 import StatusCodes from 'http-status-codes';
-import { IWithUser } from 'server/src/util/constants';
+import { IWithUser } from '@util/constants';
 import Stripe from 'stripe';
 import { OrderPayload } from './../../../shared/types';
 
