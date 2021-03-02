@@ -7,17 +7,15 @@ import {
   RouteComponentProps,
   useLocation
 } from 'react-router-dom';
-import { useAppDispatch } from 'store';
 
 interface stateType {
   from: { pathname: string };
 }
 
 const SignInPage = ({ history }: RouteComponentProps) => {
-  const [redirectToReferrer, setredirectToReferrer] = useState(false);
   const { state } = useLocation<stateType>();
-  const dispatch = useAppDispatch();
 
+  const [redirectToReferrer, setredirectToReferrer] = useState(false);
   if (redirectToReferrer) {
     return <Redirect to={state?.from || '/'} />;
   }
@@ -38,6 +36,14 @@ const SignInPage = ({ history }: RouteComponentProps) => {
               Sign Up!
             </Link>
           </Text>
+        </Center>
+        <Center fontSize="sm" color="gray.500">
+          <>
+            You can also use this user:
+            <br /> user@randomuser.com
+            <br />
+            P@2e&E!c2*PTtnJ#R75J
+          </>
         </Center>
       </Box>
       <Box gridColumn="1 / 2" gridRow="2 / span 1"></Box>

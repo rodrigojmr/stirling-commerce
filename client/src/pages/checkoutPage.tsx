@@ -2,11 +2,11 @@ import { ArrowBackIcon } from '@chakra-ui/icons';
 import {
   Box,
   Button,
+  Center,
   Flex,
   Grid,
   Heading,
   Icon,
-  Link,
   Select,
   Text
 } from '@chakra-ui/react';
@@ -16,16 +16,14 @@ import CartRow from 'components/cart/cartRow';
 import { InjectedCheckoutForm } from 'components/stripe/checkoutForm';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link as RouterLink, useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useAppDispatch } from 'store';
 import { RootState } from 'store/rootReducer';
 import { cartPriceTotal } from 'utils';
 
 const stripePromise = loadStripe('pk_test_7sQOtVSSKa0t8rdQDRDkWLgQ');
 
-interface CheckoutProps {}
-
-const Checkout = ({}: CheckoutProps) => {
+const Checkout = () => {
   const dispatch = useAppDispatch();
   const cart = useSelector((state: RootState) => state.cart);
 
@@ -37,11 +35,25 @@ const Checkout = ({}: CheckoutProps) => {
 
   const totalPrice = cartPriceTotal(cart);
 
+  const sortCart = (param: string) => {
+    switch (param) {
+      case 'name':
+        break;
+      case 'price':
+        break;
+      case 'amount':
+        break;
+
+      default:
+        break;
+    }
+  };
+
   return (
     <Box bg="light-grey" minH="30rem">
       <Grid
         py={20}
-        mx={{ base: 5, md: '10vw' }}
+        mx={{ base: 5, lg: '10vw' }}
         templateColumns={{
           base: '1fr',
           '2xl': '5fr 3fr'
@@ -87,8 +99,11 @@ const Checkout = ({}: CheckoutProps) => {
                       width="initial"
                       border="none"
                       fontSize="md"
+                      onChange={e => console.log(e)}
                     >
                       <option value="price">Price</option>
+                      <option value="name">Name</option>
+                      <option value="amount">Amount</option>
                     </Select>
                   </Flex>
                 </Flex>
@@ -98,16 +113,22 @@ const Checkout = ({}: CheckoutProps) => {
                     <CartRow key={key} item={cartItem} />
                   ))}
                 </Box>
+                <Box textAlign="right" mr={10}>
+                  <Heading as="h6" fontSize="lg">
+                    Total
+                  </Heading>
+                  <Text>€{totalPrice}</Text>
+                </Box>
               </>
             )}
           </Box>
         </Box>
         {cart.length > 0 ? (
-          <Box gridArea="shipping" bg="white" borderRadius={8} p={8}>
+          <Center gridArea="shipping" bg="white" borderRadius={8} p={8}>
             <Elements stripe={stripePromise}>
               <InjectedCheckoutForm />
             </Elements>
-          </Box>
+          </Center>
         ) : null}
       </Grid>
     </Box>

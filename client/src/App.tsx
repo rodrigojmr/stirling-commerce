@@ -1,19 +1,22 @@
 import * as React from 'react';
-import { Box, ChakraProvider } from '@chakra-ui/react';
-import routes from 'data/routes';
-import { drawerContext, useDrawer } from 'hooks/useDrawer';
 import { useEffect } from 'react';
+import { Box, ChakraProvider } from '@chakra-ui/react';
 import { Helmet } from 'react-helmet';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import { requestProducts } from 'store/slices/catalogSlice';
-import { getUser } from 'store/slices/userSlice';
+
 import Navbar from 'ui/header';
-import PublicRoute from 'utils/publicRoute';
-import ScrollToTop from './hooks/ScrollToTop';
-import store from './store';
-import { CustomTheme } from './theme/theme';
 import Footer from './ui/footer';
+
+import ScrollToTop from './hooks/ScrollToTop';
+import { CustomTheme } from './theme/theme';
+import { drawerContext, useDrawer } from 'hooks/useDrawer';
+
+import store from './store';
+import { getUser } from 'store/slices/userSlice';
+
+import routes from 'data/routes';
 import PrivateRoute from './utils/privateRoute';
+import PublicRoute from 'utils/publicRoute';
 
 const App = () => {
   const drawer = useDrawer();

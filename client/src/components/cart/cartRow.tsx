@@ -1,40 +1,34 @@
 import {
   Box,
+  Button,
   Center,
   Flex,
   Heading,
   Icon,
   IconButton,
   Image,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverContent,
+  PopoverTrigger,
   Spinner,
   SystemStyleObject,
   Text,
-  VStack,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  PopoverFooter,
-  PopoverArrow,
-  PopoverCloseButton,
-  Button,
   useDisclosure,
-  useTheme
+  useTheme,
+  VStack
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import { Product } from '@prisma/client';
-import { IProduct } from '@shared/types';
+import { CartProduct, IProduct } from '@shared/types';
 import { ReactComponent as Trash } from 'assets/trash.svg';
 import NumberInput from 'components/NumberInput';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'store';
 import { RootState } from 'store/rootReducer';
 import { removeProduct, setProductAmount } from 'store/slices/cartSlice';
-import { CustomTheme } from 'theme/theme';
-import { capitalizeEveryWord } from 'utils';
 import { ThemeType } from 'theme/theme';
-import { CartProduct } from '@shared/types';
+import { capitalizeEveryWord } from 'utils';
 
 const inputStyle: SystemStyleObject = {
   width: '2.5rem',

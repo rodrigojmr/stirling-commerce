@@ -66,9 +66,10 @@ const Search: React.FC<Props> = ({ order, history }) => {
   return (
     <Box
       pos="relative"
-      maxWidth={['2.4rem', '25rem']}
-      ml={['auto']}
-      mr={[4, 8]}
+      maxWidth={['2.4rem', '20rem']}
+      ml={{ base: '1rem', lg: 'auto' }}
+      mr={{ base: 'auto', lg: '1rem' }}
+      // mr={[4, 8]}
       fontSize={['xl']}
       order={order}
     >
@@ -121,7 +122,6 @@ const Search: React.FC<Props> = ({ order, history }) => {
                   />
                 }
               ></IconButton>
-              // <StyledIcon />
             }
           />
         </InputGroup>

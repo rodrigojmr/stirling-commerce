@@ -1,6 +1,4 @@
-import { Product } from '@prisma/client';
-import { IProduct } from '@shared/types';
-import { CartProduct } from '@shared/types';
+import { CartProduct, IProduct } from '@shared/types';
 import React from 'react';
 
 // (?<!['-]) is to look behind one character '?<' and exclude '!' if previous character was not ' or -

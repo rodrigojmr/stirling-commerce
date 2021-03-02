@@ -1,15 +1,8 @@
-import {
-  Box,
-  Center,
-  Container,
-  Grid,
-  Heading,
-  VStack
-} from '@chakra-ui/react';
+import { Box, Center, Grid, Heading, VStack } from '@chakra-ui/react';
 import ProductCard from 'components/products/productCard';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import { RouteComponentProps, useHistory } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 import { RootState } from 'store/rootReducer';
 
 interface MatchParams {

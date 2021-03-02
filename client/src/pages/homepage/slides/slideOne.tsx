@@ -1,36 +1,10 @@
 import { Box, Flex, Heading, Text } from '@chakra-ui/react';
-import styled from '@emotion/styled';
-import React, { ReactElement } from 'react';
 import ButtonLink from 'components/buttons/buttonLink';
-import { heroSliderStyle } from 'components/styled';
+import React, { ReactElement } from 'react';
 
 type SlideTypes = {
   background: string;
 };
-
-const StyledContainer = styled.article<SlideTypes>`
-  ${heroSliderStyle}
-  background-image: url(${({ background }) => background}),
-        linear-gradient(to right, #000, #000);
-  background-size: auto 100%, cover;
-  background-position: left center;
-  display: flex;
-  align-items: center;
-  background-repeat: no-repeat;
-`;
-
-const TextContainer = styled.div`
-  z-index: 1;
-  margin-left: 60%;
-  > a {
-    margin-top: 4rem;
-  }
-  > p {
-    max-width: 60%;
-    /* TODO  Make font height reusable */
-    line-height: 1.7;
-  }
-`;
 
 const SlideOne = ({ background }: SlideTypes): ReactElement => {
   return (

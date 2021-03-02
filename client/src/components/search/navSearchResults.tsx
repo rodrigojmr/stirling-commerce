@@ -1,7 +1,5 @@
-import { Box, Flex, Center, Image, Link, Spinner } from '@chakra-ui/react';
-import { Product } from '@prisma/client';
+import { Box, Center, Flex, Image, Link, Spinner } from '@chakra-ui/react';
 import { IProduct } from '@shared/types';
-import { LayoutProps } from 'framer-motion';
 import { Link as RouterLink } from 'react-router-dom';
 
 const Result = ({ product }: { product: IProduct }) => (

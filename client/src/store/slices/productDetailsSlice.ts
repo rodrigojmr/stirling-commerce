@@ -1,6 +1,5 @@
-import { Product } from '@prisma/client';
-import { IProduct } from '@shared/types';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { IProduct } from '@shared/types';
 import api from 'utils/api';
 
 export const requestProduct = createAsyncThunk(

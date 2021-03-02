@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Input, Text, Select } from '@chakra-ui/react';
+import { Box, Button, Flex, Input, Select, Text } from '@chakra-ui/react';
 import { CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
 import { Stripe, StripeElements } from '@stripe/stripe-js';
 import CardSection from 'components/stripe/cardSection';

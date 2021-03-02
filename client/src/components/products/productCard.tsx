@@ -1,6 +1,5 @@
-import { Box, Center, Flex, Image, Text, VStack } from '@chakra-ui/react';
+import { Box, Flex, Image, Text } from '@chakra-ui/react';
 import { css } from '@emotion/react';
-import { Product } from '@prisma/client';
 import { IProduct } from '@shared/types';
 import React from 'react';
 import { Link } from 'react-router-dom';

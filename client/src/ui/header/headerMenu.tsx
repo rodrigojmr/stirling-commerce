@@ -1,6 +1,5 @@
-import { Box, ListItem, Link, UnorderedList, Button } from '@chakra-ui/react';
-import styled from '@emotion/styled';
-import { useState, useRef } from 'react';
+import { Box, Button, Link, ListItem, UnorderedList } from '@chakra-ui/react';
+import { useRef, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 interface Props {
   links: Link[];

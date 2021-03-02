@@ -1,5 +1,4 @@
 import { Flex, Image, Text, VStack } from '@chakra-ui/react';
-import { Product } from '@prisma/client';
 import { IProduct } from '@shared/types';
 import React from 'react';
 import { Link } from 'react-router-dom';

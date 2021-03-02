@@ -1,18 +1,17 @@
-import React, {
-  useState,
-  useEffect,
-  useCallback,
-  useRef,
-  useLayoutEffect
-} from 'react';
-import styled from '@emotion/styled';
-import { PrevButton, NextButton } from './carouselButtons';
-import { useEmblaCarousel } from 'embla-carousel/react';
-import { Embla, Viewport, CarouselContainer, Slide } from './styles';
-import ProductSlide from './carouselProduct';
 import { Skeleton, useMediaQuery } from '@chakra-ui/react';
-import { Product } from '@prisma/client';
+import styled from '@emotion/styled';
 import { IProduct } from '@shared/types';
+import { useEmblaCarousel } from 'embla-carousel/react';
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState
+} from 'react';
+import { NextButton, PrevButton } from './carouselButtons';
+import ProductSlide from './carouselProduct';
+import { CarouselContainer, Embla, Slide, Viewport } from './styles';
 
 // Progress bar width = width of component / something
 // Move progress bar by a certain amount

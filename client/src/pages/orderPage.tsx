@@ -2,28 +2,24 @@ import {
   Box,
   Center,
   Heading,
-  Table,
-  Thead,
-  Tbody,
-  Tfoot,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
   Image,
-  Text,
+  Link,
   Skeleton,
-  Link
+  Table,
+  Tbody,
+  Td,
+  Text,
+  Tfoot,
+  Th,
+  Thead,
+  Tr
 } from '@chakra-ui/react';
-import { OrderPayload, SingleOrderPayload } from '@shared/types';
+import { SingleOrderPayload } from '@shared/types';
 import React, { useEffect, useState } from 'react';
-import { RouteComponentProps, useParams } from 'react-router-dom';
+import { Link as RouterLink, useParams } from 'react-router-dom';
 import api from 'utils/api';
-import { Link as RouterLink } from 'react-router-dom';
 
-interface OrdersProps {}
-
-const OrderPage = ({}: RouteComponentProps) => {
+const OrderPage = () => {
   const { id } = useParams<{ id: string }>();
   const [order, setOrder] = useState<SingleOrderPayload | null>();
 

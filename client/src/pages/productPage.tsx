@@ -1,4 +1,8 @@
 import {
+  Box,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
   Button,
   Center,
   Flex,
@@ -7,48 +11,42 @@ import {
   Select,
   Skeleton,
   SkeletonText,
-  Text,
-  useTheme,
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-  Box
+  Text
 } from '@chakra-ui/react';
-import { Product } from '@prisma/client';
-import { IProduct } from '@shared/types';
 import { drawerContext } from 'hooks/useDrawer';
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RouteComponentProps, useParams } from 'react-router-dom';
+import {
+  Link as RouterLink,
+  RouteComponentProps,
+  useParams
+} from 'react-router-dom';
 import { RootState } from 'store/rootReducer';
 import { addProduct } from 'store/slices/cartSlice';
 import { requestProduct } from 'store/slices/productDetailsSlice';
-import { ThemeType } from 'theme/theme';
 import { getProductAverageReviews } from 'utils';
 import { stars } from '../components/styled/Stars';
-import { Link as RouterLink } from 'react-router-dom';
 
 const SingleProduct = ({ match }: RouteComponentProps) => {
   // Get Product
   const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(requestProduct(id));
-  }, []);
+  }, [id]);
+
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const { product, error, status } = useSelector(
     (state: RootState) => state.productDetails
   );
-  const [imageLoaded, setImageLoaded] = useState(false);
-
   const cart = useSelector((state: RootState) => state.cart);
+  const user = useSelector((state: RootState) => state.auth.user);
 
-  const theme = useTheme<ThemeType>();
   const [amount, setAmount] = useState('1');
 
   const { isOpen, setDrawer } = useContext(drawerContext);
-  const user = useSelector((state: RootState) => state.auth.user);
 
   const updateCart = () => {
     if (product && user) {
@@ -89,7 +87,7 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
                 }, '/search');
 
               return (
-                <BreadcrumbItem>
+                <BreadcrumbItem key={i}>
                   <BreadcrumbLink as={RouterLink} to={urlString}>
                     {category.name}
                   </BreadcrumbLink>
@@ -199,12 +197,14 @@ const SingleProduct = ({ match }: RouteComponentProps) => {
                     id="amount-input"
                   >
                     {product &&
-                      [
-                        ...Array(
-                          product?.stock - (cartItem?.amount || 0)
-                        ).keys()
-                      ].map(x => (
-                        <option key={x + 1} value={x + 1}>
+                      [...Array(product?.stock).keys()].map(x => (
+                        <option
+                          disabled={
+                            x + 1 + (cartItem?.amount || 0) > product?.stock
+                          }
+                          key={x}
+                          value={x + 1}
+                        >
                           {x + 1}
                         </option>
                       ))}

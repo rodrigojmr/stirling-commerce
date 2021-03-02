@@ -25,13 +25,10 @@ const Cart = ({ order }: Props) => {
     if (prevAmount < productNum) {
       if (!isNotifOpen) {
         setIsNotifOpen(true);
-        // setTimeout(() => {
-        //   setIsNotifOpen(false);
-        // }, 2000);
       }
     }
     setCartChange(!cartChange);
-  }, [cart]);
+  }, [cart, isNotifOpen, prevAmount, productNum]);
 
   // TODO Link to Cart or popup
   const buttonRef = useRef<HTMLButtonElement>(null);
