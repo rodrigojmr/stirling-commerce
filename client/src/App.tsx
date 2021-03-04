@@ -1,11 +1,14 @@
 import * as React from 'react';
 import { useEffect } from 'react';
-import { Box, ChakraProvider } from '@chakra-ui/react';
+import { Box, ChakraProvider, Flex, Icon } from '@chakra-ui/react';
 import { Helmet } from 'react-helmet';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { jsx } from '@emotion/react';
 
 import Navbar from 'ui/header';
 import Footer from './ui/footer';
+import { ReactComponent as GithubLogo } from 'assets/github.svg';
+import { ReactComponent as LinkedinLogo } from 'assets/linkedin.svg';
 
 import ScrollToTop from './hooks/ScrollToTop';
 import { CustomTheme } from './theme/theme';
@@ -63,6 +66,29 @@ const App = () => {
               {routeComponents}
               <Route render={() => <Redirect to="/" />} />
             </Switch>
+            <Flex
+              borderRadius="lg"
+              width="7rem"
+              justify="space-between"
+              pos="fixed"
+              right="0"
+              bottom="0"
+              p={4}
+              bg="dark-grey"
+            >
+              <a
+                href="https://github.com/rodrigojmr/stirling-commerce"
+                target="_blank"
+              >
+                <Icon boxSize={8} fill="white" as={GithubLogo} />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/rodrigo-jorge-moura/"
+                target="_blank"
+              >
+                <Icon boxSize={8} fill="white" as={LinkedinLogo} />
+              </a>
+            </Flex>
           </Box>
           <Footer />
           <ScrollToTop />
