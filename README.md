@@ -9,13 +9,17 @@ This is an ecommerce website built with React with Redux, Typescript, Node.JS, C
 This application requires multiple ENV variables. One in the root folder of the project and one in the client folder, for React.
 
 ### Root Env
+```
 PORT=3001
 HOST=localhost
+```
 
 Authentication:
+```
 COOKIE_DOMAIN=localhost
 COOKIE_PATH=/
 SECURE_COOKIE=false
+```
 
 Other environment variables that require are `COOKIE_SECRET` and `JWT_SECRET`, `NODE_TLS_REJECT_UNAUTHORIZED=0`, and `STRIPE_SECRET_KEY`.
 `DATABASE_URL` should be something like `postgres://prisma:prisma@localhost:5432/prisma`.
