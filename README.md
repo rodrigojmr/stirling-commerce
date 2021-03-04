@@ -23,6 +23,9 @@ DATABASE_URL should be something like `postgres://prisma:prisma@localhost:5432/p
 ### Client Env
 On the client side, setup a NODE_ENV variable and REACT_APP_API="http://localhost:3001", as well as a STRIPE_PUBLISHABLE_KEY.
 
+
+## Developing
+
 First you should set up the dockerized database and seed it. Run `docker-compose up -d` to get the database running. Then you must set prisma up. `npx prisma migrate dev --preview-feature` and `npx prisma db seed --preview-feature`.
 
 Then you can run `npm run develop` at the root directory to start up both the frontend and backend.
