@@ -122,21 +122,22 @@ const CartDrawer = React.forwardRef<HTMLButtonElement, Props>((props, ref) => {
                 </Flex>
               ))}
             </DrawerBody>
-
-            <DrawerFooter>
-              <Box mr="auto">Total: €{totalPrice.toFixed(2)}</Box>
-              <Button
-                variant="outline"
-                colorScheme="teal"
-                mr={3}
-                onClick={() => setDrawer(false)}
-              >
-                Cancel
-              </Button>
-              <Button as={RouterLink} to="/checkout" colorScheme="teal">
-                Check Out
-              </Button>
-            </DrawerFooter>
+            {cart.length > 0 && (
+              <DrawerFooter>
+                <Box mr="auto">Total: €{totalPrice.toFixed(2)}</Box>
+                <Button
+                  variant="outline"
+                  colorScheme="teal"
+                  mr={3}
+                  onClick={() => setDrawer(false)}
+                >
+                  Cancel
+                </Button>
+                <Button as={RouterLink} to="/checkout" colorScheme="teal">
+                  Check Out
+                </Button>
+              </DrawerFooter>
+            )}
           </DrawerContent>
         </DrawerOverlay>
       </Drawer>
