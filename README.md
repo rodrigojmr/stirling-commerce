@@ -17,15 +17,15 @@ COOKIE_DOMAIN=localhost
 COOKIE_PATH=/
 SECURE_COOKIE=false
 
-Other environment variables that require are COOKIE_SECRET and JWT_SECRET, NODE_TLS_REJECT_UNAUTHORIZED=0, and STRIPE_SECRET_KEY.
-DATABASE_URL should be something like `postgres://prisma:prisma@localhost:5432/prisma`.
+Other environment variables that require are `COOKIE_SECRET` and `JWT_SECRET`, `NODE_TLS_REJECT_UNAUTHORIZED=0`, and `STRIPE_SECRET_KEY`.
+`DATABASE_URL` should be something like `postgres://prisma:prisma@localhost:5432/prisma`.
 
 ### Client Env
-On the client side, setup a NODE_ENV variable and REACT_APP_API="http://localhost:3001", as well as a STRIPE_PUBLISHABLE_KEY.
+On the client side, you need `NODE_ENV="development"`, `REACT_APP_API="http://localhost:3001"`, as well as a `STRIPE_PUBLISHABLE_KEY` for the Stripe API.
 
 ### Instalation
 
-Just do "npm i" on both the root folder asnd client folder.
+Execute `npm i` on both the root folder asnd client folder. If it fails, use `npm i --legacy-peer-deps`.
 
 ## Developing
 
