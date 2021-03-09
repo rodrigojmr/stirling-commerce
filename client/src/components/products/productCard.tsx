@@ -14,7 +14,7 @@ const ProductCard = ({ product }: Props) => {
   const rating = getProductAverageReviews(product);
 
   return (
-    <Box position="relative" bg="gray.100" p="1rem">
+    <Box position="relative" p="1rem">
       <Link to={`/product/${product.id}`}>
         <Flex
           flexDir="column"

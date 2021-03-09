@@ -1,7 +1,7 @@
 import { extendTheme } from '@chakra-ui/react';
 import { createBreakpoints } from '@chakra-ui/theme-tools';
 
-const breakpoints = createBreakpoints({
+export const breakpoints = createBreakpoints({
   sm: '30em', // 480px
   md: '36em', // 576px
   lg: '48em', //  768px
@@ -57,7 +57,6 @@ export const CustomTheme = extendTheme({
     },
     Link: {
       baseStyle: {
-        lineHeight: 1,
         fontFamily: 'Bebas Neue',
         fontWeight: '600',
         _hover: {
@@ -83,7 +82,6 @@ export const CustomTheme = extendTheme({
           backgroundColor: 'transparent',
           color: 'primary.500',
           padding: 0,
-          lineHeight: 1,
           minWidth: 'auto',
           _hover: {
             textDecoration: 'none'

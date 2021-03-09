@@ -7,6 +7,7 @@ import { ReactComponent as Logo } from 'assets/logo.svg';
 import Cart from 'components/cart/cart';
 import Search from 'components/search/navSearch';
 import UserIcon from 'components/userIcon';
+import { navLinks } from 'data/links';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
@@ -35,41 +36,7 @@ const StyledLogo = styled(Icon)`
   }
 `;
 
-const navLinks: Link[] = [
-  {
-    to: '#',
-    // to: '/search/men',
-    text: "Men's"
-  },
-  {
-    to: '#',
-    // to: '/search/women',
-    text: "Women's"
-  },
-  {
-    to: '#',
-    // to: '/search/kids',
-    text: "Kid's"
-  },
-  {
-    to: '#',
-    // to: '/search/sport',
-    text: 'Sport'
-  },
-  {
-    to: '#',
-    // to: '/search/gear',
-    text: 'Gear'
-  },
-  {
-    to: '#',
-    // to: '/search/new',
-    text: 'New'
-  }
-];
-
 const Navbar = () => {
-  const dispatch = useDispatch();
   const { user, status } = useSelector((state: RootState) => state.auth);
 
   const [isLargerThan768px] = useMediaQuery('(min-width: 48em)');

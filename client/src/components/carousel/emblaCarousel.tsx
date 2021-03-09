@@ -1,7 +1,14 @@
 import React, { useState, useEffect, useCallback, ReactElement } from 'react';
 import { useEmblaCarousel } from 'embla-carousel/react';
 import styled from '@emotion/styled';
-import { DotButton, PrevButton, NextButton } from './carouselButtons';
+import {
+  DotButton,
+  PrevButton,
+  NextButton,
+  SliderButton,
+  PrevArrow,
+  NextArrow
+} from './carouselButtons';
 import { Embla, Viewport, CarouselContainer } from './styles';
 
 // TODO Split style from the component itself, pass through props
@@ -82,8 +89,34 @@ const EmblaCarouselComponent: React.FC<HeroSliderProps> = ({
       </Dots>
       {options.arrows && (
         <>
-          <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
-          <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
+          <SliderButton
+            top={{ base: '90%', lg: '50%' }}
+            left={{ base: '1rem', lg: '3rem' }}
+            w={{ base: '1.3rem' }}
+            h={{ base: '1.3rem' }}
+            onClick={scrollPrev}
+            enabled={prevBtnEnabled}
+          >
+            <PrevArrow
+              w={{ base: '1.2rem', lg: '2rem' }}
+              h={{ base: '1.2rem', lg: '2rem' }}
+            />
+          </SliderButton>
+          <SliderButton
+            top={{ base: '90%', lg: '50%' }}
+            right={{ base: '1rem', lg: '3rem' }}
+            w={{ base: '1.3rem' }}
+            h={{ base: '1.3rem' }}
+            onClick={scrollNext}
+            enabled={nextBtnEnabled}
+          >
+            <NextArrow
+              w={{ base: '1.2rem', lg: '2rem' }}
+              h={{ base: '1.2rem', lg: '2rem' }}
+            />
+          </SliderButton>
+          {/* <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
+          <NextButton onClick={scrollNext} enabled={nextBtnEnabled} /> */}
         </>
       )}
     </Embla>

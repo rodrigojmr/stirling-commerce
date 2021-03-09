@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Box, Input, Text } from '@chakra-ui/react';
+import { CustomTheme, breakpoints } from 'theme/theme';
 
 const Wrapper = styled.div`
   position: relative;
@@ -15,6 +16,10 @@ const ToggleWrapper = styled.div`
   }
   > *:last-child {
     margin-left: 1.8rem;
+  }
+
+  @media screen and (max-width: ${breakpoints.lg}) {
+    margin-top: 1rem;
   }
 `;
 

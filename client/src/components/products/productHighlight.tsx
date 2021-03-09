@@ -1,4 +1,4 @@
-import { Flex, Text, VStack, Heading } from '@chakra-ui/react';
+import { Flex, Text, VStack, Heading, Box, Grid } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import React, { useLayoutEffect, useRef } from 'react';
 import ButtonLink from '../buttons/buttonLink';
@@ -6,21 +6,6 @@ import HighlightDot from './highlightDot';
 import { stars } from '../styled/Stars';
 import { ProductsWithHighlightPoints } from 'data/products';
 import { getProductAverageReviews } from 'utils';
-
-const ProductContainer = styled.article`
-  display: flex;
-  height: 600px;
-  overflow: hidden;
-`;
-
-const ImageContainer = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 65%;
-  text-align: center;
-`;
 
 const StyledImage = styled.img`
   display: block;
@@ -50,31 +35,43 @@ const ProductHighlight: React.FC<{ product: ProductsWithHighlightPoints }> = ({
   const rating = getProductAverageReviews(product);
 
   return (
-    <ProductContainer>
-      <ImageContainer ref={imgContainerRef}>
+    <Flex as="article" direction={{ base: 'column', lg: 'row' }}>
+      <Flex
+        flexBasis="65%"
+        position="relative"
+        alignItems="center"
+        justifyContent="ceter"
+        textAlign="center"
+        ref={imgContainerRef}
+      >
         <StyledImage ref={imgRef} src={product.image} alt={product.title} />
         {product.highlights.map((point, i) => (
           <HighlightDot key={i} {...point} />
         ))}
-      </ImageContainer>
+      </Flex>
       <VStack
-        pl="5vw"
         flexBasis="35%"
-        spacing="1.75rem"
+        pl="5vw"
+        spacing={{ base: '.75rem', lg: '1.7rem' }}
         justifyContent="center"
         align="start"
       >
         <Flex>{stars(rating)}</Flex>
-        <Heading fontFamily="body" as="h2" color="black" fontSize="4xl">
+        <Heading
+          fontFamily="body"
+          as="h2"
+          color="black"
+          fontSize={{ base: '3xl', lg: '4xl' }}
+        >
           {product.title}
         </Heading>
         <Text
           fontWeight={'600'}
-          fontSize="4xl"
+          fontSize={{ base: '3xl', lg: '4xl' }}
           fontFamily="Bebas Neue"
         >{`$${product.price}`}</Text>
         <ButtonLink
-          fontSize="2xl"
+          fontSize={{ base: '2xl', lg: '3xl' }}
           to={'#'}
           color="primary.500"
           buttonColor="primary.500"
@@ -83,7 +80,7 @@ const ProductHighlight: React.FC<{ product: ProductsWithHighlightPoints }> = ({
           Shop Now
         </ButtonLink>
       </VStack>
-    </ProductContainer>
+    </Flex>
   );
 };
 

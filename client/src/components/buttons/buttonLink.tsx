@@ -1,17 +1,14 @@
 import { ChevronRightIcon } from '@chakra-ui/icons';
-import { Button, ButtonProps, Text } from '@chakra-ui/react';
+import { Button, ButtonProps, StyleProps, Text } from '@chakra-ui/react';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
-interface ButtonLinkProps extends ButtonProps {
+type ButtonLinkProps = {
   to: string;
-  color?: string;
+  children: string | React.ReactNode;
   iconColor: string;
   buttonColor: string;
-  fontSize: string;
-  icongSpacing?: string;
-  children: string | React.ReactNode;
-}
+} & ButtonProps;
 
 // TODO Change to EM
 const ButtonLink = ({
@@ -20,7 +17,7 @@ const ButtonLink = ({
   iconColor,
   buttonColor,
   fontSize,
-  icongSpacing = '4.5rem',
+  iconSpacing = '4.5rem',
   to,
   ...props
 }: ButtonLinkProps) => (
@@ -29,7 +26,7 @@ const ButtonLink = ({
     fontSize={fontSize}
     as={Link}
     to={to}
-    iconSpacing={icongSpacing}
+    iconSpacing={iconSpacing}
     borderColor={buttonColor}
     variant="round-arrow"
     rightIcon={

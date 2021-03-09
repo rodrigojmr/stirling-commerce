@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Flex, Link, Heading, Container, Center } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  Link,
+  Heading,
+  Container,
+  Center,
+  Image
+} from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import EmblaCarousel from 'components/carousel/emblaCarousel';
 import ProductsCarousel from 'components/carousel/productsCarousel';
@@ -35,10 +43,6 @@ const FormContainer = styled.div`
   margin-bottom: 3rem;
   width: 70vw;
   max-width: 50rem;
-`;
-
-const Image = styled.img`
-  width: 100%;
 `;
 
 const Home = () => {
@@ -100,9 +104,13 @@ const Home = () => {
       </Box>
 
       {/* Tagline Section */}
-      <Box py={24} as="section" bg="light-grey">
+      <Box py={[16, 20, 24]} as="section" bg="light-grey">
         <Container maxW="max" centerContent>
-          <Heading fontSize="4xl" textAlign="center" as="h1">
+          <Heading
+            fontSize={{ base: '3xl', lg: '4xl' }}
+            textAlign="center"
+            as="h1"
+          >
             <>
               Where all the leading sports brands come to play, <br /> we bring
               you stirling sports
@@ -165,8 +173,9 @@ const Home = () => {
         as="section"
         position="relative"
         py={24}
+        px={{ base: '5vw', lg: 0 }}
         _before={{
-          content: `"running"`,
+          content: { base: `""`, lg: `"running"` },
           fontFamily: 'Bebas Neue',
           fontWeight: '600',
           fontSize: '22vw',
@@ -200,7 +209,7 @@ const Home = () => {
         bgGradient="linear(to-b, light-grey 50%,white  0%)"
       >
         <Box margin="0 auto" maxWidth="max">
-          <Flex justify="space-between" mb={2}>
+          <Flex mx="3vw" justify="space-between" mb={2}>
             <Heading as="h2" fontSize="3xl">
               New Footwear
             </Heading>
@@ -227,15 +236,21 @@ const Home = () => {
         justifyContent="center"
         flexDirection="column"
       >
-        <Heading fontSize="4xl" as="h1">
+        <Heading fontSize={{ base: '3xl', lg: '4xl' }} as="h1">
           <>
             Be first to get new information <br /> About new products
           </>
         </Heading>
-        <FormContainer>
+        <Box my="2rem" width={{ base: '90%', lg: '70vw' }} maxWidth="50rem">
           <NewsletterForm />
-        </FormContainer>
-        <Image src="/images/stretching.webp" alt="Man stretching" />
+        </Box>
+        <Flex overflow="hidden" align="center" justify="center">
+          <Image
+            width={{ base: '250%', lg: '150%' }}
+            src="/images/stretching.webp"
+            alt="Man stretching"
+          />
+        </Flex>
       </Flex>
     </>
   );

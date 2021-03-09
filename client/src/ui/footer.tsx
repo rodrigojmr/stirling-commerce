@@ -10,6 +10,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
+import { breakpoints } from 'theme/theme';
 import { ReactComponent as FacebookLogo } from '../assets/facebook.svg';
 import { ReactComponent as InstagramLogo } from '../assets/instagram.svg';
 import { ReactComponent as RSSLogo } from '../assets/rss.svg';
@@ -17,24 +18,23 @@ import { footerLinks } from '../data/links';
 
 const Container = styled.footer`
   background-color: black;
-  padding: 6rem 10vw;
+  padding: 5rem 10vw;
 `;
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 20rem 6rem;
-`;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, max-content));
 
-const Column = styled.div`
-  & > *:first-of-type {
-    margin-bottom: 3rem;
+  @media screen and (min-width: ${breakpoints.xl}) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 20rem 6rem;
   }
 `;
 
 const columnContent = (navSection: footerNavSectionType) => (
   <>
-    <Heading as="h3" color="primary.500" fontSize="3xl">
+    <Heading as="h3" display="inline-block" color="primary.500" fontSize="3xl">
       {navSection.title}
     </Heading>
     <UnorderedList ml="0" spacing=".8rem" listStyleType="none">
@@ -59,10 +59,12 @@ const Footer = () => {
     <Container>
       <Wrapper>
         {footerLinks.map((section, i) => (
-          <Column key={i}>{columnContent(section)}</Column>
+          <Flex direction="column" key={i}>
+            {columnContent(section)}
+          </Flex>
         ))}
-        <Column>
-          <Heading as="h3" color="primary.500" fontSize="2xl">
+        <Flex direction="column">
+          <Heading as="h3" color="primary.500" fontSize="2xl" mb={4}>
             Follow Us
           </Heading>
           <Flex
@@ -102,9 +104,11 @@ const Footer = () => {
               />
             </Link>
           </Flex>
-        </Column>
+        </Flex>
       </Wrapper>
       <Link
+        pt={4}
+        display="inline-block"
         color="white"
         padding="1rem"
         ml="-1rem"

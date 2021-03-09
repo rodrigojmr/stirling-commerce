@@ -70,8 +70,8 @@ const HighlightDot: React.FC<Props> = ({ x, y, text }) => {
       position="absolute"
       top={y}
       left={x}
-      width="50px"
-      height="50px"
+      width={{ base: '2rem', lg: '4rem' }}
+      height={{ base: '2rem', lg: '4rem' }}
       borderRadius="50%"
       bg="rgba(102, 102, 102, 0.5)"
       outline="none"
@@ -114,7 +114,10 @@ const HighlightDot: React.FC<Props> = ({ x, y, text }) => {
                 overflow="hidden"
                 textOverflow="initial"
               >
-                <Text fontWeight={'600'} fontSize="1.3rem">
+                <Text
+                  fontWeight={'600'}
+                  fontSize={{ base: '.9rem', lg: '1.3rem' }}
+                >
                   {text}
                 </Text>
               </Box>
