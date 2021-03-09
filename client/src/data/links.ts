@@ -1,10 +1,12 @@
+import { categories } from './data';
+
 export const footerLinks = [
   {
     title: 'Shop',
     links: [
-      { name: "Men's", link: '#' },
-      { name: "Women's", link: '#' },
-      { name: "Kid's", link: '#' },
+      { name: 'Men', link: '#' },
+      { name: 'Women', link: '#' },
+      { name: 'Kids', link: '#' },
       { name: 'Sport', link: '#' },
       { name: 'Gear', link: '#' }
     ]
@@ -29,4 +31,11 @@ export const footerLinks = [
       { name: 'Giftcards', link: '#' }
     ]
   }
+];
+
+export const navLinks: Link[] = [
+  ...categories.map(category => ({
+    to: `/search/${category}`,
+    text: category[0].toUpperCase() + category.slice(1)
+  }))
 ];

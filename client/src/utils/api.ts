@@ -1,14 +1,13 @@
 import {
-  SignInParams,
+  IProduct,
   IUser,
-  SubmitOrderPayload,
   OrderPayload,
-  SingleOrderPayload
+  SignInParams,
+  SingleOrderPayload,
+  SubmitOrderPayload
 } from '@shared/types';
 //here we are importing our Axios dependency
 import axios from 'axios';
-import { Product } from '@prisma/client';
-import { IProduct } from '@shared/types';
 
 const baseURL =
   process.env.NODE_ENV === 'development'

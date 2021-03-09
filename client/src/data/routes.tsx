@@ -9,7 +9,7 @@ import OrderPage from 'pages/orderPage';
 
 const routes = [
   {
-    path: '/search/:param1?/:param2?',
+    path: '/search/:category?/:type1?/:type2?',
     exact: true,
     component: Search
   },

@@ -21,7 +21,7 @@ export const createHighlightedProduct = (
 export const homeProductOneHighlights: HighlightPoints[] = [
   {
     x: '34%',
-    y: '20%',
+    y: '30%',
     text:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis assumenda accusamus voluptates?'
   },
@@ -50,7 +50,7 @@ export const homeProductOneHighlights: HighlightPoints[] = [
   },
   {
     x: '16%',
-    y: '74%',
+    y: '64%',
     text:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis assumenda accusamus voluptates?'
   }
