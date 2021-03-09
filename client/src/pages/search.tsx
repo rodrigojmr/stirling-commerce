@@ -55,7 +55,6 @@ const Search = () => {
 
     setFilteredProducts(filtered);
   }, [products, params]);
-  console.log('params: ', params);
 
   const setCategory = (cat?: string) => {
     const directory = `/search${cat ? `/${cat}` : ``}`;
