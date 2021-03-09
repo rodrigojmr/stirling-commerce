@@ -244,7 +244,7 @@ const Home = () => {
         <Box my="2rem" width={{ base: '90%', lg: '70vw' }} maxWidth="50rem">
           <NewsletterForm />
         </Box>
-        <Flex overflow="hidden" align="center" justify="center">
+        <Flex width="100%" overflow="hidden" align="center" justify="center">
           <Image
             width={{ base: '250%', lg: '150%' }}
             src="/images/stretching.webp"
