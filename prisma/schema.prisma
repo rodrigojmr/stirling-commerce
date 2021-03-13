@@ -7,65 +7,69 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["createMany"]
 }
 
 model User {
-  id Int @id @default(autoincrement())
-  email String @unique
-  name String
-  social Json?
-  passHash String
-  role Role @default(USER)
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String
+  social    Json?
+  passHash  String
+  role      Role     @default(USER)
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
+  Order     Order[]
 }
 
 model Product {
-  id          Int        @id @default(autoincrement())
-  title       String
-  reviews     Int[]
-  brand       String
-  price       Int // Divide by 10 to get price val
-  image       String
-  description String
-  stock       Int
-  colors      String[]
-  updatedAt   DateTime   @updatedAt
-  createdAt   DateTime   @default(now())
-  categories  Category[]
-  orders      Order[]
+  id             Int              @id @default(autoincrement())
+  title          String
+  reviews        Int[]
+  brand          String
+  price          Int // Divide by 10 to get price val
+  image          String
+  description    String
+  stock          Int
+  colors         String[]
+  updatedAt      DateTime         @updatedAt
+  createdAt      DateTime         @default(now())
+  categories     Category[]
+  orders         Order[]
+  ProductInOrder ProductInOrder[]
 }
 
 model Order {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
+  id        Int              @id @default(autoincrement())
+  createdAt DateTime         @default(now())
   cost      Int
   products  ProductInOrder[]
-  buyer     User      @relation(fields: [userId], references: [id])
+  buyer     User             @relation(fields: [userId], references: [id])
   userId    Int
+  Product   Product?         @relation(fields: [productId], references: [id])
+  productId Int?
 }
 
 model ProductInOrder {
   createdAt DateTime @default(now())
-  amount Int
+  amount    Int
 
   productId Int
-  product Product @relation(fields:[productId], references: [id])
-  order Order @relation(fields: [orderId], references: [id])
-  orderId Int
+  product   Product @relation(fields: [productId], references: [id])
+  order     Order   @relation(fields: [orderId], references: [id])
+  orderId   Int
 
   @@id([productId, orderId])
 }
 
 model Category {
-  id    Int     @id @default(autoincrement())
-  name  String @unique
+  id       Int       @id @default(autoincrement())
+  name     String    @unique
   products Product[]
 }
 
 enum Role {
- USER
- ADMIN
+  USER
+  ADMIN
 }
