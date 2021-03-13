@@ -15,13 +15,14 @@
   },
   "scripts": {
     "start": "node -r module-alias/register dist/server/src/index.js",
-    "build": "yarn run clean-dist && yarn run prod:serverbuild && mkdirp dist/public && yarn workspace client prod:build && npx prisma migrate --preview-feature",
+    "build": "yarn run clean-dist && yarn run prod:serverbuild && mkdirp dist/public && yarn workspace client prod:build && yarn run prisma",
     "client-develop": "yarn workspace client start",
     "server-develop": "nodemon -r dotenv/config",
     "develop": "concurrently --kill-others-on-fail \"yarn server-develop\"  \"yarn client-develop\"",
     "dev:serverbuild": "tsc --build",
     "prod:serverbuild": "tsc --build tsconfig.prod.json",
-    "prisma:prod": "npx prisma db push --preview-feature --accept-data-loss --force-reset && npx prisma db seed --preview-feature",
+    "prisma": "npx prisma db push --preview-feature",
+    "prisma:reset": "npx prisma db push --preview-feature --accept-data-loss --force-reset && npx prisma db seed --preview-feature",
     "clean-dist": "rimraf -rf ./dist && rimraf -rf ./server/public"
   },
   "_moduleAliases": {
