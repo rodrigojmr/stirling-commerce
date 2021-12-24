@@ -7,6 +7,7 @@
     "@chakra-ui/react": "^1.3.4",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
+    "@fontsource/bebas-neue": "^4.5.0",
     "@reduxjs/toolkit": "^1.5.0",
     "@stripe/react-stripe-js": "^1.4.0",
     "@testing-library/jest-dom": "^5.11.9",

@@ -1,25 +1,26 @@
-import * as React from 'react';
-import { useEffect } from 'react';
-import { Box, ChakraProvider, Flex, Icon } from '@chakra-ui/react';
-import { Helmet } from 'react-helmet';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import { jsx } from '@emotion/react';
+import * as React from "react";
+import { useEffect } from "react";
+import { Box, ChakraProvider, Flex, Icon } from "@chakra-ui/react";
+import { Helmet } from "react-helmet";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
-import Navbar from 'ui/header';
-import Footer from './ui/footer';
-import { ReactComponent as GithubLogo } from 'assets/github.svg';
-import { ReactComponent as LinkedinLogo } from 'assets/linkedin.svg';
+import Navbar from "ui/header";
+import Footer from "./ui/footer";
+import { ReactComponent as GithubLogo } from "assets/github.svg";
+import { ReactComponent as LinkedinLogo } from "assets/linkedin.svg";
 
-import ScrollToTop from './hooks/ScrollToTop';
-import { CustomTheme } from './theme/theme';
-import { drawerContext, useDrawer } from 'hooks/useDrawer';
+import ScrollToTop from "./hooks/ScrollToTop";
+import { CustomTheme } from "./theme/theme";
+import { drawerContext, useDrawer } from "hooks/useDrawer";
 
-import store from './store';
-import { getUser } from 'store/slices/userSlice';
+import store from "./store";
+import { getUser } from "store/slices/userSlice";
 
-import routes from 'data/routes';
-import PrivateRoute from './utils/privateRoute';
-import PublicRoute from 'utils/publicRoute';
+import routes from "data/routes";
+import PrivateRoute from "./utils/privateRoute";
+import PublicRoute from "utils/publicRoute";
+
+import "@fontsource/bebas-neue";
 
 const App = () => {
   const drawer = useDrawer();
